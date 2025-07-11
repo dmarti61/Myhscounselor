@@ -28,11 +28,12 @@ const Home = () => {
       You don’t have to figure out your future alone.
       Whether you’re thinking about college, trade school, or just exploring your options,
       this platform is designed to guide you—step by step, decision by decision.
-    </p></br>
-    <p>
+      </p>
+      <p></p>
+      <p>
       Answer a few quick questions, and we’ll help you discover your strengths, interests,
       and next steps toward a career path that fits who you are.
-    </p>
+      </p>
       <StartButton onClick={handleStart} />
     </div>
   );
