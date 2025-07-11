@@ -1,123 +1,190 @@
 // questions.js
-const questions = [
+const QUESTIONS = [
+  // E vs I
   {
-    id: 1,
-    prompt: 'When solving a problem, I prefer...',
+    id: 'q1',
+    dimension: 'EI',
+    text: 'At a big school event, you...',
     options: [
-      'A clear step-by-step plan',
-      'Jumping in hands-on',
-      'Talking it out with others',
-      'Exploring and adjusting as I go'
+      { label: 'Mingle with lots of people—you’re energized!', value: 'E' },
+      { label: 'Stick with a few close friends and keep it chill.', value: 'I' }
     ]
   },
   {
-    id: 2,
-    prompt: 'My ideal work environment is...',
+    id: 'q2',
+    dimension: 'EI',
+    text: 'Your weekends are best spent...',
     options: [
-      'Organized and predictable',
-      'Active and physical',
-      'Collaborative and social',
-      'Flexible and ever-changing'
+      { label: 'Out with a bunch of people doing something fun.', value: 'E' },
+      { label: 'At home, recharging with solo activities.', value: 'I' }
     ]
   },
   {
-    id: 3,
-    prompt: 'I feel most confident when...',
+    id: 'q3',
+    dimension: 'EI',
+    text: 'People usually say you...',
     options: [
-      'I’ve mapped out every detail',
-      'I’m building or fixing something',
-      'I’m helping someone directly',
-      'I’m trying something new'
+      { label: 'Are loud, open, and outgoing.', value: 'E' },
+      { label: 'Are calm, reflective, or shy.', value: 'I' }
     ]
   },
   {
-    id: 4,
-    prompt: 'I prefer tasks that...',
+    id: 'q4',
+    dimension: 'EI',
+    text: 'In a new group project, you...',
     options: [
-      'Have clear instructions',
-      'Let me work with my hands',
-      'Involve people and emotions',
-      'Let me experiment and adapt'
+      { label: 'Jump in to lead or speak up.', value: 'E' },
+      { label: 'Observe and contribute quietly.', value: 'I' }
     ]
   },
   {
-    id: 5,
-    prompt: 'When making decisions, I...',
+    id: 'q5',
+    dimension: 'EI',
+    text: 'You recharge your energy by...',
     options: [
-      'Weigh pros and cons carefully',
-      'Trust my instincts and act',
-      'Ask others for input',
-      'Go with what feels exciting'
+      { label: 'Hanging out with others.', value: 'E' },
+      { label: 'Spending time alone.', value: 'I' }
+    ]
+  },
+
+  // S vs N
+  {
+    id: 'q6',
+    dimension: 'SN',
+    text: 'When learning something new, you...',
+    options: [
+      { label: 'Prefer step-by-step instructions and facts.', value: 'S' },
+      { label: 'Go with your gut and think of big-picture ideas.', value: 'N' }
     ]
   },
   {
-    id: 6,
-    prompt: 'Success means...',
+    id: 'q7',
+    dimension: 'SN',
+    text: 'Which excites you more?',
     options: [
-      'Achieving long-term goals',
-      'Getting things done efficiently',
-      'Making a difference for others',
-      'Exploring new possibilities'
+      { label: 'Stuff that’s proven, practical, and real.', value: 'S' },
+      { label: 'Theories, possibilities, and what-ifs.', value: 'N' }
     ]
   },
   {
-    id: 7,
-    prompt: 'I’m most energized by...',
+    id: 'q8',
+    dimension: 'SN',
+    text: 'In group work, you’re the one who...',
     options: [
-      'Planning and organizing',
-      'Doing and building',
-      'Connecting and communicating',
-      'Discovering and exploring'
+      { label: 'Focuses on the details and checks things twice.', value: 'S' },
+      { label: 'Dreams up creative angles and connects ideas.', value: 'N' }
     ]
   },
   {
-    id: 8,
-    prompt: 'I handle stress by...',
+    id: 'q9',
+    dimension: 'SN',
+    text: 'When something goes wrong, you...',
     options: [
-      'Creating a plan',
-      'Fixing what’s broken',
-      'Talking it out',
-      'Changing my environment'
+      { label: 'Look for what actually happened.', value: 'S' },
+      { label: 'Try to understand the meaning behind it.', value: 'N' }
     ]
   },
   {
-    id: 9,
-    prompt: 'I learn best when...',
+    id: 'q10',
+    dimension: 'SN',
+    text: 'Your friends say your thinking is more...',
     options: [
-      'I study and take notes',
-      'I try it myself',
-      'I discuss it with others',
-      'I explore freely'
+      { label: 'Logical, practical, down to earth.', value: 'S' },
+      { label: 'Imaginative, abstract, “out there.”', value: 'N' }
+    ]
+  },
+
+  // T vs F
+  {
+    id: 'q11',
+    dimension: 'TF',
+    text: 'When making tough choices, you tend to...',
+    options: [
+      { label: 'Analyze pros and cons logically.', value: 'T' },
+      { label: 'Go with what feels right emotionally.', value: 'F' }
     ]
   },
   {
-    id: 10,
-    prompt: 'I’m most proud of...',
+    id: 'q12',
+    dimension: 'TF',
+    text: 'In an argument, you’re more concerned with...',
     options: [
-      'My organization and discipline',
-      'My ability to build or fix things',
-      'My relationships and empathy',
-      'My curiosity and adaptability'
+      { label: 'Who’s factually right.', value: 'T' },
+      { label: 'People’s feelings and relationships.', value: 'F' }
     ]
   },
   {
-    id: 11,
-    prompt: 'I prefer projects that...',
+    id: 'q13',
+    dimension: 'TF',
+    text: 'Others describe you as...',
     options: [
-      'Have a clear timeline',
-      'Involve tools or physical work',
-      'Require teamwork',
-      'Let me explore new ideas'
+      { label: 'Logical and objective.', value: 'T' },
+      { label: 'Empathetic and caring.', value: 'F' }
     ]
   },
   {
-    id: 12,
-    prompt: 'I’m most likely to say...',
+    id: 'q14',
+    dimension: 'TF',
+    text: 'In debates, you enjoy...',
     options: [
-      '“Let’s make a plan”',
-      '“Let’s get to work”',
-      '“Let’s talk it through”',
-      '“Let’s try something new”'
+      { label: 'Winning with solid arguments.', value: 'T' },
+      { label: 'Finding common ground and fairness.', value: 'F' }
+    ]
+  },
+  {
+    id: 'q15',
+    dimension: 'TF',
+    text: 'You’re more comfortable with decisions that are...',
+    options: [
+      { label: 'Just, even if unpopular.', value: 'T' },
+      { label: 'Compassionate, even if imperfect.', value: 'F' }
+    ]
+  },
+
+  // J vs P
+  {
+    id: 'q16',
+    dimension: 'JP',
+    text: 'Which describes your style more?',
+    options: [
+      { label: 'Planner—organized and scheduled.', value: 'J' },
+      { label: 'Explorer—flexible and spontaneous.', value: 'P' }
+    ]
+  },
+  {
+    id: 'q17',
+    dimension: 'JP',
+    text: 'At school, you...',
+    options: [
+      { label: 'Like checking off to-do lists early.', value: 'J' },
+      { label: 'Finish stuff at the last minute—under pressure is best.', value: 'P' }
+    ]
+  },
+  {
+    id: 'q18',
+    dimension: 'JP',
+    text: 'How do you feel about rules?',
+    options: [
+      { label: 'They create structure—let’s stick to them.', value: 'J' },
+      { label: 'They’re fine… but sometimes they’re made to be bent.', value: 'P' }
+    ]
+  },
+  {
+    id: 'q19',
+    dimension: 'JP',
+    text: 'When plans change last second...',
+    options: [
+      { label: 'That’s frustrating—why didn’t we plan?', value: 'J' },
+      { label: 'Cool, let’s roll with it.', value: 'P' }
+    ]
+  },
+  {
+    id: 'q20',
+    dimension: 'JP',
+    text: 'You prefer assignments that are...',
+    options: [
+      { label: 'Structured with clear rubrics.', value: 'J' },
+      { label: 'Open-ended with lots of creative freedom.', value: 'P' }
     ]
   }
 ];
