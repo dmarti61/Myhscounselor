@@ -1,0 +1,54 @@
+.college-guide-container {
+  max-width: 700px;
+  margin: auto;
+  padding: 2rem;
+  font-family: 'Segoe UI', sans-serif;
+  background: #f9f9f9;
+  border-radius: 12px;
+  box-shadow: 0 0 8px rgba(0,0,0,0.05);
+}
+
+.college-guide-container h2 {
+  color: #0078d4;
+  margin-bottom: 1rem;
+}
+
+.intro {
+  font-size: 1rem;
+  color: #444;
+  margin-bottom: 1.5rem;
+}
+
+.timeline h3,
+.resources h3,
+.essay-tips h3 {
+  color: #00b294;
+  margin-top: 1.5rem;
+}
+
+ul {
+  padding-left: 1.2rem;
+  margin-top: 0.5rem;
+}
+
+ul li {
+  margin-bottom: 0.6rem;
+  line-height: 1.5;
+}
+
+a {
+  color: #0078d4;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.quote-block {
+  margin-top: 2rem;
+  text-align: center;
+  font-style: italic;
+  font-size: 1.05rem;
+  color: #555;
+}
