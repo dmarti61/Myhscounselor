@@ -9,12 +9,17 @@ import ConnectorChecklist from './pages/PersonalityChecklistPages/ConnectorCheck
 import ExplorerChecklist from './pages/PersonalityChecklistPages/ExplorerChecklist';
 import Onboarding from './pages/Onboarding/Onboarding';
 import NotFound from './pages/NotFound';
+import Quiz from './pages/Quiz';
+
+
+
 
 const App = () => {
   return (
     <Router>
       <Routes>
         <Route path="/onboarding" element={<Onboarding />} />
+        <Route path="/quiz" element={<Quiz />} />
         <Route path="*" element={<NotFound />} />
         <Route path="/" element={<Home />} />
         <Route path="/not-sure" element={<NotSure />} />
