@@ -56,6 +56,13 @@ const ResultPage = ({ personalityType }) => {
 <p className="disclaimer">
   Career data is based on information from the U.S. Bureau of Labor Statistics. Current as of June 2025. This site is not affiliated with BLS.
 </p>
+useEffect(() => {
+  const userType = localStorage.getItem('userType');
+  if (userType) {
+    // Personalize UI elements based on type
+    // Optionally highlight best-fit resources, templates, timelines
+  }
+}, []);
 
       <ShareCard
         type={personalityType}
