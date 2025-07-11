@@ -8,6 +8,7 @@ import PlannerChecklist from './pages/PersonalityChecklistPages/PlannerChecklist
 import ConnectorChecklist from './pages/PersonalityChecklistPages/ConnectorChecklist';
 import ExplorerChecklist from './pages/PersonalityChecklistPages/ExplorerChecklist';
 import Onboarding from './pages/Onboarding/Onboarding';
+import CollegeGuide from './CollegeGuide';
 import NotFound from './pages/NotFound';
 import Quiz from './components/Quiz/Quiz';
 
