@@ -24,7 +24,15 @@ const Home = () => {
     <div className="home">
       {showOnboarding && <OnboardingOverlay />}
       <h1>🎓 Welcome to My HS Counselor</h1>
-      <p>Your personalized roadmap starts here.</p>
+      <p>
+      You don’t have to figure out your future alone.
+      Whether you’re thinking about college, trade school, or just exploring your options,
+      this platform is designed to guide you—step by step, decision by decision.
+    </p>
+    <p>
+      Answer a few quick questions, and we’ll help you discover your strengths, interests,
+      and next steps toward a career path that fits who you are.
+    </p>
       <StartButton onClick={handleStart} />
     </div>
   );
