@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import InterestScale from './InterestScale';
-import DownloadPDFButton from './DownloadPDFButton';
+import InterestScale from './Checklist/InterestScale';
+import DownloadPDFButton from './Checklist/DownloadPDFButton';
 
 const ResultBadge = ({ type }) => {
   const navigate = useNavigate();
