@@ -209,5 +209,3 @@ export const CAREER_MAP = {
       "Start a part-time job or hands-on internship."
     ]
   },
-  "ESFP": {
-    title: "The
