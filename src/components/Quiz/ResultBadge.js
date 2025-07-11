@@ -6,7 +6,7 @@ const ResultBadge = ({ type }) => {
   const navigate = useNavigate();
 
   const handleNextSteps = () => {
-    navigate(`/next-steps/${type.toLowerCase()}`);
+    navigate(`/personality-checklist-pages/${type.toLowerCase()}checklist`);
   };
 
   const badgeMap = {
