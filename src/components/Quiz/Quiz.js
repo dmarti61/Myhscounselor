@@ -1,5 +1,6 @@
 // Quiz.js
 import React, { useState } from 'react';
+import questions from '../../data/questions';
 import QuestionCard from './QuestionCard';
 import ResultBadge from './ResultBadge';
 
