@@ -1,6 +1,7 @@
-// ResultBadge.js
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import InterestScale from './InterestScale';
+import DownloadPDFButton from './DownloadPDFButton';
 
 const ResultBadge = ({ type }) => {
   const navigate = useNavigate();
@@ -27,6 +28,10 @@ const ResultBadge = ({ type }) => {
       <button className="next-steps-btn" onClick={handleNextSteps}>
         📘 View Your Next Steps
       </button>
+
+      {/* New additions below */}
+      <InterestScale />
+      <DownloadPDFButton />
     </div>
   );
 };
