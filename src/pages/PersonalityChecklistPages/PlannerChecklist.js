@@ -1,8 +1,8 @@
 // PlannerChecklist.js
 import React from 'react';
-import TradeVsCollegeTable from '../Checklist/TradeVsCollegeTable';
-import InterestScale from '../Checklist/InterestScale';
-import StillNotSureButton from '../Checklist/StillNotSureButton';
+import TradeVsCollegeTable from '../../components/Checklist/TradeVsCollegeTable';
+import InterestScale from '../../components/Checklist/InterestScale';
+import StillNotSureButton from '../../components/Checklist/StillNotSureButton';
 
 const PlannerChecklist = () => {
   return (
