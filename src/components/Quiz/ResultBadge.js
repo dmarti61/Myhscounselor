@@ -63,6 +63,10 @@ useEffect(() => {
     // Optionally highlight best-fit resources, templates, timelines
   }
 }, []);
+useEffect(() => {
+  const unlockNav = localStorage.getItem('userType');
+  setShowFullNav(!!unlockNav);
+}, []);
 
       <ShareCard
         type={personalityType}
