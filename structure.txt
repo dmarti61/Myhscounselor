@@ -1,0 +1,27 @@
+futurematch/
+├── public/
+│   └── index.html                 ← Basic HTML wrapper for React
+├── src/
+│   ├── App.jsx                    ← Main app with React Router
+│   ├── index.js                   ← App entry point
+│   ├── LandingPage.jsx           ← Your homepage with CTA buttons
+│   ├── PersonalityQuiz.jsx       ← 20-question MBTI-style quiz
+│   ├── ResultPage.jsx            ← Displays personality, careers, salary, etc.
+│   ├── CollegeGuide.jsx          ← Step-by-step college application guide
+│   ├── TradeSchoolGuide.jsx      ← Career/trade school alternative path
+│   ├── ShareCard.jsx             ← Shareable card download via html2canvas
+│   ├── components/
+│   │   └── NavBar.jsx            ← Top navigation (optional)
+│   ├── data/
+│   │   ├── questions.js          ← 20-question array (MBTI aligned)
+│   │   ├── careerMap.js          ← All 16 MBTI types → career matches + roadmap
+│   │   ├── careerStats.json      ← Salary, outlook, education by SOC code
+│   ├── styles/
+│   │   ├── app.css               ← Shared styles
+│   │   ├── resultPage.css        ← Styles for results
+│   │   ├── landingPage.css       ← Styles for homepage
+│   │   └── shareCard.css         ← Share/download card styling
+│   └── utils/
+│       └── exportToPDF.js        ← Helper for PDF export via html2canvas + jsPDF
+├── package.json                  ← Dependencies (React, react-router-dom, html2canvas, jspdf, etc.)
+└── README.md                     ← Deployment instructions + customization tips
