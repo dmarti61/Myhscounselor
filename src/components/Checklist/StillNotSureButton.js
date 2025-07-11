@@ -9,7 +9,7 @@ const StillNotSureButton = () => {
     <div className="still-not-sure">
       <p>🤔 Not quite ready to commit to a path?</p>
       <button className="explore-btn" onClick={() => navigate('/not-sure')}>
-        🔍 Explore More Options
+        🤔 Still Not Sure? Explore Options Without Pressure
       </button>
     </div>
   );
