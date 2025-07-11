@@ -9,10 +9,7 @@ import ConnectorChecklist from './pages/PersonalityChecklistPages/ConnectorCheck
 import ExplorerChecklist from './pages/PersonalityChecklistPages/ExplorerChecklist';
 import Onboarding from './pages/Onboarding/Onboarding';
 import NotFound from './pages/NotFound';
-import Quiz from './pages/Quiz';
-
-
-
+import Quiz from './components/Quiz/Quiz';
 
 const App = () => {
   return (
