@@ -7,6 +7,8 @@ import BuilderChecklist from './pages/PersonalityChecklistPages/BuilderChecklist
 import PlannerChecklist from './pages/PersonalityChecklistPages/PlannerChecklist';
 import ConnectorChecklist from './pages/PersonalityChecklistPages/ConnectorChecklist';
 import ExplorerChecklist from './pages/PersonalityChecklistPages/ExplorerChecklist';
+import Onboarding from './pages/Onboarding/Onboarding';
+import NotFound from './pages/NotFound';
 
 const App = () => {
   return (
