@@ -25,6 +25,12 @@ ul, ol {
 h4 {
   margin-bottom: 0.5rem;
 }
+.disclaimer {
+  font-size: 0.75rem;
+  color: #666;
+  margin-top: 2rem;
+  text-align: center;
+}
 
 @media (max-width: 600px) {
   .result-page {
