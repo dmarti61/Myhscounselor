@@ -1,0 +1,11 @@
+
+Tab Name	Purpose
+Home	Intro to the platform and mission—now framed as a “launchpad for life after high school”
+Explore Careers	Personality quiz, career results, timelines, local resource finders
+Life Skills Toolkit	Adulting 101 page: budgeting, essential documents, life prep tips
+Launch Kit Downloads	Timelines, checklists, talk templates, guides—printable and mobile-friendly
+Talk Templates & Scripts	Sample conversations for college fairs, trade calls, recommendations
+"I'm Not Sure" Page	Decision support, pressure-free paths, interactive checklist
+Direct Entry Careers	Paths that don’t require degrees—how to get started, links to roles
+Contact & Feedback	Typeform-based feedback page with confirmation message and support links
+About	Mission statement, platform purpose, branding vision
