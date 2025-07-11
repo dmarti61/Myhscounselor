@@ -1,8 +1,8 @@
 // BuilderChecklist.js
 import React from 'react';
 import TradeVsCollegeTable from '../../components/Checklist/TradeVsCollegeTable';
-import InterestScale from '../Checklist/InterestScale';
-import StillNotSureButton from '../Checklist/StillNotSureButton';
+import InterestScale from '../../components/Checklist/InterestScale';
+import StillNotSureButton from '../../components/Checklist/StillNotSureButton';
 
 const BuilderChecklist = () => {
   return (
