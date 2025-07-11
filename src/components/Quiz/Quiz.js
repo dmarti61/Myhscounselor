@@ -34,6 +34,11 @@ const Quiz = () => {
     setPersonalityType(typeMap[maxEntry[0]]);
     setShowResults(true);
   };
+// After quiz submission
+const handleQuizCompletion = (result) => {
+  localStorage.setItem('userType', result.type); // Save to localStorage
+  navigate(`/results/${result.type}`); // Redirect to dynamic results page
+};
 
   return (
   <div className="quiz-container">
