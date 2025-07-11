@@ -3,10 +3,13 @@ import React, { useState } from 'react';
 import questions from '../../data/questions';
 import QuestionCard from './QuestionCard';
 import ResultBadge from './ResultBadge';
+import ProgressBar from './ProgressBar';
 
 const Quiz = () => {
   const [answers, setAnswers] = useState([]);
   const [showResults, setShowResults] = useState(false);
+  const [currentStep, setCurrentStep] = useState(1);
+  const totalSteps = 5; // update based on your quiz
   const [personalityType, setPersonalityType] = useState('');
 
   const handleAnswer = (option) => {
@@ -33,18 +36,24 @@ const Quiz = () => {
   };
 
   return (
-    <div className="quiz-container">
-      {!showResults ? (
+  <div className="quiz-container">
+    {!showResults ? (
+      <>
+        <ProgressBar
+          currentStep={answers.length + 1}
+          totalSteps={questions.length}
+        />
         <QuestionCard
           question={questions[answers.length]}
           onAnswer={handleAnswer}
           progress={answers.length + 1}
         />
-      ) : (
-        <ResultBadge type={personalityType} />
-      )}
-    </div>
-  );
+      </>
+    ) : (
+      <ResultBadge type={personalityType} />
+    )}
+  </div>
+);
 };
 
 export default Quiz;
