@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { CAREER_MAP } from './careerMap';
-import { CAREER_STATS } from './careerStats';
+import { CAREER_MAP } from './careermap';
+import { CAREER_STATS } from './careerstats';
 import ShareCard from './ShareCard';
 import './resultBadge.css';
 
