@@ -2,32 +2,28 @@ import React, { useEffect, useState } from 'react';
 import { CAREER_MAP } from './careerMap';
 import { CAREER_STATS } from './careerStats';
 import ShareCard from './ShareCard';
-import './resultPage.css';
+import './resultBadge.css';
 
-const ResultPage = ({ personalityType }) => {
+const ResultBadge = ({ type }) => {
   const [showFullNav, setShowFullNav] = useState(false);
-  const userType = personalityType || localStorage.getItem('userType');
-  const data = CAREER_MAP[userType];
+  const data = CAREER_MAP[type];
 
   useEffect(() => {
-    if (userType) {
-      // Optionally personalize content based on saved type
-      // Highlight best-fit resources, templates, timelines, etc.
+    if (type) {
+      localStorage.setItem('userType', type);
     }
-  }, [userType]);
 
-  useEffect(() => {
     const unlockNav = localStorage.getItem('userType');
     setShowFullNav(!!unlockNav);
-  }, []);
+  }, [type]);
 
   if (!data) {
-    return <p>Oops! We couldn't find results for this type.</p>;
+    return <p>Oops! We couldn't find results for this personality type.</p>;
   }
 
   return (
-    <div className="result-page" role="main">
-      <h2 tabIndex="0">🎯 You're a {userType} — <em>{data.title}</em></h2>
+    <div className="result-badge" role="region">
+      <h2 tabIndex="0">🎯 You're a {type} — <em>{data.title}</em></h2>
 
       <section className="section-block">
         <h3>🧠 Your Strengths</h3>
@@ -73,7 +69,7 @@ const ResultPage = ({ personalityType }) => {
       </p>
 
       <ShareCard
-        type={userType}
+        type={type}
         title={data.title}
         topCareer={data.careers[0]}
       />
@@ -81,4 +77,4 @@ const ResultPage = ({ personalityType }) => {
   );
 };
 
-export default ResultPage;
+export default ResultBadge;
