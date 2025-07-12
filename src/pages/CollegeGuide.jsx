@@ -1,5 +1,5 @@
 import React from 'react';
-import './collegeGuide.css';
+import '../styles/collegeGuide.css';
 
 const CollegeGuide = () => {
   return (
