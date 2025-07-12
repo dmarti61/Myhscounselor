@@ -1,6 +1,7 @@
 {
   "name": "my-hs-counselor",
   "version": "1.0.0",
+  "homepage": "."
   "private": true,
   "description": "Personalized career guidance platform for high school students choosing between college and trade paths.",
   "scripts": {
