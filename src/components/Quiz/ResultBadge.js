@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { CAREER_MAP } from './careermap';
-import { CAREER_STATS } from './careerstats';
-import ShareCard from './ShareCard';
+//import { CAREER_STATS } from './careerstats';
+//import ShareCard from './ShareCard';
 import './resultBadge.css';
 
 const ResultBadge = ({ type }) => {
