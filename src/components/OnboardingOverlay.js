@@ -1,6 +1,6 @@
 // OnboardingOverlay.js
 import React from 'react';
-import './OnboardingOverlay.css'; // Optional for styling tweaks
+import '../styles/OnboardingOverlay.css'; // Optional for styling tweaks
 
 const OnboardingOverlay = () => (
   <div className="onboarding-overlay" role="dialog" aria-labelledby="onboarding-title" aria-describedby="onboarding-desc">
