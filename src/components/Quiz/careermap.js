@@ -209,3 +209,17 @@ export const CAREER_MAP = {
       "Start a part-time job or hands-on internship."
     ]
   },
+"ESFP": {
+  title: "The Performer",
+  strengths: ["Outgoing", "Adaptable", "Expressive"],
+  careers: [
+    { name: "Actor", blsCode: "27-2011" },
+    { name: "Recreation Worker", blsCode: "39-9032" },
+    { name: "Flight Attendant", blsCode: "53-2031" }
+  ],
+  roadmap: [
+    "Join theater, dance, or performance clubs.",
+    "Study performing arts, hospitality, or communication.",
+    "Gain experience through part-time service roles or local productions."
+  ]
+}
