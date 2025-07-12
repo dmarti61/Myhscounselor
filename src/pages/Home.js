@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import OnboardingOverlay from '../components/OnboardingOverlay';
 import StartButton from '../components/StartButton';
-import '../../styles/global.css'; // Optional: ensure responsive styles apply
+import '../styles/global.css'; // Optional: ensure responsive styles apply
 
 const Home = () => {
   const [showOnboarding, setShowOnboarding] = useState(false);
