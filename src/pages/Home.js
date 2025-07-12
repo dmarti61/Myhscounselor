@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import OnboardingOverlay from '../components/OnboardingOverlay';
 import StartButton from '../components/StartButton';
+import './Home.css'; // Optional: ensure responsive styles apply
 
 const Home = () => {
   const [showOnboarding, setShowOnboarding] = useState(false);
@@ -21,21 +22,20 @@ const Home = () => {
   };
 
   return (
-    <div className="home">
+    <main className="home" role="main">
       {showOnboarding && <OnboardingOverlay />}
-      <h1>🎓 Welcome to My HS Counselor</h1>
+      <h1 tabIndex="0" aria-label="Welcome to My High School Counselor">🎓 Welcome to My HS Counselor</h1>
       <p>
-      You don’t have to figure out your future alone.
-      Whether you’re thinking about college, trade school, or just exploring your options,
-      this platform is designed to guide you—step by step, decision by decision.
+        You don’t have to figure out your future alone.
+        Whether you’re thinking about college, trade school, or just exploring your options,
+        this platform is designed to guide you—step by step, decision by decision.
       </p>
-      <p></p>
       <p>
-      Answer a few quick questions, and we’ll help you discover your strengths, interests,
-      and next steps toward a career path that fits who you are.
+        Answer a few quick questions, and we’ll help you discover your strengths, interests,
+        and next steps toward a career path that fits who you are.
       </p>
-      <StartButton onClick={handleStart} />
-    </div>
+      <StartButton onClick={handleStart} ariaLabel="Start quiz and discover your strengths" />
+    </main>
   );
 };
 
