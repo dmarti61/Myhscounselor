@@ -1,6 +1,6 @@
 // src/components/Quiz/ProgressBar.js
 import React from 'react';
-import './ProgressBar.css'; // style as you like
+import '../../styles/ProgressBar.css'; // style as you like
 
 const ProgressBar = ({ currentStep, totalSteps }) => {
   const percent = Math.round((currentStep / totalSteps) * 100);
