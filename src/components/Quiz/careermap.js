@@ -223,3 +223,4 @@ export const CAREER_MAP = {
     "Gain experience through part-time service roles or local productions."
   ]
 }
+};
