@@ -25,7 +25,6 @@ const App = () => {
         <Route path="/next-steps/planner" element={<PlannerChecklist />} />
         <Route path="/next-steps/connector" element={<ConnectorChecklist />} />
         <Route path="/next-steps/explorer" element={<ExplorerChecklist />} />
-        <Route path="*" element={<NotFound />} />
 
       </Routes>
     </Router>
