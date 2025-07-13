@@ -1,32 +1,31 @@
-// ExplorerChecklist.js
+// src/pages/personalitychecklistpages/explorerchecklist.jsx
 import React from 'react';
-import TradeVsCollegeTable from '../../components/Checklist/TradeVsCollegeTable';
-import InterestScale from '../../components/Checklist/InterestScale';
-import StillNotSureButton from '../../components/Checklist/StillNotSureButton';
+import TradeVsCollegeTable from '../../components/checklist/tradevscollegetable';
+import InterestScale from '../../components/checklist/interestscale';
+import StillNotSureButton from '../../components/checklist/stillnotsurebutton';
 
 const ExplorerChecklist = () => {
   return (
-    <div className="checklist-page">
+    <main className="checklist-page" role="main">
       <h2>🧭 Explorer Path</h2>
       <p>
-        You’re a discoverer. You learn by trying, pivoting, and following your curiosity.
-        You thrive in environments that offer freedom, variety, and room to grow.
-        Careers that allow exploration, creativity, and adaptability are a great fit.
+        You’re curious and creative—drawn to variety, challenge, and innovation.
+        Careers in technology, design, marketing, or entrepreneurship let you explore and adapt.
       </p>
 
       <ul className="checklist">
-        <li>✅ Explore gap year programs or travel-based learning options</li>
-        <li>✅ Research interdisciplinary majors or flexible trade programs</li>
-        <li>✅ Try short-term certifications to test interests</li>
-        <li>✅ Download our “Explorer Launch Kit” PDF</li>
-        <li>✅ Compare trade vs college paths with flexibility in mind</li>
+        <li>✅ Research certifications or associate degrees in coding, design, or marketing</li>
+        <li>✅ Identify programs that allow flexible or online learning</li>
+        <li>✅ Interview or shadow people in your areas of interest</li>
+        <li>✅ Explore freelancing, internships, or personal projects to build skills</li>
+        <li>✅ Compare college vs bootcamp vs self-teaching for your field</li>
       </ul>
 
       <h3>🔄 Compare Paths</h3>
       <TradeVsCollegeTable type="Explorer" />
       <InterestScale type="Explorer" />
       <StillNotSureButton />
-    </div>
+    </main>
   );
 };
 
