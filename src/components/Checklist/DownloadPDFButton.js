@@ -6,13 +6,22 @@ const DownloadPDFButton = ({ fileName, label }) => {
     const link = document.createElement('a');
     link.href = `/pdfs/${fileName}`;
     link.download = fileName;
-    document.body.appendChild(link);
+
+    // Optional: ensure it's not already in the DOM
+    if (!document.body.contains(link)) {
+      document.body.appendChild(link);
+    }
+
     link.click();
-    document.body.removeChild(link);
+    link.remove();
   };
 
   return (
-    <button className="download-btn" onClick={handleDownload}>
+    <button
+      className="download-btn"
+      onClick={handleDownload}
+      aria-label={`Download ${label} PDF`}
+    >
       📄 {label}
     </button>
   );
