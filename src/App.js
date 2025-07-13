@@ -1,17 +1,17 @@
-// src/App.js
+// src/app.js
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
-import Home from './pages/Home';
-import NotSure from './pages/NotSure';
-import BuilderChecklist from './pages/PersonalityChecklistPages/BuilderChecklist';
-import PlannerChecklist from './pages/PersonalityChecklistPages/PlannerChecklist';
-import ConnectorChecklist from './pages/PersonalityChecklistPages/ConnectorChecklist';
-import ExplorerChecklist from './pages/PersonalityChecklistPages/ExplorerChecklist';
-import Onboarding from './pages/Onboarding/Onboarding';
-import CollegeGuide from './pages/CollegeGuide';
-import NotFound from './pages/NotFound';
-import Quiz from './components/Quiz/Quiz';
+import Home from './pages/home';
+import NotSure from './pages/notsure';
+import BuilderChecklist from './pages/personalitychecklistpages/builderchecklist';
+import PlannerChecklist from './pages/personalitychecklistpages/plannerchecklist';
+import ConnectorChecklist from './pages/personalitychecklistpages/connectorchecklist';
+import ExplorerChecklist from './pages/personalitychecklistpages/explorerchecklist';
+import Onboarding from './pages/onboarding/onboarding';
+import CollegeGuide from './pages/collegeguide';
+import NotFound from './pages/notfound';
+import Quiz from './components/quiz/quiz';
 
 const App = () => (
   <Router>
