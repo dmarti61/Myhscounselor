@@ -1,8 +1,8 @@
-// ConnectorChecklist.js
+// src/pages/personalitychecklistpages/connectorchecklist.jsx
 import React from 'react';
-import TradeVsCollegeTable from '../../components/Checklist/TradeVsCollegeTable';
-import InterestScale from '../../components/Checklist/InterestScale';
-import StillNotSureButton from '../../components/Checklist/StillNotSureButton';
+import TradeVsCollegeTable from '../../components/checklist/tradevscollegetable';
+import InterestScale from '../../components/checklist/interestscale';
+import StillNotSureButton from '../../components/checklist/stillnotsurebutton';
 
 const ConnectorChecklist = () => {
   return (
