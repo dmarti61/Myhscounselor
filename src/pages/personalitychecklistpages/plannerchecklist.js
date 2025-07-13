@@ -1,31 +1,31 @@
-// PlannerChecklist.js
+// src/pages/personalitychecklistpages/plannerchecklist.jsx
 import React from 'react';
-import TradeVsCollegeTable from '../../components/Checklist/TradeVsCollegeTable';
-import InterestScale from '../../components/Checklist/InterestScale';
-import StillNotSureButton from '../../components/Checklist/StillNotSureButton';
+import TradeVsCollegeTable from '../../components/checklist/tradevscollegetable';
+import InterestScale from '../../components/checklist/interestscale';
+import StillNotSureButton from '../../components/checklist/stillnotsurebutton';
 
 const PlannerChecklist = () => {
   return (
-    <div className="checklist-page">
-      <h2>📋 Planner Path</h2>
+    <main className="checklist-page" role="main">
+      <h2>🗂️ Planner Path</h2>
       <p>
-        You’re a strategist. You think ahead, value preparation, and excel when you have a goal and a roadmap to get there.
-        Careers that involve organizing, analyzing, and leading projects play to your strengths.
+        You’re organized, detail-oriented, and love turning ideas into action. You thrive on planning, structure, and follow-through.
+        Careers in business, logistics, project management, and accounting suit your mindset.
       </p>
 
       <ul className="checklist">
-        <li>✅ Explore college programs aligned with your interests</li>
-        <li>✅ Create a multi-year high school course plan</li>
-        <li>✅ Review career guides and growth projections</li>
-        <li>✅ Look into dual credit, AP, or IB options</li>
-        <li>✅ Download our “College Planning Toolkit” PDF</li>
+        <li>✅ Research associate or transfer degrees in business or management</li>
+        <li>✅ Learn about programs in finance, supply chain, or HR</li>
+        <li>✅ Create a budget and timeline for your top 2 career options</li>
+        <li>✅ Explore certificates in office tech, Excel, or digital marketing</li>
+        <li>✅ Compare ROI between college vs certification for these fields</li>
       </ul>
 
       <h3>🔄 Compare Paths</h3>
       <TradeVsCollegeTable type="Planner" />
       <InterestScale type="Planner" />
       <StillNotSureButton />
-    </div>
+    </main>
   );
 };
 
