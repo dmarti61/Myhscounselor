@@ -16,3 +16,12 @@
   line-height: 20px;
   transition: width 0.3s ease;
 }
+
+.option-btn:hover {
+  background-color: #f0f0f0;
+  cursor: pointer;
+}
+
+.option-btn:focus {
+  outline: 2px solid #007bff;
+}
