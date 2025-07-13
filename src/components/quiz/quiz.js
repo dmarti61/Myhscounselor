@@ -1,5 +1,7 @@
+// src/components/quiz/quiz.jsx
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+
 import questions from '../../data/questions';
 import QuestionCard from './questioncard';
 import ResultBadge from './resultbadge';
@@ -11,6 +13,7 @@ const Quiz = () => {
   const [personalityType, setPersonalityType] = useState('');
   const navigate = useNavigate();
 
+  // record each answer and, when done, calculate the result
   const handleAnswer = (option) => {
     const updatedAnswers = [...answers, option];
     setAnswers(updatedAnswers);
@@ -20,43 +23,48 @@ const Quiz = () => {
     }
   };
 
+  // tally answers → determine dominant personality type
   const calculateResults = (finalAnswers) => {
     const tally = { A: 0, B: 0, C: 0, D: 0 };
 
-    finalAnswers.forEach((answer) => {
-      if (answer.startsWith('A')) tally.A++;
-      else if (answer.startsWith('B')) tally.B++;
-      else if (answer.startsWith('C')) tally.C++;
-      else if (answer.startsWith('D')) tally.D++;
+    finalAnswers.forEach((ans) => {
+      const key = ans[0];           // first letter: A / B / C / D
+      if (tally[key] !== undefined) tally[key] += 1;
     });
 
-    const maxEntry = Object.entries(tally).reduce((a, b) => (a[1] > b[1] ? a : b));
-    const typeMap = { A: 'Planner', B: 'Builder', C: 'Connector', D: 'Explorer' };
-    const finalType = typeMap[maxEntry[0]];
+    const [topKey] = Object.entries(tally).reduce((a, b) =>
+      a[1] > b[1] ? a : b
+    );
 
+    const typeMap = {
+      A: 'planner',
+      B: 'builder',
+      C: 'connector',
+      D: 'explorer',
+    };
+
+    const finalType = typeMap[topKey];
     setPersonalityType(finalType);
     setShowResults(true);
     localStorage.setItem('userType', finalType);
-    // Optional navigation to results page:
-    // navigate(`/results/${finalType}`);
+    // navigate(`/results/${finalType}`); // enable if you have a results route
   };
 
-  const currentQuestion = questions[answers.length];
+  const currentIdx = answers.length;
+  const currentQuestion = questions[currentIdx];
   const totalQuestions = questions.length;
 
   return (
     <div className="quiz-container">
       {!showResults ? (
         <>
-          <ProgressBar
-            currentStep={answers.length + 1}
-            totalSteps={totalQuestions}
-          />
+          <ProgressBar currentStep={currentIdx + 1} totalSteps={totalQuestions} />
+
           {currentQuestion ? (
             <QuestionCard
               question={currentQuestion}
               onAnswer={handleAnswer}
-              progress={answers.length + 1}
+              progress={currentIdx + 1}
               totalQuestions={totalQuestions}
             />
           ) : (
