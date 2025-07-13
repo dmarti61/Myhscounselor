@@ -1,5 +1,5 @@
 // questions.js
-const QUESTIONS = [
+const questions = [
   // E vs I
   {
     id: 'q1',
@@ -189,4 +189,4 @@ const QUESTIONS = [
   }
 ];
 
-export default QUESTIONS;
+export default questions;
