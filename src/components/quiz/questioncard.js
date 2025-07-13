@@ -7,16 +7,17 @@ const QuestionCard = ({ question, onAnswer, progress, totalQuestions }) => {
   return (
     <div className="question-card">
       <h3>Question {progress} of {totalQuestions}</h3>
-      <p>{question.prompt}</p>
+      <p>{question.text}</p> {/* Use `text`, not `prompt`, based on your questions.js */}
+
       <div className="options">
         {question.options.map((option, index) => (
           <button
             key={index}
             className="option-btn"
-            onClick={() => onAnswer(`${LETTERS[index]}: ${option}`)}
-            aria-label={`Answer option ${LETTERS[index]}: ${option}`}
+            onClick={() => onAnswer(`${LETTERS[index]}:${option.value}`)}
+            aria-label={`Answer option ${LETTERS[index]}: ${option.label}`}
           >
-            {option}
+            {option.label}
           </button>
         ))}
       </div>
