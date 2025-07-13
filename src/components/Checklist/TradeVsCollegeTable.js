@@ -24,9 +24,9 @@ const TradeVsCollegeTable = ({ type }) => {
   const data = comparisonData[type] || comparisonData.Builder;
 
   return (
-    <div className="comparison-table">
+    <div className="comparison-table" role="region" aria-label="Trade vs College pros comparison">
       <h4>Trade vs College Snapshot</h4>
-      <table>
+      <table aria-label={`Comparison of trade and college advantages for ${type}`}>
         <thead>
           <tr>
             <th>💼 Trade</th>
@@ -34,12 +34,15 @@ const TradeVsCollegeTable = ({ type }) => {
           </tr>
         </thead>
         <tbody>
-          {data.tradePros.map((item, index) => (
-            <tr key={index}>
-              <td>{item}</td>
-              <td>{data.collegePros[index]}</td>
-            </tr>
-          ))}
+          {data.tradePros.map((tradeItem, index) => {
+            const collegeItem = data.collegePros[index] || '—';
+            return (
+              <tr key={`comparison-${type}-${index}`}>
+                <td>{tradeItem}</td>
+                <td>{collegeItem}</td>
+              </tr>
+            );
+          })}
         </tbody>
       </table>
     </div>
