@@ -1,8 +1,8 @@
 // Home.js
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import OnboardingOverlay from '../components/OnboardingOverlay';
-import StartButton from '../components/StartButton';
+import OnboardingOverlay from '../components/onboardingoverlay';
+import StartButton from '../components/startbutton';
 import '../styles/global.css'; // Optional: ensure responsive styles apply
 
 const Home = () => {
