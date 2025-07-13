@@ -1,4 +1,3 @@
-// Quiz.js
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import questions from '../../data/questions';
@@ -43,6 +42,7 @@ const Quiz = () => {
   };
 
   const currentQuestion = questions[answers.length];
+  const totalQuestions = questions.length;
 
   return (
     <div className="quiz-container">
@@ -50,13 +50,14 @@ const Quiz = () => {
         <>
           <ProgressBar
             currentStep={answers.length + 1}
-            totalSteps={questions.length}
+            totalSteps={totalQuestions}
           />
           {currentQuestion ? (
             <QuestionCard
               question={currentQuestion}
               onAnswer={handleAnswer}
               progress={answers.length + 1}
+              totalQuestions={totalQuestions}
             />
           ) : (
             <p>Loading next question...</p>
