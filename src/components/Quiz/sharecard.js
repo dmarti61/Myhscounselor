@@ -1,7 +1,7 @@
 // ShareCard.js
 import React from 'react';
 import jsPDF from 'jspdf';
-import '../../styles/sharecard.css';
+import '../../styles/global.css';
 
 const ShareCard = ({ type, title, topCareer }) => {
   const badgeMap = {
