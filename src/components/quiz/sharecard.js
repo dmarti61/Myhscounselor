@@ -1,6 +1,6 @@
 // ShareCard.js
 import React from 'react';
-import { exportResultsAsPDF } from '../../utils/Exportpdf';
+import { exportResultsAsPDF } from '../../utils/exportpdf';
 import '../../styles/sharecard.css';
 
 const ShareCard = ({ type, title, topCareer }) => {
