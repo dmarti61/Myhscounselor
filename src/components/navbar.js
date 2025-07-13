@@ -1,7 +1,7 @@
 // navbar.js
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import './Navbar.css'; // Style this file for mobile responsiveness and animation
+import '../styles/navbar.css'; // Style this file for mobile responsiveness and animation
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
