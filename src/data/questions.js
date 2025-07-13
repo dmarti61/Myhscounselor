@@ -189,4 +189,4 @@ const QUESTIONS = [
   }
 ];
 
-export default questions;
+export default Questions;
