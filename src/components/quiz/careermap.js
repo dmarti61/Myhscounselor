@@ -1,4 +1,5 @@
 export const CAREER_MAP = {
+  // Analysts
   "INTJ": {
     title: "The Architect",
     strengths: ["Strategic", "Analytical", "Independent"],
@@ -13,34 +14,22 @@ export const CAREER_MAP = {
       "Build projects or join robotics/coding clubs."
     ]
   },
-  "INTP": {
-    title: "The Thinker",
-    strengths: ["Curious", "Objective", "Conceptual"],
+  "Analyst": {
+    title: "Strategic Thinker",
+    strengths: ["Rational", "Independent", "Inquisitive"],
     careers: [
-      { name: "Philosopher", blsCode: "25-1126" },
-      { name: "Computer Systems Analyst", blsCode: "15-1211" },
-      { name: "UX Designer", blsCode: "15-1255" }
+      { name: "Engineer", blsCode: "17-2199" },
+      { name: "Data Analyst", blsCode: "15-2041" },
+      { name: "Economist", blsCode: "19-3011" }
     ],
     roadmap: [
-      "Explore debate or philosophy electives.",
-      "Study cognitive science, computer science, or design.",
-      "Create mock apps or projects to explore ideas."
+      "Explore STEM electives.",
+      "Join math or coding clubs.",
+      "Pursue technical certifications or AP classes."
     ]
   },
-  "INFJ": {
-    title: "The Advocate",
-    strengths: ["Empathetic", "Insightful", "Idealistic"],
-    careers: [
-      { name: "Counselor", blsCode: "21-1012" },
-      { name: "Writer", blsCode: "27-3043" },
-      { name: "Psychologist", blsCode: "19-3031" }
-    ],
-    roadmap: [
-      "Volunteer for peer counseling or writing groups.",
-      "Study psychology or English in college.",
-      "Start a blog or journal for self-expression."
-    ]
-  },
+
+  // Diplomats
   "INFP": {
     title: "The Mediator",
     strengths: ["Creative", "Compassionate", "Idealistic"],
@@ -55,76 +44,22 @@ export const CAREER_MAP = {
       "Build a creative portfolio or publish your work."
     ]
   },
-  "ENTJ": {
-    title: "The Commander",
-    strengths: ["Visionary", "Efficient", "Decisive"],
+  "Diplomat": {
+    title: "The Visionary Helper",
+    strengths: ["Empathetic", "Creative", "Idealistic"],
     careers: [
-      { name: "CEO", blsCode: "11-1011" },
-      { name: "Business Consultant", blsCode: "13-1198" },
-      { name: "Project Manager", blsCode: "11-1021" }
+      { name: "Counselor", blsCode: "21-1012" },
+      { name: "Social Worker", blsCode: "21-1021" },
+      { name: "Communications Specialist", blsCode: "27-3031" }
     ],
     roadmap: [
-      "Lead student clubs or business competitions.",
-      "Study business administration or economics.",
-      "Intern or shadow leaders in industry."
+      "Volunteer in community or social causes.",
+      "Study psychology, social science, or media.",
+      "Practice storytelling or public speaking."
     ]
   },
-  "ENTP": {
-    title: "The Debater",
-    strengths: ["Innovative", "Spontaneous", "Energetic"],
-    careers: [
-      { name: "Entrepreneur", blsCode: "11-1021" },
-      { name: "Tech Startup Founder", blsCode: "15-1299" },
-      { name: "Lawyer", blsCode: "23-1011" }
-    ],
-    roadmap: [
-      "Join debate team or startup hackathons.",
-      "Study entrepreneurship, law, or engineering.",
-      "Launch a mini business or app project."
-    ]
-  },
-  "ENFJ": {
-    title: "The Protagonist",
-    strengths: ["Charismatic", "Supportive", "Organized"],
-    careers: [
-      { name: "Teacher", blsCode: "25-2021" },
-      { name: "Human Resources Manager", blsCode: "11-3121" },
-      { name: "Nonprofit Director", blsCode: "11-9151" }
-    ],
-    roadmap: [
-      "Tutor or mentor classmates.",
-      "Study education, psychology, or organizational leadership.",
-      "Lead service projects or youth programs."
-    ]
-  },
-  "ENFP": {
-    title: "The Campaigner",
-    strengths: ["Energetic", "Empathetic", "Creative"],
-    careers: [
-      { name: "Marketing Specialist", blsCode: "13-1161" },
-      { name: "Journalist", blsCode: "27-3023" },
-      { name: "Public Relations Manager", blsCode: "11-2032" }
-    ],
-    roadmap: [
-      "Join student government or school media.",
-      "Study communications, PR, or liberal arts.",
-      "Build a YouTube or social campaign portfolio."
-    ]
-  },
-  "ISTJ": {
-    title: "The Logistician",
-    strengths: ["Responsible", "Precise", "Practical"],
-    careers: [
-      { name: "Accountant", blsCode: "13-2011" },
-      { name: "Police Officer", blsCode: "33-3051" },
-      { name: "Logistician", blsCode: "13-1081" }
-    ],
-    roadmap: [
-      "Take business, math, or criminal justice electives.",
-      "Study accounting, criminal law, or supply chain.",
-      "Work part-time in a structured job role."
-    ]
-  },
+
+  // Sentinels
   "ISFJ": {
     title: "The Defender",
     strengths: ["Nurturing", "Reliable", "Supportive"],
@@ -139,62 +74,22 @@ export const CAREER_MAP = {
       "Shadow professionals or tutor students."
     ]
   },
-  "ESTJ": {
-    title: "The Executive",
-    strengths: ["Organized", "Leadership-Oriented", "Structured"],
+  "Sentinel": {
+    title: "The Reliable Organizer",
+    strengths: ["Diligent", "Responsible", "Practical"],
     careers: [
-      { name: "Operations Manager", blsCode: "11-1021" },
-      { name: "Military Officer", blsCode: "55-1011" },
-      { name: "Police Supervisor", blsCode: "33-1012" }
+      { name: "Project Manager", blsCode: "11-1021" },
+      { name: "Police Officer", blsCode: "33-3051" },
+      { name: "Health Services Manager", blsCode: "11-9111" }
     ],
     roadmap: [
-      "Join student leadership or ROTC programs.",
-      "Study management, criminal justice, or engineering.",
-      "Intern in administrative or technical environments."
+      "Take classes in law, business, or health.",
+      "Join structured clubs like ROTC or HOSA.",
+      "Develop time management and leadership skills."
     ]
   },
-  "ESFJ": {
-    title: "The Consul",
-    strengths: ["Sociable", "Loyal", "Caring"],
-    careers: [
-      { name: "Event Planner", blsCode: "13-1121" },
-      { name: "Nursing Manager", blsCode: "11-9111" },
-      { name: "Guidance Counselor", blsCode: "21-1012" }
-    ],
-    roadmap: [
-      "Plan school events or volunteer in nursing homes.",
-      "Study hospitality, counseling, or health sciences.",
-      "Take leadership roles in student service orgs."
-    ]
-  },
-  "ISTP": {
-    title: "The Virtuoso",
-    strengths: ["Curious", "Mechanically Skilled", "Resourceful"],
-    careers: [
-      { name: "Automotive Technician", blsCode: "49-3023" },
-      { name: "Firefighter", blsCode: "33-2011" },
-      { name: "Aerospace Technician", blsCode: "17-3021" }
-    ],
-    roadmap: [
-      "Take shop, engineering, or emergency response electives.",
-      "Study mechanical engineering or public safety.",
-      "Earn certifications in welding, EMT, or automotive tech."
-    ]
-  },
-  "ISFP": {
-    title: "The Composer",
-    strengths: ["Gentle", "Aesthetic", "Flexible"],
-    careers: [
-      { name: "Photographer", blsCode: "27-4021" },
-      { name: "Florist", blsCode: "27-1023" },
-      { name: "Massage Therapist", blsCode: "31-9011" }
-    ],
-    roadmap: [
-      "Take art, design, or wellness electives.",
-      "Study visual arts or wellness therapy.",
-      "Build a creative portfolio of work or designs."
-    ]
-  },
+
+  // Explorers
   "ESTP": {
     title: "The Dynamo",
     strengths: ["Energetic", "Practical", "Adventurous"],
@@ -209,18 +104,18 @@ export const CAREER_MAP = {
       "Start a part-time job or hands-on internship."
     ]
   },
-"ESFP": {
-  title: "The Performer",
-  strengths: ["Outgoing", "Adaptable", "Expressive"],
-  careers: [
-    { name: "Actor", blsCode: "27-2011" },
-    { name: "Recreation Worker", blsCode: "39-9032" },
-    { name: "Flight Attendant", blsCode: "53-2031" }
-  ],
-  roadmap: [
-    "Join theater, dance, or performance clubs.",
-    "Study performing arts, hospitality, or communication.",
-    "Gain experience through part-time service roles or local productions."
-  ]
-}
+  "Explorer": {
+    title: "The Action Taker",
+    strengths: ["Spontaneous", "Adaptable", "Observant"],
+    careers: [
+      { name: "Emergency Technician", blsCode: "29-2042" },
+      { name: "Performer", blsCode: "27-2011" },
+      { name: "Chef", blsCode: "35-1011" }
+    ],
+    roadmap: [
+      "Get hands-on with projects or performances.",
+      "Pursue technical training or internships.",
+      "Build a portfolio of real-world experience."
+    ]
+  }
 };
