@@ -1,78 +1,141 @@
-// src/components/quiz/quiz.jsx
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-
 import questions from '../../data/questions';
 import QuestionCard from './questioncard';
 import ResultBadge from './resultbadge';
-import ProgressBar from './progressbar';
+
+const mbtiDimensions = ['EI', 'SN', 'TF', 'JP'];
+
+const mbtiToBucket = {
+  // Map 16 MBTI types to your 4 buckets
+  // Planner: ISTJ, ISFJ, ESTJ, ESFJ
+  ISTJ: 'Planner',
+  ISFJ: 'Planner',
+  ESTJ: 'Planner',
+  ESFJ: 'Planner',
+
+  // Builder: ISTP, ISFP, ESTP, ESFP
+  ISTP: 'Builder',
+  ISFP: 'Builder',
+  ESTP: 'Builder',
+  ESFP: 'Builder',
+
+  // Connector: INFJ, INFP, ENFJ, ENFP
+  INFJ: 'Connector',
+  INFP: 'Connector',
+  ENFJ: 'Connector',
+  ENFP: 'Connector',
+
+  // Explorer: INTJ, INTP, ENTJ, ENTP
+  INTJ: 'Explorer',
+  INTP: 'Explorer',
+  ENTJ: 'Explorer',
+  ENTP: 'Explorer',
+};
 
 const Quiz = () => {
-  const [answers, setAnswers] = useState([]);
+  const [answers, setAnswers] = useState({});
   const [showResults, setShowResults] = useState(false);
-  const [personalityType, setPersonalityType] = useState('');
-  const navigate = useNavigate();
+  const [mbtiType, setMbtiType] = useState('');
+  const [bucketType, setBucketType] = useState('');
 
-  // record each answer and, when done, calculate the result
-  const handleAnswer = (option) => {
-    const updatedAnswers = [...answers, option];
-    setAnswers(updatedAnswers);
+  const handleAnswer = (questionId, value) => {
+    setAnswers((prev) => {
+      const updated = { ...prev, [questionId]: value };
 
-    if (updatedAnswers.length === questions.length) {
-      calculateResults(updatedAnswers);
-    }
+      // If all questions answered
+      if (Object.keys(updated).length === questions.length) {
+        calculateResults(updated);
+        setShowResults(true);
+      }
+
+      return updated;
+    });
   };
 
-  // tally answers → determine dominant personality type
-  const calculateResults = (finalAnswers) => {
-    const tally = { A: 0, B: 0, C: 0, D: 0 };
-
-    finalAnswers.forEach((ans) => {
-      const key = ans[0];           // first letter: A / B / C / D
-      if (tally[key] !== undefined) tally[key] += 1;
-    });
-
-    const [topKey] = Object.entries(tally).reduce((a, b) =>
-      a[1] > b[1] ? a : b
-    );
-
-    const typeMap = {
-      A: 'planner',
-      B: 'builder',
-      C: 'connector',
-      D: 'explorer',
+  const calculateResults = (answersObj) => {
+    // Tally counts for each dimension pair
+    const dimensionScores = {
+      EI: { E: 0, I: 0 },
+      SN: { S: 0, N: 0 },
+      TF: { T: 0, F: 0 },
+      JP: { J: 0, P: 0 },
     };
 
-    const finalType = typeMap[topKey];
-    setPersonalityType(finalType);
-    setShowResults(true);
-    localStorage.setItem('userType', finalType);
-    // navigate(`/results/${finalType}`); // enable if you have a results route
+    // Sum up each answer value per dimension
+    questions.forEach(({ id, dimension }) => {
+      const answer = answersObj[id];
+      if (answer && dimensionScores[dimension]) {
+        dimensionScores[dimension][answer]++;
+      }
+    });
+
+    // Build MBTI string by picking the side with more points for each dimension
+    let mbti = '';
+    mbtiDimensions.forEach((dim) => {
+      const scores = dimensionScores[dim];
+      mbti += scores[Object.keys(scores).reduce((a, b) => (scores[a] >= scores[b] ? a : b))];
+    });
+
+    // The above creates something like 'EI' + 'SN' + 'TF' + 'JP' => need to convert to letter
+    // Instead, better to pick the letter with higher count in dimension directly
+    mbti = mbtiDimensions
+      .map((dim) => {
+        const scores = dimensionScores[dim];
+        return scores[Object.keys(scores).reduce((a, b) => (scores[a] >= scores[b] ? a : b))];
+      })
+      .map((val, idx) => {
+        // Actually, the above logic is wrong; fix below
+
+        // Fix: use this to get the letter with highest count for dimension:
+        const scores = dimensionScores[mbtiDimensions[idx]];
+        return scores.E !== undefined
+          ? scores.E > scores.I
+            ? 'E'
+            : 'I'
+          : scores.S !== undefined
+          ? scores.S > scores.N
+            ? 'S'
+            : 'N'
+          : scores.T !== undefined
+          ? scores.T > scores.F
+            ? 'T'
+            : 'F'
+          : scores.J !== undefined
+          ? scores.J > scores.P
+            ? 'J'
+            : 'P'
+          : '';
+      })
+      .join('');
+
+    setMbtiType(mbti);
+
+    // Map MBTI to bucket
+    const bucket = mbtiToBucket[mbti] || 'Explorer'; // fallback
+    setBucketType(bucket);
+
+    // Store bucket in localStorage
+    localStorage.setItem('userType', bucket);
   };
 
-  const currentIdx = answers.length;
-  const currentQuestion = questions[currentIdx];
-  const totalQuestions = questions.length;
+  if (showResults) {
+    return <ResultBadge type={bucketType} mbti={mbtiType} />;
+  }
+
+  // Current question index by number of answers
+  const currentQuestion = questions[Object.keys(answers).length];
 
   return (
     <div className="quiz-container">
-      {!showResults ? (
-        <>
-          <ProgressBar currentStep={currentIdx + 1} totalSteps={totalQuestions} />
-
-          {currentQuestion ? (
-            <QuestionCard
-              question={currentQuestion}
-              onAnswer={handleAnswer}
-              progress={currentIdx + 1}
-              totalQuestions={totalQuestions}
-            />
-          ) : (
-            <p>Loading next question...</p>
-          )}
-        </>
+      {currentQuestion ? (
+        <QuestionCard
+          question={currentQuestion}
+          onAnswer={(value) => handleAnswer(currentQuestion.id, value)}
+          progress={Object.keys(answers).length + 1}
+          totalQuestions={questions.length}
+        />
       ) : (
-        <ResultBadge type={personalityType} />
+        <p>Loading questions...</p>
       )}
     </div>
   );
