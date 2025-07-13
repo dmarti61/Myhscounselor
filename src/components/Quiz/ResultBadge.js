@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { CAREER_MAP } from './careermap';
-//import { CAREER_STATS } from './careerstats';
-//import ShareCard from './ShareCard';
+import { CAREER_STATS } from './careerstats';
+import ShareCard from './ShareCard';
 import '../../styles/resultbadge.css';
 
 const ResultBadge = ({ type }) => {
@@ -23,23 +23,27 @@ const ResultBadge = ({ type }) => {
 
   return (
     <div className="result-badge" role="region">
-      <h2 tabIndex="0">🎯 You're a {type} — <em>{data.title}</em></h2>
+      <h2 tabIndex="0">
+        🎯 You're a {type} — <em>{data.title}</em>
+      </h2>
 
-      <section className="section-block">
-        <h3>🧠 Your Strengths</h3>
+      <section className="section-block" aria-labelledby="strengths-heading">
+        <h3 id="strengths-heading">🧠 Your Strengths</h3>
         <ul>
           {data.strengths.map((trait, i) => (
-            <li key={i}>{trait}</li>
+            <li key={`strength-${i}`} aria-label={`Strength ${i + 1}: ${trait}`}>
+              {trait}
+            </li>
           ))}
         </ul>
       </section>
 
-      <section className="section-block">
-        <h3>💼 Career Matches</h3>
-        {data.careers.map((career, i) => {
-          const stats = CAREER_STATS[career.blsCode];
+      <section className="section-block" aria-labelledby="careers-heading">
+        <h3 id="careers-heading">💼 Career Matches</h3>
+        {data.careers.map((career) => {
+          const stats = career.blsCode ? CAREER_STATS[career.blsCode] : null;
           return (
-            <div className="career-card" key={i}>
+            <div className="career-card" key={career.blsCode || career.name}>
               <h4>{career.name}</h4>
               {stats ? (
                 <>
@@ -55,11 +59,13 @@ const ResultBadge = ({ type }) => {
         })}
       </section>
 
-      <section className="section-block">
-        <h3>🚀 Your Roadmap</h3>
+      <section className="section-block" aria-labelledby="roadmap-heading">
+        <h3 id="roadmap-heading">🚀 Your Roadmap</h3>
         <ol>
           {data.roadmap.map((step, i) => (
-            <li key={i}>{step}</li>
+            <li key={`roadmap-step-${i}`} aria-label={`Step ${i + 1}: ${step}`}>
+              {step}
+            </li>
           ))}
         </ol>
       </section>
@@ -68,11 +74,13 @@ const ResultBadge = ({ type }) => {
         Career data is based on information from the U.S. Bureau of Labor Statistics. Current as of June 2025. This site is not affiliated with BLS.
       </p>
 
-      <ShareCard
-        type={type}
-        title={data.title}
-        topCareer={data.careers[0]}
-      />
+      {typeof ShareCard !== 'undefined' && (
+        <ShareCard
+          type={type}
+          title={data.title}
+          topCareer={data.careers[0]}
+        />
+      )}
     </div>
   );
 };
