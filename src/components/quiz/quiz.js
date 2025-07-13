@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import questions from '../../data/questions';
-import QuestionCard from './QuestionCard';
-import ResultBadge from './ResultBadge';
-import ProgressBar from './ProgressBar';
+import QuestionCard from './questioncard';
+import ResultBadge from './resultbadge';
+import ProgressBar from './progressbar';
 
 const Quiz = () => {
   const [answers, setAnswers] = useState([]);
