@@ -3,57 +3,44 @@ import questions from '../../data/questions';
 import QuestionCard from './questioncard';
 import ResultBadge from './resultbadge';
 
+// Order matters: these four indices drive MBTI construction
 const mbtiDimensions = ['EI', 'SN', 'TF', 'JP'];
 
+// Map each of the 16 MBTI types to a broader career-mapping bucket
 const mbtiToBucket = {
-  // Map 16 MBTI types to your 4 buckets
-  // Planner: ISTJ, ISFJ, ESTJ, ESFJ
-  ISTJ: 'Planner',
-  ISFJ: 'Planner',
-  ESTJ: 'Planner',
-  ESFJ: 'Planner',
-
-  // Builder: ISTP, ISFP, ESTP, ESFP
-  ISTP: 'Builder',
-  ISFP: 'Builder',
-  ESTP: 'Builder',
-  ESFP: 'Builder',
-
-  // Connector: INFJ, INFP, ENFJ, ENFP
-  INFJ: 'Connector',
-  INFP: 'Connector',
-  ENFJ: 'Connector',
-  ENFP: 'Connector',
-
-  // Explorer: INTJ, INTP, ENTJ, ENTP
-  INTJ: 'Explorer',
-  INTP: 'Explorer',
-  ENTJ: 'Explorer',
-  ENTP: 'Explorer',
+  /* Planner  */ ISTJ: 'Planner', ISFJ: 'Planner', ESTJ: 'Planner', ESFJ: 'Planner',
+  /* Builder  */ ISTP: 'Builder', ISFP: 'Builder', ESTP: 'Builder', ESFP: 'Builder',
+  /* Connector*/ INFJ: 'Connector', INFP: 'Connector', ENFJ: 'Connector', ENFP: 'Connector',
+  /* Explorer */ INTJ: 'Explorer', INTP: 'Explorer', ENTJ: 'Explorer', ENTP: 'Explorer',
 };
 
 const Quiz = () => {
-  const [answers, setAnswers] = useState({});
-  const [showResults, setShowResults] = useState(false);
-  const [mbtiType, setMbtiType] = useState('');
-  const [bucketType, setBucketType] = useState('');
+  const [answers,      setAnswers]      = useState({});   // { [id]: "E" | "I" | ... }
+  const [showResults,  setShowResults]  = useState(false);
+  const [mbtiType,     setMbtiType]     = useState('');   // e.g. "INTJ"
+  const [bucketType,   setBucketType]   = useState('');   // e.g. "Explorer"
 
+  /* ------------------------------------------------------------------ */
+  /*                   HANDLE ANSWER SELECTION                           */
+  /* ------------------------------------------------------------------ */
   const handleAnswer = (questionId, value) => {
-    setAnswers((prev) => {
+    setAnswers(prev => {
       const updated = { ...prev, [questionId]: value };
 
-      // If all questions answered
+      // All questions answered? → calculate results once then flip the view
       if (Object.keys(updated).length === questions.length) {
         calculateResults(updated);
         setShowResults(true);
       }
-
       return updated;
     });
   };
 
+  /* ------------------------------------------------------------------ */
+  /*                    CALCULATE MBTI & BUCKET                          */
+  /* ------------------------------------------------------------------ */
   const calculateResults = (answersObj) => {
-    // Tally counts for each dimension pair
+    // 1. Initialize tallies for each dimension
     const dimensionScores = {
       EI: { E: 0, I: 0 },
       SN: { S: 0, N: 0 },
@@ -61,68 +48,38 @@ const Quiz = () => {
       JP: { J: 0, P: 0 },
     };
 
-    // Sum up each answer value per dimension
+    // 2. Count answers
     questions.forEach(({ id, dimension }) => {
-      const answer = answersObj[id];
-      if (answer && dimensionScores[dimension]) {
-        dimensionScores[dimension][answer]++;
-      }
+      const letter = answersObj[id];              // "E" | "I" | ...
+      if (letter) dimensionScores[dimension][letter] += 1;
     });
 
-    // Build MBTI string by picking the side with more points for each dimension
-    let mbti = '';
-    mbtiDimensions.forEach((dim) => {
-      const scores = dimensionScores[dim];
-      mbti += scores[Object.keys(scores).reduce((a, b) => (scores[a] >= scores[b] ? a : b))];
-    });
-
-    // The above creates something like 'EI' + 'SN' + 'TF' + 'JP' => need to convert to letter
-    // Instead, better to pick the letter with higher count in dimension directly
-    mbti = mbtiDimensions
-      .map((dim) => {
-        const scores = dimensionScores[dim];
-        return scores[Object.keys(scores).reduce((a, b) => (scores[a] >= scores[b] ? a : b))];
-      })
-      .map((val, idx) => {
-        // Actually, the above logic is wrong; fix below
-
-        // Fix: use this to get the letter with highest count for dimension:
-        const scores = dimensionScores[mbtiDimensions[idx]];
-        return scores.E !== undefined
-          ? scores.E > scores.I
-            ? 'E'
-            : 'I'
-          : scores.S !== undefined
-          ? scores.S > scores.N
-            ? 'S'
-            : 'N'
-          : scores.T !== undefined
-          ? scores.T > scores.F
-            ? 'T'
-            : 'F'
-          : scores.J !== undefined
-          ? scores.J > scores.P
-            ? 'J'
-            : 'P'
-          : '';
+    // 3. Build the 4-letter MBTI string
+    const mbti = mbtiDimensions
+      .map(dim => {
+        const [[l1, c1], [l2, c2]] = Object.entries(dimensionScores[dim]);
+        return c1 >= c2 ? l1 : l2;                // tie → first letter wins
       })
       .join('');
 
     setMbtiType(mbti);
 
-    // Map MBTI to bucket
-    const bucket = mbtiToBucket[mbti] || 'Explorer'; // fallback
+    // 4. Map MBTI → bucket (fallback to Explorer just in case)
+    const bucket = mbtiToBucket[mbti] || 'Explorer';
     setBucketType(bucket);
 
-    // Store bucket in localStorage
+    // 5. Persist for later pages / refreshes
     localStorage.setItem('userType', bucket);
   };
 
+  /* ------------------------------------------------------------------ */
+  /*                                UI                                   */
+  /* ------------------------------------------------------------------ */
   if (showResults) {
     return <ResultBadge type={bucketType} mbti={mbtiType} />;
   }
 
-  // Current question index by number of answers
+  // Current question = nth unanswered question
   const currentQuestion = questions[Object.keys(answers).length];
 
   return (
@@ -130,7 +87,7 @@ const Quiz = () => {
       {currentQuestion ? (
         <QuestionCard
           question={currentQuestion}
-          onAnswer={(value) => handleAnswer(currentQuestion.id, value)}
+          onAnswer={value => handleAnswer(currentQuestion.id, value)}
           progress={Object.keys(answers).length + 1}
           totalQuestions={questions.length}
         />
