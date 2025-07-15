@@ -48,7 +48,7 @@ const Home = () => {
       </p>
 
       <div className="button-group">
-        <button onClick={handleStartQuiz} className="primary-btn">✅ Start the Quiz</button>
+        <button onClick={handleStartQuiz} className="primary-btn">🚀 Start Your Journey</button>
 
         {hasResult && (
           <button onClick={handleViewResults} className="secondary-btn">✅ View My Results</button>
