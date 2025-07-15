@@ -1,12 +1,12 @@
-/* Navbar.css */
-
+/* ─────────── Navbar.css ─────────── */
 .navbar {
   background-color: #003366;
   color: #fff;
   padding: 0.5rem 1rem;
   font-family: 'Segoe UI', sans-serif;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
-  position: relative;
+  position: sticky; /* Changed from relative */
+  top: 0;
   z-index: 1000;
 }
 
@@ -56,17 +56,15 @@
   transform: rotate(-45deg) translate(5px, -5px);
 }
 
-/* Desktop Nav */
 .nav-links {
   list-style: none;
   display: flex;
   flex-wrap: wrap;
   gap: 1.5rem;
   margin-top: 0.5rem;
-}
-.nav-links {
   box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
+
 .nav-links li a {
   color: #fff;
   text-decoration: none;
@@ -87,40 +85,35 @@
   border-bottom: 2px solid #fff;
 }
 
-/* ────────────────────────────  Mobile Styles  ──────────────────────────── */
-/* ───────────  Mobile hamburger drawer  ─────────── */
-@media (max-width:768px) {
+/* ─────────── Mobile Styles ─────────── */
+@media (max-width: 900px) {
   .hamburger {
     display: flex;
   }
 
-  .navbar {
-    position: relative; /* relative container for absolute dropdown */
-    z-index: 1000;
-  }
-
   .nav-links {
-    position: absolute;    /* positioned relative to .navbar */
-    top: 100%;             /* just below navbar */
+    position: absolute;
+    top: 100%;
     left: 0;
     right: 0;
-    max-height: 50vh;      /* restrict height */
-    overflow-y: auto;      /* enable vertical scroll */
+    max-height: 50vh;
+    overflow-y: auto;
     background-color: #036;
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
     padding: 1rem 1.5rem;
-    display: flex;
     flex-direction: column;
     align-items: flex-start;
+    visibility: hidden;
     opacity: 0;
     pointer-events: none;
     transform: translateY(-10px);
-    transition: opacity 0.3s ease, transform 0.3s ease;
+    transition: visibility 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
     box-shadow: 0 4px 12px #00000026;
   }
 
   .nav-links.show {
+    visibility: visible;
     opacity: 1;
     pointer-events: auto;
     transform: translateY(0);
