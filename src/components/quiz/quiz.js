@@ -1,100 +1,58 @@
+/* eslint react/prop-types: 0 */
 import React, { useState } from 'react';
 import questions from '../../data/questions';
 import QuestionCard from './questioncard';
 import ResultBadge from './resultbadge';
 
-// Order matters: these four indices drive MBTI construction
-const mbtiDimensions = ['EI', 'SN', 'TF', 'JP'];
-
-// Map each of the 16 MBTI types to a broader career-mapping bucket
-const mbtiToBucket = {
-  /* Planner  */ ISTJ: 'Planner', ISFJ: 'Planner', ESTJ: 'Planner', ESFJ: 'Planner',
-  /* Builder  */ ISTP: 'Builder', ISFP: 'Builder', ESTP: 'Builder', ESFP: 'Builder',
-  /* Connector*/ INFJ: 'Connector', INFP: 'Connector', ENFJ: 'Connector', ENFP: 'Connector',
-  /* Explorer */ INTJ: 'Explorer', INTP: 'Explorer', ENTJ: 'Explorer', ENTP: 'Explorer',
-};
+const mbtiDimensions = ['EI', 'SN', 'TF', 'JP']; // keep this order!
 
 const Quiz = () => {
-  const [answers,      setAnswers]      = useState({});   // { [id]: "E" | "I" | ... }
-  const [showResults,  setShowResults]  = useState(false);
-  const [mbtiType,     setMbtiType]     = useState('');   // e.g. "INTJ"
-  const [bucketType,   setBucketType]   = useState('');   // e.g. "Explorer"
+  const [step, setStep] = useState(0);                 // index of current question
+  const [counts, setCounts] = useState({               // tally of answers per letter
+    E: 0, I: 0,
+    S: 0, N: 0,
+    T: 0, F: 0,
+    J: 0, P: 0,
+  });
+  const [complete, setComplete] = useState(false);
 
-  /* ------------------------------------------------------------------ */
-  /*                   HANDLE ANSWER SELECTION                           */
-  /* ------------------------------------------------------------------ */
-  const handleAnswer = (questionId, value) => {
-    setAnswers(prev => {
-      const updated = { ...prev, [questionId]: value };
+  // helpers ---------------------------------------------------------------
+  const nextQuestion = () => setStep(prev => prev + 1);
 
-      // All questions answered? → calculate results once then flip the view
-      if (Object.keys(updated).length === questions.length) {
-        calculateResults(updated);
-        setShowResults(true);
-      }
-      return updated;
-    });
+  const handleAnswer = (dimension, letter) => {
+    setCounts(prev => ({ ...prev, [letter]: prev[letter] + 1 }));
+    if (step + 1 === questions.length) {
+      setComplete(true);
+    } else {
+      nextQuestion();
+    }
   };
 
-  /* ------------------------------------------------------------------ */
-  /*                    CALCULATE MBTI & BUCKET                          */
-  /* ------------------------------------------------------------------ */
-  const calculateResults = (answersObj) => {
-    // 1. Initialize tallies for each dimension
-    const dimensionScores = {
-      EI: { E: 0, I: 0 },
-      SN: { S: 0, N: 0 },
-      TF: { T: 0, F: 0 },
-      JP: { J: 0, P: 0 },
-    };
-
-    // 2. Count answers
-    questions.forEach(({ id, dimension }) => {
-      const letter = answersObj[id];              // "E" | "I" | ...
-      if (letter) dimensionScores[dimension][letter] += 1;
-    });
-
-    // 3. Build the 4-letter MBTI string
-    const mbti = mbtiDimensions
+  const buildType = () => {
+    // build a 4-letter type by picking the higher count in each dimension
+    return mbtiDimensions
       .map(dim => {
-        const [[l1, c1], [l2, c2]] = Object.entries(dimensionScores[dim]);
-        return c1 >= c2 ? l1 : l2;                // tie → first letter wins
+        const [first, second] = dim.split('');
+        return counts[first] >= counts[second] ? first : second;
       })
-      .join('');
-
-    setMbtiType(mbti);
-
-    // 4. Map MBTI → bucket (fallback to Explorer just in case)
-    const bucket = mbtiToBucket[mbti] || 'Explorer';
-    setBucketType(bucket);
-
-    // 5. Persist for later pages / refreshes
-    localStorage.setItem('userType', bucket);
+      .join('')
+      .toUpperCase();               // **** key fix ****
   };
 
-  /* ------------------------------------------------------------------ */
-  /*                                UI                                   */
-  /* ------------------------------------------------------------------ */
-  if (showResults) {
-    return <ResultBadge type={bucketType} mbti={mbtiType} />;
+  // render ---------------------------------------------------------------
+  if (complete) {
+    return <ResultBadge mbtiType={buildType()} />;
   }
 
-  // Current question = nth unanswered question
-  const currentQuestion = questions[Object.keys(answers).length];
-
+  const current = questions[step];
   return (
-    <div className="quiz-container">
-      {currentQuestion ? (
-        <QuestionCard
-          question={currentQuestion}
-          onAnswer={value => handleAnswer(currentQuestion.id, value)}
-          progress={Object.keys(answers).length + 1}
-          totalQuestions={questions.length}
-        />
-      ) : (
-        <p>Loading questions...</p>
-      )}
-    </div>
+    <QuestionCard
+      key={current.id}
+      question={current}
+      step={step}
+      total={questions.length}
+      onAnswer={handleAnswer}
+    />
   );
 };
 
