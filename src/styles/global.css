@@ -62,7 +62,7 @@ button {
 }
 
 button:hover {
-  background-color: #4338ca;
+  background-color: #2D86E9;
 }
 
 /* Start Button */
@@ -89,7 +89,7 @@ button:hover {
 }
 
 .option-btn:hover {
-  background-color: #d1d5ff;
+  background-color: #2D86E9;
 }
 
 .result-badge {
