@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import questions from '../../data/questions';
 import QuestionCard from './questioncard';
 import ResultBadge from './resultbadge';
@@ -16,18 +16,13 @@ const Quiz = () => {
   });
   const [complete, setComplete] = useState(false);
 
-  const nextQuestion = () => setStep(prev => prev + 1);
-
   const handleAnswer = (dimension, letter) => {
     setCounts(prev => ({ ...prev, [letter]: prev[letter] + 1 }));
 
     if (step + 1 === questions.length) {
-      const resultType = buildType();
-      const expiresAt = new Date().getTime() + 24 * 60 * 60 * 1000; // 24 hrs
-      localStorage.setItem('mbti_result', JSON.stringify({ type: resultType, expires: expiresAt }));
       setComplete(true);
     } else {
-      nextQuestion();
+      setStep(prev => prev + 1);
     }
   };
 
@@ -37,26 +32,35 @@ const Quiz = () => {
         const [first, second] = dim.split('');
         return counts[first] >= counts[second] ? first : second;
       })
-      .join('')
-      .toUpperCase();
+      .join('');
   };
 
+  // Save MBTI result to localStorage on completion
+  useEffect(() => {
+    if (complete) {
+      const result = buildType();
+      localStorage.setItem('mbti_result', JSON.stringify({
+        type: result,
+        expires: new Date().getTime() + 24 * 60 * 60 * 1000 // expires in 24 hours
+      }));
+    }
+  }, [complete]);
+
   if (complete) {
-    const result = buildType();
-    return <ResultBadge mbtiType={result} />;
+    return <ResultBadge mbtiType={buildType()} />;
   }
 
   const current = questions[step];
 
   return (
     <div>
-      <ProgressBar current={step + 1} total={questions.length} />
+      <ProgressBar currentStep={step + 1} totalSteps={questions.length} />
       <QuestionCard
         key={current.id}
         question={current}
-        step={step + 1}
-        total={questions.length}
-        onAnswer={(letter) => handleAnswer(current.dimension, letter)}
+        progress={step + 1}
+        totalQuestions={questions.length}
+        onAnswer={(value) => handleAnswer(current.dimension, value)}
       />
     </div>
   );
