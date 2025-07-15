@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import questions from '../../data/questions';
 import QuestionCard from './questioncard';
 import ResultBadge from './resultbadge';
-import ProgressBar from './progressbar';
+import ProgressBar from './progressbar'; // ✅ Make sure file name matches
 
 const mbtiDimensions = ['EI', 'SN', 'TF', 'JP'];
 
@@ -29,24 +29,28 @@ const Quiz = () => {
   };
 
   const buildType = () => {
-    return mbtiDimensions
+    const type = mbtiDimensions
       .map(dim => {
         const [first, second] = dim.split('');
         return counts[first] >= counts[second] ? first : second;
       })
       .join('')
       .toUpperCase();
+
+    console.log("Computed MBTI type:", type); // ✅ for debugging
+    return type;
   };
 
   if (complete) {
-    return <ResultBadge mbtiType={buildType()} />;
+    const resultType = buildType();
+    return <ResultBadge mbtiType={resultType} />;
   }
 
   const current = questions[step];
 
   return (
     <div>
-      <ProgressBar current={step + 1} total={questions.length} /> {/* ✅ SHOW PROGRESS */}
+      <ProgressBar currentStep={step + 1} totalSteps={questions.length} /> {/* ✅ FIXED PROP NAMES */}
       <QuestionCard
         key={current.id}
         question={current}
