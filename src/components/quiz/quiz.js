@@ -1,9 +1,8 @@
-/* eslint react/prop-types: 0 */
 import React, { useState } from 'react';
 import questions from '../../data/questions';
 import QuestionCard from './questioncard';
 import ResultBadge from './resultbadge';
-import ProgressBar from './progressbar'; // ✅ Make sure file name matches
+import ProgressBar from './progressbar';
 
 const mbtiDimensions = ['EI', 'SN', 'TF', 'JP'];
 
@@ -21,7 +20,11 @@ const Quiz = () => {
 
   const handleAnswer = (dimension, letter) => {
     setCounts(prev => ({ ...prev, [letter]: prev[letter] + 1 }));
+
     if (step + 1 === questions.length) {
+      const resultType = buildType();
+      const expiresAt = new Date().getTime() + 24 * 60 * 60 * 1000; // 24 hrs
+      localStorage.setItem('mbti_result', JSON.stringify({ type: resultType, expires: expiresAt }));
       setComplete(true);
     } else {
       nextQuestion();
@@ -29,34 +32,31 @@ const Quiz = () => {
   };
 
   const buildType = () => {
-    const type = mbtiDimensions
+    return mbtiDimensions
       .map(dim => {
         const [first, second] = dim.split('');
         return counts[first] >= counts[second] ? first : second;
       })
       .join('')
       .toUpperCase();
-
-    console.log("Computed MBTI type:", type); // ✅ for debugging
-    return type;
   };
 
   if (complete) {
-    const resultType = buildType();
-    return <ResultBadge mbtiType={resultType} />;
+    const result = buildType();
+    return <ResultBadge mbtiType={result} />;
   }
 
   const current = questions[step];
 
   return (
     <div>
-      <ProgressBar currentStep={step + 1} totalSteps={questions.length} /> {/* ✅ FIXED PROP NAMES */}
+      <ProgressBar current={step + 1} total={questions.length} />
       <QuestionCard
         key={current.id}
         question={current}
-        step={step}
+        step={step + 1}
         total={questions.length}
-        onAnswer={handleAnswer}
+        onAnswer={(letter) => handleAnswer(current.dimension, letter)}
       />
     </div>
   );
