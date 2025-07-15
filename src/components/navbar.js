@@ -1,7 +1,6 @@
-// navbar.js
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import '../styles/navbar.css'; // Style this file for mobile responsiveness and animation
+import '../styles/navbar.css';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -20,7 +19,7 @@ const Navbar = () => {
         </button>
       </div>
       <ul className={`nav-links ${isOpen ? 'show' : ''}`} onClick={closeMenu}>
-        <li><NavLink to="/" exact>Home</NavLink></li>
+        <li><NavLink to="/home">Home</NavLink></li>
         <li><NavLink to="/explore-careers">Explore Careers</NavLink></li>
         <li><NavLink to="/life-skills-toolkit">Life Skills Toolkit</NavLink></li>
         <li><NavLink to="/launch-kit-downloads">Launch Kit Downloads</NavLink></li>
