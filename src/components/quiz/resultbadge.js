@@ -1,56 +1,37 @@
 import React from 'react';
 import { CAREER_MAP } from './careermap'; // Your existing career map keyed by bucketType
 import '../../styles/resultbadge.css';
+/* eslint react/prop-types: 0 */
 
-const ResultBadge = ({ type, mbti }) => {
-  const data = CAREER_MAP[type];
+const ResultBadge = ({ mbtiType }) => {
+  const [error, setError] = useState('');
+  const [data, setData] = useState(null);
 
-  if (!data) {
-    return <p>Oops! No results found for this personality type.</p>;
-  }
+  useEffect(() => {
+    // **** key fix: normalise to upper-case before the lookup ****
+    const key = (mbtiType || '').toUpperCase();
+    const found = CAREER_MAP[key];
+    if (found) {
+      setData(found);
+    } else {
+      setError('Oops, your personality type doesn’t exist');
+    }
+  }, [mbtiType]);
+
+  if (error) return <p className="error">{error}</p>;
+  if (!data) return null; // still loading
 
   return (
-    <div className="result-badge" role="region">
-      <h2 tabIndex="0">
-        🎯 You're a {type} — <em>{data.title}</em>
-      </h2>
-      <p>
-        <strong>MBTI Type:</strong> {mbti}
-      </p>
-
-      <section className="section-block" aria-labelledby="strengths-heading">
-        <h3 id="strengths-heading">🧠 Your Strengths</h3>
-        <ul>
-          {data.strengths.map((trait, i) => (
-            <li key={i} aria-label={`Strength ${i + 1}: ${trait}`}>
-              {trait}
-            </li>
-          ))}
-        </ul>
-      </section>
-
-      <section className="section-block" aria-labelledby="careers-heading">
-        <h3 id="careers-heading">💼 Career Matches</h3>
-        {data.careers.map((career) => (
-          <div key={career.name} className="career-card">
-            <h4>{career.name}</h4>
-            <p>💰 <strong>Salary:</strong> {career.salary || 'Data coming soon...'}</p>
-            <p>📈 <strong>Outlook:</strong> {career.outlook || 'Data coming soon...'}</p>
-            <p>🎓 <strong>Education:</strong> {career.education || 'Data coming soon...'}</p>
-          </div>
-        ))}
-      </section>
-
-      <section className="section-block" aria-labelledby="roadmap-heading">
-        <h3 id="roadmap-heading">🚀 Your Roadmap</h3>
-        <ol>
-          {data.roadmap.map((step, i) => (
-            <li key={i} aria-label={`Step ${i + 1}: ${step}`}>
-              {step}
-            </li>
-          ))}
-        </ol>
-      </section>
+    <div className="result-badge">
+      <h2>{data.title} ({mbtiType.toUpperCase()})</h2>
+      <h4>Strengths</h4>
+      <ul>
+        {data.strengths.map(s => <li key={s}>{s}</li>)}
+      </ul>
+      <h4>Suggested Careers</h4>
+      <ul>
+        {data.careers.map(c => <li key={c.name}>{c.name}</li>)}
+      </ul>
     </div>
   );
 };
