@@ -94,7 +94,7 @@
 
   /* CLOSED state */
   .nav-links {
-    position: fixed;            /* ← was absolute */
+    position: absolute;            /* ← was absolute */
     top: 4rem;                  /* header height (adjust if header taller) */
     left: 0;
     right: 0;
