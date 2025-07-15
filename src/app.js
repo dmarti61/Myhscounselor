@@ -17,7 +17,8 @@ import ResultBadge from './components/quiz/resultbadge';
 
 const Layout = ({ children }) => {
   const { pathname } = useLocation();
-  const hideNavbar = pathname.startsWith('/quiz'); // hide navbar on quiz pages
+  // Hide navbar on home "/" and any "/quiz" routes
+  const hideNavbar = pathname === '/' || pathname.startsWith('/quiz');
   return (
     <>
       {!hideNavbar && <Navbar />}
