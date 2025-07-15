@@ -86,49 +86,52 @@
 }
 
 /* ────────────────────────────  Mobile Styles  ──────────────────────────── */
+/* ───────────  Mobile hamburger drawer  ─────────── */
 @media (max-width: 768px) {
   .hamburger {
     display: flex;
   }
 
+  /* CLOSED state */
   .nav-links {
-    position: absolute;
-    top: 100%;
+    position: fixed;            /* ← was absolute */
+    top: 4rem;                  /* header height (adjust if header taller) */
     left: 0;
     right: 0;
+    bottom: 0;                  /* let it reach the bottom of the viewport */
     background-color: #003366;
+    padding: 0 1.5rem;
+    display: flex;
     flex-direction: column;
     align-items: flex-start;
-    padding: 0 1.5rem;
-    max-height: 0;
+
+    max-height: 0;              /* collapsed */
     overflow: hidden;
     opacity: 0;
     transform: translateY(-10px);
     transition:
-      max-height 0.5s ease,
-      opacity 0.5s ease,
-      transform 0.5s ease;
+      max-height 0.3s ease,
+      opacity 0.3s ease,
+      transform 0.3s ease;
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
-    z-index: 999;
+    z-index: 9999;
   }
 
-  /* Drawer OPEN state */
+  /* OPEN state */
   .nav-links.show {
-    /* ↑  was 75vh; now fills screen minus 4 rem for safe area / notch */
-    max-height: calc(100vh - 4rem);
-    padding: 1rem 1.5rem;
+    max-height: none;           /* let it use full height */
     opacity: 1;
     transform: translateY(0);
 
-    /* scrolling magic */
-    overflow-y: auto;
-    scrollbar-gutter: stable both-edges;  /* keeps layout from shifting */
+    overflow-y: auto;           /* scrolling works now */
+    scrollbar-gutter: stable both-edges;
+    padding: 1rem 1.5rem;
   }
 
   .nav-links li {
-    margin-bottom: 1rem;
     width: 100%;
+    margin-bottom: 1rem;
   }
 
   .nav-links li a {
@@ -142,12 +145,12 @@
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   }
 
-  /* ─── Custom Scrollbar (all modern browsers) ─── */
+  /* Custom thin scrollbar (optional) */
   .nav-links.show {
-    scrollbar-width: thin;                     /* Firefox */
-    scrollbar-color: #ccc #003366;             /* Firefox */
+    scrollbar-width: thin;                   /* Firefox */
+    scrollbar-color: #ccc #003366;
   }
-  .nav-links.show::-webkit-scrollbar {         /* Chrome / Safari / Edge */
+  .nav-links.show::-webkit-scrollbar {       /* Chromium / Safari */
     width: 6px;
   }
   .nav-links.show::-webkit-scrollbar-thumb {
