@@ -1,10 +1,10 @@
 import React from 'react';
 
-const QuestionCard = ({ question, onAnswer, progress, totalQuestions }) => {
+const QuestionCard = ({ question, onAnswer, step, total }) => {
   return (
     <div className="question-card">
       <h3>
-        Question {progress} of {totalQuestions}
+        Question {step + 1} of {total}
       </h3>
       <p>{question.text}</p>
       <div className="options">
