@@ -92,20 +92,18 @@
     display: flex;
   }
 
-  /* CLOSED state */
   .nav-links {
-    position: absolute;            /* ← was absolute */
-    top: 4rem;                  /* header height (adjust if header taller) */
+    position: fixed;               /* KEY: anchor it to the screen */
+    top: 4rem;                     /* offset below navbar */
     left: 0;
     right: 0;
-    bottom: 0;                  /* let it reach the bottom of the viewport */
+    bottom: 0;                     /* allows full height */
     background-color: #003366;
-    padding: 0 1.5rem;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-
-    max-height: 0;              /* collapsed */
+    padding: 0 1.5rem;
+    max-height: 0;
     overflow: hidden;
     opacity: 0;
     transform: translateY(-10px);
@@ -113,18 +111,14 @@
       max-height 0.3s ease,
       opacity 0.3s ease,
       transform 0.3s ease;
-    border-bottom-left-radius: 8px;
-    border-bottom-right-radius: 8px;
     z-index: 9999;
   }
 
-  /* OPEN state */
   .nav-links.show {
-    max-height: none;           /* let it use full height */
+    max-height: none;              /* allow full height */
     opacity: 1;
     transform: translateY(0);
-
-    overflow-y: auto;           /* scrolling works now */
+    overflow-y: auto;
     scrollbar-gutter: stable both-edges;
     padding: 1rem 1.5rem;
   }
@@ -145,18 +139,20 @@
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   }
 
-  /* Custom thin scrollbar (optional) */
   .nav-links.show {
-    scrollbar-width: thin;                   /* Firefox */
+    scrollbar-width: thin;
     scrollbar-color: #ccc #003366;
   }
-  .nav-links.show::-webkit-scrollbar {       /* Chromium / Safari */
+
+  .nav-links.show::-webkit-scrollbar {
     width: 6px;
   }
+
   .nav-links.show::-webkit-scrollbar-thumb {
     background: #ccc;
     border-radius: 4px;
   }
+
   .nav-links.show::-webkit-scrollbar-track {
     background: #003366;
   }
