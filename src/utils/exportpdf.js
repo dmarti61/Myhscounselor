@@ -1,5 +1,5 @@
 import jsPDF from 'jspdf';
-import { CAREER_STATS } from './careerstats';   // adjust path if needed
+import { CAREER_STATS } from '../components/quiz/careerstats';
 
 export const exportResultsAsPDF = ({ type, title, career }) => {
   const stats = career?.blsCode ? CAREER_STATS[career.blsCode] || {} : {};
