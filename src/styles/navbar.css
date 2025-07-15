@@ -89,85 +89,75 @@
 
 /* ────────────────────────────  Mobile Styles  ──────────────────────────── */
 /* ───────────  Mobile hamburger drawer  ─────────── */
-@media (max-width: 768px) {
+@media (max-width:768px) {
   .hamburger {
     display: flex;
   }
 
-  /* Make navbar relative if not already */
   .navbar {
-    position: relative; /* you have this, good */
+    position: relative; /* relative container for absolute dropdown */
     z-index: 1000;
   }
 
-  /* Dropdown menu */
   .nav-links {
-    position: absolute;    /* positioned relative to navbar */
+    position: absolute;    /* positioned relative to .navbar */
     top: 100%;             /* just below navbar */
     left: 0;
     right: 0;
-    max-height: 50vh;      /* max height with scrolling */
-    overflow-y: auto;
-    background-color: #003366;
+    max-height: 50vh;      /* restrict height */
+    overflow-y: auto;      /* enable vertical scroll */
+    background-color: #036;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
     padding: 1rem 1.5rem;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    border-bottom-left-radius: 8px;
-    border-bottom-right-radius: 8px;
     opacity: 0;
-    pointer-events: none;   /* prevent interaction when hidden */
+    pointer-events: none;
     transform: translateY(-10px);
     transition: opacity 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 4px 12px #00000026;
   }
 
-  /* Show dropdown */
   .nav-links.show {
     opacity: 1;
     pointer-events: auto;
     transform: translateY(0);
   }
 
-  /* Style list items */
   .nav-links li {
-    width: 100%;
     margin-bottom: 1rem;
+    width: 100%;
   }
 
   .nav-links li a {
-    display: block;
-    width: 100%;
-    font-size: 1.1rem;
-    padding: 0.5rem 0;
     color: #fff;
-    text-decoration: none;
+    display: block;
+    font-size: 1.1rem;
     font-weight: 500;
+    padding: 0.5rem 0;
+    width: 100%;
+    text-decoration: none;
   }
 
   .nav-links li:not(:last-child) {
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid #ffffff1a;
   }
 
-  /* Scrollbar styling */
+  /* Scrollbar Styling */
   .nav-links::-webkit-scrollbar {
     width: 6px;
   }
-
   .nav-links::-webkit-scrollbar-thumb {
     background: #ccc;
     border-radius: 4px;
   }
-  
-.nav-links {
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-}
-  
   .nav-links::-webkit-scrollbar-track {
-    background: #003366;
+    background: #036;
   }
-
   .nav-links {
     scrollbar-width: thin;
-    scrollbar-color: #ccc #003366;
+    scrollbar-color: #ccc #036;
   }
 }
