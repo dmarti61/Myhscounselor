@@ -1,15 +1,19 @@
-import React from 'react';
-import { CAREER_MAP } from './careermap'; // Your existing career map keyed by bucketType
-import '../../styles/resultbadge.css';
 /* eslint react/prop-types: 0 */
+import React, { useState, useEffect } from 'react';
+import { CAREER_MAP } from './careermap'; // make sure the path is correct
+import '../../styles/resultbadge.css';
 
 const ResultBadge = ({ mbtiType }) => {
   const [error, setError] = useState('');
   const [data, setData] = useState(null);
 
   useEffect(() => {
-    // **** key fix: normalise to upper-case before the lookup ****
-    const key = (mbtiType || '').toUpperCase();
+    if (!mbtiType) {
+      setError('Missing personality type');
+      return;
+    }
+
+    const key = mbtiType.toUpperCase();
     const found = CAREER_MAP[key];
     if (found) {
       setData(found);
@@ -19,7 +23,7 @@ const ResultBadge = ({ mbtiType }) => {
   }, [mbtiType]);
 
   if (error) return <p className="error">{error}</p>;
-  if (!data) return null; // still loading
+  if (!data) return <p>Loading...</p>;
 
   return (
     <div className="result-badge">
