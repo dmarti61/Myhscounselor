@@ -1,10 +1,13 @@
 /* Navbar.css */
+
 .navbar {
   background-color: #003366;
   color: #fff;
   padding: 0.5rem 1rem;
   position: relative;
   font-family: 'Segoe UI', sans-serif;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.15); /* subtle shadow for depth */
+  z-index: 1000; /* ensure navbar overlays content */
 }
 
 .navbar-header {
@@ -17,26 +20,34 @@
   font-size: 1.5rem;
   font-weight: bold;
   color: #fff;
+  user-select: none;
 }
 
 .hamburger {
   background: none;
   border: none;
   cursor: pointer;
-  display: none;
+  display: none; /* hidden on desktop */
   flex-direction: column;
   gap: 5px;
   padding: 10px;
+  transition: transform 0.3s ease;
+}
+
+.hamburger:focus {
+  outline: 2px solid #fff; /* visible focus for accessibility */
+  outline-offset: 2px;
 }
 
 .bar {
   width: 25px;
   height: 3px;
   background-color: #fff;
+  border-radius: 2px;
   transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
-/* Animate bars when open */
+/* Animate bars when hamburger menu is open */
 .bar.open:nth-child(1) {
   transform: rotate(45deg) translate(5px, 5px);
 }
@@ -47,6 +58,7 @@
   transform: rotate(-45deg) translate(5px, -5px);
 }
 
+/* Nav links - desktop */
 .nav-links {
   list-style: none;
   display: flex;
@@ -59,6 +71,16 @@
   color: #fff;
   text-decoration: none;
   font-weight: 500;
+  padding: 0.25rem 0;
+  transition: color 0.2s ease, border-bottom 0.2s ease;
+  border-bottom: 2px solid transparent;
+}
+
+.nav-links li a:hover,
+.nav-links li a:focus {
+  color: #a8c0ff;
+  border-bottom-color: #a8c0ff;
+  outline: none;
 }
 
 .nav-links li a.active {
@@ -79,18 +101,34 @@
     background-color: #003366;
     flex-direction: column;
     align-items: flex-start;
-    padding: 1rem;
+    padding: 1rem 1.5rem;
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.3s ease-out;
-    z-index: 999;
+    transition: max-height 0.3s ease-out, padding 0.3s ease-out;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
   }
 
   .nav-links.show {
     max-height: 500px; /* enough space for full list */
+    padding-top: 1rem;
+    padding-bottom: 1rem;
   }
 
   .nav-links li {
     margin-bottom: 1rem;
+    width: 100%;
+  }
+
+  .nav-links li a {
+    width: 100%;
+    display: block;
+    font-size: 1.1rem;
+    padding: 0.5rem 0;
+  }
+
+  /* Optional: add a subtle separator between links */
+  .nav-links li:not(:last-child) {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   }
 }
