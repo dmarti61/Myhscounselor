@@ -30,6 +30,7 @@ const Navbar = () => {
         className={`nav-links ${isOpen ? 'show' : ''}`}
         onClick={closeMenu}
         role="menu"
+        style={isOpen ? { overflowY: 'auto' } : {}}
       >
         <li role="none"><NavLink role="menuitem" to="/home" activeclassname="active">Home</NavLink></li>
         <li role="none"><NavLink role="menuitem" to="/explore-careers" activeclassname="active">Explore Careers</NavLink></li>
