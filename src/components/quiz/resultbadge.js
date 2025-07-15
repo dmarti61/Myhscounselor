@@ -1,5 +1,7 @@
+// src/components/quiz/resultbadge.js
 import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import Navbar from '../navbar'; // Import navbar from src/components/navbar.js
 import { CAREER_MAP } from './careermap';
 import ShareCard from './sharecard';
 import '../../styles/resultbadge.css';
@@ -40,31 +42,45 @@ const ResultBadge = ({ mbtiType: propType }) => {
     navigate('/');
   };
 
-  if (error) return <p className="error">{error}</p>;
-  if (!data) return <p>Loading...</p>;
+  if (error) return (
+    <>
+      <Navbar />
+      <p className="error">{error}</p>
+    </>
+  );
+
+  if (!data) return (
+    <>
+      <Navbar />
+      <p>Loading...</p>
+    </>
+  );
 
   return (
-    <div className="result-badge">
-      <h2>{data.title} ({mbtiType.toUpperCase()})</h2>
-      <h4>Strengths</h4>
-      <ul>
-        {data.strengths.map(s => <li key={s}>{s}</li>)}
-      </ul>
-      <h4>Suggested Careers</h4>
-      <ul>
-        {data.careers.map(c => <li key={c.name}>{c.name}</li>)}
-      </ul>
+    <>
+      <Navbar />
+      <div className="result-badge">
+        <h2>{data.title} ({mbtiType.toUpperCase()})</h2>
+        <h4>Strengths</h4>
+        <ul>
+          {data.strengths.map(s => <li key={s}>{s}</li>)}
+        </ul>
+        <h4>Suggested Careers</h4>
+        <ul>
+          {data.careers.map(c => <li key={c.name}>{c.name}</li>)}
+        </ul>
 
-      <ShareCard
-        type={mbtiType.toUpperCase()}
-        title={data.title}
-        topCareer={data.careers[0]}
-      />
+        <ShareCard
+          type={mbtiType.toUpperCase()}
+          title={data.title}
+          topCareer={data.careers[0]}
+        />
 
-      <button className="retake-btn" onClick={handleRetake}>
-        🔁 Retake the Quiz
-      </button>
-    </div>
+        <button className="retake-btn" onClick={handleRetake}>
+          🔁 Retake the Quiz
+        </button>
+      </div>
+    </>
   );
 };
 
