@@ -236,3 +236,38 @@ button:hover {
     width: 100%;
   }
 }
+
+.button-group {
+  margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: start;
+}
+
+.primary-btn, .secondary-btn {
+  padding: 12px 20px;
+  font-size: 18px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  width: fit-content;
+}
+
+.primary-btn {
+  background-color: #0077cc;
+  color: white;
+}
+
+.primary-btn:hover {
+  background-color: #005fa3;
+}
+
+.secondary-btn {
+  background-color: #eeeeee;
+  color: #333;
+}
+
+.secondary-btn:hover {
+  background-color: #dddddd;
+}
