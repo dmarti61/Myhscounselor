@@ -64,7 +64,9 @@
   gap: 1.5rem;
   margin-top: 0.5rem;
 }
-
+.nav-links {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
 .nav-links li a {
   color: #fff;
   text-decoration: none;
@@ -155,7 +157,11 @@
     background: #ccc;
     border-radius: 4px;
   }
-
+  
+.nav-links {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+  
   .nav-links::-webkit-scrollbar-track {
     background: #003366;
   }
