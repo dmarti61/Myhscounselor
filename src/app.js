@@ -1,6 +1,7 @@
-// src/app.js
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+
+import Navbar from './components/navbar';
 
 import Home from './pages/home';
 import NotSure from './pages/notsure';
@@ -12,27 +13,42 @@ import Onboarding from './pages/onboarding/onboarding';
 import CollegeGuide from './pages/collegeguide';
 import NotFound from './pages/notfound';
 import Quiz from './components/quiz/quiz';
+import ResultBadge from './components/quiz/resultbadge';
+
+const Layout = ({ children }) => {
+  const { pathname } = useLocation();
+  const hideNavbar = pathname.startsWith('/quiz'); // hide navbar on quiz pages
+  return (
+    <>
+      {!hideNavbar && <Navbar />}
+      {children}
+    </>
+  );
+};
 
 const App = () => (
   <Router>
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/not-sure" element={<NotSure />} />
-      <Route path="/onboarding" element={<Onboarding />} />
-      <Route path="/quiz" element={<Quiz />} />
+    <Layout>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/not-sure" element={<NotSure />} />
+        <Route path="/onboarding" element={<Onboarding />} />
+        <Route path="/quiz" element={<Quiz />} />
+        <Route path="/results" element={<ResultBadge />} />
 
-      {/* personality-type checklists */}
-      <Route path="/builder" element={<BuilderChecklist />} />
-      <Route path="/planner" element={<PlannerChecklist />} />
-      <Route path="/connector" element={<ConnectorChecklist />} />
-      <Route path="/explorer" element={<ExplorerChecklist />} />
+        {/* personality-type checklists */}
+        <Route path="/builder" element={<BuilderChecklist />} />
+        <Route path="/planner" element={<PlannerChecklist />} />
+        <Route path="/connector" element={<ConnectorChecklist />} />
+        <Route path="/explorer" element={<ExplorerChecklist />} />
 
-      {/* resources */}
-      <Route path="/college-guide" element={<CollegeGuide />} />
+        {/* resources */}
+        <Route path="/college-guide" element={<CollegeGuide />} />
 
-      {/* catch-all */}
-      <Route path="*" element={<NotFound />} />
-    </Routes>
+        {/* catch-all */}
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </Layout>
   </Router>
 );
 
