@@ -6,8 +6,8 @@
   padding: 0.5rem 1rem;
   position: relative;
   font-family: 'Segoe UI', sans-serif;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.15); /* subtle shadow for depth */
-  z-index: 1000; /* ensure navbar overlays content */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+  z-index: 1000;
 }
 
 .navbar-header {
@@ -35,7 +35,7 @@
 }
 
 .hamburger:focus {
-  outline: 2px solid #fff; /* visible focus for accessibility */
+  outline: 2px solid #fff;
   outline-offset: 2px;
 }
 
@@ -47,7 +47,6 @@
   transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
-/* Animate bars when hamburger menu is open */
 .bar.open:nth-child(1) {
   transform: rotate(45deg) translate(5px, 5px);
 }
@@ -58,7 +57,7 @@
   transform: rotate(-45deg) translate(5px, -5px);
 }
 
-/* Nav links - desktop */
+/* Desktop navigation */
 .nav-links {
   list-style: none;
   display: flex;
@@ -101,7 +100,6 @@
     background-color: #003366;
     flex-direction: column;
     align-items: flex-start;
-    padding: 0 1.5rem;
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.3s ease-out, padding 0.3s ease-out;
@@ -110,10 +108,11 @@
   }
 
   .nav-links.show {
-    max-height: 500px; /* enough space for full list */
-    overflow-y: auto; /* allow scrolling */
-    padding-top: 1rem;
-    padding-bottom: 1rem;
+    max-height: 75vh; /* make room for scrolling */
+    padding: 1rem 1.5rem;
+    overflow-y: scroll;
+    scrollbar-width: thin;
+    scrollbar-color: #ccc #003366;
   }
 
   .nav-links li {
@@ -128,8 +127,21 @@
     padding: 0.5rem 0;
   }
 
-  /* Optional: add a subtle separator between links */
   .nav-links li:not(:last-child) {
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  /* Custom WebKit scrollbar */
+  .nav-links.show::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  .nav-links.show::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 4px;
+  }
+
+  .nav-links.show::-webkit-scrollbar-track {
+    background-color: #003366;
   }
 }
