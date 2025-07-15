@@ -85,7 +85,7 @@
   border-bottom: 2px solid #fff;
 }
 
-/* Mobile Styles */
+/* ────────────────────────────  Mobile Styles  ──────────────────────────── */
 @media (max-width: 768px) {
   .hamburger {
     display: flex;
@@ -113,12 +113,17 @@
     z-index: 999;
   }
 
+  /* Drawer OPEN state */
   .nav-links.show {
-    max-height: 75vh;
+    /* ↑  was 75vh; now fills screen minus 4 rem for safe area / notch */
+    max-height: calc(100vh - 4rem);
+    padding: 1rem 1.5rem;
     opacity: 1;
     transform: translateY(0);
+
+    /* scrolling magic */
     overflow-y: auto;
-    padding: 1rem 1.5rem;
+    scrollbar-gutter: stable both-edges;  /* keeps layout from shifting */
   }
 
   .nav-links li {
@@ -137,22 +142,19 @@
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   }
 
-  /* Scrollbar Styling */
-  .nav-links.show::-webkit-scrollbar {
+  /* ─── Custom Scrollbar (all modern browsers) ─── */
+  .nav-links.show {
+    scrollbar-width: thin;                     /* Firefox */
+    scrollbar-color: #ccc #003366;             /* Firefox */
+  }
+  .nav-links.show::-webkit-scrollbar {         /* Chrome / Safari / Edge */
     width: 6px;
   }
-
   .nav-links.show::-webkit-scrollbar-thumb {
     background: #ccc;
     border-radius: 4px;
   }
-
   .nav-links.show::-webkit-scrollbar-track {
     background: #003366;
-  }
-
-  .nav-links.show {
-    scrollbar-width: thin;
-    scrollbar-color: #ccc #003366;
   }
 }
