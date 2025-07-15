@@ -92,68 +92,76 @@
     display: flex;
   }
 
+  /* Make navbar relative if not already */
+  .navbar {
+    position: relative; /* you have this, good */
+    z-index: 1000;
+  }
+
+  /* Dropdown menu */
   .nav-links {
-    position: fixed;               /* KEY: anchor it to the screen */
-    top: 4rem;                     /* offset below navbar */
+    position: absolute;    /* positioned relative to navbar */
+    top: 100%;             /* just below navbar */
     left: 0;
     right: 0;
-    bottom: 0;                     /* allows full height */
+    max-height: 50vh;      /* max height with scrolling */
+    overflow-y: auto;
     background-color: #003366;
+    padding: 1rem 1.5rem;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    padding: 0 1.5rem;
-    max-height: 0;
-    overflow: hidden;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
     opacity: 0;
+    pointer-events: none;   /* prevent interaction when hidden */
     transform: translateY(-10px);
-    transition:
-      max-height 0.3s ease,
-      opacity 0.3s ease,
-      transform 0.3s ease;
-    z-index: 9999;
+    transition: opacity 0.3s ease, transform 0.3s ease;
   }
 
+  /* Show dropdown */
   .nav-links.show {
-    max-height: none;              /* allow full height */
     opacity: 1;
+    pointer-events: auto;
     transform: translateY(0);
-    overflow-y: auto;
-    scrollbar-gutter: stable both-edges;
-    padding: 1rem 1.5rem;
   }
 
+  /* Style list items */
   .nav-links li {
     width: 100%;
     margin-bottom: 1rem;
   }
 
   .nav-links li a {
-    width: 100%;
     display: block;
+    width: 100%;
     font-size: 1.1rem;
     padding: 0.5rem 0;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
   }
 
   .nav-links li:not(:last-child) {
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   }
 
-  .nav-links.show {
-    scrollbar-width: thin;
-    scrollbar-color: #ccc #003366;
-  }
-
-  .nav-links.show::-webkit-scrollbar {
+  /* Scrollbar styling */
+  .nav-links::-webkit-scrollbar {
     width: 6px;
   }
 
-  .nav-links.show::-webkit-scrollbar-thumb {
+  .nav-links::-webkit-scrollbar-thumb {
     background: #ccc;
     border-radius: 4px;
   }
 
-  .nav-links.show::-webkit-scrollbar-track {
+  .nav-links::-webkit-scrollbar-track {
     background: #003366;
+  }
+
+  .nav-links {
+    scrollbar-width: thin;
+    scrollbar-color: #ccc #003366;
   }
 }
