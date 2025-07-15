@@ -1,8 +1,7 @@
 import jsPDF from 'jspdf';
-import { CAREER_STATS } from './careerstats';   // ← make sure the path is correct
+import { CAREER_STATS } from './careerstats';   // adjust path if needed
 
 export const exportResultsAsPDF = ({ type, title, career }) => {
-  // Pull extra stats if we have the BLS code
   const stats = career?.blsCode ? CAREER_STATS[career.blsCode] || {} : {};
 
   const doc = new jsPDF();
@@ -21,5 +20,7 @@ Career Snapshot:
   doc.setFont('Helvetica');
   doc.setFontSize(12);
   doc.text(content.trim(), 10, 20);
-  doc.save(\`\${type}_Quiz_Results.pdf\`);
+
+  // 🔧  FIXED: plain template literal, no escaping
+  doc.save(`${type}_Quiz_Results.pdf`);
 };
