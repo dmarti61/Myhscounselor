@@ -41,3 +41,21 @@ h4 {
     padding: 0.8rem;
   }
 }
+
+.retake-btn {
+  margin-top: 20px;
+  padding: 12px 18px;
+  background-color: #0077cc;
+  color: white;
+  font-size: 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.retake-btn:hover {
+  background-color: #005fa3;
+}
+
+
