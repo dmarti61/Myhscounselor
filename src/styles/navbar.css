@@ -93,10 +93,11 @@
 
   .nav-links {
     position: fixed;
-    top: 60px;
+    top: 0;
     left: 0;
     right: 0;
     bottom:0;
+    padding-top:4rm;
     max-height: 50vh;
     overflow-y: auto;
     background-color: #036;
