@@ -92,10 +92,11 @@
   }
 
   .nav-links {
-    position: absolute;
-    top: 100%;
+    position: fixed;
+    top: 60px;
     left: 0;
     right: 0;
+    bottom:0;
     max-height: 50vh;
     overflow-y: auto;
     background-color: #036;
@@ -106,7 +107,9 @@
     align-items: flex-start;
     visibility: hidden;
     opacity: 0;
+    -webkit-overflow-scrolling: touch;
     pointer-events: none;
+    z-index: 999;
     transform: translateY(-10px);
     transition: visibility 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
     box-shadow: 0 4px 12px #00000026;
