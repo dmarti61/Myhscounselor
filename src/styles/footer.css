@@ -1,0 +1,19 @@
+/* src/styles/footer.css */
+.site-footer {
+  background-color: #003366;
+  color: #fff;
+  text-align: center;
+  padding: 1rem 2rem;
+  font-size: 0.9rem;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.site-footer .disclaimer {
+  margin-bottom: 0.5rem;
+  line-height: 1.4;
+}
+
+.site-footer .copyright {
+  font-size: 0.8rem;
+  color: #ccc;
+}
