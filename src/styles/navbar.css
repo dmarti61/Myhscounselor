@@ -1,14 +1,3 @@
-/* ─────────── Global Fixes ─────────── */
-html, body {
-  overflow-x: hidden;
-  width: 100%;
-  box-sizing: border-box;
-}
-
-*, *::before, *::after {
-  box-sizing: inherit;
-}
-
 /* ─────────── Navbar.css ─────────── */
 .navbar {
   background-color: #003366;
@@ -19,16 +8,12 @@ html, body {
   position: sticky;
   top: 0;
   z-index: 1000;
-  width: 100%;
-  max-width: 100%;
-  overflow-x: hidden;
 }
 
 .navbar-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
 }
 
 .logo {
@@ -78,9 +63,6 @@ html, body {
   gap: 1.5rem;
   margin-top: 0.5rem;
   box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-  width: 100%;
-  max-width: 100%;
-  overflow-x: hidden;
 }
 
 .nav-links li a {
@@ -115,27 +97,24 @@ html, body {
     left: 0;
     right: 0;
     bottom: 0;
-    padding-top: 4rem;
+    height: 100vh;
+    overflow-y: auto !important;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
     background-color: #036;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    padding: 1rem 1.5rem;
     flex-direction: column;
     align-items: flex-start;
     visibility: hidden;
     opacity: 0;
     pointer-events: none;
+    z-index: 999;
     transform: translateY(-10px);
     transition: visibility 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
-    z-index: 999;
     box-shadow: 0 4px 12px #00000026;
-
-    height: 100vh;
-    max-height: none;
-    overflow-y: auto !important;
-    overflow-x: hidden;
-    width: 100%;
-    padding: 1rem 1.5rem 2rem 1.5rem;
-    scrollbar-width: thin;
-    scrollbar-color: #ccc #036;
-    -webkit-overflow-scrolling: touch;
   }
 
   .nav-links.show {
@@ -164,15 +143,21 @@ html, body {
     border-bottom: 1px solid #ffffff1a;
   }
 
-  /* Scrollbar Styling */
   .nav-links::-webkit-scrollbar {
     width: 6px;
   }
+
   .nav-links::-webkit-scrollbar-thumb {
     background: #ccc;
     border-radius: 4px;
   }
+
   .nav-links::-webkit-scrollbar-track {
     background: #036;
+  }
+
+  .nav-links {
+    scrollbar-width: thin;
+    scrollbar-color: #ccc #036;
   }
 }
