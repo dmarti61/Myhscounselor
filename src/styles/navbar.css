@@ -116,23 +116,26 @@ html, body {
     right: 0;
     bottom: 0;
     padding-top: 4rem;
-    max-height: 50vh;
-    overflow-y: auto;
-    overflow-x: hidden;
     background-color: #036;
-    border-bottom-left-radius: 8px;
-    border-bottom-right-radius: 8px;
-    padding: 1rem 1.5rem;
     flex-direction: column;
     align-items: flex-start;
     visibility: hidden;
     opacity: 0;
     pointer-events: none;
-    z-index: 999;
     transform: translateY(-10px);
     transition: visibility 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
+    z-index: 999;
     box-shadow: 0 4px 12px #00000026;
+
+    height: 100vh;
+    max-height: none;
+    overflow-y: auto !important;
+    overflow-x: hidden;
     width: 100%;
+    padding: 1rem 1.5rem 2rem 1.5rem;
+    scrollbar-width: thin;
+    scrollbar-color: #ccc #036;
+    -webkit-overflow-scrolling: touch;
   }
 
   .nav-links.show {
@@ -171,9 +174,5 @@ html, body {
   }
   .nav-links::-webkit-scrollbar-track {
     background: #036;
-  }
-  .nav-links {
-    scrollbar-width: thin;
-    scrollbar-color: #ccc #036;
   }
 }
