@@ -258,6 +258,10 @@ body.menu-open {
   overflow-y: auto;
   max-height: 100vh;
 }
+.menu {
+  -webkit-overflow-scrolling: touch;
+  touch-action: auto;
+}
 
 /* ─────────── Prevent horizontal scroll everywhere ─────────── */
 html,
