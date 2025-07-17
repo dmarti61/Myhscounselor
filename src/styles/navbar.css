@@ -254,6 +254,10 @@ body.menu-open {
   position: relative;
   width: 100%;
 }
+.menu {
+  overflow-y: auto;
+  max-height: 100vh;
+}
 
 /* ─────────── Prevent horizontal scroll everywhere ─────────── */
 html,
