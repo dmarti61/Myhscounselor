@@ -135,6 +135,8 @@
     opacity: 1 !important;
     pointer-events: auto;
     transform: translateY(0);
+    left:10px;
+    width:95%;
   }
 
   .nav-overlay {
