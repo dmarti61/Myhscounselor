@@ -97,15 +97,13 @@
     left: 0;
     right: 0;
     bottom: 0;
-    height: 100vh;
-    overflow-y: auto !important;
+    height: 100vh; /* full viewport height */
+    overflow-y: auto !important; /* enable vertical scroll */
     overflow-x: hidden;
-    -webkit-overflow-scrolling: touch;
+    -webkit-overflow-scrolling: touch; /* smooth scrolling on iOS */
     overscroll-behavior: contain;
     background-color: #036;
-    border-bottom-left-radius: 8px;
-    border-bottom-right-radius: 8px;
-    padding: 1rem 1.5rem;
+    padding: 1rem 1.5rem 2rem;
     flex-direction: column;
     align-items: flex-start;
     visibility: hidden;
@@ -114,7 +112,11 @@
     z-index: 999;
     transform: translateY(-10px);
     transition: visibility 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
-    box-shadow: 0 4px 12px #00000026;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    scrollbar-width: thin;
+    scrollbar-color: #ccc #036;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
   }
 
   .nav-links.show {
@@ -143,6 +145,7 @@
     border-bottom: 1px solid #ffffff1a;
   }
 
+  /* Scrollbar Styling */
   .nav-links::-webkit-scrollbar {
     width: 6px;
   }
@@ -154,10 +157,5 @@
 
   .nav-links::-webkit-scrollbar-track {
     background: #036;
-  }
-
-  .nav-links {
-    scrollbar-width: thin;
-    scrollbar-color: #ccc #036;
   }
 }
