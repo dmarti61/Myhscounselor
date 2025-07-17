@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import OnboardingOverlay from '../components/onboardingoverlay';
 import '../styles/global.css';
+import Navbar from '../components/navbar';
 
 const Home = () => {
   const [showOnboarding, setShowOnboarding] = useState(false);
