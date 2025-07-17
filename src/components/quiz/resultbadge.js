@@ -1,7 +1,6 @@
 // src/components/quiz/resultbadge.js
 import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import Navbar from '../navbar'; // Import navbar from src/components/navbar.js
 import { CAREER_MAP } from './careermap';
 import ShareCard from './sharecard';
 import '../../styles/resultbadge.css';
@@ -44,21 +43,20 @@ const ResultBadge = ({ mbtiType: propType }) => {
 
   if (error) return (
     <>
-      <Navbar />
       <p className="error">{error}</p>
     </>
   );
 
   if (!data) return (
     <>
-      <Navbar />
+      
       <p>Loading...</p>
     </>
   );
 
   return (
     <>
-      <Navbar />
+      
       <div className="result-badge">
         <h2>{data.title} ({mbtiType.toUpperCase()})</h2>
         <h4>Strengths</h4>
