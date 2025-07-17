@@ -75,17 +75,16 @@ const Navbar = () => {
         className={`nav-links ${isOpen ? 'show' : ''}`}
         role="menu"
       >
-        {isOpen && (
-          <li className="nav-close-container">
-            <button
-              className="nav-close-btn"
-              onClick={closeMenu}
-              aria-label="Close menu"
-            >
-              &times;
-            </button>
-          </li>
-        )}
+        {/* Only one close button, always first */}
+        <li className="nav-close-container">
+          <button
+            className="nav-close-btn"
+            onClick={closeMenu}
+            aria-label="Close menu"
+          >
+            &times;
+          </button>
+        </li>
         {navItems.map((item, index) => (
           <li key={index} role="none">
             <NavLink
