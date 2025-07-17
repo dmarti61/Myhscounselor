@@ -9,70 +9,35 @@ const Navbar = () => {
     setIsOpen(prev => {
       const newState = !prev;
 
-      // Prevent body scroll when menu is open
-      if (newState) {
-        document.body.style.overflow = 'hidden';
-        document.body.style.position = 'fixed';
-        document.body.style.width = '100%';
-      } else {
-        document.body.style.overflow = '';
-        document.body.style.position = '';
-        document.body.style.width = '';
-      }
-
+      document.body.classList.toggle('menu-open', newState);
       return newState;
     });
   };
 
   const closeMenu = () => {
     setIsOpen(false);
-    document.body.style.overflow = '';
-    document.body.style.position = '';
-    document.body.style.width = '';
+    document.body.classList.remove('menu-open');
   };
 
-  // Handle escape key to close menu
   useEffect(() => {
     const handleEscape = (e) => {
-      if (e.key === 'Escape' && isOpen) {
-        closeMenu();
-      }
+      if (e.key === 'Escape' && isOpen) closeMenu();
     };
 
-    if (isOpen) {
-      document.addEventListener('keydown', handleEscape);
-    }
-
-    return () => {
-      document.removeEventListener('keydown', handleEscape);
-    };
+    if (isOpen) document.addEventListener('keydown', handleEscape);
+    return () => document.removeEventListener('keydown', handleEscape);
   }, [isOpen]);
 
-  // Prevent background scroll on touch devices
   useEffect(() => {
     const preventScroll = (e) => {
-      if (isOpen && !e.target.closest('.nav-links')) {
-        e.preventDefault();
-      }
+      if (isOpen && !e.target.closest('.nav-links')) e.preventDefault();
     };
 
     if (isOpen) {
       document.addEventListener('touchmove', preventScroll, { passive: false });
     }
-
-    return () => {
-      document.removeEventListener('touchmove', preventScroll);
-    };
+    return () => document.removeEventListener('touchmove', preventScroll);
   }, [isOpen]);
-
-  // Clean up on unmount
-  useEffect(() => {
-    return () => {
-      document.body.style.overflow = '';
-      document.body.style.position = '';
-      document.body.style.width = '';
-    };
-  }, []);
 
   const navItems = [
     { path: '/home', label: 'Home' },
@@ -103,46 +68,37 @@ const Navbar = () => {
         </button>
       </div>
 
-      {/* Overlay for mobile menu */}
-      {isOpen && (
-        <div 
-          className="nav-overlay" 
-          onClick={closeMenu}
-          aria-hidden="true"
-        />
-      )}
+      {isOpen && <div className="nav-overlay" onClick={closeMenu} aria-hidden="true" />}
 
-      <div className={`nav-menu-container ${isOpen ? 'show' : ''}`}>
-        <ul
-          id="primary-navigation"
-          className="nav-links"
-          role="menu"
-        >
-          {isOpen && (
-            <li className="nav-close-container">
-              <button
-                className="nav-close-btn"
-                onClick={closeMenu}
-                aria-label="Close menu"
-              >
-                &times;
-              </button>
-            </li>
-          )}
-          {navItems.map((item, index) => (
-            <li key={index} role="none">
-              <NavLink
-                to={item.path}
-                className={({ isActive }) => (isActive ? 'active' : '')}
-                role="menuitem"
-                onClick={closeMenu}
-              >
-                {item.label}
-              </NavLink>
-            </li>
-          ))}
-        </ul>
-      </div>
+      <ul
+        id="primary-navigation"
+        className={`nav-links ${isOpen ? 'show' : ''}`}
+        role="menu"
+      >
+        {isOpen && (
+          <li className="nav-close-container">
+            <button
+              className="nav-close-btn"
+              onClick={closeMenu}
+              aria-label="Close menu"
+            >
+              &times;
+            </button>
+          </li>
+        )}
+        {navItems.map((item, index) => (
+          <li key={index} role="none">
+            <NavLink
+              to={item.path}
+              className={({ isActive }) => (isActive ? 'active' : '')}
+              role="menuitem"
+              onClick={closeMenu}
+            >
+              {item.label}
+            </NavLink>
+          </li>
+        ))}
+      </ul>
     </nav>
   );
 };
