@@ -235,7 +235,9 @@
 /* ─────────── Utility ─────────── */
 body.menu-open {
   overflow: hidden;
-  position: relative;
+  position: fixed;
+  height: 100%;
+  touch-action:none;
   width: 100%;
 }
 
