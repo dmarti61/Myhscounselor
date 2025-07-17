@@ -1,19 +1,21 @@
-/* ─────────── Navbar.css ─────────── */
+/* ─────────── Base Navbar ─────────── */
 .navbar {
   background-color: #003366;
   color: #fff;
   padding: 0.5rem 1rem;
   font-family: 'Segoe UI', sans-serif;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
-  position: fixed; /* changed from sticky */
+  position: fixed;
   top: 0;
   width: 100%;
   z-index: 1000;
-  transition: top 0.3s ease-in-out; /* smooth hide/show */
+  transition: top 0.3s ease-in-out, background-color 0.3s ease;
 }
+
 .main-content {
-    padding-top: 3rem;
+  padding-top: 3rem;
 }
+
 .navbar-header {
   display: flex;
   justify-content: space-between;
@@ -28,15 +30,20 @@
   user-select: none;
 }
 
+/* ─────────── Hamburger ─────────── */
 .hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 40px;
+  height: 40px;
   background: none;
   border: none;
   cursor: pointer;
-  display: none;
-  flex-direction: column;
-  gap: 5px;
   padding: 10px;
-  position: absolute;
+  position: relative;
   z-index: 1001;
 }
 
@@ -63,6 +70,7 @@
   transform: rotate(-45deg) translate(5px, -5px);
 }
 
+/* ─────────── Desktop Nav Links ─────────── */
 .nav-links {
   list-style: none;
   display: flex;
@@ -98,10 +106,6 @@
 @media (max-width: 900px) {
   .hamburger {
     display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    width:100%;
-    flex-direction: column;
   }
 
   .nav-links {
@@ -112,9 +116,7 @@
     bottom: 0;
     height: 100dvh;
     overflow-y: auto;
-    overflow-x: hidden;
     -webkit-overflow-scrolling: touch;
-    overscroll-behavior: contain;
     background-color: #003366;
     padding: 1rem 1.5rem 2rem;
     flex-direction: column;
@@ -123,19 +125,16 @@
     opacity: 0;
     pointer-events: none;
     z-index: 1002;
-    touch-action: pan-y;
-    scroll-behavior: smooth;
     transform: translateY(-10px);
     transition: visibility 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     scrollbar-width: thin;
     scrollbar-color: #ccc #036;
     display: flex;
   }
 
   .nav-links.show {
-    visibility: visible;
-    opacity: 1;
+    visibility: visible !important;
+    opacity: 1 !important;
     pointer-events: auto;
     transform: translateY(0);
   }
@@ -146,7 +145,7 @@
     left: 0;
     height: 100dvh;
     width: 100vw;
-    background-color: #003366;
+    background-color: rgba(0, 0, 0, 0.5);
     z-index: 999;
   }
 
@@ -156,10 +155,10 @@
     align-self: flex-end;
     width: 100%;
     background: #036;
-    z-index: 1001;
     margin-bottom: 1rem;
     display: flex;
     justify-content: flex-end;
+    z-index: 1001;
   }
 
   .nav-close-btn {
@@ -171,7 +170,6 @@
     padding: 0.5rem 1rem 0.5rem 0.5rem;
     line-height: 1;
     transition: color 0.2s ease;
-    align-items: flex-end;
     display: flex;
     flex-direction: column;
   }
@@ -186,6 +184,11 @@
   .nav-links li {
     margin-bottom: 0rem;
     width: 100%;
+    border-bottom: 1px solid #ffffff1a;
+  }
+
+  .nav-links li:last-child {
+    padding-bottom: 2rem;
   }
 
   .nav-links li a {
@@ -213,10 +216,6 @@
     padding-left: 1rem;
   }
 
-  .nav-links li:not(:last-child) {
-    border-bottom: 1px solid #ffffff1a;
-  }
-
   /* Scrollbar Styling */
   .nav-links::-webkit-scrollbar {
     width: 6px;
@@ -235,45 +234,26 @@
     background: #aaa;
   }
 
-  /* Last item padding for scroll space */
-  .nav-links li:last-child {
-    padding-bottom: 2rem;
-  }
-
-  /* Improve accessibility */
   .nav-links:focus-within {
     outline: 2px solid #a8c0ff;
     outline-offset: -2px;
   }
-
-  .nav-links {
-    touch-action: pan-y;
-    scroll-behavior: smooth;
-  }
 }
 
-/* ─────────── Prevent background scroll when menu open ─────────── */
+/* ─────────── Lock Body Scroll When Menu is Open ─────────── */
 body.menu-open {
   overflow: hidden;
   position: relative;
   width: 100%;
 }
-.menu {
-  overflow-y: auto;
-  max-height: 100vh;
-}
-.menu {
-  -webkit-overflow-scrolling: touch;
-  touch-action: auto;
-}
 
-/* ─────────── Prevent horizontal scroll everywhere ─────────── */
+/* ─────────── Global Scroll Fixes ─────────── */
 html,
 body {
   overflow-x: hidden;
 }
 
-/* ─────────── Dark mode support ─────────── */
+/* ─────────── Dark Mode Support ─────────── */
 @media (prefers-color-scheme: dark) {
   .nav-links::-webkit-scrollbar-thumb {
     background: #666;
