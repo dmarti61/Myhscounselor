@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import OnboardingOverlay from '../components/onboardingoverlay';
 import '../styles/global.css';
-import Navbar from '../components/navbar';
 
 const Home = () => {
   const [showOnboarding, setShowOnboarding] = useState(false);
@@ -33,8 +32,6 @@ const Home = () => {
   const handleExploreCareers = () => navigate('/explore-careers');
 
   return (
-  <>
-  <Navbar />
     <main className="home" role="main">
       {showOnboarding && <OnboardingOverlay />}
       <h1 tabIndex="0" aria-label="Welcome to My High School Counselor">🎓 Welcome to My HS Counselor</h1>
@@ -60,7 +57,6 @@ const Home = () => {
         <button onClick={handleExploreCareers} className="secondary-btn">✅ Explore Careers</button>
       </div>
     </main>
-   </>
   );
 };
 
