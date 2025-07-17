@@ -8,7 +8,6 @@ const Navbar = () => {
   const toggleMenu = () => {
     setIsOpen(prev => {
       const newState = !prev;
-
       document.body.classList.toggle('menu-open', newState);
       return newState;
     });
@@ -68,6 +67,7 @@ const Navbar = () => {
         </button>
       </div>
 
+      {/* Overlay for mobile menu, click to close */}
       {isOpen && <div className="nav-overlay" onClick={closeMenu} aria-hidden="true" />}
 
       <ul
