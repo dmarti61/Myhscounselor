@@ -43,6 +43,26 @@ const Navbar = () => {
     document.removeEventListener('touchmove', preventScroll);
   };
 }, [isOpen]);
+  
+useEffect(() => {
+    let lastScrollTop = 0;
+    const navbar = document.querySelector('.navbar');
+
+    const onScroll = () => {
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+      if (scrollTop > lastScrollTop) {
+        navbar.style.top = '-100px'; // hide
+      } else {
+        navbar.style.top = '0'; // show
+      }
+
+      lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+    };
+
+    window.addEventListener('scroll', onScroll);
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   const navItems = [
     { path: '/home', label: 'Home' },
