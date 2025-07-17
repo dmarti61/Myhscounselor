@@ -13,7 +13,8 @@
 .navbar-header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: anchor-center;
+  position: relative;
 }
 
 .logo {
@@ -31,7 +32,7 @@
   flex-direction: column;
   gap: 5px;
   padding: 10px;
-  position: relative;
+  position: absolute;
   z-index: 1001;
 }
 
@@ -91,6 +92,10 @@
 @media (max-width: 900px) {
   .hamburger {
     display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    width:100%;
+    flex-direction: column;
   }
 
   .nav-links {
@@ -104,7 +109,7 @@
     overflow-x: hidden;
     -webkit-overflow-scrolling: touch;
     overscroll-behavior: contain;
-    background-color: #036;
+    background-color: ##003366;
     padding: 1rem 1.5rem 2rem;
     flex-direction: column;
     align-items: flex-start;
