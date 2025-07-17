@@ -18,45 +18,50 @@ const Navbar = () => {
     document.body.classList.remove('menu-open');
   };
 
-  // Close menu on ESC key
   useEffect(() => {
     const handleEscape = (e) => {
-      if (e.key === 'Escape' && isOpen) {
-        closeMenu();
+      if (e.key === 'Escape' && isOpen) closeMenu();
+    };
+
+    if (isOpen) document.addEventListener('keydown', handleEscape);
+    return () => document.removeEventListener('keydown', handleEscape);
+  }, [isOpen]);
+
+  useEffect(() => {
+    const preventScroll = (e) => {
+      const navLinks = document.querySelector('.nav-links');
+      if (isOpen && navLinks && !navLinks.contains(e.target)) {
+        e.preventDefault();
       }
     };
 
     if (isOpen) {
-      document.addEventListener('keydown', handleEscape);
+      document.addEventListener('touchmove', preventScroll, { passive: false });
     }
 
     return () => {
-      document.removeEventListener('keydown', handleEscape);
+      document.removeEventListener('touchmove', preventScroll);
     };
   }, [isOpen]);
 
-  // Hide/show navbar on scroll (desktop only)
   useEffect(() => {
     let lastScrollTop = 0;
     const navbar = document.querySelector('.navbar');
 
     const onScroll = () => {
-      if (window.innerWidth < 900) return; // skip on mobile
       const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
 
       if (scrollTop > lastScrollTop) {
-        navbar.style.top = '-100px'; // scroll down: hide
+        navbar.style.top = '-100px';
       } else {
-        navbar.style.top = '0'; // scroll up: show
+        navbar.style.top = '0';
       }
 
-      lastScrollTop = Math.max(scrollTop, 0);
+      lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
     };
 
     window.addEventListener('scroll', onScroll);
-    return () => {
-      window.removeEventListener('scroll', onScroll);
-    };
+    return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
   const navItems = [
@@ -75,7 +80,6 @@ const Navbar = () => {
     <nav className="navbar" role="navigation" aria-label="Main navigation">
       <div className="navbar-header">
         <h1 className="logo">Launchpad</h1>
-
         <button
           className="hamburger"
           onClick={toggleMenu}
@@ -89,7 +93,6 @@ const Navbar = () => {
         </button>
       </div>
 
-      {/* Overlay for closing menu */}
       {isOpen && <div className="nav-overlay" onClick={closeMenu} aria-hidden="true" />}
 
       <ul
@@ -108,7 +111,6 @@ const Navbar = () => {
             </button>
           </li>
         )}
-
         {navItems.map((item, index) => (
           <li key={index} role="none">
             <NavLink
