@@ -28,15 +28,22 @@ const Navbar = () => {
   }, [isOpen]);
 
   useEffect(() => {
-    const preventScroll = (e) => {
-      if (isOpen && !e.target.closest('.nav-links')) e.preventDefault();
-    };
-
-    if (isOpen) {
-      document.addEventListener('touchmove', preventScroll, { passive: false });
+  const preventScroll = (e) => {
+    const navLinks = document.querySelector('.nav-links');
+    if (isOpen && navLinks && !navLinks.contains(e.target)) {
+      e.preventDefault();
     }
-    return () => document.removeEventListener('touchmove', preventScroll);
-  }, [isOpen]);
+  };
+
+  if (isOpen) {
+    document.addEventListener('touchmove', preventScroll, { passive: false });
+  }
+
+  return () => {
+    document.removeEventListener('touchmove', preventScroll);
+  };
+}, [isOpen]);
+
 
   const navItems = [
     { path: '/home', label: 'Home' },
