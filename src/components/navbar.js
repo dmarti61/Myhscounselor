@@ -4,18 +4,31 @@ import '../styles/navbar.css';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-const toggleMenu = () => {
-  setIsOpen(prev => {
-    const newState = !prev;
-    document.body.style.overflow = newState ? 'hidden' : '';
-    return newState;
-  });
-};
 
-const closeMenu = () => {
-  setIsOpen(false);
-  document.body.style.overflow = '';
-};
+  const toggleMenu = () => {
+    setIsOpen(prev => {
+      const newState = !prev;
+      document.body.style.overflow = newState ? 'hidden' : '';
+      return newState;
+    });
+  };
+
+  const closeMenu = () => {
+    setIsOpen(false);
+    document.body.style.overflow = '';
+  };
+
+  const navItems = [
+    { path: '/home', label: 'Home' },
+    { path: '/explore-careers', label: 'Explore Careers' },
+    { path: '/life-skills-toolkit', label: 'Life Skills Toolkit' },
+    { path: '/launch-kit-downloads', label: 'Launch Kit Downloads' },
+    { path: '/talk-templates', label: 'Talk Templates & Scripts' },
+    { path: '/not-sure', label: `"I'm Not Sure" Page` },
+    { path: '/direct-entry-careers', label: 'Direct Entry Careers' },
+    { path: '/contact-feedback', label: 'Contact & Feedback' },
+    { path: '/about', label: 'About' }
+  ];
 
   return (
     <nav className="navbar" role="navigation" aria-label="Main navigation">
@@ -37,25 +50,32 @@ const closeMenu = () => {
       <ul
         id="primary-navigation"
         className={`nav-links ${isOpen ? 'show' : ''}`}
-        onClick={closeMenu}
         role="menu"
+        onClick={e => {
+          // Close only when link or close button is clicked
+          if (e.target.tagName === 'A' || e.target.classList.contains('nav-close-btn')) {
+            closeMenu();
+          }
+        }}
       >
-        {[
-          { path: '/home', label: 'Home' },
-          { path: '/explore-careers', label: 'Explore Careers' },
-          { path: '/life-skills-toolkit', label: 'Life Skills Toolkit' },
-          { path: '/launch-kit-downloads', label: 'Launch Kit Downloads' },
-          { path: '/talk-templates', label: 'Talk Templates & Scripts' },
-          { path: '/not-sure', label: `"I'm Not Sure" Page` },
-          { path: '/direct-entry-careers', label: 'Direct Entry Careers' },
-          { path: '/contact-feedback', label: 'Contact & Feedback' },
-          { path: '/about', label: 'About' }
-        ].map((item, index) => (
+        {isOpen && (
+          <button
+            className="nav-close-btn"
+            onClick={e => {
+              e.stopPropagation();
+              closeMenu();
+            }}
+            aria-label="Close menu"
+          >
+            &times;
+          </button>
+        )}
+        {navItems.map((item, index) => (
           <li key={index} role="none">
             <NavLink
-              role="menuitem"
               to={item.path}
               className={({ isActive }) => (isActive ? 'active' : '')}
+              role="menuitem"
             >
               {item.label}
             </NavLink>
