@@ -7,31 +7,38 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
   position: fixed;
   top: 0;
-  width: 95%;
+  width: 100%; /* Changed from 95% to 100% */
   z-index: 1000;
   transition: top 0.3s ease-in-out, background-color 0.3s ease;
 }
 
 .main-content {
-  padding-top: 3rem;
+  padding-top: 5rem; /* Generous fixed padding-top to avoid overlap */
 }
 
 .navbar-header {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-between; /* Keeps logo/image and hamburger separated */
+  align-items: center;
+  max-width: 1200px; /* Optional: Constrain inner content width */
+  margin: 0 auto; /* Optional: Center inner content */
+}
+
+.navbar-logo-link {
+  display: flex; /* Helps vertically align image */
   align-items: center;
 }
 
-.logo {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: #fff;
+.navbar-logo {
+  height: 40px; /* Adjust as needed for your logo size */
+  width: auto;
   user-select: none;
 }
 
+
 /* ─────────── Hamburger Button ─────────── */
 .hamburger {
-  display: none;
+  display: none; /* Hidden by default on desktop */
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -42,7 +49,7 @@
   background: none;
   border: none;
   cursor: pointer;
-  z-index: 1001;
+  z-index: 1001; /* Above navbar */
 }
 
 .hamburger:focus {
@@ -74,12 +81,12 @@
 .nav-links {
   list-style: none;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  flex-wrap: wrap; /* Allows wrapping on smaller desktop */
+  justify-content: center; /* Centers links if they wrap */
   gap: 1.5rem;
-  margin-top: 0.5rem;
-  width: 100%;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  margin-top: 0.5rem; /* Provides separation from header */
+  width: 100%; /* Important for centering and wrapping behavior */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Keep shadow for visual depth */
 }
 
 .nav-links li a {
@@ -95,7 +102,8 @@
 .nav-links li a:focus {
   color: #a8c0ff;
   border-bottom-color: #a8c0ff;
-  outline: none;
+  outline: 2px solid #a8c0ff; /* Replaced outline: none; */
+  outline-offset: 2px;
 }
 
 .nav-links li a.active {
@@ -105,38 +113,40 @@
 /* ─────────── Mobile Menu ─────────── */
 @media (max-width: 900px) {
   .hamburger {
-    display: flex;
+    display: flex; /* Show hamburger on mobile */
   }
 
   .nav-links {
     position: fixed;
-    top: 0;
-    left: 0;
-    height: 100dvh;
-    width: 100vw;
+    top: 0; /* Menu starts from the top */
+    left: 0; /* Menu starts from the left */
+    width: 100vw; /* Menu spans full viewport width */
+    height: 100dvh; /* Menu spans full dynamic viewport height */
     background-color: #003366;
-    padding: 1rem 1.5rem 2rem;
+    padding: 1rem 1.5rem 2rem; /* Consistent internal padding */
     flex-direction: column;
     align-items: flex-start;
-    overflow-y: auto;
+    overflow-y: auto; /* Allows menu content to scroll */
     -webkit-overflow-scrolling: touch;
-    visibility: hidden;
-    opacity: 0;
-    pointer-events: none;
-    transform: translateY(-10px);
-    z-index: 1002;
-    transition: visibility 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
-    scrollbar-width: thin;
-    scrollbar-color: #ccc #036;
+    visibility: hidden; /* Hidden by default */
+    opacity: 0; /* Hidden by default */
+    pointer-events: none; /* Prevents interaction when hidden */
+    transform: translateY(-10px); /* Slight initial offset for animation */
+    z-index: 1002; /* Above overlay, below close button */
+    /* Corrected transition for smooth fade/slide */
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0s linear 0.3s;
+    scrollbar-width: thin; /* Firefox scrollbar */
+    scrollbar-color: #ccc #036; /* Firefox scrollbar */
+    box-shadow: none; /* Remove desktop shadow on mobile menu */
   }
 
   .nav-links.show {
-    visibility: visible !important;
-    opacity: 1 !important;
-    pointer-events: auto;
-    transform: translateY(0);
-    left:10px;
-    width:95%;
+    visibility: visible; /* Now visible */
+    opacity: 1; /* Fully opaque */
+    pointer-events: auto; /* Allows interaction */
+    transform: translateY(0); /* Slides into view */
+    /* Only transition opacity and transform when showing for smoother appearance */
+    transition: opacity 0.3s ease, transform 0.3s ease;
   }
 
   .nav-overlay {
@@ -146,19 +156,31 @@
     height: 100dvh;
     width: 100vw;
     background-color: rgba(0, 0, 0, 0.5);
-    z-index: 999;
+    z-index: 999; /* Below navbar and menu */
+    visibility: hidden; /* Hidden by default */
+    opacity: 0; /* Hidden by default */
+    transition: opacity 0.3s ease, visibility 0s linear 0.3s;
   }
 
+  .nav-overlay.show {
+    visibility: visible;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+  }
+
+
   .nav-close-container {
-    position: sticky;
+    position: sticky; /* Sticky to stay at top of scrolling menu */
     top: 0;
-    align-self: flex-end;
+    align-self: flex-end; /* Pushes button to right */
     width: 100%;
-    background: #036;
+    background: #003366; /* Match menu background */
     margin-bottom: 1rem;
     display: flex;
     justify-content: flex-end;
-    z-index: 1003;
+    z-index: 1003; /* Above mobile menu */
+    padding-top: 0.5rem; /* Add some padding if needed */
+    padding-right: 0.5rem; /* Add some padding if needed */
   }
 
   .nav-close-btn {
@@ -201,7 +223,8 @@
   .nav-links li a:focus {
     color: #a8c0ff;
     padding-left: 1rem;
-    outline: none;
+    outline: 2px solid #a8c0ff; /* Replaced outline: none; */
+    outline-offset: -2px; /* Adjust offset for inside border */
   }
 
   .nav-links li a.active {
@@ -211,6 +234,7 @@
     border-bottom: none;
   }
 
+  /* Webkit scrollbar styles */
   .nav-links::-webkit-scrollbar {
     width: 6px;
   }
@@ -232,20 +256,6 @@
     outline: 2px solid #a8c0ff;
     outline-offset: -2px;
   }
-}
-
-/* ─────────── Utility ─────────── */
-body.menu-open {
-  overflow: hidden;
-  position: fixed;
-  height: 100%;
-  touch-action:none;
-  width: 100%;
-}
-
-html,
-body {
-  overflow-x: hidden;
 }
 
 /* ─────────── Dark Mode Scrollbar ─────────── */
