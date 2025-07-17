@@ -17,8 +17,9 @@ import ResultBadge from './components/quiz/resultbadge';
 
 const App = () => (
   <Router>
-    <Layout>
-      <Routes>
+    <Routes>
+      {/* Wrap main routes in Layout */}
+      <Route element={<Layout />}>
         <Route path="/" element={<Home />} />
         <Route path="/not-sure" element={<NotSure />} />
         <Route path="/onboarding" element={<Onboarding />} />
@@ -36,8 +37,8 @@ const App = () => (
 
         {/* catch-all */}
         <Route path="*" element={<NotFound />} />
-      </Routes>
-    </Layout>
+      </Route>
+    </Routes>
   </Router>
 );
 
