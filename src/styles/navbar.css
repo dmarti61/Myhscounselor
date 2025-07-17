@@ -13,7 +13,7 @@
 .navbar-header {
   display: flex;
   justify-content: space-between;
-  align-items: anchor-center;
+  align-items: flex-end;
   position: relative;
 }
 
