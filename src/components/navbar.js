@@ -18,50 +18,45 @@ const Navbar = () => {
     document.body.classList.remove('menu-open');
   };
 
+  // Close menu on ESC key
   useEffect(() => {
     const handleEscape = (e) => {
-      if (e.key === 'Escape' && isOpen) closeMenu();
+      if (e.key === 'Escape' && isOpen) {
+        closeMenu();
+      }
     };
 
-    if (isOpen) document.addEventListener('keydown', handleEscape);
-    return () => document.removeEventListener('keydown', handleEscape);
+    if (isOpen) {
+      document.addEventListener('keydown', handleEscape);
+    }
+
+    return () => {
+      document.removeEventListener('keydown', handleEscape);
+    };
   }, [isOpen]);
 
+  // Hide/show navbar on scroll (desktop only)
   useEffect(() => {
-  const preventScroll = (e) => {
-    const navLinks = document.querySelector('.nav-links');
-    if (isOpen && navLinks && !navLinks.contains(e.target)) {
-      e.preventDefault();
-    }
-  };
-
-  if (isOpen) {
-    document.addEventListener('touchmove', preventScroll, { passive: false });
-  }
-
-  return () => {
-    document.removeEventListener('touchmove', preventScroll);
-  };
-}, [isOpen]);
-  
-useEffect(() => {
     let lastScrollTop = 0;
     const navbar = document.querySelector('.navbar');
 
     const onScroll = () => {
+      if (window.innerWidth < 900) return; // skip on mobile
       const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
 
       if (scrollTop > lastScrollTop) {
-        navbar.style.top = '-100px'; // hide
+        navbar.style.top = '-100px'; // scroll down: hide
       } else {
-        navbar.style.top = '0'; // show
+        navbar.style.top = '0'; // scroll up: show
       }
 
-      lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+      lastScrollTop = Math.max(scrollTop, 0);
     };
 
     window.addEventListener('scroll', onScroll);
-    return () => window.removeEventListener('scroll', onScroll);
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+    };
   }, []);
 
   const navItems = [
@@ -80,6 +75,7 @@ useEffect(() => {
     <nav className="navbar" role="navigation" aria-label="Main navigation">
       <div className="navbar-header">
         <h1 className="logo">Launchpad</h1>
+
         <button
           className="hamburger"
           onClick={toggleMenu}
@@ -93,7 +89,7 @@ useEffect(() => {
         </button>
       </div>
 
-      {/* Overlay for mobile menu, click to close */}
+      {/* Overlay for closing menu */}
       {isOpen && <div className="nav-overlay" onClick={closeMenu} aria-hidden="true" />}
 
       <ul
@@ -102,16 +98,17 @@ useEffect(() => {
         role="menu"
       >
         {isOpen && (
-  <li className="nav-close-container">
-    <button
-      className="nav-close-btn"
-      onClick={closeMenu}
-      aria-label="Close menu"
-    >
-      &times;
-    </button>
-  </li>
-)}
+          <li className="nav-close-container">
+            <button
+              className="nav-close-btn"
+              onClick={closeMenu}
+              aria-label="Close menu"
+            >
+              &times;
+            </button>
+          </li>
+        )}
+
         {navItems.map((item, index) => (
           <li key={index} role="none">
             <NavLink
