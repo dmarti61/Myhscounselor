@@ -109,14 +109,14 @@
     overflow-x: hidden;
     -webkit-overflow-scrolling: touch;
     overscroll-behavior: contain;
-    background-color: ##003366;
+    background-color: #003366;
     padding: 1rem 1.5rem 2rem;
     flex-direction: column;
     align-items: flex-start;
     visibility: hidden;
     opacity: 0;
     pointer-events: none;
-    z-index: 1001;
+    z-index: 1002;
     touch-action: pan-y;
     scroll-behavior: smooth;
     transform: translateY(-10px);
