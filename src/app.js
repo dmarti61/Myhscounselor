@@ -15,18 +15,6 @@ import NotFound from './pages/notfound';
 import Quiz from './components/quiz/quiz';
 import ResultBadge from './components/quiz/resultbadge';
 
-const Layout = ({ children }) => {
-  const { pathname } = useLocation();
-  // Hide navbar on home "/" and any "/quiz" routes
-  const hideNavbar = pathname === '/' || pathname.startsWith('/quiz');
-  return (
-    <>
-      {!hideNavbar && <Navbar />}
-      {children}
-    </>
-  );
-};
-
 const App = () => (
   <Router>
     <Layout>
