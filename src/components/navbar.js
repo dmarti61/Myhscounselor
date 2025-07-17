@@ -10,15 +10,11 @@ setIsOpen(prev => {
 const newState = !prev;
 
 ```
-  // Prevent body scroll when menu is open
+  // Use CSS class instead of inline styles for better consistency
   if (newState) {
-    document.body.style.overflow = 'hidden';
-    document.body.style.position = 'fixed';
-    document.body.style.width = '100%';
+    document.body.classList.add('menu-open');
   } else {
-    document.body.style.overflow = '';
-    document.body.style.position = '';
-    document.body.style.width = '';
+    document.body.classList.remove('menu-open');
   }
   
   return newState;
@@ -29,9 +25,7 @@ const newState = !prev;
 
 const closeMenu = () => {
 setIsOpen(false);
-document.body.style.overflow = ‘’;
-document.body.style.position = ‘’;
-document.body.style.width = ‘’;
+document.body.classList.remove(‘menu-open’);
 };
 
 // Handle escape key to close menu
@@ -77,9 +71,7 @@ return () => {
 // Clean up on unmount
 useEffect(() => {
 return () => {
-document.body.style.overflow = ‘’;
-document.body.style.position = ‘’;
-document.body.style.width = ‘’;
+document.body.classList.remove(‘menu-open’);
 };
 }, []);
 
@@ -113,46 +105,34 @@ aria-controls=“primary-navigation”
 </div>
 
 ```
-  {/* Overlay for mobile menu */}
-  {isOpen && (
-    <div 
-      className="nav-overlay" 
-      onClick={closeMenu}
-      aria-hidden="true"
-    />
-  )}
-
-  <div className={`nav-menu-container ${isOpen ? 'show' : ''}`}>
-    <ul
-      id="primary-navigation"
-      className="nav-links"
-      role="menu"
-    >
-      {isOpen && (
-        <li className="nav-close-container">
-          <button
-            className="nav-close-btn"
-            onClick={closeMenu}
-            aria-label="Close menu"
-          >
-            &times;
-          </button>
-        </li>
-      )}
-      {navItems.map((item, index) => (
-        <li key={index} role="none">
-          <NavLink
-            to={item.path}
-            className={({ isActive }) => (isActive ? 'active' : '')}
-            role="menuitem"
-            onClick={closeMenu}
-          >
-            {item.label}
-          </NavLink>
-        </li>
-      ))}
-    </ul>
-  </div>
+  {/* Mobile navigation menu - matches CSS structure */}
+  <ul
+    id="primary-navigation"
+    className={`nav-links ${isOpen ? 'show' : ''}`}
+    role="menu"
+  >
+    {isOpen && (
+      <button
+        className="nav-close-btn"
+        onClick={closeMenu}
+        aria-label="Close menu"
+      >
+        &times;
+      </button>
+    )}
+    {navItems.map((item, index) => (
+      <li key={index} role="none">
+        <NavLink
+          to={item.path}
+          className={({ isActive }) => (isActive ? 'active' : '')}
+          role="menuitem"
+          onClick={closeMenu}
+        >
+          {item.label}
+        </NavLink>
+      </li>
+    ))}
+  </ul>
 </nav>
 ```
 
