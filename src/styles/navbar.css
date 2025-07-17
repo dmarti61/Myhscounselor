@@ -120,6 +120,8 @@
     scrollbar-color: #ccc #036;
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
+    display: flex;
+    flex-direction: column;
   }
 
   .nav-links.show {
@@ -142,24 +144,24 @@
   }
 
   .nav-close-container {
-    display: flex;
-    justify-content: flex-end;
-    width: 100%;
-    background: transparent;
-  }
-
-  .nav-close-btn {
     position: sticky;
     top: 0;
     align-self: flex-end;
+    width: 100%;
+    background: #036;
+    z-index: 1001;
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .nav-close-btn {
     background: none;
     border: none;
     color: #fff;
     font-size: 1.8rem;
-    margin-bottom: 1rem;
-    z-index: 1001;
     cursor: pointer;
-    padding: 0.5rem;
+    padding: 0.5rem 1rem 0.5rem 0.5rem;
     line-height: 1;
     transition: color 0.2s ease;
   }
