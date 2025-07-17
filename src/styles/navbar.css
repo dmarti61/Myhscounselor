@@ -129,10 +129,8 @@
     transform: translateY(0);
   }
 
-  /* Background overlay using a separate element */
-  /* If you want to keep overlay via ::after, fix quotes and z-index */
-  .nav-links.show::after {
-    content: '';
+  /* Overlay for menu - use JS .nav-overlay, not pseudo-element */
+  .nav-overlay {
     position: fixed;
     top: 0;
     left: 0;
@@ -140,7 +138,14 @@
     height: 100dvh;
     width: 100vw;
     background-color: rgba(0, 0, 0, 0.3);
-    z-index: -1;
+    z-index: 999;
+  }
+
+  .nav-close-container {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    background: transparent;
   }
 
   .nav-close-btn {
