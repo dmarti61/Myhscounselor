@@ -305,7 +305,6 @@ body.menu-open {
   overflow-y: auto;
   overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
-  background-color: white;
   z-index: 9999;
   padding: 20px;
   display: flex;
