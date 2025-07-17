@@ -1,181 +1,286 @@
 /* ─────────── Navbar.css ─────────── */
 .navbar {
-  background-color: #003366;
-  color: #fff;
-  padding: 0.5rem 1rem;
-  font-family: 'Segoe UI', sans-serif;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
-  position: sticky;
-  top: 0;
-  z-index: 1000;
+background-color: #003366;
+color: #fff;
+padding: 0.5rem 1rem;
+font-family: ‘Segoe UI’, sans-serif;
+box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+position: sticky;
+top: 0;
+z-index: 1000;
 }
 
 .navbar-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+display: flex;
+justify-content: space-between;
+align-items: center;
 }
 
 .logo {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: #fff;
-  user-select: none;
+font-size: 1.5rem;
+font-weight: bold;
+color: #fff;
+user-select: none;
 }
 
 .hamburger {
-  background: none;
-  border: none;
-  cursor: pointer;
-  display: none;
-  flex-direction: column;
-  gap: 5px;
-  padding: 10px;
+background: none;
+border: none;
+cursor: pointer;
+display: none;
+flex-direction: column;
+gap: 5px;
+padding: 10px;
+position: relative;
+z-index: 1001;
 }
 
 .hamburger:focus {
-  outline: 2px solid #fff;
-  outline-offset: 2px;
+outline: 2px solid #fff;
+outline-offset: 2px;
 }
 
 .bar {
-  width: 25px;
-  height: 3px;
-  background-color: #fff;
-  border-radius: 2px;
-  transition: transform 0.3s ease, opacity 0.3s ease;
+width: 25px;
+height: 3px;
+background-color: #fff;
+border-radius: 2px;
+transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
 .bar.open:nth-child(1) {
-  transform: rotate(45deg) translate(5px, 5px);
+transform: rotate(45deg) translate(5px, 5px);
 }
 .bar.open:nth-child(2) {
-  opacity: 0;
+opacity: 0;
 }
 .bar.open:nth-child(3) {
-  transform: rotate(-45deg) translate(5px, -5px);
+transform: rotate(-45deg) translate(5px, -5px);
 }
 
 .nav-links {
-  list-style: none;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1.5rem;
-  margin-top: 0.5rem;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+list-style: none;
+display: flex;
+flex-wrap: wrap;
+gap: 1.5rem;
+margin-top: 0.5rem;
+box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
 
 .nav-links li a {
-  color: #fff;
-  text-decoration: none;
-  font-weight: 500;
-  padding: 0.25rem 0;
-  border-bottom: 2px solid transparent;
-  transition: color 0.2s ease, border-bottom 0.2s ease;
+color: #fff;
+text-decoration: none;
+font-weight: 500;
+padding: 0.25rem 0;
+border-bottom: 2px solid transparent;
+transition: color 0.2s ease, border-bottom 0.2s ease;
 }
 
 .nav-links li a:hover,
 .nav-links li a:focus {
-  color: #a8c0ff;
-  border-bottom-color: #a8c0ff;
-  outline: none;
+color: #a8c0ff;
+border-bottom-color: #a8c0ff;
+outline: none;
 }
 
 .nav-links li a.active {
-  border-bottom: 2px solid #fff;
+border-bottom: 2px solid #fff;
 }
 
 /* ─────────── Mobile Styles ─────────── */
 @media (max-width: 900px) {
-  .hamburger {
-    display: flex;
-  }
-
-  .nav-links {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    height: 100vh; /* full viewport height */
-    overflow-y: auto !important; /* enable vertical scroll */
-    overflow-x: hidden;
-    -webkit-overflow-scrolling: touch; /* smooth scrolling on iOS */
-    overscroll-behavior: contain;
-    background-color: #036;
-    padding: 1rem 1.5rem 2rem;
-    flex-direction: column;
-    align-items: flex-start;
-    visibility: hidden;
-    opacity: 0;
-    pointer-events: none;
-    z-index: 999;
-    transform: translateY(-10px);
-    transition: visibility 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    scrollbar-width: thin;
-    scrollbar-color: #ccc #036;
-    border-bottom-left-radius: 8px;
-    border-bottom-right-radius: 8px;
-  }
-
-  .nav-links.show {
-    visibility: visible;
-    opacity: 1;
-    pointer-events: auto;
-    transform: translateY(0);
-  }
-.nav-links.show::after {
-  content: '';
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 100vh;
-  width: 100vw;
-  background-color: rgba(0, 0, 0, 0.3);
-  z-index: -1;
+.hamburger {
+display: flex;
 }
- .nav-close-btn {
-  position: sticky;
-  top: 0;
-  align-self: flex-end;
-  background: none;
-  border: none;
-  color: #fff;
-  font-size: 1.8rem;
-  margin-bottom: 1rem;
-  z-index: 1001;
-} 
-  .nav-links li {
-    margin-bottom: 1rem;
-    width: 100%;
-  }
 
-  .nav-links li a {
-    color: #fff;
-    display: block;
-    font-size: 1.1rem;
-    font-weight: 500;
-    padding: 0.5rem 0;
-    width: 100%;
-    text-decoration: none;
-  }
+.nav-links {
+position: fixed;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+height: 100vh;
+height: 100dvh; /* Use dynamic viewport height for better mobile support */
+overflow-y: auto;
+overflow-x: hidden;
+-webkit-overflow-scrolling: touch;
+overscroll-behavior: contain;
+background-color: #036;
+padding: 1rem 1.5rem 2rem;
+flex-direction: column;
+align-items: flex-start;
+visibility: hidden;
+opacity: 0;
+pointer-events: none;
+z-index: 999;
+transform: translateY(-10px);
+transition: visibility 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
+box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+scrollbar-width: thin;
+scrollbar-color: #ccc #036;
+border-bottom-left-radius: 8px;
+border-bottom-right-radius: 8px;
+}
 
-  .nav-links li:not(:last-child) {
-    border-bottom: 1px solid #ffffff1a;
-  }
+.nav-links.show {
+visibility: visible;
+opacity: 1;
+pointer-events: auto;
+transform: translateY(0);
+}
 
-  /* Scrollbar Styling */
-  .nav-links::-webkit-scrollbar {
-    width: 6px;
-  }
+/* Background overlay */
+.nav-links.show::after {
+content: ‘’;
+position: fixed;
+top: 0;
+left: 0;
+height: 100vh;
+height: 100dvh;
+width: 100vw;
+background-color: rgba(0, 0, 0, 0.3);
+z-index: -1;
+}
 
-  .nav-links::-webkit-scrollbar-thumb {
-    background: #ccc;
-    border-radius: 4px;
-  }
+.nav-close-btn {
+position: sticky;
+top: 0;
+align-self: flex-end;
+background: none;
+border: none;
+color: #fff;
+font-size: 1.8rem;
+margin-bottom: 1rem;
+z-index: 1001;
+cursor: pointer;
+padding: 0.5rem;
+line-height: 1;
+transition: color 0.2s ease;
+}
 
-  .nav-links::-webkit-scrollbar-track {
-    background: #036;
-  }
+.nav-close-btn:hover,
+.nav-close-btn:focus {
+color: #a8c0ff;
+outline: 2px solid #a8c0ff;
+outline-offset: 2px;
+}
+
+.nav-links li {
+margin-bottom: 1rem;
+width: 100%;
+}
+
+.nav-links li a {
+color: #fff;
+display: block;
+font-size: 1.1rem;
+font-weight: 500;
+padding: 0.75rem 0;
+width: 100%;
+text-decoration: none;
+transition: color 0.2s ease, padding-left 0.2s ease;
+}
+
+.nav-links li a:hover,
+.nav-links li a:focus {
+color: #a8c0ff;
+padding-left: 1rem;
+outline: none;
+}
+
+.nav-links li a.active {
+color: #a8c0ff;
+border-bottom: none;
+border-left: 3px solid #a8c0ff;
+padding-left: 1rem;
+}
+
+.nav-links li:not(:last-child) {
+border-bottom: 1px solid #ffffff1a;
+}
+
+/* Scrollbar Styling */
+.nav-links::-webkit-scrollbar {
+width: 6px;
+}
+
+.nav-links::-webkit-scrollbar-thumb {
+background: #ccc;
+border-radius: 4px;
+}
+
+.nav-links::-webkit-scrollbar-track {
+background: #036;
+}
+
+/* Ensure proper scrolling behavior */
+.nav-links::-webkit-scrollbar-thumb:hover {
+background: #aaa;
+}
+}
+
+/* ─────────── Body scroll prevention when menu is open ─────────── */
+body.menu-open {
+overflow: hidden;
+position: fixed;
+width: 100%;
+height: 100%;
+}
+
+/* ─────────── Additional fixes for better mobile experience ─────────── */
+@media (max-width: 900px) {
+/* Ensure touch events work properly */
+.nav-links {
+touch-action: pan-y;
+}
+
+/* Add some padding to the last item for better scrolling */
+.nav-links li:last-child {
+padding-bottom: 2rem;
+}
+
+/* Improve accessibility */
+.nav-links:focus-within {
+outline: 2px solid #a8c0ff;
+outline-offset: -2px;
+}
+}
+
+/* ─────────── Animations for better UX ─────────── */
+@keyframes fadeInUp {
+from {
+opacity: 0;
+transform: translateY(20px);
+}
+to {
+opacity: 1;
+transform: translateY(0);
+}
+}
+
+@media (max-width: 900px) {
+.nav-links.show li {
+animation: fadeInUp 0.3s ease forwards;
+}
+
+.nav-links.show li:nth-child(1) { animation-delay: 0.1s; }
+.nav-links.show li:nth-child(2) { animation-delay: 0.15s; }
+.nav-links.show li:nth-child(3) { animation-delay: 0.2s; }
+.nav-links.show li:nth-child(4) { animation-delay: 0.25s; }
+.nav-links.show li:nth-child(5) { animation-delay: 0.3s; }
+.nav-links.show li:nth-child(6) { animation-delay: 0.35s; }
+.nav-links.show li:nth-child(7) { animation-delay: 0.4s; }
+.nav-links.show li:nth-child(8) { animation-delay: 0.45s; }
+.nav-links.show li:nth-child(9) { animation-delay: 0.5s; }
+}
+
+/* ─────────── Dark mode support (optional) ─────────── */
+@media (prefers-color-scheme: dark) {
+.nav-links::-webkit-scrollbar-thumb {
+background: #666;
+}
+
+.nav-links::-webkit-scrollbar-thumb:hover {
+background: #888;
+}
 }
