@@ -33,6 +33,8 @@ const Home = () => {
   const handleExploreCareers = () => navigate('/explore-careers');
 
   return (
+  <>
+  <Navbar />
     <main className="home" role="main">
       {showOnboarding && <OnboardingOverlay />}
       <h1 tabIndex="0" aria-label="Welcome to My High School Counselor">🎓 Welcome to My HS Counselor</h1>
@@ -58,6 +60,7 @@ const Home = () => {
         <button onClick={handleExploreCareers} className="secondary-btn">✅ Explore Careers</button>
       </div>
     </main>
+   </>
   );
 };
 
