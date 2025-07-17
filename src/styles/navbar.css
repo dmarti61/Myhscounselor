@@ -1,4 +1,4 @@
-/* ─────────── Navbar.css ─────────── */
+er/* ─────────── Navbar.css ─────────── */
 .navbar {
   background-color: #003366;
   color: #fff;
@@ -13,7 +13,7 @@
 .navbar-header {
   display: flex;
   justify-content: space-between;
-  align-items: flex-end;
+  align-items: center;
   position: relative;
 }
 
