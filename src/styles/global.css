@@ -291,7 +291,8 @@ html, body {
 body.menu-open {
   position: fixed;
   width: 100%;
-  overflow: hidden;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 /* Make sure nav menu can scroll on mobile */
