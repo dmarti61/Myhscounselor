@@ -298,7 +298,7 @@ body.menu-open {
 /* Make sure nav menu can scroll on mobile */
 .nav-links.show {
   position: fixed;
-  top: 0;
+  top: revert-layer;
   left: 10px;
   right: 0;
   bottom: 0;
