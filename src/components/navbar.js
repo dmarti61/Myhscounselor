@@ -4,9 +4,18 @@ import '../styles/navbar.css';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+const toggleMenu = () => {
+  setIsOpen(prev => {
+    const newState = !prev;
+    document.body.style.overflow = newState ? 'hidden' : '';
+    return newState;
+  });
+};
 
-  const toggleMenu = () => setIsOpen(prev => !prev);
-  const closeMenu = () => setIsOpen(false);
+const closeMenu = () => {
+  setIsOpen(false);
+  document.body.style.overflow = '';
+};
 
   return (
     <nav className="navbar" role="navigation" aria-label="Main navigation">
