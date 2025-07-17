@@ -1,3 +1,14 @@
+/* ─────────── Global Fixes ─────────── */
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
 /* ─────────── Navbar.css ─────────── */
 .navbar {
   background-color: #003366;
@@ -5,15 +16,19 @@
   padding: 0.5rem 1rem;
   font-family: 'Segoe UI', sans-serif;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
-  position: sticky; /* Changed from relative */
+  position: sticky;
   top: 0;
   z-index: 1000;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 .navbar-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 100%;
 }
 
 .logo {
@@ -63,6 +78,9 @@
   gap: 1.5rem;
   margin-top: 0.5rem;
   box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 .nav-links li a {
@@ -96,10 +114,11 @@
     top: 0;
     left: 0;
     right: 0;
-    bottom:0;
-    padding-top:4rm;
+    bottom: 0;
+    padding-top: 4rem;
     max-height: 50vh;
     overflow-y: auto;
+    overflow-x: hidden;
     background-color: #036;
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
@@ -108,12 +127,12 @@
     align-items: flex-start;
     visibility: hidden;
     opacity: 0;
-    -webkit-overflow-scrolling: touch;
     pointer-events: none;
     z-index: 999;
     transform: translateY(-10px);
     transition: visibility 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
     box-shadow: 0 4px 12px #00000026;
+    width: 100%;
   }
 
   .nav-links.show {
