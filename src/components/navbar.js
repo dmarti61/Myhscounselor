@@ -44,7 +44,6 @@ const Navbar = () => {
   };
 }, [isOpen]);
 
-
   const navItems = [
     { path: '/home', label: 'Home' },
     { path: '/explore-careers', label: 'Explore Careers' },
