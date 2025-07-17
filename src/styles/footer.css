@@ -1,7 +1,7 @@
 /* src/styles/footer.css */
 .site-footer {
-  background-color: #ccd6e0;
-  color: #fff;
+  background-color: #003366;
+  color: #ffffff;
   text-align: center;
   padding: 1rem 2rem;
   font-size: 0.9rem;
@@ -15,5 +15,5 @@
 
 .site-footer .copyright {
   font-size: 0.8rem;
-  color: #ccc;
+  color: ##ffffff;
 }
