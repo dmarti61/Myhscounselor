@@ -279,3 +279,35 @@ button:hover {
 .secondary-btn:hover {
   background-color: #dddddd;
 }
+
+/* Allow smooth scrolling across the app */
+html, body {
+  height: 100%;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+/* Prevent background scrolling when nav is open */
+body.menu-open {
+  position: fixed;
+  width: 100%;
+  overflow: hidden;
+}
+
+/* Make sure nav menu can scroll on mobile */
+.nav-links.show {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 100dvh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  background-color: white;
+  z-index: 9999;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
