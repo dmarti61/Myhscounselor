@@ -26,13 +26,18 @@ body {
 }
 
 /* Prevent background scrolling when nav is open */
+/* IMPORTANT: Apply overflow hidden directly to html and body, and use position: fixed on body */
+html.menu-open,
 body.menu-open {
-  position: fixed;
+  height: 100%;
+  overflow: hidden; /* This should force no scrolling */
+  position: fixed; /* Fixes the body in place */
   width: 100%;
-  height: 100%; /* Ensures fixed covers full height */
-  overflow: hidden; /* This correctly hides background scroll */
+  top: var(--scroll-pos, 0); /* Used by JS to preserve scroll position */
+  left: 0;
   touch-action: none; /* Prevents touch scrolling on background */
 }
+
 
 /* Layout Containers */
 .home,
