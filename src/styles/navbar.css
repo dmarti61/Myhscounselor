@@ -14,6 +14,9 @@
 
 .main-content {
   padding-top: 5rem; /* Generous fixed padding-top to avoid overlap */
+  /* Added a min-height to ensure there's always scrollable content if the page is short,
+     which can help test navbar scroll-hiding */
+  min-height: 150vh;
 }
 
 .navbar-header {
@@ -123,7 +126,7 @@
     width: 100vw; /* Menu spans full viewport width */
     height: 100dvh; /* Menu spans full dynamic viewport height */
     background-color: #003366;
-    padding: 1rem; /* Adjusted padding to be consistent and allow inner content control */
+    padding: 1rem; /* Consistent internal padding */
     flex-direction: column;
     align-items: flex-start;
     overflow-y: auto; /* Allows menu content to scroll */
@@ -131,7 +134,7 @@
     visibility: hidden; /* Hidden by default */
     opacity: 0; /* Hidden by default */
     pointer-events: none; /* Prevents interaction when hidden */
-    transform: translateX(-100%); /* Start off-screen to the left */
+    transform: translateY(-100%); /* Changed from translateX to translateY */
     z-index: 1002; /* Above overlay, below close button */
     /* Corrected transition for smooth fade/slide */
     transition: opacity 0.3s ease, transform 0.3s ease, visibility 0s linear 0.3s;
@@ -144,7 +147,7 @@
     visibility: visible; /* Now visible */
     opacity: 1; /* Fully opaque */
     pointer-events: auto; /* Allows interaction */
-    transform: translateX(0); /* Slides into view */
+    transform: translateY(0); /* Changed from translateX to translateY */
     /* Only transition opacity and transform when showing for smoother appearance */
     transition: opacity 0.3s ease, transform 0.3s ease;
   }
