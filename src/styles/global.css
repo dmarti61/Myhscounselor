@@ -13,16 +13,25 @@
 html, body {
   height: 100%;
   overflow-x: hidden;
-  overflow-y: auto;
+  overflow-y: auto; /* Base scroll behavior */
   -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth; /* Allow smooth scrolling across the app */
 }
 
 body {
   background-color: #f9f9f9;
   color: #333;
-  overflow-x: hidden;
   line-height: 1.6;
   padding: 20px;
+}
+
+/* Prevent background scrolling when nav is open */
+body.menu-open {
+  position: fixed;
+  width: 100%;
+  height: 100%; /* Ensures fixed covers full height */
+  overflow: hidden; /* This correctly hides background scroll */
+  touch-action: none; /* Prevents touch scrolling on background */
 }
 
 /* Layout Containers */
@@ -278,37 +287,4 @@ button:hover {
 
 .secondary-btn:hover {
   background-color: #dddddd;
-}
-
-/* Allow smooth scrolling across the app */
-html, body {
-  height: 100%;
-  overflow-x: hidden;
-  scroll-behavior: smooth;
-}
-
-/* Prevent background scrolling when nav is open */
-body.menu-open {
-  position: fixed;
-  width: 100%;
-  overflow-y: auto;
-  overflow-x: hidden;
-}
-
-/* Make sure nav menu can scroll on mobile */
-.nav-links.show {
-  position: fixed;
-  top: revert-layer;
-  left: 10px;
-  right: 0;
-  bottom: 0;
-  height: 100dvh;
-  overflow-y: auto;
-  overflow-x: hidden;
-  -webkit-overflow-scrolling: touch;
-  z-index: 9999;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
 }
