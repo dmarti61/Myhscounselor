@@ -116,6 +116,13 @@
     display: flex;
   }
 
+  .navbar-header {
+    max-width: 100%; /* Important: Override the 1200px limit */
+    margin-left: 0;  /* Crucial: Remove the auto margin on the left */
+    margin-right: 0; /* Crucial: Remove the auto margin on the right */
+    width: 100%;     /* Ensure it actively takes 100% of parent's width */
+  }
+  
   .nav-links {
     position: fixed;
     /* Important for full coverage and vertical slide: */
