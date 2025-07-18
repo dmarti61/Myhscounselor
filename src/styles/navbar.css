@@ -7,33 +7,30 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
   position: fixed;
   top: 0;
-  width: 100%; /* Remains 100% */
+  width: 100%;
   z-index: 1000;
   transition: top 0.3s ease-in-out, background-color 0.3s ease;
 }
 
 .main-content {
-  padding-top: 5rem; /* Generous fixed padding-top to avoid overlap */
-  /* Added a min-height to ensure there's always scrollable content if the page is short,
-     which can help test navbar scroll-hiding */
-  min-height: 150vh;
+  padding-top: 5rem;
 }
 
 .navbar-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  max-width: 1200px; /* Constrain content width */
-  margin: 0 auto; /* Center content within the 100% width navbar */
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .navbar-logo-link {
-  display: flex; /* Helps vertically align image */
+  display: flex;
   align-items: center;
 }
 
 .navbar-logo {
-  height: 40px; /* Adjust as needed for your logo size */
+  height: 40px;
   width: auto;
   user-select: none;
 }
@@ -41,7 +38,7 @@
 
 /* ─────────── Hamburger Button ─────────── */
 .hamburger {
-  display: none; /* Hidden by default on desktop */
+  display: none;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -52,7 +49,7 @@
   background: none;
   border: none;
   cursor: pointer;
-  z-index: 1001; /* Above navbar */
+  z-index: 1001; /* Above navbar content */
 }
 
 .hamburger:focus {
@@ -84,12 +81,12 @@
 .nav-links {
   list-style: none;
   display: flex;
-  flex-wrap: wrap; /* Allows wrapping on smaller desktop */
-  justify-content: center; /* Centers links if they wrap */
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 1.5rem;
-  margin-top: 0.5rem; /* Provides separation from header */
-  width: 100%; /* Important for centering and wrapping behavior */
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Keep shadow for visual depth */
+  margin-top: 0.5rem;
+  width: 100%;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .nav-links li a {
@@ -105,7 +102,7 @@
 .nav-links li a:focus {
   color: #a8c0ff;
   border-bottom-color: #a8c0ff;
-  outline: 2px solid #a8c0ff; /* Replaced outline: none; */
+  outline: 2px solid #a8c0ff;
   outline-offset: 2px;
 }
 
@@ -116,49 +113,45 @@
 /* ─────────── Mobile Menu ─────────── */
 @media (max-width: 900px) {
   .hamburger {
-    display: flex; /* Show hamburger on mobile */
+    display: flex;
   }
 
   .nav-links {
     position: fixed;
-    top: 0; /* Menu starts from the top */
-    left: 0; /* Menu starts from the left */
-    width: 100vw; /* Menu spans full viewport width */
-    height: 100dvh; /* Menu spans full dynamic viewport height */
-    background-color: #003366;
-    padding: 1rem; /* Consistent internal padding */
+    /* Important for full coverage and vertical slide: */
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100dvh; /* Use 100dvh for dynamic viewport height */
+    background-color: #003366; /* Ensures background covers entire menu area */
+    padding: 1rem;
     flex-direction: column;
-    align-items: flex-start;
-    overflow-y: auto; /* Allows menu content to scroll */
-    -webkit-overflow-scrolling: touch;
-    visibility: hidden; /* Hidden by default */
-    opacity: 0; /* Hidden by default */
-    pointer-events: none; /* Prevents interaction when hidden */
-    transform: translateY(-100%); /* Changed from translateX to translateY */
-    z-index: 1002; /* Above overlay, below close button */
-    /* Corrected transition for smooth fade/slide */
+    /* Crucial for vertical stacking and preventing horizontal overflow of links */
+    align-items: flex-start; /* Aligns items to the left (start of flex container) */
+    justify-content: flex-start; /* Ensures items start from the top */
+
+    overflow-x: hidden; /* Prevent horizontal scrolling of menu itself */
+    overflow-y: auto; /* Allow vertical scrolling of menu content */
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-100%); /* Slides from top to bottom */
+    z-index: 1002; /* Higher than overlay, lower than close button */
     transition: opacity 0.3s ease, transform 0.3s ease, visibility 0s linear 0.3s;
-    scrollbar-width: thin; /* Firefox scrollbar */
-    scrollbar-color: #ccc #036; /* Firefox scrollbar */
-    box-shadow: none; /* Remove desktop shadow on mobile menu */
+    box-shadow: none; /* Remove desktop shadow */
   }
 
   .nav-links.show {
-    visibility: visible; /* Now visible */
-    opacity: 1; /* Fully opaque */
-    pointer-events: auto; /* Allows interaction */
-    transform: translateY(0); /* Changed from translateX to translateY */
-    /* Only transition opacity and transform when showing for smoother appearance */
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0); /* Slides into view */
     transition: opacity 0.3s ease, transform 0.3s ease;
   }
 
-  /* Inner container for mobile menu links to match desktop content width */
-  .nav-links > li:not(.nav-close-container) {
-    max-width: 1200px; /* Match max-width of navbar-header if desired */
-    margin: 0 auto; /* Center the list items if max-width is applied */
-    width: 100%; /* Ensure inner list items take full available width */
-  }
-
+  /* Overlay to dim background */
   .nav-overlay {
     position: fixed;
     top: 0;
@@ -166,9 +159,9 @@
     height: 100dvh;
     width: 100vw;
     background-color: rgba(0, 0, 0, 0.5);
-    z-index: 999; /* Below navbar and menu */
-    visibility: hidden; /* Hidden by default */
-    opacity: 0; /* Hidden by default */
+    z-index: 999; /* Below mobile menu */
+    visibility: hidden;
+    opacity: 0;
     transition: opacity 0.3s ease, visibility 0s linear 0.3s;
   }
 
@@ -178,19 +171,17 @@
     transition: opacity 0.3s ease;
   }
 
-
+  /* Container for the close button within the mobile menu */
   .nav-close-container {
-    position: sticky; /* Sticky to stay at top of scrolling menu */
+    position: sticky; /* Keep close button at the top when menu scrolls */
     top: 0;
-    align-self: flex-end; /* Pushes button to right */
-    width: 100%;
+    align-self: flex-end; /* Push button to the right */
+    width: 100%; /* Take full width for sticky positioning */
     background: #003366; /* Match menu background */
-    margin-bottom: 1rem;
+    padding: 0.5rem 0.5rem 0 0; /* Adjust padding for button positioning */
     display: flex;
     justify-content: flex-end;
-    z-index: 1003; /* Above mobile menu */
-    padding-top: 0.5rem; /* Add some padding if needed */
-    padding-right: 0.5rem; /* Add some padding if needed */
+    z-index: 1003; /* Highest z-index */
   }
 
   .nav-close-btn {
@@ -210,41 +201,43 @@
     outline-offset: 2px;
   }
 
+  /* Styling for individual list items in the mobile menu */
   .nav-links li {
-    width: 100%;
-    border-bottom: 1px solid #ffffff1a;
+    width: 100%; /* Ensure each list item takes full width */
+    border-bottom: 1px solid #ffffff1a; /* Separator for links */
   }
 
   .nav-links li:last-child {
-    padding-bottom: 2rem;
+    padding-bottom: 2rem; /* Extra padding at the bottom of the list */
   }
 
   .nav-links li a {
-    display: block;
+    display: block; /* Make the whole link area clickable */
     font-size: 1.1rem;
     font-weight: 500;
     color: #fff;
-    padding: 0.75rem 0;
+    padding: 0.75rem 0; /* Padding around text */
     width: 100%;
     transition: color 0.2s ease, padding-left 0.2s ease;
+    text-align: left; /* Ensure text is left-aligned */
   }
 
   .nav-links li a:hover,
   .nav-links li a:focus {
     color: #a8c0ff;
-    padding-left: 1rem;
-    outline: 2px solid #a8c0ff; /* Replaced outline: none; */
-    outline-offset: -2px; /* Adjust offset for inside border */
+    padding-left: 1rem; /* Indent on hover/focus */
+    outline: 2px solid #a8c0ff;
+    outline-offset: -2px; /* Outline inside the border */
   }
 
   .nav-links li a.active {
     color: #a8c0ff;
-    border-left: 3px solid #a8c0ff;
+    border-left: 3px solid #a8c0ff; /* Active indicator */
     padding-left: 1rem;
-    border-bottom: none;
+    border-bottom: none; /* Remove bottom border if active */
   }
 
-  /* Webkit scrollbar styles */
+  /* Webkit scrollbar styles for the mobile menu */
   .nav-links::-webkit-scrollbar {
     width: 6px;
   }
