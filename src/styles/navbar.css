@@ -7,7 +7,7 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
   position: fixed;
   top: 0;
-  width: 100%; /* Changed from 95% to 100% */
+  width: 100%; /* Remains 100% */
   z-index: 1000;
   transition: top 0.3s ease-in-out, background-color 0.3s ease;
 }
@@ -18,10 +18,10 @@
 
 .navbar-header {
   display: flex;
-  justify-content: space-between; /* Keeps logo/image and hamburger separated */
+  justify-content: space-between;
   align-items: center;
-  max-width: 1200px; /* Optional: Constrain inner content width */
-  margin: 0 auto; /* Optional: Center inner content */
+  max-width: 1200px; /* Constrain content width */
+  margin: 0 auto; /* Center content within the 100% width navbar */
 }
 
 .navbar-logo-link {
@@ -123,7 +123,7 @@
     width: 100vw; /* Menu spans full viewport width */
     height: 100dvh; /* Menu spans full dynamic viewport height */
     background-color: #003366;
-    padding: 1rem 1.5rem 2rem; /* Consistent internal padding */
+    padding: 1rem; /* Adjusted padding to be consistent and allow inner content control */
     flex-direction: column;
     align-items: flex-start;
     overflow-y: auto; /* Allows menu content to scroll */
@@ -131,7 +131,7 @@
     visibility: hidden; /* Hidden by default */
     opacity: 0; /* Hidden by default */
     pointer-events: none; /* Prevents interaction when hidden */
-    transform: translateY(-10px); /* Slight initial offset for animation */
+    transform: translateX(-100%); /* Start off-screen to the left */
     z-index: 1002; /* Above overlay, below close button */
     /* Corrected transition for smooth fade/slide */
     transition: opacity 0.3s ease, transform 0.3s ease, visibility 0s linear 0.3s;
@@ -144,9 +144,16 @@
     visibility: visible; /* Now visible */
     opacity: 1; /* Fully opaque */
     pointer-events: auto; /* Allows interaction */
-    transform: translateY(0); /* Slides into view */
+    transform: translateX(0); /* Slides into view */
     /* Only transition opacity and transform when showing for smoother appearance */
     transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+
+  /* Inner container for mobile menu links to match desktop content width */
+  .nav-links > li:not(.nav-close-container) {
+    max-width: 1200px; /* Match max-width of navbar-header if desired */
+    margin: 0 auto; /* Center the list items if max-width is applied */
+    width: 100%; /* Ensure inner list items take full available width */
   }
 
   .nav-overlay {
