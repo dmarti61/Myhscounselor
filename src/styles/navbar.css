@@ -130,6 +130,7 @@
     top: 0;
     left: 0;
     width: 100vw;
+    max-height:200px;
     height: 100dvh; /* Use 100dvh for dynamic viewport height */
     background-color: #003366; /* Ensures background covers entire menu area */
     padding: 1rem;
