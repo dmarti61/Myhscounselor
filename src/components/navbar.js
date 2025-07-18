@@ -136,35 +136,34 @@ const Navbar = () => {
     { path: '/about', label: 'About' }
   ];
 
-  return (
-    <nav className="navbar" role="navigation" aria-label="Main navigation" ref={navbarRef}>
-      <div className="navbar-header">
-        <NavLink to="/home" className="navbar-logo-link" aria-label="Home">
-          <img src="/logo.png" alt="Launchpad Logo" className="navbar-logo" />
-        </NavLink>
-        <button
-          className="hamburger"
-          onClick={toggleMenu}
-          aria-label={isOpen ? 'Close menu' : 'Open menu'}
-          aria-expanded={isOpen}
-          aria-controls="primary-navigation"
-          ref={hamburgerRef} // Assign ref to hamburger
-        >
-          {[...Array(3)].map((_, i) => (
-            <span key={i} className={`bar ${isOpen ? 'open' : ''}`}></span>
-          ))}
-        </button>
-      </div>
+return (
+  <nav className="navbar" role="navigation" aria-label="Main navigation" ref={navbarRef}>
+    {/* Overlay for mobile menu */}
+    <div className={`nav-overlay ${isOpen ? 'show' : ''}`} onClick={closeMenu} aria-hidden="true" />
 
-      {/* Conditional rendering of overlay based on isOpen state */}
-      {/* The .show class is toggled by JS now for better transition control */}
-      <div className={`nav-overlay ${isOpen ? 'show' : ''}`} onClick={closeMenu} aria-hidden="true" />
+    <div className="navbar-header">
+      <NavLink to="/home" className="navbar-logo-link" aria-label="Home">
+        <img src="/logo.png" alt="Launchpad Logo" className="navbar-logo" />
+      </NavLink>
+
+      <button
+        className="hamburger"
+        onClick={toggleMenu}
+        aria-label={isOpen ? 'Close menu' : 'Open menu'}
+        aria-expanded={isOpen}
+        aria-controls="primary-navigation"
+        ref={hamburgerRef}
+      >
+        {[...Array(3)].map((_, i) => (
+          <span key={i} className={`bar ${isOpen ? 'open' : ''}`}></span>
+        ))}
+      </button>
 
       <ul
         id="primary-navigation"
         className={`nav-links ${isOpen ? 'show' : ''}`}
         role="menu"
-        aria-hidden={!isOpen} // Hide from accessibility tree when closed
+        aria-hidden={!isOpen}
       >
         {isOpen && (
           <li className="nav-close-container">
@@ -172,28 +171,26 @@ const Navbar = () => {
               className="nav-close-btn"
               onClick={closeMenu}
               aria-label="Close menu"
-              ref={closeButtonRef} // Assign ref to close button
+              ref={closeButtonRef}
             >
               &times;
             </button>
           </li>
         )}
         {navItems.map((item) => (
-          // Using item.path as key, assuming it's unique and stable
-          <li key={item.path} /* Removed role="none" */>
+          <li key={item.path}>
             <NavLink
               to={item.path}
               className={({ isActive }) => (isActive ? 'active' : '')}
               role="menuitem"
-              onClick={closeMenu} // Close menu when a link is clicked
+              onClick={closeMenu}
             >
               {item.label}
             </NavLink>
           </li>
         ))}
       </ul>
-    </nav>
-  );
-};
-
+    </div>
+  </nav>
+);
 export default Navbar;
