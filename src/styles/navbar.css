@@ -128,9 +128,6 @@
     width: 100vw;
     height: 100dvh;
     background-color: #003366;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
     padding-left: 0;
     padding-right: 0;
     padding-top: 0;
@@ -146,6 +143,10 @@
   .nav-links.show {
     visibility: visible;
     opacity: 1;
+    display: flex;
+    flex-direction: column;
+    max-height: 100dvh;
+    align-items: flex-start;
     pointer-events: auto;
     transform: translateY(0);
     transition: opacity 0.3s ease, transform 0.3s ease;
