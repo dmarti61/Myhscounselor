@@ -10,7 +10,6 @@ const Navbar = () => {
   const closeButtonRef = useRef(null);
 
   const setInitialFocus = useCallback(() => {
-    // Focus close button first, if it exists, otherwise the first nav link
     const focusTarget = closeButtonRef.current || document.querySelector('#primary-navigation a');
     focusTarget?.focus();
   }, []);
@@ -29,8 +28,6 @@ const Navbar = () => {
       } else {
         document.documentElement.classList.remove('menu-open');
         document.body.classList.remove('menu-open');
-        // Restore scroll position only if the menu was opened from a scrolled state
-        // and we are not at the top of the page.
         if (scrollPosition > 0) {
           window.scrollTo(0, scrollPosition);
         }
@@ -45,8 +42,6 @@ const Navbar = () => {
     setIsOpen(false);
     document.documentElement.classList.remove('menu-open');
     document.body.classList.remove('menu-open');
-    // Restore scroll position only if the menu was opened from a scrolled state
-    // and we are not at the top of the page.
     if (scrollPosition > 0) {
       window.scrollTo(0, scrollPosition);
     }
@@ -69,23 +64,21 @@ const Navbar = () => {
   useEffect(() => {
     let last = 0;
     const navbar = navbarRef.current;
-    if (!navbar) return; // Add null check for navbarRef
+    if (!navbar) return;
 
     const onScroll = () => {
-      // Only hide/show if menu is not open
       if (!isOpen) {
         const st = window.pageYOffset;
-        navbar.style.top = (st > last && st > 50) ? '-100px' : '0'; // Hide after 50px scroll down
+        navbar.style.top = (st > last && st > 50) ? '-100px' : '0';
         last = st <= 0 ? 0 : st;
       } else {
-        // If menu is open, ensure navbar is visible
         navbar.style.top = '0';
       }
     };
 
     window.addEventListener('scroll', onScroll);
     return () => window.removeEventListener('scroll', onScroll);
-  }, [isOpen]); // Depend on isOpen to re-run effect when menu state changes
+  }, [isOpen]);
 
   const navItems = [
     '/home',
@@ -97,7 +90,6 @@ const Navbar = () => {
     '/direct-entry-careers',
     '/contact-feedback',
     '/about',
-    // Add more dummy links here for testing if needed
     '/test-link-1',
     '/test-link-2',
     '/test-link-3',
@@ -110,8 +102,10 @@ const Navbar = () => {
     '/test-link-10',
     '/test-link-11',
     '/test-link-12',
-  ].map(path => ({ path, label: path.replace(/-/g, ' ').replace('/', '').replace(/\b\w/g, c => c.toUpperCase()) }));
-
+  ].map(path => ({
+    path,
+    label: path.replace(/-/g, ' ').replace('/', '').replace(/\b\w/g, c => c.toUpperCase())
+  }));
 
   return (
     <nav className="navbar" ref={navbarRef} aria-label="Main navigation">
@@ -128,28 +122,37 @@ const Navbar = () => {
           aria-controls="primary-navigation"
           aria-label={isOpen ? 'Close menu' : 'Open menu'}
         >
-          {[0,1,2].map(i => <span key={i} className={`bar ${isOpen ? 'open' : ''}`} />)}
+          {[0, 1, 2].map(i => <span key={i} className={`bar ${isOpen ? 'open' : ''}`} />)}
         </button>
-        <ul id="primary-navigation" className={`nav-links ${isOpen ? 'show' : ''}`} role="menu" aria-hidden={!isOpen}>
-          <li className="nav-close-container">
-            <button
-              ref={closeButtonRef}
-              className="nav-close-btn"
-              onClick={closeMenu}
-              aria-label="Close menu"
-            >&times;</button>
-          </li>
-          {/* NEW SCROLLABLE WRAPPER */}
-          <div className="nav-links-scroll-wrapper">
+      </div>
+
+      {/* ✅ Corrected container (no more <ul> wrapping divs) */}
+      <div id="primary-navigation" className={`nav-links ${isOpen ? 'show' : ''}`} role="menu" aria-hidden={!isOpen}>
+        <div className="nav-close-container">
+          <button
+            ref={closeButtonRef}
+            className="nav-close-btn"
+            onClick={closeMenu}
+            aria-label="Close menu"
+          >&times;</button>
+        </div>
+
+        <div className="nav-links-scroll-wrapper">
+          <ul role="menu">
             {navItems.map(item => (
               <li key={item.path}>
-                <NavLink to={item.path} role="menuitem" className={({isActive}) => isActive ? 'active' : ''} onClick={closeMenu}>
+                <NavLink
+                  to={item.path}
+                  role="menuitem"
+                  className={({ isActive }) => isActive ? 'active' : ''}
+                  onClick={closeMenu}
+                >
                   {item.label}
                 </NavLink>
               </li>
             ))}
-          </div>
-        </ul>
+          </ul>
+        </div>
       </div>
     </nav>
   );
