@@ -230,6 +230,7 @@
     padding-bottom: 2rem; /* Add extra padding at the bottom of the scrollable area */
     /* Hide scrollbar if content doesn't overflow much, but allow scrolling */
     display: flex;
+    min-height: 0;
     flex-direction: column;
     scrollbar-width: thin; /* Firefox */
     scrollbar-color: #ccc #036; /* Firefox */
