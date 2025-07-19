@@ -208,6 +208,7 @@
   .nav-links-scroll-wrapper {
     flex-grow: 1;
     overflow-y: auto;
+    overflow: visible !important;
     -webkit-overflow-scrolling: touch;
     overscroll-behavior: contain;
     width: 100%;
