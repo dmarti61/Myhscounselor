@@ -13,7 +13,7 @@
 }
 
 .main-content {
-  padding-top: 100px; /* Ensure content is not hidden behind fixed navbar */
+  padding-top: 100px;
 }
 
 .navbar-header {
@@ -38,7 +38,7 @@
 
 /* ─────────── Hamburger Button ─────────── */
 .hamburger {
-  display: none; /* Hidden by default on desktop */
+  display: none;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -49,7 +49,7 @@
   background: none;
   border: none;
   cursor: pointer;
-  z-index: 1001; /* Ensure it's above other content but below mobile menu */
+  z-index: 1001;
 }
 
 .hamburger:focus {
@@ -80,13 +80,13 @@
 /* ─────────── Desktop Nav Links ─────────── */
 .nav-links {
   list-style: none;
-  display: flex; /* Flexbox for desktop */
+  display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 1.5rem;
   margin-top: 0px;
   width: 100%;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Keep for consistent design */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .nav-links li a {
@@ -110,49 +110,41 @@
   border-bottom: 2px solid #fff;
 }
 
-/* Hide the close button and scroll wrapper on desktop */
+/* Hide extra mobile-only elements */
 .nav-links .nav-close-container,
 .nav-links .nav-links-scroll-wrapper {
   display: none;
 }
 
-
 /* ─────────── Mobile Menu ─────────── */
 @media (max-width: 900px) {
   .hamburger {
-    display: flex; /* Show hamburger button on mobile */
+    display: flex;
   }
 
   .navbar-header {
     max-width: 100%;
-    margin-left: 0;
-    margin-right: 0;
     width: 100%;
-    /* Ensure padding here if needed, or let main nav-links handle it */
   }
 
-  /* Reset desktop nav-links behavior for mobile */
   .nav-links {
     position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
-    height: 100dvh; /* Fill entire viewport height */
+    height: 100dvh;
     background-color: #003366;
-    padding-top: 0; /* No padding-top on the UL itself */
-    padding-left: 1rem;
-    padding-right: 1rem;
-    flex-direction: column; /* Stack children vertically */
-    align-items: flex-start; /* Align children to the start (left) */
-    /* Removed justify-content to allow flex-grow to work properly */
-    overflow-y: hidden; /* Important: The UL itself should NOT scroll, its child wrapper will */
-    overflow-x: hidden;
-
+    flex-direction: column;
+    align-items: flex-start;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    overflow: hidden;
     visibility: hidden;
     opacity: 0;
     pointer-events: none;
-    transform: translateY(-100%); /* Start off-screen above */
-    z-index: 1001; /* Above overlay */
+    transform: translateY(-100%);
+    z-index: 1001;
     transition: opacity 0.3s ease, transform 0.3s ease, visibility 0s linear 0.3s;
   }
 
@@ -160,7 +152,7 @@
     visibility: visible;
     opacity: 1;
     pointer-events: auto;
-    transform: translateY(0); /* Slide into view */
+    transform: translateY(0);
     transition: opacity 0.3s ease, transform 0.3s ease;
   }
 
@@ -171,7 +163,7 @@
     height: 100dvh;
     width: 100vw;
     background-color: rgba(0, 0, 0, 0.5);
-    z-index: 999; /* Below menu but above content */
+    z-index: 999;
     visibility: hidden;
     opacity: 0;
     transition: opacity 0.3s ease, visibility 0s linear 0.3s;
@@ -183,24 +175,22 @@
     transition: opacity 0.3s ease;
   }
 
-  /* Show the close button and scroll wrapper on mobile */
   .nav-links .nav-close-container,
   .nav-links .nav-links-scroll-wrapper {
-    display: flex; /* Or block, depending on desired layout */
+    display: flex;
   }
 
   .nav-close-container {
     position: sticky;
-    top: 0; /* Sticks to the top of the .nav-links parent */
+    top: 0;
     width: 100%;
-    background-color: #003366; /* Background to cover scrolling content */
+    background-color: #003366;
     padding: 0.5rem 1rem;
-    z-index: 1002; /* Ensure it stays above scrolling links */
-    display: flex;
+    z-index: 1002;
     justify-content: flex-end;
-    align-items: center; /* Vertically align items */
+    align-items: center;
     border-bottom: 1px solid #ffffff22;
-    margin-bottom: 0.5rem; /* Space between close button and links */
+    margin-bottom: 0.5rem;
   }
 
   .nav-close-btn {
@@ -220,31 +210,27 @@
     outline-offset: 2px;
   }
 
-  /* NEW: Styles for the scrollable wrapper holding the links */
   .nav-links-scroll-wrapper {
-    flex-grow: 1; /* Takes up all available space */
-    overflow-y: auto; /* This is the element that will scroll */
+    flex-grow: 1;
+    overflow-y: auto;
     -webkit-overflow-scrolling: touch;
-    overscroll-behavior: contain; /* Prevents scroll chaining to body */
-    width: 100%; /* Ensure it spans full width */
-    padding-bottom: 2rem; /* Add extra padding at the bottom of the scrollable area */
-    /* Hide scrollbar if content doesn't overflow much, but allow scrolling */
-    display: flex;
-    min-height: 200px !important;
+    overscroll-behavior: contain;
+    width: 100%;
+    padding: 0 1rem 2rem;
     flex-direction: column;
-    scrollbar-width: thin; /* Firefox */
-    scrollbar-color: #ccc #036; /* Firefox */
+    min-height: 200px !important;
+    display: flex;
+    scrollbar-width: thin;
+    scrollbar-color: #ccc #036;
   }
 
-
-  /* Apply styles to list items within the scrollable wrapper */
   .nav-links-scroll-wrapper li {
     width: 100%;
     border-bottom: 1px solid #ffffff1a;
   }
 
   .nav-links-scroll-wrapper li:last-child {
-    border-bottom: none; /* No border on the last item */
+    border-bottom: none;
   }
 
   .nav-links-scroll-wrapper li a {
@@ -254,26 +240,25 @@
     color: #fff;
     padding: 0.75rem 0;
     width: 100%;
-    transition: color 0.2s ease, padding-left 0.2s ease;
     text-align: left;
+    transition: color 0.2s ease, padding-left 0.2s ease;
   }
 
   .nav-links-scroll-wrapper li a:hover,
   .nav-links-scroll-wrapper li a:focus {
     color: #a8c0ff;
-    padding-left: 1rem; /* Indent on hover/focus */
+    padding-left: 1rem;
     outline: 2px solid #a8c0ff;
     outline-offset: -2px;
   }
 
   .nav-links-scroll-wrapper li a.active {
     color: #a8c0ff;
-    border-left: 3px solid #a8c0ff; /* Active indicator */
+    border-left: 3px solid #a8c0ff;
     padding-left: 1rem;
-    border-bottom: none; /* Active link should not have bottom border */
+    border-bottom: none;
   }
 
-  /* Scrollbar styles for the scrollable wrapper */
   .nav-links-scroll-wrapper::-webkit-scrollbar {
     width: 6px;
   }
@@ -291,7 +276,6 @@
     background: #aaa;
   }
 
-  /* Focus within for the whole scrollable wrapper */
   .nav-links-scroll-wrapper:focus-within {
     outline: 2px solid #a8c0ff;
     outline-offset: -2px;
