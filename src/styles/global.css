@@ -30,9 +30,8 @@ body {
 html.menu-open,
 body.menu-open {
   overflow: hidden; /* This should force no scrolling */
-  position: fixed; /* Fixes the body in place */
+  position: relative; /* Fixes the body in place */
   width: 100%;
-  top: var(--scroll-pos, 0); /* Used by JS to preserve scroll position */
   left: 0;
   touch-action: none; /* Prevents touch scrolling on background */
 }
