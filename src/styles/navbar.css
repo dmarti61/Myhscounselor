@@ -110,12 +110,6 @@
   border-bottom: 2px solid #fff;
 }
 
-/* Hide extra mobile-only elements */
-.nav-links .nav-close-container,
-.nav-links .nav-links-scroll-wrapper {
-  display: none;
-}
-
 /* ─────────── Mobile Menu ─────────── */
 @media (max-width: 900px) {
   .hamburger {
