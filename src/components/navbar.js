@@ -10,6 +10,7 @@ const Navbar = () => {
   const closeButtonRef = useRef(null);
 
   const setInitialFocus = useCallback(() => {
+    // Focus close button first, if it exists, otherwise the first nav link
     const focusTarget = closeButtonRef.current || document.querySelector('#primary-navigation a');
     focusTarget?.focus();
   }, []);
@@ -28,7 +29,11 @@ const Navbar = () => {
       } else {
         document.documentElement.classList.remove('menu-open');
         document.body.classList.remove('menu-open');
-        window.scrollTo(0, scrollPosition);
+        // Restore scroll position only if the menu was opened from a scrolled state
+        // and we are not at the top of the page.
+        if (scrollPosition > 0) {
+          window.scrollTo(0, scrollPosition);
+        }
       }
       document.querySelector('.nav-overlay')?.classList.toggle('show', newState);
       newState ? setInitialFocus() : returnFocusToHamburger();
@@ -40,33 +45,73 @@ const Navbar = () => {
     setIsOpen(false);
     document.documentElement.classList.remove('menu-open');
     document.body.classList.remove('menu-open');
-    window.scrollTo(0, scrollPosition);
+    // Restore scroll position only if the menu was opened from a scrolled state
+    // and we are not at the top of the page.
+    if (scrollPosition > 0) {
+      window.scrollTo(0, scrollPosition);
+    }
     document.querySelector('.nav-overlay')?.classList.remove('show');
     returnFocusToHamburger();
   }, [returnFocusToHamburger, scrollPosition]);
 
   useEffect(() => {
-    const onKey = e => { if (e.key === 'Escape' && isOpen) closeMenu(); };
-    if (isOpen) document.addEventListener('keydown', onKey);
+    const onKey = e => {
+      if (e.key === 'Escape' && isOpen) {
+        closeMenu();
+      }
+    };
+    if (isOpen) {
+      document.addEventListener('keydown', onKey);
+    }
     return () => document.removeEventListener('keydown', onKey);
   }, [isOpen, closeMenu]);
 
   useEffect(() => {
     let last = 0;
     const navbar = navbarRef.current;
+    if (!navbar) return; // Add null check for navbarRef
+
     const onScroll = () => {
-      const st = window.pageYOffset;
-      navbar.style.top = (!isOpen && st > last) ? '-100px' : '0';
-      last = st <= 0 ? 0 : st;
+      // Only hide/show if menu is not open
+      if (!isOpen) {
+        const st = window.pageYOffset;
+        navbar.style.top = (st > last && st > 50) ? '-100px' : '0'; // Hide after 50px scroll down
+        last = st <= 0 ? 0 : st;
+      } else {
+        // If menu is open, ensure navbar is visible
+        navbar.style.top = '0';
+      }
     };
+
     window.addEventListener('scroll', onScroll);
     return () => window.removeEventListener('scroll', onScroll);
-  }, [isOpen]);
+  }, [isOpen]); // Depend on isOpen to re-run effect when menu state changes
 
   const navItems = [
-    '/home','/explore-careers','/life-skills-toolkit','/launch-kit-downloads',
-    '/talk-templates','/not-sure','/direct-entry-careers','/contact-feedback','/about'
+    '/home',
+    '/explore-careers',
+    '/life-skills-toolkit',
+    '/launch-kit-downloads',
+    '/talk-templates',
+    '/not-sure',
+    '/direct-entry-careers',
+    '/contact-feedback',
+    '/about',
+    // Add more dummy links here for testing if needed
+    '/test-link-1',
+    '/test-link-2',
+    '/test-link-3',
+    '/test-link-4',
+    '/test-link-5',
+    '/test-link-6',
+    '/test-link-7',
+    '/test-link-8',
+    '/test-link-9',
+    '/test-link-10',
+    '/test-link-11',
+    '/test-link-12',
   ].map(path => ({ path, label: path.replace(/-/g, ' ').replace('/', '').replace(/\b\w/g, c => c.toUpperCase()) }));
+
 
   return (
     <nav className="navbar" ref={navbarRef} aria-label="Main navigation">
@@ -94,13 +139,16 @@ const Navbar = () => {
               aria-label="Close menu"
             >&times;</button>
           </li>
-          {navItems.map(item => (
-            <li key={item.path}>
-              <NavLink to={item.path} role="menuitem" className={({isActive}) => isActive ? 'active' : ''} onClick={closeMenu}>
-                {item.label}
-              </NavLink>
-            </li>
-          ))}
+          {/* NEW SCROLLABLE WRAPPER */}
+          <div className="nav-links-scroll-wrapper">
+            {navItems.map(item => (
+              <li key={item.path}>
+                <NavLink to={item.path} role="menuitem" className={({isActive}) => isActive ? 'active' : ''} onClick={closeMenu}>
+                  {item.label}
+                </NavLink>
+              </li>
+            ))}
+          </div>
         </ul>
       </div>
     </nav>
