@@ -136,62 +136,63 @@ const Navbar = () => {
     { path: '/about', label: 'About' }
   ];
 
-return (
-  <nav className="navbar" role="navigation" aria-label="Main navigation" ref={navbarRef}>
-    {/* Overlay for mobile menu */}
-    <div className={`nav-overlay ${isOpen ? 'show' : ''}`} onClick={closeMenu} aria-hidden="true" />
+<nav className="navbar" role="navigation" aria-label="Main navigation" ref={navbarRef}>
+  {/* Overlay */}
+  <div className={`nav-overlay ${isOpen ? 'show' : ''}`} onClick={closeMenu} aria-hidden="true" />
 
-    <div className="navbar-header">
-      <NavLink to="/home" className="navbar-logo-link" aria-label="Home">
-        <img src="/logo.png" alt="Launchpad Logo" className="navbar-logo" />
-      </NavLink>
+  <div className="navbar-header">
+    <NavLink to="/home" className="navbar-logo-link" aria-label="Home">
+      <img src="/logo.png" alt="Launchpad Logo" className="navbar-logo" />
+    </NavLink>
 
-      <button
-        className="hamburger"
-        onClick={toggleMenu}
-        aria-label={isOpen ? 'Close menu' : 'Open menu'}
-        aria-expanded={isOpen}
-        aria-controls="primary-navigation"
-        ref={hamburgerRef}
-      >
-        {[...Array(3)].map((_, i) => (
-          <span key={i} className={`bar ${isOpen ? 'open' : ''}`}></span>
-        ))}
-      </button>
+    <button
+      className="hamburger"
+      onClick={toggleMenu}
+      aria-label={isOpen ? 'Close menu' : 'Open menu'}
+      aria-expanded={isOpen}
+      aria-controls="primary-navigation"
+      ref={hamburgerRef}
+    >
+      {[...Array(3)].map((_, i) => (
+        <span key={i} className={`bar ${isOpen ? 'open' : ''}`}></span>
+      ))}
+    </button>
 
-      <ul
-        id="primary-navigation"
-        className={`nav-links ${isOpen ? 'show' : ''}`}
-        role="menu"
-        aria-hidden={!isOpen}
-      >
-        {isOpen && (
-          <li className="nav-close-container">
-            <button
-              className="nav-close-btn"
-              onClick={closeMenu}
-              aria-label="Close menu"
-              ref={closeButtonRef}
-            >
-              &times;
-            </button>
-          </li>
-        )}
-        {navItems.map((item) => (
-          <li key={item.path}>
-            <NavLink
-              to={item.path}
-              className={({ isActive }) => (isActive ? 'active' : '')}
-              role="menuitem"
-              onClick={closeMenu}
-            >
-              {item.label}
-            </NavLink>
-          </li>
-        ))}
-      </ul>
-    </div>
-  </nav>
+    {/* 🧠 Move this OUTSIDE of the nav-links */}
+    {isOpen && (
+      <div className="nav-close-container">
+        <button
+          className="nav-close-btn"
+          onClick={closeMenu}
+          aria-label="Close menu"
+          ref={closeButtonRef}
+        >
+          &times;
+        </button>
+      </div>
+    )}
+
+    <ul
+      id="primary-navigation"
+      className={`nav-links ${isOpen ? 'show' : ''}`}
+      role="menu"
+      aria-hidden={!isOpen}
+    >
+      {navItems.map((item) => (
+        <li key={item.path}>
+          <NavLink
+            to={item.path}
+            className={({ isActive }) => (isActive ? 'active' : '')}
+            role="menuitem"
+            onClick={closeMenu}
+          >
+            {item.label}
+          </NavLink>
+        </li>
+      ))}
+    </ul>
+  </div>
+</nav>
 );
 };
 
