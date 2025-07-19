@@ -29,12 +29,17 @@ body {
 /* IMPORTANT: Apply overflow hidden directly to html and body, and use position: fixed on body */
 body.menu-open {
   overflow: hidden; /* This should force no scrolling */
-  position: relative; /* Fixes the body in place */
+  position: fixed; /* Fixes the body in place */
   width: 100%;
   left: 0;
   touch-action: none; /* Prevents touch scrolling on background */
 }
 
+body.menu-open .nav-links {
+  overflow-y: auto !important;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+}
 
 /* Layout Containers */
 .home,
