@@ -142,8 +142,13 @@ const Navbar = () => {
           ))}
         </button>
 
-        {/* Close Button Outside UL */}
-        {isOpen && (
+        <ul
+          id="primary-navigation"
+          className={`nav-links ${isOpen ? 'show' : ''}`}
+          role="menu"
+          aria-hidden={!isOpen}
+        >
+          {/* Sticky Close Button */}
           <div className="nav-close-container">
             <button
               className="nav-close-btn"
@@ -154,14 +159,7 @@ const Navbar = () => {
               &times;
             </button>
           </div>
-        )}
 
-        <ul
-          id="primary-navigation"
-          className={`nav-links ${isOpen ? 'show' : ''}`}
-          role="menu"
-          aria-hidden={!isOpen}
-        >
           {navItems.map((item) => (
             <li key={item.path}>
               <NavLink
