@@ -29,7 +29,6 @@ body {
 /* IMPORTANT: Apply overflow hidden directly to html and body, and use position: fixed on body */
 html.menu-open,
 body.menu-open {
-  height: 100%;
   overflow: hidden; /* This should force no scrolling */
   position: fixed; /* Fixes the body in place */
   width: 100%;
