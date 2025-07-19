@@ -37,6 +37,7 @@ body.menu-open {
 
 body.menu-open .nav-links {
   overflow-y: auto !important;
+  max-height: 100dvh;
   -webkit-overflow-scrolling: touch;
   overscroll-behavior: contain;
 }
