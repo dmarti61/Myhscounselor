@@ -79,8 +79,8 @@
 
 /* ─────────── Desktop Nav Links ─────────── */
 .nav-links {
-  list-style: none;
-  display: flex;
+  list-style: none; /* Ensure no bullet points on desktop */
+  display: flex; /* Ensure menu is displayed on desktop */
   flex-wrap: wrap;
   justify-content: center;
   gap: 1.5rem;
@@ -109,14 +109,16 @@
 .nav-links li a.active {
   border-bottom: 2px solid #fff;
 }
-.nav-close-container{
-    display: none;
-  }
+
+/* Hide the close container by default for all screen sizes */
+.nav-close-container {
+  display: none;
+}
 
 /* ─────────── Mobile Menu ─────────── */
 @media (max-width: 900px) {
   .hamburger {
-    display: flex;
+    display: flex; /* Show hamburger on mobile */
   }
 
   .navbar-header {
@@ -126,30 +128,32 @@
 
   .nav-links {
     position: fixed;
-    list-style: none;
+    list-style: none; /* Ensure no bullet points on mobile */
     top: 0;
     left: 0;
     width: 100vw;
-    height: 100dvh;
+    height: 100dvh; /* Define height for the mobile menu container */
     background-color: #003366;
     padding-left: 0;
     padding-right: 0;
     padding-top: 0;
-    overflow: hidden;
+    overflow: hidden; /* Keep this for the overall menu reveal/hide animation */
     visibility: hidden;
     opacity: 0;
     pointer-events: none;
     transform: translateY(-100%);
     z-index: 1001;
     transition: opacity 0.3s ease, transform 0.3s ease, visibility 0s linear 0.3s;
+    /* Important for mobile layout and scrolling: */
+    display: flex; /* Make the mobile menu itself a flex container */
+    flex-direction: column; /* Stack children (close button, scroll wrapper) vertically */
   }
 
   .nav-links.show {
     visibility: visible;
     opacity: 1;
-    display: flex;
-    flex-direction: row;
-    max-height: 100dvh;
+    /* display: flex; and flex-direction: column; are already set above in .nav-links */
+    max-height: 100dvh; /* Can stay as a fallback */
     align-items: flex-start;
     pointer-events: auto;
     transform: translateY(0);
@@ -175,13 +179,14 @@
     transition: opacity 0.3s ease;
   }
 
+  /* Display these specific elements as flex only on mobile */
   .nav-links .nav-close-container,
   .nav-links .nav-links-scroll-wrapper {
     display: flex;
   }
 
   .nav-close-container {
-    position: sticky;
+    position: sticky; /* Allows it to stick to the top when scrolling */
     top: 0;
     width: 100%;
     background-color: #003366;
@@ -191,6 +196,7 @@
     align-items: center;
     border-bottom: 1px solid #ffffff22;
     margin-bottom: 0.5rem;
+    min-height: 50px; /* Added for consistent height, adjust if needed */
   }
 
   .nav-close-btn {
@@ -211,16 +217,16 @@
   }
 
   .nav-links-scroll-wrapper {
-    flex-grow: 1;
-    overflow-y: auto;
-    overflow: visible !important;
+    flex-grow: 1; /* Allows the scrollable content to take up remaining vertical space */
+    overflow-y: auto; /* Enable vertical scrolling for content that overflows */
+    /* REMOVED: overflow: visible !important; - This was preventing scrolling */
     -webkit-overflow-scrolling: touch;
     overscroll-behavior: contain;
     width: 100%;
     padding: 0 1rem 2rem;
-    flex-direction: column;
-    min-height: 200px !important;
-    display: flex;
+    flex-direction: column; /* Ensure list items within the wrapper stack vertically */
+    /* REMOVED: min-height: 200px !important; - flex-grow handles sizing better here */
+    display: flex; /* Make the wrapper itself a flex container */
     scrollbar-width: thin;
     scrollbar-color: #ccc #036;
   }
