@@ -109,6 +109,9 @@
 .nav-links li a.active {
   border-bottom: 2px solid #fff;
 }
+.nav-close-container {
+  display: none;
+}
 
 /* ─────────── Mobile Menu ─────────── */
 @media (max-width: 900px) {
