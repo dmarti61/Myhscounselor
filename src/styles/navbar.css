@@ -109,8 +109,7 @@
 .nav-links li a.active {
   border-bottom: 2px solid #fff;
 }
-.nav-links .nav-close-container,
-  .nav-links .nav-links-scroll-wrapper {
+.nav-close-container{
     display: none;
   }
 
