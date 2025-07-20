@@ -144,7 +144,7 @@
     visibility: visible;
     opacity: 1;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     max-height: 100dvh;
     align-items: flex-start;
     pointer-events: auto;
