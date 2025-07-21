@@ -13,10 +13,6 @@
   transition: top 0.3s ease-in-out, background-color 0.3s ease;
 }
 
-.main-content {
-  padding-top: 100px;
-}
-
 .navbar-header {
   display: flex;
   justify-content: space-between;
