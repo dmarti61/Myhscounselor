@@ -80,7 +80,6 @@
 .nav-links {
   list-style: none; /* Ensure no bullet points on desktop */
   display: flex; /* Ensure menu is displayed on desktop */
-  gap: 1.5rem;
   margin-top: 0px;
   width: 100%;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
