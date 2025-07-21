@@ -157,6 +157,7 @@
     align-items: flex-start;
     pointer-events: auto;
     transform: translateY(0);
+    flex-direction: column;
     transition: opacity 0.3s ease, transform 0.3s ease;
   }
 
