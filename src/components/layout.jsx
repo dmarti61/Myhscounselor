@@ -12,11 +12,10 @@ const Layout = () => {
       {!hideNavbar && <Navbar />}
       <div className="main-content">
         <Outlet />
-          <Footer />
-          </>
-        </>
+        <Footer />
       </div>
-    );
+    </>
+  );
 };
 
 export default Layout;
