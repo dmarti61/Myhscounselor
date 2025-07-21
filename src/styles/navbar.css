@@ -219,7 +219,6 @@
     -webkit-overflow-scrolling: touch;
     overscroll-behavior: contain;
     width: 100%;
-    padding: 0 1rem 2rem;
     flex-direction: column; /* Ensure list items within the wrapper stack vertically */
     /* REMOVED: min-height: 200px !important; - flex-grow handles sizing better here */
     display: flex; /* Make the wrapper itself a flex container */
