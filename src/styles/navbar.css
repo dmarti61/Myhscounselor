@@ -81,8 +81,6 @@
 .nav-links {
   list-style: none; /* Ensure no bullet points on desktop */
   display: flex; /* Ensure menu is displayed on desktop */
-  flex-wrap: wrap;
-  justify-content: center;
   gap: 1.5rem;
   margin-top: 0px;
   width: 100%;
