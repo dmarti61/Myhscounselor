@@ -10,7 +10,7 @@ const Layout = () => {
   return (
     <>
       {!hideNavbar && <Navbar />}
-      {!hideNavbar && div className="nav-padding" >/}
+      {!hideNavbar && <div className="nav-padding" />}
       <div className="main-content">
         <Outlet />
         <Footer />
