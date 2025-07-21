@@ -194,7 +194,6 @@
     align-items: center;
     border-bottom: 1px solid #ffffff22;
     margin-bottom: 0.5rem;
-    min-height: 50px; /* Added for consistent height, adjust if needed */
   }
 
   .nav-close-btn {
