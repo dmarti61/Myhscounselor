@@ -23,10 +23,12 @@ body {
   color: #333;
   line-height: 1.6;
 }
+.nav-padding {
+  padding-top: 100px
+}
 
 .main-content {
   overflow-y: auto;
-  padding-top: 100px;
 }
 
 /* Prevent background scrolling when nav is open */
