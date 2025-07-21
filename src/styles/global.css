@@ -254,14 +254,6 @@ button:hover {
   body {
     padding: 10px;
   }
-
-  .home,
-  .quiz-container,
-  .checklist-page,
-  .not-sure-page {
-    padding: 10px;
-  }
-
 }
 
 .button-group {
