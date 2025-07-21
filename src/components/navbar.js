@@ -21,19 +21,34 @@ const Navbar = () => {
   const toggleMenu = useCallback(() => {
     setIsOpen(prev => {
       const newState = !prev;
+
       if (newState) {
-        setScrollPosition(window.pageYOffset);
+        const scrollY = window.scrollY;
+        setScrollPosition(scrollY);
+
         document.documentElement.classList.add('menu-open');
         document.body.classList.add('menu-open');
+
+        // Freeze scroll (iOS-compatible)
+        document.body.style.position = 'fixed';
+        document.body.style.top = `-${scrollY}px`;
+        document.body.style.left = '0';
+        document.body.style.width = '100%';
       } else {
         document.documentElement.classList.remove('menu-open');
         document.body.classList.remove('menu-open');
-        if (scrollPosition > 0) {
-          window.scrollTo(0, scrollPosition);
-        }
+
+        // Restore scroll
+        document.body.style.position = '';
+        document.body.style.top = '';
+        document.body.style.left = '';
+        document.body.style.width = '';
+        window.scrollTo(0, scrollPosition);
       }
+
       document.querySelector('.nav-overlay')?.classList.toggle('show', newState);
       newState ? setInitialFocus() : returnFocusToHamburger();
+
       return newState;
     });
   }, [setInitialFocus, returnFocusToHamburger, scrollPosition]);
@@ -42,9 +57,13 @@ const Navbar = () => {
     setIsOpen(false);
     document.documentElement.classList.remove('menu-open');
     document.body.classList.remove('menu-open');
-    if (scrollPosition > 0) {
-      window.scrollTo(0, scrollPosition);
-    }
+
+    document.body.style.position = '';
+    document.body.style.top = '';
+    document.body.style.left = '';
+    document.body.style.width = '';
+    window.scrollTo(0, scrollPosition);
+
     document.querySelector('.nav-overlay')?.classList.remove('show');
     returnFocusToHamburger();
   }, [returnFocusToHamburger, scrollPosition]);
@@ -109,7 +128,11 @@ const Navbar = () => {
 
   return (
     <nav className="navbar" ref={navbarRef} aria-label="Main navigation">
-      <div className={`nav-overlay ${isOpen ? 'show' : ''}`} onClick={closeMenu} aria-hidden="true" />
+      <div
+        className={`nav-overlay ${isOpen ? 'show' : ''}`}
+        onClick={closeMenu}
+        aria-hidden="true"
+      />
       <div className="navbar-header">
         <NavLink to="/home" className="navbar-logo-link" aria-label="Home">
           <img src="/logo.png" alt="Logo" className="navbar-logo" />
@@ -122,19 +145,27 @@ const Navbar = () => {
           aria-controls="primary-navigation"
           aria-label={isOpen ? 'Close menu' : 'Open menu'}
         >
-          {[0, 1, 2].map(i => <span key={i} className={`bar ${isOpen ? 'open' : ''}`} />)}
+          {[0, 1, 2].map(i => (
+            <span key={i} className={`bar ${isOpen ? 'open' : ''}`} />
+          ))}
         </button>
       </div>
 
-      {/* ✅ Corrected container (no more <ul> wrapping divs) */}
-      <div id="primary-navigation" className={`nav-links ${isOpen ? 'show' : ''}`} role="menu" aria-hidden={!isOpen}>
+      <div
+        id="primary-navigation"
+        className={`nav-links ${isOpen ? 'show' : ''}`}
+        role="menu"
+        aria-hidden={!isOpen}
+      >
         <div className="nav-close-container">
           <button
             ref={closeButtonRef}
             className="nav-close-btn"
             onClick={closeMenu}
             aria-label="Close menu"
-          >&times;</button>
+          >
+            &times;
+          </button>
         </div>
 
         <div className="nav-links-scroll-wrapper">
