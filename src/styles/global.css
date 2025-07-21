@@ -26,6 +26,7 @@ body {
 
 .main-content {
   overflow-y: auto;
+  padding-top: 100px;
 }
 
 /* Prevent background scrolling when nav is open */
