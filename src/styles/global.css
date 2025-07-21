@@ -249,13 +249,6 @@ button:hover {
   margin-bottom: 10px;
 }
 
-/* Responsive */
-@media (max-width: 600px) {
-  body {
-    padding: 10px;
-  }
-}
-
 .button-group {
   margin-top: 24px;
   display: flex;
