@@ -113,6 +113,10 @@
   display: none;
 }
 
+.nav-links .nav-links-scroll-wrapper {
+    display: flex;
+  }
+
 /* ─────────── Mobile Menu ─────────── */
 @media (max-width: 900px) {
   .hamburger {
