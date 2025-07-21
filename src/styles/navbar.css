@@ -27,6 +27,7 @@
 
 .navbar-logo-link {
   display: flex;
+  z-index: 1002;
   align-items: center;
 }
 
