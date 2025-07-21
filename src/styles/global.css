@@ -28,7 +28,12 @@ body {
 /* Prevent background scrolling when nav is open */
 /* IMPORTANT: Apply overflow hidden directly to html and body, and use position: fixed on body */
 body.menu-open {
-  overflow: hidden; /* This should force no scrolling */
+  overflow: hidden;
+  position: fixed;
+  width: 100%;
+  left: 0;
+  top: 0;
+  touch-action: none; /* Prevents iOS bounce */
 }
 
 body.menu-open .nav-links {
