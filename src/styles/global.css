@@ -19,6 +19,8 @@ html, body {
 body {
   background-color: #f9f9f9;
   color: #333;
+  padding-left: 10px;
+  padding-right: 10px;
   line-height: 1.6;
 }
 .nav-padding {
