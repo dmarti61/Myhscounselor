@@ -107,7 +107,7 @@ const Navbar = () => {
     '/talk-templates',
     '/not-sure',
     '/direct-entry-careers',
-    '/contact-feedback',
+    '/contact',
     '/about',
     '/test-link-1',
     '/test-link-2',
