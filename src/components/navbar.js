@@ -100,7 +100,6 @@ const Navbar = () => {
   }, [isOpen]);
 
   const navItems = [
-    '/',
     '/explore-careers',
     '/life-skills-toolkit',
     '/launch-kit-downloads',
