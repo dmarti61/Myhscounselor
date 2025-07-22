@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-route
 import Layout from './components/layout';
 import Navbar from './components/navbar';
 import Contact from './pages/contact';
+import About from './pages/about';
 import Home from './pages/home';
 import NotSure from './pages/notsure';
 import BuilderChecklist from './pages/personalitychecklistpages/builderchecklist';
@@ -35,6 +36,7 @@ const App = () => (
         {/* resources */}
         <Route path="/college-guide" element={<CollegeGuide />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/about" element={<About />} />
         {/* catch-all */}
         <Route path="*" element={<NotFound />} />
       </Route>
