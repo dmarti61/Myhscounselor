@@ -3,7 +3,7 @@ import React from 'react';
 const TalkTemplates = () => {
   return (
     <section className="talk-templates">
-      <h1>🗣️ Talk Templates for Asking Recommendations</h1>
+      <h1>🗣️ Templates for Asking for Recommendations or References</h1>
       <p>
         Not sure how to ask for a reference or recommendation? Use these templates to help you start the conversation—whether you're applying to college, trade school, or your first job.
       </p>
