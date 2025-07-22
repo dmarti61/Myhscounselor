@@ -283,3 +283,7 @@ button:hover {
 .secondary-btn:hover {
   background-color: #dddddd;
 }
+
+.formfooter {
+  display: none !important;
+}
