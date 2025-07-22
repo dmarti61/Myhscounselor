@@ -4,6 +4,7 @@ import Layout from './components/layout';
 import Navbar from './components/navbar';
 import Contact from './pages/contact';
 import About from './pages/about';
+import Careers from './pages/careers';
 import Home from './pages/home';
 import NotSure from './pages/notsure';
 import BuilderChecklist from './pages/personalitychecklistpages/builderchecklist';
@@ -37,6 +38,7 @@ const App = () => (
         <Route path="/college-guide" element={<CollegeGuide />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/about" element={<About />} />
+        <Route path="/direct-entry-careers" element={<Careers />} />
         {/* catch-all */}
         <Route path="*" element={<NotFound />} />
       </Route>
