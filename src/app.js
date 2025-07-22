@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Layout from './components/layout';
 import Navbar from './components/navbar';
-import Contact from '.pages/contact';
+import Contact from './pages/contact';
 import Home from './pages/home';
 import NotSure from './pages/notsure';
 import BuilderChecklist from './pages/personalitychecklistpages/builderchecklist';
