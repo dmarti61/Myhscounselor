@@ -23,7 +23,7 @@ const App = () => (
     <Routes>
       {/* Wrap main routes in Layout */}
       <Route element={<Layout />}>
-        <Route path="/home" element={<Home />} />
+        <Route path="/" element={<Home />} />
         <Route path="/not-sure" element={<NotSure />} />
         <Route path="/onboarding" element={<Onboarding />} />
         <Route path="/quiz" element={<Quiz />} />
