@@ -5,6 +5,7 @@ import Navbar from './components/navbar';
 import Contact from './pages/contact';
 import About from './pages/about';
 import Careers from './pages/careers';
+import TalkTemplates from './pages/talktemplates';
 import Home from './pages/home';
 import NotSure from './pages/notsure';
 import BuilderChecklist from './pages/personalitychecklistpages/builderchecklist';
@@ -39,6 +40,7 @@ const App = () => (
         <Route path="/contact" element={<Contact />} />
         <Route path="/about" element={<About />} />
         <Route path="/direct-entry-careers" element={<Careers />} />
+        <Route path="/talk-templates" element={<TalkTemplates />} />
         {/* catch-all */}
         <Route path="*" element={<NotFound />} />
       </Route>
