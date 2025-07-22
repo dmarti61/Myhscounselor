@@ -284,6 +284,6 @@ button:hover {
   background-color: #dddddd;
 }
 
-.formfooter {
+.formfooter-wrapper {
   display: none !important;
 }
