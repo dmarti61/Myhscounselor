@@ -100,7 +100,7 @@ const Navbar = () => {
   }, [isOpen]);
 
   const navItems = [
-    '/home',
+    '/',
     '/explore-careers',
     '/life-skills-toolkit',
     '/launch-kit-downloads',
@@ -134,7 +134,7 @@ const Navbar = () => {
         aria-hidden="true"
       />
       <div className="navbar-header">
-        <NavLink to="/home" className="navbar-logo-link" aria-label="Home">
+        <NavLink to="/" className="navbar-logo-link" aria-label="Home">
           <img src="/logo.png" alt="Logo" className="navbar-logo" />
         </NavLink>
         <button
