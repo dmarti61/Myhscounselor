@@ -106,6 +106,7 @@ const Navbar = () => {
     '/talk-templates',
     '/not-sure',
     '/direct-entry-careers',
+    '/college-guide',
     '/contact',
     '/about',
     '/test-link-1',
