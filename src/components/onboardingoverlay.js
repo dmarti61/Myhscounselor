@@ -12,7 +12,7 @@ const OnboardingOverlay = () => (
           this quiz helps you discover your strengths and match them to real options.
         </p>
         <p>
-          Answer 12 quick questions to find your personality type and get a personalized checklist
+          Answer 20 quick questions to find your personality type and get a personalized checklist
           with timelines, resources, and next steps.
         </p>
       </div>
