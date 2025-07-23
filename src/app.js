@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Layout from './components/layout';
 import Navbar from './components/navbar';
 import Contact from './pages/contact';
+import Explore from './pages/explore';
 import About from './pages/about';
 import Careers from './pages/careers';
 import TalkTemplates from './pages/talktemplates';
@@ -21,6 +22,7 @@ const App = () => (
       <Route element={<Layout />}>
         <Route path="/" element={<Home />} />
         <Route path="/not-sure" element={<NotSure />} />
+        <Route path="/explore-careers" element={<Explore />} />
         <Route path="/onboarding" element={<Onboarding />} />
         <Route path="/quiz" element={<Quiz />} />
         <Route path="/preferences" element={<PreferenceQuiz />} />
