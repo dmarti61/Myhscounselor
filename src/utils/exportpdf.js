@@ -1,6 +1,8 @@
+// src/utils/exportpdf.js
+
 import jsPDF from 'jspdf';
-import { CAREER_STATS } from '../components/quiz/careerstats'; // Path confirmed as correct
-import { MBTI_MAP } from '../components/quiz/mbtimap'; // Path confirmed as correct
+import { CAREER_STATS } from '../components/quiz/careerstats';
+import { MBTI_MAP } from '../components/quiz/mbtimap';
 
 export const exportResultsAsPDF = ({ type, preference }) => {
   const doc = new jsPDF();
@@ -22,6 +24,16 @@ export const exportResultsAsPDF = ({ type, preference }) => {
 
   const topCareer = careersToDisplay[0];
   const topCareerStats = topCareer?.blsCode ? CAREER_STATS[topCareer.blsCode] || {} : {};
+
+  let majorsSection = '';
+  if (mbtiData.recommendedNextStep === 'College' && mbtiData.relevantMajors && mbtiData.relevantMajors.length > 0) {
+    majorsSection = `
+---
+
+Relevant College Majors:
+${mbtiData.relevantMajors.map(m => `- ${m}`).join('\n')}
+`;
+  }
 
   const content = `
 MyHSCounselor Quiz Results
@@ -49,7 +61,8 @@ Top Career Snapshot (${topCareer?.name || 'N/A'}):
 
 Recommended Next Step:
 ${mbtiData.recommendedNextStep}
-`;
+${majorsSection}
+`; // majorsSection is conditionally appended here
 
   doc.setFont('Helvetica');
   doc.setFontSize(12);
