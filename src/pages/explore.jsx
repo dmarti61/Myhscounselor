@@ -7,7 +7,7 @@ import { MBTI_MAP } from '../components/quiz/mbtimap';
 const groupCareersByPathway = () => {
   const pathwayMap = {};
 
-  Object.values(mbtiMap).forEach(({ careers }) => {
+  Object.values(MBTI_MAP).forEach(({ careers }) => {
     careers.forEach(career => {
       const key = career.pathway || 'Other';
       if (!pathwayMap[key]) {
