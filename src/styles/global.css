@@ -286,6 +286,13 @@ button:hover {
   background-color: #dddddd;
 }
 
-.formfooter-wrapper {
-  display: none !important;
+.option-btn.selected {
+  background-color: #d1eaff;
+  border: 2px solid #3399ff;
+  font-weight: bold;
+}
+
+.option-btn:disabled {
+  opacity: 0.7;
+  pointer-events: none;
 }
