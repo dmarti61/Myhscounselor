@@ -8,7 +8,7 @@ import Careers from './pages/careers';
 import TalkTemplates from './pages/talktemplates';
 import Home from './pages/home';
 import NotSure from './pages/notsure';
-import PreferenceQuiz from './components/quiz/preference;
+import PreferenceQuiz from './components/quiz/preference';
 import Onboarding from './pages/onboarding/onboarding';
 import CollegeGuide from './pages/collegeguide';
 import NotFound from './pages/notfound';
