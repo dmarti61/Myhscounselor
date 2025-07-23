@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { MBTI_MAP } from './mbtimap';
+import { MBTI_MAP } from './mbtimap'; // This path is correct for ResultBadge.js
 import ShareCard from './sharecard';
 import '../../styles/resultbadge.css';
 
@@ -87,6 +87,18 @@ const ResultBadge = ({ mbtiType: propType, preferenceResult: propPreference }) =
 
       <h4>Next Recommended Step</h4>
       <p className="next-step">{data.recommendedNextStep}</p>
+
+      {/* NEW SECTION: Relevant College Majors (Conditional Display) */}
+      {data.recommendedNextStep === 'College' && data.relevantMajors && data.relevantMajors.length > 0 && (
+        <>
+          <h4>Relevant College Majors</h4>
+          <ul>
+            {data.relevantMajors.map((major) => (
+              <li key={major}>{major}</li>
+            ))}
+          </ul>
+        </>
+      )}
 
       <ShareCard
         type={mbtiType.toUpperCase()}
