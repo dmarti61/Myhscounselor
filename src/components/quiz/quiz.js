@@ -15,25 +15,26 @@ const Quiz = () => {
     T: 0, F: 0,
     J: 0, P: 0,
   });
+  const [selectedAnswer, setSelectedAnswer] = useState(null);
 
   const navigate = useNavigate();
 
   const handleAnswer = (dimension, letter) => {
+    setSelectedAnswer(letter);
     setCounts(prev => ({ ...prev, [letter]: prev[letter] + 1 }));
 
-    if (step + 1 === questions.length) {
-      const result = buildType();
-      // Store result in localStorage for backup
-      localStorage.setItem('mbti_result', JSON.stringify({
-        type: result,
-        expires: new Date().getTime() + 24 * 60 * 60 * 1000 // 24 hrs
-      }));
-
-      // Navigate to /results and pass result
-      navigate('/results', { state: { mbtiType: result } });
-    } else {
-      setStep(prev => prev + 1);
-    }
+    setTimeout(() => {
+      if (step + 1 === questions.length) {
+        const result = buildType();
+        localStorage.setItem('mbti_result', JSON.stringify({
+          type: result,
+          expires: new Date().getTime() + 24 * 60 * 60 * 1000,
+        }));
+        navigate('/results', { state: { mbtiType: result } });
+      } else {
+        setStep(prev => prev + 1);
+      }
+    }, 300); // Optional delay to allow visual feedback
   };
 
   const buildType = () => {
@@ -45,6 +46,10 @@ const Quiz = () => {
       .join('');
   };
 
+  useEffect(() => {
+    setSelectedAnswer(null);
+  }, [step]);
+
   const current = questions[step];
 
   return (
@@ -55,6 +60,7 @@ const Quiz = () => {
         question={current}
         progress={step + 1}
         totalQuestions={questions.length}
+        selectedAnswer={selectedAnswer}
         onAnswer={(value) => handleAnswer(current.dimension, value)}
       />
     </div>
