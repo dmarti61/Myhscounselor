@@ -10,7 +10,6 @@ import TalkTemplates from './pages/talktemplates';
 import Home from './pages/home';
 import NotSure from './pages/notsure';
 import PreferenceQuiz from './components/quiz/preference';
-import Onboarding from './pages/onboarding/onboarding';
 import CollegeGuide from './pages/collegeguide';
 import NotFound from './pages/notfound';
 import Quiz from './components/quiz/quiz';
@@ -23,7 +22,6 @@ const App = () => (
         <Route path="/" element={<Home />} />
         <Route path="/not-sure" element={<NotSure />} />
         <Route path="/explore-careers" element={<Explore />} />
-        <Route path="/onboarding" element={<Onboarding />} />
         <Route path="/quiz" element={<Quiz />} />
         <Route path="/preferences" element={<PreferenceQuiz />} />
         <Route path="/results" element={<ResultBadge />} />
