@@ -2,7 +2,7 @@
 
 import React from 'react';
 import styles from '../styles/explore.css';
-import mbtiMap from '../components/quiz/mbtimap';
+import { MBTI_MAP } from '../components/quiz/mbtimap';
 
 const groupCareersByPathway = () => {
   const pathwayMap = {};
