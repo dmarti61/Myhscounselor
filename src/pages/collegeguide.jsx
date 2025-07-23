@@ -159,7 +159,7 @@ const CollegeGuide = () => (
 
     ---
 
-    <h3>💡 Bonus Tips from a (Hypothetical) High Schooler!</h3>
+    <h3>💡 Bonus Tips </h3>
     <ul>
       <li>**Stay Organized!** Create a spreadsheet with each college, its application type (Common App, direct), all deadlines (application, financial aid, scholarships), and required materials (essay prompts, LoRs, test scores). This is a lifesaver.</li>
       <li>**Don't Overextend Yourself:** It's better to be deeply involved in a few activities (including volunteering!) than superficially involved in many. Quality over quantity.</li>
