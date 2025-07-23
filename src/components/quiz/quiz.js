@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import questions from '../../data/questions';
 import QuestionCard from './questioncard';
@@ -30,7 +30,9 @@ const Quiz = () => {
           type: result,
           expires: new Date().getTime() + 24 * 60 * 60 * 1000,
         }));
-        navigate('/results', { state: { mbtiType: result } });
+
+        // 🔁 Redirect to preference quiz
+        navigate('/preferences', { state: { mbtiType: result } });
       } else {
         setStep(prev => prev + 1);
         setSelectedAnswer(null);
@@ -54,7 +56,7 @@ const Quiz = () => {
     <div>
       <ProgressBar currentStep={step + 1} totalSteps={questions.length} />
       <QuestionCard
-        key={renderId} // 👈 this forces full remount of QuestionCard
+        key={renderId}
         question={current}
         progress={step + 1}
         totalQuestions={questions.length}
