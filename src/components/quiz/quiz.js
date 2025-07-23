@@ -1,4 +1,3 @@
-// src/components/quiz/Quiz.jsx
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import questions from '../../data/questions';
@@ -16,6 +15,7 @@ const Quiz = () => {
     J: 0, P: 0,
   });
   const [selectedAnswer, setSelectedAnswer] = useState(null);
+  const [renderId, setRenderId] = useState(0); // Forces rerender
 
   const navigate = useNavigate();
 
@@ -33,8 +33,10 @@ const Quiz = () => {
         navigate('/results', { state: { mbtiType: result } });
       } else {
         setStep(prev => prev + 1);
+        setSelectedAnswer(null);
+        setRenderId(prev => prev + 1); // Forces QuestionCard remount
       }
-    }, 300); // Optional delay to allow visual feedback
+    }, 250); // Allow brief visual feedback
   };
 
   const buildType = () => {
@@ -46,17 +48,13 @@ const Quiz = () => {
       .join('');
   };
 
-  useEffect(() => {
-    setSelectedAnswer(null);
-  }, [step]);
-
   const current = questions[step];
 
   return (
     <div>
       <ProgressBar currentStep={step + 1} totalSteps={questions.length} />
       <QuestionCard
-        key={current.id}
+        key={renderId} // 👈 this forces full remount of QuestionCard
         question={current}
         progress={step + 1}
         totalQuestions={questions.length}
