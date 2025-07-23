@@ -3,13 +3,12 @@ import { exportResultsAsPDF } from '../../utils/exportpdf';
 import '../../styles/sharecard.css';
 
 const ShareCard = ({ 
-  type,           // MBTI type string, e.g. "INTJ"
-  title,          // MBTI title, e.g. "The Architect"
-  topCareer,      // Career object { name, pathway }
-  preference = null,     // Optional: user's preference result, e.g. "College", "Trade School", "Direct Entry"
-  preferenceDesc = '',   // Optional: short description of the preference path
+  type,              // MBTI type string, e.g. "INTJ"
+  title,             // MBTI title, e.g. "The Architect"
+  topCareer,         // Career object: { name, pathway }
+  preference = null, // Optional: user's path preference, e.g. "College", "Trade School"
+  preferenceDesc = ''// Optional: description of the preferred path
 }) => {
-
   const handleDownload = () => {
     exportResultsAsPDF({
       type,
@@ -29,14 +28,19 @@ const ShareCard = ({
       </div>
 
       <p>
-        Top career match: <strong>{topCareer.name}</strong> <span className="pathway">({topCareer.pathway})</span>
+        Top career match: <strong>{topCareer.name}</strong> 
+        {topCareer.pathway && (
+          <> <span className="pathway">({topCareer.pathway})</span></>
+        )}
       </p>
 
       {preference && (
-        <p>
-          Recommended Path: <strong>{preference}</strong><br />
-          <em>{preferenceDesc}</em>
-        </p>
+        <div className="preference-summary">
+          <p>
+            <strong>Recommended Path:</strong> {preference}
+          </p>
+          {preferenceDesc && <p><em>{preferenceDesc}</em></p>}
+        </div>
       )}
 
       <button onClick={handleDownload}>
