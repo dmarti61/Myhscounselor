@@ -4,16 +4,16 @@ import { MBTI_MAP } from './mbtimap';
 import ShareCard from './sharecard';
 import '../../styles/resultbadge.css';
 
-const ResultBadge = ({ mbtiType: propType }) => {
+const ResultBadge = ({ mbtiType: propType, preferenceResult: propPreference }) => {
   const location = useLocation();
   const navigate = useNavigate();
   const [error, setError] = useState('');
   const [data, setData] = useState(null);
-  const [finalStep, setFinalStep] = useState('');
 
   let mbtiType = propType || location.state?.mbtiType;
-  const preferences = location.state?.preferences;
+  let preferenceResult = propPreference || location.state?.preferenceResult;
 
+  // Try to recover MBTI from localStorage if not passed via props or state
   if (!mbtiType) {
     const stored = localStorage.getItem('mbti_result');
     if (stored) {
@@ -30,49 +30,40 @@ const ResultBadge = ({ mbtiType: propType }) => {
   useEffect(() => {
     const key = (mbtiType || '').toUpperCase();
     const found = MBTI_MAP[key];
-    if (found) {
-      setData(found);
 
-      // Combine personality + preferences to suggest a path
-      const path = determinePathway(found, preferences);
-      setFinalStep(path);
+    if (found) {
+      let careers = [...found.careers];
+
+      if (preferenceResult) {
+        const filtered = careers.filter(c =>
+          c.pathway.toLowerCase() === preferenceResult.toLowerCase()
+        );
+
+        // Use filtered if available, otherwise fallback to all
+        careers = filtered.length > 0 ? filtered : careers;
+      }
+
+      setData({
+        ...found,
+        filteredCareers: careers,
+      });
     } else {
       setError('Oops, your personality type doesn’t exist');
     }
-  }, [mbtiType, preferences]);
-
-  const determinePathway = (personality, prefs) => {
-    if (!prefs) return personality.recommendedNextStep;
-
-    const { pathPreference, learningStyle, workEnvironment } = prefs;
-
-    if (pathPreference === 'college') {
-      return '🎓 College or university would be a strong fit based on your goals and learning preferences.';
-    }
-
-    if (pathPreference === 'trade' || learningStyle === 'hands-on' || workEnvironment === 'manual') {
-      return '🔧 A trade school or apprenticeship might match your hands-on strengths.';
-    }
-
-    if (pathPreference === 'job' || learningStyle === 'independent') {
-      return '💼 You could succeed by entering the workforce directly and learning on the job.';
-    }
-
-    if (pathPreference === 'community') {
-      return '🏫 A two-year community college is a great starting point that can lead anywhere.';
-    }
-
-    // Fallback
-    return personality.recommendedNextStep;
-  };
+  }, [mbtiType, preferenceResult]);
 
   const handleRetake = () => {
     localStorage.removeItem('mbti_result');
     navigate('/');
   };
 
-  if (error) return <p className="error">{error}</p>;
-  if (!data) return <p>Loading...</p>;
+  if (error) {
+    return <p className="error">{error}</p>;
+  }
+
+  if (!data) {
+    return <p>Loading...</p>;
+  }
 
   return (
     <div className="result-badge">
@@ -80,14 +71,14 @@ const ResultBadge = ({ mbtiType: propType }) => {
 
       <h4>Strengths</h4>
       <ul>
-        {data.strengths.map(s => (
+        {data.strengths.map((s) => (
           <li key={s}>{s}</li>
         ))}
       </ul>
 
       <h4>Suggested Careers</h4>
       <ul>
-        {data.careers.map(c => (
+        {data.filteredCareers.map((c) => (
           <li key={c.name}>
             {c.name} <span className="pathway">({c.pathway})</span>
           </li>
@@ -95,12 +86,13 @@ const ResultBadge = ({ mbtiType: propType }) => {
       </ul>
 
       <h4>Next Recommended Step</h4>
-      <p className="next-step">{finalStep}</p>
+      <p className="next-step">{data.recommendedNextStep}</p>
 
       <ShareCard
         type={mbtiType.toUpperCase()}
         title={mbtiType.toUpperCase()}
-        topCareer={data.careers[0]}
+        topCareer={data.filteredCareers[0]} // uses filtered result
+        preference={preferenceResult}
       />
 
       <button className="retake-btn" onClick={handleRetake}>
