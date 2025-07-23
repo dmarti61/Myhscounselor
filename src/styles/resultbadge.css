@@ -1,62 +1,194 @@
-.result-page {
+/* General styling for the entire result badge component */
+.result-badge {
   max-width: 700px;
   margin: auto;
   padding: 2rem;
   font-family: 'Segoe UI', sans-serif;
+  background: #ffffff; /* A clean background for the badge */
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  color: #333; /* Default text color */
 }
 
-.section-block {
-  margin-top: 2rem;
-}
-
-ul, ol {
-  padding-left: 1.4rem;
-  margin-top: 0.5rem;
-  list-style: none;
-}
-
-.career-card {
-  background: #f0f8ff;
-  padding: 1rem;
-  margin-bottom: 1rem;
-  border-radius: 10px;
-  border-left: 4px solid #0078d4;
-}
-
-h4 {
-  margin-bottom: 0.5rem;
-}
-.disclaimer {
-  font-size: 0.75rem;
-  color: #ffffff;
-  margin-top: 2rem;
+/* --- MBTI Type Section --- */
+.mbti-type-header {
+  font-size: 2.5rem; /* Larger for impact */
+  color: #0056b3; /* A prominent color */
   text-align: center;
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.5px;
 }
 
-@media (max-width: 600px) {
-  .result-page {
-    padding: 1rem;
-  }
-
-  .career-card {
-    padding: 0.8rem;
-  }
+.mbti-type-bold {
+  font-weight: 800; /* Extra bold for the type itself */
+  color: #007bff; /* A vibrant blue */
 }
 
+.mbti-vibe {
+  font-size: 1.15rem;
+  text-align: center;
+  color: #555;
+  margin-bottom: 2rem;
+  line-height: 1.5;
+}
+
+/* --- Strengths Section --- */
+h4 {
+  font-size: 1.4rem;
+  color: #0056b3;
+  margin-top: 2rem;
+  margin-bottom: 0.8rem;
+  border-bottom: 2px solid #eee; /* Subtle separator */
+  padding-bottom: 5px;
+}
+
+.strength-list {
+  list-style: none; /* Remove default bullets */
+  padding: 0;
+  display: grid; /* For a nice grid layout */
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Responsive columns */
+  gap: 0.5rem;
+}
+
+.strength-list li {
+  background: #e9f5ff; /* Light blue background for each strength */
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  text-align: center;
+  font-size: 0.95rem;
+  color: #333;
+  box-shadow: inset 0 0 5px rgba(0, 123, 255, 0.1); /* Subtle inner shadow */
+}
+
+/* --- Career Recommendations Section --- */
+.career-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 1rem;
+}
+
+.career-item {
+  background: #f8f9fa; /* Light grey background */
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 1rem 1.2rem;
+  margin-bottom: 1rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.career-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+}
+
+.career-name {
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: #0056b3;
+  display: block; /* Ensures it takes full width for the description to go below */
+  margin-bottom: 0.3rem; /* Space between name and description */
+}
+
+/* Highlighted career (from preference quiz) */
+.highlighted-career {
+  color: #28a745; /* A distinct green for highlighted items */
+  font-size: 1.2rem; /* Slightly larger */
+  font-weight: 700;
+}
+
+.pathway {
+  font-size: 0.9rem;
+  color: #6c757d; /* Muted color for the pathway text */
+  font-style: italic;
+  margin-left: 5px;
+}
+
+.career-description {
+  font-size: 0.9rem;
+  color: #555;
+  margin-top: 0.5rem; /* Space between name/pathway and description */
+  line-height: 1.4;
+}
+
+/* --- College Majors Section --- */
+.major-list {
+  list-style: disc; /* Use traditional disc bullets for majors */
+  padding-left: 1.5rem;
+  margin-top: 0.8rem;
+}
+
+.major-list li {
+  font-size: 1rem;
+  color: #444;
+  margin-bottom: 0.4rem;
+}
+
+
+/* --- Retake Button --- */
 .retake-btn {
-  margin-top: 20px;
-  padding: 12px 18px;
-  background-color: #0077cc;
+  display: block; /* Make it a block element to center it */
+  margin: 30px auto 10px auto; /* Center with auto margins, more space above */
+  padding: 14px 25px; /* Slightly larger padding */
+  background-color: #6f42c1; /* A nice purple */
   color: white;
-  font-size: 16px;
+  font-size: 1.1rem; /* Slightly larger font */
+  font-weight: 600;
   border: none;
-  border-radius: 6px;
+  border-radius: 30px; /* More rounded, pill-like */
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 10px rgba(111, 66, 193, 0.2); /* Subtle shadow */
 }
 
 .retake-btn:hover {
-  background-color: #005fa3;
+  background-color: #5a359d; /* Darker purple on hover */
+  transform: translateY(-2px); /* Slight lift on hover */
 }
 
+/* --- Responsive Adjustments --- */
+@media (max-width: 768px) {
+  .result-badge {
+    padding: 1.5rem;
+    margin: 1rem; /* Add some margin on smaller screens */
+  }
 
+  .mbti-type-header {
+    font-size: 2rem;
+  }
+
+  .mbti-vibe {
+    font-size: 1rem;
+  }
+
+  h4 {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .result-badge {
+    padding: 1rem;
+  }
+
+  .mbti-type-header {
+    font-size: 1.8rem;
+  }
+
+  .strength-list {
+    grid-template-columns: 1fr; /* Stack strengths on very small screens */
+  }
+
+  .retake-btn {
+    padding: 12px 20px;
+    font-size: 1rem;
+  }
+}
+
+/* --- You can remove these if not used by any other component --- */
+.section-block, .career-card, .disclaimer {
+  /* Ensure these classes are either used or removed if they are leftovers */
+  /* If .result-page is the main container, you might not need .section-block */
+  /* If you replaced .career-card with .career-item, remove .career-card */
+  /* If disclaimer is no longer needed, remove it */
+  display: none; /* Temporarily hide if not used to avoid confusion */
+}
