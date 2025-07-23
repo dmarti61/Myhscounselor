@@ -1,26 +1,60 @@
 import jsPDF from 'jspdf';
-import { CAREER_STATS } from '../components/quiz/careerstats';
+import { CAREER_STATS } from '../components/quiz/careerstats'; // Path confirmed as correct
+import { MBTI_MAP } from '../components/quiz/mbtimap'; // Path confirmed as correct
 
-export const exportResultsAsPDF = ({ type, title, career }) => {
-  const stats = career?.blsCode ? CAREER_STATS[career.blsCode] || {} : {};
-
+export const exportResultsAsPDF = ({ type, preference }) => {
   const doc = new jsPDF();
+  const mbtiType = type.toUpperCase();
+  const mbtiData = MBTI_MAP[mbtiType];
+
+  if (!mbtiData) {
+    console.error(`MBTI data not found for type: ${mbtiType}`);
+    return;
+  }
+
+  let careersToDisplay = [...mbtiData.careers];
+  if (preference) {
+    const filtered = careersToDisplay.filter(c =>
+      c.pathway.toLowerCase() === preference.toLowerCase()
+    );
+    careersToDisplay = filtered.length > 0 ? filtered : careersToDisplay;
+  }
+
+  const topCareer = careersToDisplay[0];
+  const topCareerStats = topCareer?.blsCode ? CAREER_STATS[topCareer.blsCode] || {} : {};
+
   const content = `
 MyHSCounselor Quiz Results
 
-Personality Type: ${type} — ${title}
-Top Career Match: ${career.name}
+Personality Type: ${mbtiType}
 
-Career Snapshot:
-- Salary: ${stats.salary || 'N/A'}
-- Outlook: ${stats.outlook || 'N/A'}
-- Education: ${stats.education || 'N/A'}
+---
+
+Strengths:
+${mbtiData.strengths.map(s => `- ${s}`).join('\n')}
+
+---
+
+Suggested Careers:
+${careersToDisplay.map(c => `- ${c.name} (${c.pathway})`).join('\n')}
+
+---
+
+Top Career Snapshot (${topCareer?.name || 'N/A'}):
+- Salary: ${topCareerStats.salary || 'N/A'}
+- Outlook: ${topCareerStats.outlook || 'N/A'}
+- Education: ${topCareerStats.education || 'N/A'}
+
+---
+
+Recommended Next Step:
+${mbtiData.recommendedNextStep}
 `;
 
   doc.setFont('Helvetica');
   doc.setFontSize(12);
-  doc.text(content.trim(), 10, 20);
+  const textLines = doc.splitTextToSize(content.trim(), 180);
+  doc.text(textLines, 10, 20);
 
-  // 🔧  FIXED: plain template literal, no escaping
-  doc.save(`${type}_Quiz_Results.pdf`);
+  doc.save(`${mbtiType}_Quiz_Results.pdf`);
 };
