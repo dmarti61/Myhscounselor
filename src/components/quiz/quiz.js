@@ -1,7 +1,8 @@
+// src/components/quiz/Quiz.jsx
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import questions from '../../data/questions';
 import QuestionCard from './questioncard';
-import ResultBadge from './resultbadge';
 import ProgressBar from './progressbar';
 
 const mbtiDimensions = ['EI', 'SN', 'TF', 'JP'];
@@ -14,13 +15,22 @@ const Quiz = () => {
     T: 0, F: 0,
     J: 0, P: 0,
   });
-  const [complete, setComplete] = useState(false);
+
+  const navigate = useNavigate();
 
   const handleAnswer = (dimension, letter) => {
     setCounts(prev => ({ ...prev, [letter]: prev[letter] + 1 }));
 
     if (step + 1 === questions.length) {
-      setComplete(true);
+      const result = buildType();
+      // Store result in localStorage for backup
+      localStorage.setItem('mbti_result', JSON.stringify({
+        type: result,
+        expires: new Date().getTime() + 24 * 60 * 60 * 1000 // 24 hrs
+      }));
+
+      // Navigate to /results and pass result
+      navigate('/results', { state: { mbtiType: result } });
     } else {
       setStep(prev => prev + 1);
     }
@@ -34,21 +44,6 @@ const Quiz = () => {
       })
       .join('');
   };
-
-  // Save MBTI result to localStorage on completion
-  useEffect(() => {
-    if (complete) {
-      const result = buildType();
-      localStorage.setItem('mbti_result', JSON.stringify({
-        type: result,
-        expires: new Date().getTime() + 24 * 60 * 60 * 1000 // expires in 24 hours
-      }));
-    }
-  }, [complete]);
-
-  if (complete) {
-    return <ResultBadge mbtiType={buildType()} />;
-  }
 
   const current = questions[step];
 
