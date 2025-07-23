@@ -9,8 +9,10 @@ const ResultBadge = ({ mbtiType: propType }) => {
   const navigate = useNavigate();
   const [error, setError] = useState('');
   const [data, setData] = useState(null);
+  const [finalStep, setFinalStep] = useState('');
 
   let mbtiType = propType || location.state?.mbtiType;
+  const preferences = location.state?.preferences;
 
   if (!mbtiType) {
     const stored = localStorage.getItem('mbti_result');
@@ -30,23 +32,47 @@ const ResultBadge = ({ mbtiType: propType }) => {
     const found = MBTI_MAP[key];
     if (found) {
       setData(found);
+
+      // Combine personality + preferences to suggest a path
+      const path = determinePathway(found, preferences);
+      setFinalStep(path);
     } else {
       setError('Oops, your personality type doesn’t exist');
     }
-  }, [mbtiType]);
+  }, [mbtiType, preferences]);
+
+  const determinePathway = (personality, prefs) => {
+    if (!prefs) return personality.recommendedNextStep;
+
+    const { pathPreference, learningStyle, workEnvironment } = prefs;
+
+    if (pathPreference === 'college') {
+      return '🎓 College or university would be a strong fit based on your goals and learning preferences.';
+    }
+
+    if (pathPreference === 'trade' || learningStyle === 'hands-on' || workEnvironment === 'manual') {
+      return '🔧 A trade school or apprenticeship might match your hands-on strengths.';
+    }
+
+    if (pathPreference === 'job' || learningStyle === 'independent') {
+      return '💼 You could succeed by entering the workforce directly and learning on the job.';
+    }
+
+    if (pathPreference === 'community') {
+      return '🏫 A two-year community college is a great starting point that can lead anywhere.';
+    }
+
+    // Fallback
+    return personality.recommendedNextStep;
+  };
 
   const handleRetake = () => {
     localStorage.removeItem('mbti_result');
     navigate('/');
   };
 
-  if (error) {
-    return <p className="error">{error}</p>;
-  }
-
-  if (!data) {
-    return <p>Loading...</p>;
-  }
+  if (error) return <p className="error">{error}</p>;
+  if (!data) return <p>Loading...</p>;
 
   return (
     <div className="result-badge">
@@ -69,7 +95,7 @@ const ResultBadge = ({ mbtiType: propType }) => {
       </ul>
 
       <h4>Next Recommended Step</h4>
-      <p className="next-step">{data.recommendedNextStep}</p>
+      <p className="next-step">{finalStep}</p>
 
       <ShareCard
         type={mbtiType.toUpperCase()}
