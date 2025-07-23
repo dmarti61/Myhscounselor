@@ -23,26 +23,6 @@ const ShareCard = ({
     <div className="share-card" role="region" aria-label="Share your quiz results">
       <h3>🔗 Share Your Results</h3>
 
-      <div className="badge-display">
-        <strong>{type}</strong> — <em>{title}</em>
-      </div>
-
-      <p>
-        Top career match: <strong>{topCareer.name}</strong> 
-        {topCareer.pathway && (
-          <> <span className="pathway">({topCareer.pathway})</span></>
-        )}
-      </p>
-
-      {preference && (
-        <div className="preference-summary">
-          <p>
-            <strong>Recommended Path:</strong> {preference}
-          </p>
-          {preferenceDesc && <p><em>{preferenceDesc}</em></p>}
-        </div>
-      )}
-
       <button onClick={handleDownload}>
         Download Summary as PDF
       </button>
