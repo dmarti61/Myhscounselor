@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { MBTI_MAP } from './mbtimap'; // This path is correct for ResultBadge.js
+import { MBTI_MAP } from './mbtimap';
 import ShareCard from './sharecard';
 import '../../styles/resultbadge.css';
 
@@ -11,7 +11,7 @@ const ResultBadge = ({ mbtiType: propType, preferenceResult: propPreference }) =
   const [data, setData] = useState(null);
 
   let mbtiType = propType || location.state?.mbtiType;
-  let preferenceResult = propPreference || location.state?.preferenceResult;
+  let preferenceResult = propPreference || location.state?.preferences?.pathPreference; // Access specific preference ID
 
   // Try to recover MBTI from localStorage if not passed via props or state
   if (!mbtiType) {
@@ -32,23 +32,32 @@ const ResultBadge = ({ mbtiType: propType, preferenceResult: propPreference }) =
     const found = MBTI_MAP[key];
 
     if (found) {
-      let careers = [...found.careers];
+      let careers = [...found.careers]; // Start with all careers for the MBTI type
 
+      // Prioritize/highlight careers based on preferenceResult
       if (preferenceResult) {
-        const filtered = careers.filter(c =>
-          c.pathway.toLowerCase() === preferenceResult.toLowerCase()
-        );
+        const preferredPathway = preferenceResult.toLowerCase();
+        const matchingCareers = [];
+        const otherCareers = [];
 
-        // Use filtered if available, otherwise fallback to all
-        careers = filtered.length > 0 ? filtered : careers;
+        careers.forEach(c => {
+          if (c.pathway.toLowerCase() === preferredPathway) {
+            matchingCareers.push(c);
+          } else {
+            otherCareers.push(c);
+          }
+        });
+
+        // Combine them, putting preferred careers first
+        careers = [...matchingCareers, ...otherCareers];
       }
 
       setData({
         ...found,
-        filteredCareers: careers,
+        sortedCareers: careers, // Renamed from filteredCareers for clarity
       });
     } else {
-      setError('Oops, your personality type doesn’t exist');
+      setError('Oops! We couldn\'t find your personality type. Please retake the quiz.');
     }
   }, [mbtiType, preferenceResult]);
 
@@ -62,37 +71,57 @@ const ResultBadge = ({ mbtiType: propType, preferenceResult: propPreference }) =
   }
 
   if (!data) {
-    return <p>Loading...</p>;
+    return <p>Loading your results...</p>;
   }
+
+  // Determine a punchy description for the MBTI type
+  const getTypeVibe = (type) => {
+    // This is a placeholder; you'd ideally add a 'vibe' property to your MBTI_MAP
+    switch (type.toUpperCase()) {
+      case 'ENFJ': return "You're a natural leader who loves helping others and building connections.";
+      case 'ISTP': return "You're a practical problem-solver who enjoys hands-on experience and figuring out how things work.";
+      // Add more cases for other types or pull from MBTI_MAP.vibe
+      default: return "You have a unique set of strengths that make you stand out!";
+    }
+  };
 
   return (
     <div className="result-badge">
-      <h2>{mbtiType.toUpperCase()}</h2>
+      {/* The MBTI Part: "Yeah, that's me!" */}
+      <h2 className="mbti-type-header">You're an <span className="mbti-type-bold">{mbtiType.toUpperCase()}</span>!</h2>
+      <p className="mbti-vibe">{getTypeVibe(mbtiType)}</p>
 
-      <h4>Strengths</h4>
-      <ul>
+      <h4>My Superpowers (Strengths)</h4>
+      <ul className="strength-list">
         {data.strengths.map((s) => (
           <li key={s}>{s}</li>
         ))}
       </ul>
 
-      <h4>Suggested Careers</h4>
-      <ul>
-        {data.filteredCareers.map((c) => (
-          <li key={c.name}>
-            {c.name} <span className="pathway">({c.pathway})</span>
+      ---
+
+      {/* The Career Recommendations: "What can I actually DO?" */}
+      <h4>Suggested Careers for You</h4>
+      <ul className="career-list">
+        {data.sortedCareers.map((c) => (
+          <li key={c.name} className="career-item">
+            <span className={`career-name ${c.pathway.toLowerCase() === preferenceResult?.toLowerCase() ? 'highlighted-career' : ''}`}>
+              {c.pathway.toLowerCase() === preferenceResult?.toLowerCase() ? '🌟 ' : ''}
+              {c.name}
+            </span>
+            <span className="pathway"> ({c.pathway})</span>
+            {c.description && (
+              <p className="career-description">{c.description}</p>
+            )}
           </li>
         ))}
       </ul>
 
-      <h4>Next Recommended Step</h4>
-      <p className="next-step">{data.recommendedNextStep}</p>
-
-      {/* NEW SECTION: Relevant College Majors (Conditional Display) */}
-      {data.recommendedNextStep === 'College' && data.relevantMajors && data.relevantMajors.length > 0 && (
+      {/* Simplified Relevant College Majors (Conditional Display) */}
+      {data.relevantMajors && data.relevantMajors.length > 0 && (
         <>
           <h4>Relevant College Majors</h4>
-          <ul>
+          <ul className="major-list">
             {data.relevantMajors.map((major) => (
               <li key={major}>{major}</li>
             ))}
@@ -103,7 +132,7 @@ const ResultBadge = ({ mbtiType: propType, preferenceResult: propPreference }) =
       <ShareCard
         type={mbtiType.toUpperCase()}
         title={mbtiType.toUpperCase()}
-        topCareer={data.filteredCareers[0]} // uses filtered result
+        topCareer={data.sortedCareers[0]} // uses sorted result
         preference={preferenceResult}
       />
 
