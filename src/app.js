@@ -16,7 +16,7 @@ import Quiz from './components/quiz/quiz';
 import ResultBadge from './components/quiz/resultbadge';
 
 const App = () => (
-  <Router>
+  <Router basename="/Myhscounselor">
     <Routes>
       <Route element={<Layout />}>
         <Route path="/" element={<Home />} />
