@@ -13,7 +13,7 @@ const CollegeGuide = () => (
 
     {/* Note about Military Academies - kept for cross-referencing */}
     <p className="military-interest-note">
-      While this guide focuses on traditional civilian colleges, if you're interested in a path that combines higher education with military service and leadership, you might want to explore U.S. Military Service Academies or ROTC programs. These offer a distinct experience with unique application processes. For detailed information, please visit our dedicated <a href="/military-academies" rel="noopener noreferrer">Military Academies & ROTC Guide</a>.
+      While this guide focuses on traditional civilian colleges, if you're interested in a path that combines higher education with military service and leadership, you might want to explore U.S. Military Service Academies or ROTC programs. These offer a distinct experience with unique application processes. For detailed information, please visit our dedicated <a href="/military" rel="noopener noreferrer">Military Academies & ROTC Guide</a>.
     </p>
 
     ---
