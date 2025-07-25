@@ -1,7 +1,7 @@
 import jsPDF from 'jspdf';
 import { CAREER_STATS } from '../components/quiz/careerstats';
 import { MBTI_MAP } from '../components/quiz/mbtimap';
-import { GUIDES_TEXT_CONTENT } from './guidesContentText'; // Import the new guides content
+import { GUIDES_TEXT_CONTENT } from './guidestext'; // Import the new guides content
 
 export const exportResultsAsPDF = ({ type, preference }) => {
   const doc = new jsPDF();
