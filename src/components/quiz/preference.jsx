@@ -4,7 +4,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 const questions = [
   {
     id: 'pathPreference',
-    text: 'Which of these sounds most appealing right after high school?',
+    text: 'Which of these pathways are you considering after high school?',
     options: [
       { label: 'Four-year college or university', value: 'college' },
       { label: 'Two-year community college or associate program', value: 'community' },
@@ -14,7 +14,7 @@ const questions = [
   },
   {
     id: 'learningStyle',
-    text: 'How do you prefer to learn new things?',
+    text: 'How do you typically learn new information or skills?',
     options: [
       { label: 'Structured classes and lectures', value: 'academic' },
       { label: 'Hands-on and practical experience', value: 'hands-on' },
@@ -24,7 +24,7 @@ const questions = [
   },
   {
     id: 'workEnvironment',
-    text: 'What kind of work environment appeals to you most?',
+    text: 'Which of these work environments aligns best with your preferences?',
     options: [
       { label: 'Office or tech setting', value: 'office' },
       { label: 'Outdoors or moving around', value: 'active' },
