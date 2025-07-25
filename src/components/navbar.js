@@ -110,7 +110,7 @@ const Navbar = () => {
     '/college-guide',
     '/contact',
     '/about',
-    '/test-link-1',
+    '/military',
     '/test-link-2',
     '/test-link-3',
     '/test-link-4',
