@@ -235,55 +235,117 @@ button:hover {
 
 /* Onboarding Overlay */
 .onboarding-overlay {
-  background-color: rgba(0, 0, 0, 0.7);
-  color: white;
-  padding: 30px;
-  border-radius: 8px;
-  margin-bottom: 20px;
+  /* Overlay background: full screen, semi-transparent dark */
+  position: fixed; /* Ensures it covers the whole viewport */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.75); /* Slightly darker for better contrast */
+  display: flex; /* Use flexbox to center content */
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  z-index: 1000; /* Ensure it's on top of other content */
+  backdrop-filter: blur(5px); /* Optional: Adds a subtle blur effect to the background */
+  -webkit-backdrop-filter: blur(5px); /* For Safari support */
+}
+
+.overlay-content {
+  background-color: #ffffff; /* White background for the content card */
+  color: #333; /* Dark text for readability */
+  padding: 30px 40px; /* More generous padding */
+  border-radius: 12px; /* Slightly more rounded corners */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); /* Softer, more prominent shadow */
+  max-width: 500px; /* Constrain width for better readability */
+  width: 90%; /* Responsive width */
+  text-align: center; /* Center align text for a clean look */
+  animation: fadeInScale 0.3s ease-out forwards; /* Add a subtle animation */
 }
 
 .overlay-content h2 {
-  font-size: 1.5rem;
-  margin-bottom: 10px;
+  font-size: 1.8rem; /* Slightly larger heading */
+  color: #154982; /* Use your primary blue color */
+  margin-bottom: 15px; /* More space below heading */
+  font-weight: 700; /* Make it bolder */
 }
 
 .overlay-content p {
-  margin-bottom: 10px;
+  font-size: 1.1rem; /* Slightly larger body text */
+  margin-bottom: 25px; /* More space below paragraph */
+  line-height: 1.7; /* Improve readability */
+  color: #555; /* Softer text color */
 }
 
 .button-group {
-  margin-top: 24px;
+  margin-top: 30px; /* More space above buttons */
   display: flex;
-  flex-direction: column;
-  gap: 16px;
-  align-items: start;
+  flex-direction: column; /* Stack buttons vertically on smaller screens */
+  gap: 15px; /* Space between buttons */
+  align-items: center; /* Center buttons horizontally */
 }
 
-.primary-btn, .secondary-btn {
-  padding: 12px 20px;
-  font-size: 18px;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  width: fit-content;
-}
-
-.primary-btn {
-  background-color: #0077cc;
+/* Use your existing button styles for consistency */
+.onboarding-overlay .primary-btn {
+  /* Inherit from your main button styles, but perhaps with a specific color */
+  background-color: #154982; /* Your primary blue */
   color: white;
+  padding: 14px 25px; /* Slightly larger clickable area */
+  font-size: 1.1rem; /* Match other primary buttons */
+  font-weight: 600; /* Bolder text */
+  border-radius: 8px; /* Match your general button radius */
+  transition: background 0.3s ease, transform 0.2s ease;
+  width: 100%; /* Make full width within overlay-content */
+  max-width: 300px; /* Limit max width for aesthetic */
 }
 
-.primary-btn:hover {
-  background-color: #005fa3;
+.onboarding-overlay .primary-btn:hover {
+  background-color: #2D86E9; /* Your lighter blue on hover */
+  transform: translateY(-2px); /* Subtle lift effect */
 }
 
-.secondary-btn {
-  background-color: #eeeeee;
-  color: #333;
+.onboarding-overlay .secondary-btn {
+  /* Style for a secondary action, like "No Thanks" or "Learn More" */
+  background-color: transparent; /* Transparent background */
+  color: #154982; /* Text color matching primary */
+  border: 2px solid #154982; /* Blue border */
+  padding: 12px 23px; /* Slightly less padding to visually balance border */
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: 8px;
+  transition: background 0.3s ease, color 0.3s ease;
+  width: 100%; /* Make full width within overlay-content */
+  max-width: 300px; /* Limit max width for aesthetic */
 }
 
-.secondary-btn:hover {
-  background-color: #dddddd;
+.onboarding-overlay .secondary-btn:hover {
+  background-color: #154982; /* Fill with blue on hover */
+  color: white; /* White text on hover */
+}
+
+/* Optional: Animation for overlay appearance */
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Media Queries for smaller screens */
+@media (min-width: 600px) {
+  .button-group {
+    flex-direction: row; /* Buttons side-by-side on larger screens */
+    justify-content: center; /* Center buttons when side-by-side */
+  }
+
+  .onboarding-overlay .primary-btn,
+  .onboarding-overlay .secondary-btn {
+    width: auto; /* Allow buttons to take natural width */
+    max-width: none; /* Remove max-width constraint */
+  }
 }
 
 .option-btn.selected {
