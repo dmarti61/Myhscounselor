@@ -43,7 +43,7 @@ const Home = () => {
       </p>
 
       <p>
-        Answer a few quick questions, and we’ll help you discover your strengths, interests,
+        Answer a few quick questions to get your personality type followed by your preferences, and we’ll help you discover your strengths, interests,
         and next steps toward a career path that fits who you are.
       </p>
 
