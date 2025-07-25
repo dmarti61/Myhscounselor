@@ -6,6 +6,7 @@ import Contact from './pages/contact';
 import Explore from './pages/explore';
 import About from './pages/about';
 import Careers from './pages/careers';
+import Military from '.pages/military';
 import Trade from '.pages/tradeschoolguide';
 import TalkTemplates from './pages/talktemplates';
 import Home from './pages/home';
@@ -31,6 +32,7 @@ const App = () => (
         <Route path="/college-guide" element={<CollegeGuide />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/about" element={<About />} />
+        <Route path="/military" element={<Military />} />
         <Route path="/direct-entry-careers" element={<Careers />} />
         <Route path="/talk-templates" element={<TalkTemplates />} />
         <Route path="/trade" element={<Trade />} />
