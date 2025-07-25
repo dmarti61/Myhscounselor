@@ -1,5 +1,6 @@
+// src/components/CollegeGuide.js
 import React from 'react';
-import '../styles/collegeguide.css';
+import '../styles/collegeguide.css'; // Assuming this path is correct for your styles
 
 const CollegeGuide = () => (
   <div className="college-guide-container">
@@ -8,6 +9,11 @@ const CollegeGuide = () => (
     <p className="intro">
       Applying to college can feel overwhelming — but we’ve got you! Here’s a clear path with resources,
       checklists, and tips for every step of the journey. Take it one step at a time, and remember, your hard work will pay off!
+    </p>
+
+    {/* New paragraph added here */}
+    <p className="military-interest-note">
+      While this guide focuses on traditional civilian colleges, if you're interested in a path that combines higher education with military service and leadership, you might want to explore U.S. Military Service Academies or ROTC programs. These offer a distinct experience with unique application processes. For detailed information, please visit our dedicated <a href="/military-academies" rel="noopener noreferrer">Military Academies & ROTC Guide</a>.
     </p>
 
     ---
