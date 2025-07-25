@@ -79,7 +79,7 @@ const PreferenceQuiz = () => {
         className="next-btn"
         disabled={Object.keys(answers).length < questions.length}
       >
-        View My Recommendations →
+        See Results →
       </button>
     </div>
   );
