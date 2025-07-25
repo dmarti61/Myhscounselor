@@ -104,6 +104,7 @@ const Navbar = () => {
     '/life-skills-toolkit',
     '/launch-kit-downloads',
     '/talk-templates',
+    '/trade-school-guide',
     '/not-sure',
     '/direct-entry-careers',
     '/college-guide',
