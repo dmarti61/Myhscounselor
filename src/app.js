@@ -6,7 +6,7 @@ import Contact from './pages/contact';
 import Explore from './pages/explore';
 import About from './pages/about';
 import Careers from './pages/careers';
-import Trade from '.pages/tradeschoolguide;
+import Trade from '.pages/tradeschoolguide';
 import TalkTemplates from './pages/talktemplates';
 import Home from './pages/home';
 import NotSure from './pages/notsure';
