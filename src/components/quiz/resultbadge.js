@@ -74,22 +74,12 @@ const ResultBadge = ({ mbtiType: propType, preferenceResult: propPreference }) =
     return <p>Loading your results...</p>;
   }
 
-  // Determine a punchy description for the MBTI type
-  const getTypeVibe = (type) => {
-    // This is a placeholder; you'd ideally add a 'vibe' property to your MBTI_MAP
-    switch (type.toUpperCase()) {
-      case 'ENFJ': return "You're a natural leader who loves helping others and building connections.";
-      case 'ISTP': return "You're a practical problem-solver who enjoys hands-on experience and figuring out how things work.";
-      // Add more cases for other types or pull from MBTI_MAP.vibe
-      default: return "You have a unique set of strengths that make you stand out!";
-    }
-  };
-
   return (
     <div className="result-badge">
       {/* The MBTI Part: "Yeah, that's me!" */}
       <h2 className="mbti-type-header">You're an <span className="mbti-type-bold">{mbtiType.toUpperCase()}</span>!</h2>
-      <p className="mbti-vibe">{getTypeVibe(mbtiType)}</p>
+      {/* Directly use data.vibe from MBTI_MAP */}
+      <p className="mbti-vibe">{data.vibe}</p>
 
       <h4>My Superpowers (Strengths)</h4>
       <ul className="strength-list">
