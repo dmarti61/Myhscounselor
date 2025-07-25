@@ -6,6 +6,7 @@ import Contact from './pages/contact';
 import Explore from './pages/explore';
 import About from './pages/about';
 import Careers from './pages/careers';
+import Trade from '.pages/tradeschoolguide;
 import TalkTemplates from './pages/talktemplates';
 import Home from './pages/home';
 import NotSure from './pages/notsure';
@@ -32,6 +33,7 @@ const App = () => (
         <Route path="/about" element={<About />} />
         <Route path="/direct-entry-careers" element={<Careers />} />
         <Route path="/talk-templates" element={<TalkTemplates />} />
+        <Route path="/trade" element={<Trade />} />
 
         {/* Catch-all */}
         <Route path="*" element={<NotFound />} />
