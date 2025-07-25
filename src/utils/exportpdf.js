@@ -1,8 +1,7 @@
-// src/utils/exportpdf.js
-
 import jsPDF from 'jspdf';
 import { CAREER_STATS } from '../components/quiz/careerstats';
 import { MBTI_MAP } from '../components/quiz/mbtimap';
+import { GUIDES_TEXT_CONTENT } from './guidesContentText'; // Import the new guides content
 
 export const exportResultsAsPDF = ({ type, preference }) => {
   const doc = new jsPDF();
@@ -35,7 +34,8 @@ ${mbtiData.relevantMajors.map(m => `- ${m}`).join('\n')}
 `;
   }
 
-  const content = `
+  // --- Summary Page Content ---
+  const summaryContent = `
 MyHSCounselor Quiz Results
 
 Personality Type: ${mbtiType}
@@ -62,12 +62,38 @@ Top Career Snapshot (${topCareer?.name || 'N/A'}):
 Recommended Next Step:
 ${mbtiData.recommendedNextStep}
 ${majorsSection}
-`; // majorsSection is conditionally appended here
+`;
 
   doc.setFont('Helvetica');
   doc.setFontSize(12);
-  const textLines = doc.splitTextToSize(content.trim(), 180);
-  doc.text(textLines, 10, 20);
+  const summaryTextLines = doc.splitTextToSize(summaryContent.trim(), 180);
+  doc.text(summaryTextLines, 10, 20);
+
+  // --- Append Full Guide as Appendix based on recommendedNextStep ---
+  const guideKey = mbtiData.recommendedNextStep; // This is 'College', 'Trade School', or 'Direct Entry'
+  const fullGuideContent = GUIDES_TEXT_CONTENT[guideKey];
+
+  if (fullGuideContent) {
+    doc.addPage(); // Add a new page for the appendix
+
+    doc.setFontSize(16);
+    doc.text(`Appendix: ${guideKey} Guide`, 10, 20); // Dynamic title for the guide
+    doc.setFontSize(12);
+
+    let yOffset = 30;
+    const guideTextLines = doc.splitTextToSize(fullGuideContent.trim(), 180);
+
+    guideTextLines.forEach(line => {
+      // Check if new page is needed before adding the line
+      // 10 units for bottom margin roughly
+      if (yOffset > doc.internal.pageSize.height - 20) {
+        doc.addPage();
+        yOffset = 20; // Reset yOffset for new page
+      }
+      doc.text(line, 10, yOffset);
+      yOffset += 7; // Adjust line height
+    });
+  }
 
   doc.save(`${mbtiType}_Quiz_Results.pdf`);
 };
