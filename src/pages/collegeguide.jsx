@@ -11,7 +11,7 @@ const CollegeGuide = () => (
       checklists, and tips for every step of the journey. Take it one step at a time, and remember, your hard work will pay off!
     </p>
 
-    {/* New paragraph added here */}
+    {/* Note about Military Academies - kept for cross-referencing */}
     <p className="military-interest-note">
       While this guide focuses on traditional civilian colleges, if you're interested in a path that combines higher education with military service and leadership, you might want to explore U.S. Military Service Academies or ROTC programs. These offer a distinct experience with unique application processes. For detailed information, please visit our dedicated <a href="/military-academies" rel="noopener noreferrer">Military Academies & ROTC Guide</a>.
     </p>
@@ -74,6 +74,34 @@ const CollegeGuide = () => (
 
     ---
 
+    <h3>Choosing Your Colleges: Location, Cost & Fit</h3>
+    <p>This is where your research really pays off. Don't just pick colleges based on reputation; think about where you'll be happiest and most successful.</p>
+    <div className="choice-considerations">
+      <h4>Finding Your Fit (and First Job!):</h4>
+      <p>When you're looking at colleges for your major, remember that where you graduate is most likely where you'll land your first job. Make sure the college you pick is somewhere you can see yourself being happy for the next 5-6 years after you graduate high school.</p>
+      <p className="advice-box">
+        If you want to stay in Texas (or even your specific city like Corpus Christi) ultimately, pick a college in that area. It can be incredibly hard trying to land a job in a different city, much less a different state, right after graduation.
+      </p>
+
+      <h4>Understanding Tuition & Scholarships:</h4>
+      <p>Let's be real about college costs. Out-of-state tuition is incredibly HIGH, and so is in-state private college tuition. For example, out-of-state and in-state private college tuition can be roughly almost $30,000 a year, compared to an in-state (public) Texas university at only around $10,000.</p>
+      <p className="advice-box">
+        Unless you have a 99% chance of receiving a full scholarship (tuition, room, and board paid for) based on your grades, don't bother wasting your time on out-of-state or expensive private college applications. Full scholarships are really hard to come by, even with top grades, so pick something reasonable. You will probably have to take out loans wherever you go to college, so make sure the debt is worth the degree. For example, some scholarships can convert out-of-state tuition to in-state, making it significantly more affordable. If you find something similar, then going out of state might be a real option.
+      </p>
+    </div>
+
+    <h4>Your Application List: The "5 Colleges" Strategy</h4>
+    <p>Once you've got your major and location in mind, it's time to build your application list. Aim for at least **5 colleges** to apply to:</p>
+    <ul>
+      <li>**1 Dream College:** This is your ideal school – reach for the stars!</li>
+      <li>**3 Realistic Colleges:** These are schools where you wouldn't mind attending and feel confident about your chances.</li>
+      <li>**1 Fail-Safe College:** This is a school where you exceed all requirements, and while it might not be your top choice, you're almost guaranteed admission. It ensures you're definitely going to college.</li>
+    </ul>
+    <p className="why-it-matters"><em>Why it matters:</em> This mix provides a good balance of aspiration and security.</p>
+    <p>Once you've picked these 5, make sure to **visit them** (in person or virtually) to ensure you can see yourself being happy there for the next 5-6 years, including where you'll likely land your first full-time job.</p>
+
+    ---
+
     <h3>Senior Year: Application Season</h3>
 
     <h4>Fall (September - November)</h4>
@@ -84,14 +112,33 @@ const CollegeGuide = () => (
       <li>**Finalize College List:** Confirm your "safety," "target," and "reach" schools. Make sure you genuinely like every school on your list.
         <p className="why-it-matters"><em>Why it matters:</em> A well-balanced list maximizes your chances of acceptance while ensuring you have good options.</p>
       </li>
-      <li>**Request Transcripts & LoRs:** Formally ask your high school counselor to send your official transcripts to your colleges. For recommendations, provide your teachers and counselor with your brag sheet, a list of colleges, and clear deadlines. Give them plenty of notice (at least 2-4 weeks).
+      <li>**Review Admissions Requirements:** Now that you've got your 5 colleges, head to the admissions page on each of their websites. Find out exactly what you need to have before you can apply. This often includes:
+        <ul>
+          <li>Completed online application form.</li>
+          <li>Official High School transcript(s); or official GED scores.</li>
+          <li>Official transcripts from all accredited colleges and university attended (if applicable).</li>
+          <li>Official ACT or SAT scores.</li>
+          <li>A non-refundable application fee (usually around $20).</li>
+        </ul>
+      </li>
+      <li>**Texas Specific Application:** Lucky for you, all Texas public schools use one system called <a href="https://www.applytexas.org" target="_blank" rel="noopener noreferrer">www.applytexas.org</a>. It's one big application that you can use to apply to ALL Texas public schools. For out-of-state schools, you'll need to go to their individual university websites to find out what application platform they use (e.g., Common App, Coalition App, or their own specific portal).</li>
+      <li>**Essays & Resumes:** Most schools will require essays, but it depends on the specific colleges you're applying for. Write your essays ahead of time and have your English teacher (or a trusted adult like me!) look them over before you submit. **NEVER submit an essay without someone else looking at it first!** You'll also need a resume, which is a document that highlights all your achievements, extracurriculars, and work during high school. Again, have your English teacher or a trusted adult review it.</li>
+      <li>**Final Application Review:** Before you hit that submit button, have someone else look over your entire application! (There's a fee anyway, and we know you're not paying that, haha!) The fee is small ($20, give or take) so don't let that stop you from applying.</li>
+      <li>**Standardized Testing (ACT/SAT):** Somewhere in the middle of all this (ideally Junior year, but definitely by Fall Senior year), you should have taken both the ACT and the SAT.
+        <ul>
+          <li>**SAT:** <a href="http://sat.collegeboard.org/register/" target="_blank" rel="noopener noreferrer">sat.collegeboard.org/register/</a></li>
+          <li>**ACT:** <a href="http://www.actstudent.org/regist/" target="_blank" rel="noopener noreferrer">actstudent.org/regist/</a></li>
+        </ul>
+        <p className="advice-box">
+          Take both because you'll use the higher score of the two for your applications. On the application, they don't need to know you took both; just submit the one where you got your highest score. For example, if you score a 33 on the ACT and a 1530 on the SAT, go with the ACT because the highest you can get is a 36. If you think you can score even higher on the ACT, study harder and take just that one again, don't worry about the SAT.
+        </p>
+        <p>The ACT and SAT both require you to send scores to your prospective colleges. They typically allow you to send scores to up to 5 schools for free. Anything after that, you have to pay. Don't worry about sending them the day of the test; you can do it online after you find out which score you're going to use.</p>
+      </li>
+      <li>**Request Transcripts & LoRs:** Formally ask your high school counselor or registrar to send your official high school transcripts to your 5 (or more) schools that you used for your applications. For recommendations, provide your teachers and counselor with your brag sheet, a list of colleges, and clear deadlines. Give them plenty of notice (at least 2-4 weeks).
         <p className="why-it-matters"><em>Why it matters:</em> These are critical components of your application that are outside your direct control, so prompt requests are crucial.</p>
       </li>
       <li>**Write & Edit Essays:** Dedicate significant time to your personal statement and supplemental essays. Tailor supplemental essays to *each* specific college. Get feedback from teachers, counselors, or trusted adults.
         <p className="why-it-matters"><em>Why it matters:</em> Your essays are your voice in the application; they help colleges understand your personality, motivations, and what you'd bring to their campus. Avoid generic essays!</p>
-      </li>
-      <li>**FAFSA & Scholarship Applications:** Complete the **FAFSA** as soon as it opens (October 1st). This is crucial for federal financial aid. Start aggressively searching and applying for scholarships – local, national, and niche. **Many scholarships consider your volunteering and extracurricular involvement!**
-        <p className="why-it-matters"><em>Why it matters:</em> Financial aid and scholarships can significantly reduce the cost of college, making your dream school more affordable.</p>
       </li>
       <li>**Submit Early Applications:** If you're applying Early Decision (binding) or Early Action (non-binding), submit these applications well before their deadlines (often November 1st or 15th).
         <p className="why-it-matters"><em>Why it matters:</em> Applying early can sometimes increase your chances of admission and provides earlier decisions.</p>
@@ -129,6 +176,42 @@ const CollegeGuide = () => (
         <p className="why-it-matters"><em>Why it matters:</em> It's good etiquette and opens up spots for other students.</p>
       </li>
       <li>**Celebrate!** You've worked hard! Take a moment to acknowledge your achievements.</li>
+    </ul>
+
+    ---
+
+    <h3>Understanding Financial Aid: FAFSA, Loans & Work-Study</h3>
+    <p>This is where things can get a little complicated, but understanding financial aid is key to making college affordable.</p>
+    <ul>
+      <li>**FAFSA (Free Application for Federal Student Aid):** This is the main way to unlock federal financial aid, including grants, work-study, and federal student loans.
+        <ul>
+          <li><strong>It's a Pain, But It's Crucial:</strong> You're going to need your parents' tax information to fill this out. It's often a pain in the butt because they might not get it done unless you really pressure them and keep asking.</li>
+          <li><strong>Deadline:</strong> To qualify for scholarships, work-study, and loans, you have to have this filled out by **March 1st**. The reason by March 1st is because that's when they first open up, and the faster you get your name in the pool, the more likely you will get first pick and be able to secure those funds.</li>
+          <li><strong>Website:</strong> <a href="https://studentaid.gov/h/apply-for-aid/fafsa" target="_blank" rel="noopener noreferrer">studentaid.gov/h/apply-for-aid/fafsa</a> (Note: The official FAFSA website changed from fafsa.ed.gov to studentaid.gov)</li>
+        </ul>
+      </li>
+      <li>**Work-Study:** If you qualify for work-study (which you'll find out after FAFSA), that's GREAT! You'll be able to get a job on-campus (much sought after) and support yourself a little bit with gas and groceries.
+        <p className="advice-box">
+          If you don't qualify, don't worry. Make sure you have some money saved up before college, because otherwise, it'll be tough to leave campus or get groceries. Try to get a job while going to school, because college will be a lot harder without income. Things cost money! On-campus work-study jobs are highly sought after because they are more flexible with your schedule, and being on-campus means no travel or wasted gas. They also help build your resume and connect you with people who might help you land your first job. Ideally, you want to work with a company where you want your first full-time job; you'll have already worked with the people and have a better shot at being offered a job after you graduate.
+        </p>
+      </li>
+      <li>**Student Loans:** Everyone qualifies for loans.
+        <ul>
+          <li><strong>Parent PLUS Loans:</strong> DON'T under any circumstance do a Parent PLUS Loan unless that is THE only way you will be able to attend college. This loan goes under your parents' name, and that is a no-no. Trust me on this. It will save you a lot of headache when you graduate. If you do have to, talk to them first and see if they can get a loan from USAA rather than through FAFSA. I don't know if it's any cheaper, but it is worth a shot.</li>
+          <li><strong>Subsidized vs. Unsubsidized:</strong> Go for subsidized loans over unsubsidized. Subsidized means the government pays the interest while you're in school, so you deal with less interest after you graduate. You'll probably have both, and that's not a big deal.</li>
+          <li><strong>Repayment:</strong> You will be able to afford the payments as long as you secure a job after you graduate within 6 months. After the 6th month from when you graduate, you will have to start making payments. No pressure, hahaha!</li>
+        </ul>
+      </li>
+    </ul>
+
+    ---
+
+    <h3>Thriving in College: Tips for Success</h3>
+    <p>Once you've been accepted and are ready to go, CONGRATS!!! I KNEW YOU COULD DO IT!!! Now, let's talk about making the most of your time.</p>
+    <ul>
+      <li>**Finish Fast! (18 Credit Hours):** Try to finish your degree as fast as possible. Taking 18 credit hours per semester (about 6 classes) is totally doable as long as you work hard. Don't let anyone else tell you otherwise, not even your college advisors. They sometimes try to keep you in there longer so the university can make more money. They're not always looking out for what's best for you, even if they say they are. The less time you're in school, the less time your loans have to gain interest, and the faster you can get your dream job.</li>
+      <li>**Strategic Minoring:** Minor in something easy, like psychology. Nobody really cares about your minor for most employers, and it's fast and simple to finish with a high grade. This allows you to focus more on your major and keep your GPA as close to a 4.0 as possible.</li>
+      <li>**Owning Your Schedule:** You are responsible for scheduling your classes and making sure they fit your degree plan. Don't freak out about this too much. Just make sure you take them in the correct order and give yourself plenty of time to get to each class. A schedule of 3 classes Monday-Wednesday-Friday between 9 AM and 3 PM, and 3 classes Tuesday-Thursday between 9 AM and 3 PM, works pretty well, but that also depends on what job you have and what hours you have to work.</li>
     </ul>
 
     ---
