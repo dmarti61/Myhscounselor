@@ -5,65 +5,65 @@
   border: 2px solid #dcddee;
   border-radius: 8px;
   padding: 1.5rem;
-  margin: 2rem 0;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-  max-width: 600px;
+  margin: 2rem auto; /* Center the card horizontally */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); /* Slightly stronger shadow */
+  max-width: 500px; /* Slightly reduced max-width for "snippet" feel */
+  text-align: center; /* Center content within the card */
 }
 
 .share-card h3 {
-  font-size: 1.4rem;
-  margin-bottom: 1rem;
-  color: #333;
-}
-
-.badge-display {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 1.2rem;
-  margin-bottom: 0.8rem;
-}
-
-.badge-icon {
-  font-size: 2rem;
+  font-size: 1.5rem; /* Slightly larger heading */
+  margin-bottom: 0.8rem; /* Adjusted for tighter spacing */
+  color: #222; /* Darker for better contrast */
+  font-weight: 600; /* A bit bolder */
 }
 
 .share-card p {
-  margin: 0.5rem 0;
-  color: #444;
+  margin: 0.7rem 0; /* Consistent vertical spacing */
+  color: #555; /* Softer color for body text */
+  line-height: 1.5; /* Improved readability */
 }
 
-.share-card button {
+.share-card-button { /* Targeted specifically by its class name */
   background-color: #007bff;
   color: white;
   border: none;
-  border-radius: 4px;
-  padding: 0.6rem 1rem;
-  font-size: 1rem;
+  border-radius: 6px; /* Slightly more rounded */
+  padding: 0.8rem 1.5rem; /* Larger padding for a more prominent button */
+  font-size: 1.05rem; /* Slightly larger text */
   cursor: pointer;
-  margin-top: 1rem;
-  transition: background-color 0.3s ease;
+  margin-top: 1.2rem; /* More space above the button */
+  transition: background-color 0.3s ease, transform 0.2s ease; /* Added transform for hover effect */
+  box-shadow: 0 4px 6px rgba(0, 123, 255, 0.2); /* Subtle button shadow */
 }
 
-.share-card button:hover {
+.share-card-button:hover {
   background-color: #0056b3;
+  transform: translateY(-2px); /* Lift effect on hover */
+}
+
+.share-card-button:active {
+  background-color: #004085;
+  transform: translateY(0); /* Press effect */
+}
+
+.share-card-message {
+  font-size: 0.9rem;
+  color: #666;
+  margin-top: 1.5rem; /* More separation from the button */
 }
 
 @media (max-width: 600px) {
   .share-card {
     padding: 1rem;
+    margin: 1.5rem 1rem; /* Adjust margin for smaller screens */
+    max-width: calc(100% - 2rem); /* Ensure it fits with margin */
   }
 
-  .badge-display {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .badge-icon {
-    font-size: 1.5rem;
-  }
-
-  .share-card button {
-    width: 100%;
+  .share-card-button {
+    width: 100%; /* Full width button on small screens */
+    padding: 0.8rem 1rem;
   }
 }
+
+/* Removed unused .badge-display and .badge-icon styles */
