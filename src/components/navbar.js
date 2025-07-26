@@ -101,6 +101,7 @@ const Navbar = () => {
 
   const navItems = [
     '/explore-careers',
+    '/view-results',
     '/talk-templates',
     '/trade-school-guide',
     '/not-sure',
