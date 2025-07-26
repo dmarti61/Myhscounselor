@@ -101,8 +101,6 @@ const Navbar = () => {
 
   const navItems = [
     '/explore-careers',
-    '/life-skills-toolkit',
-    '/launch-kit-downloads',
     '/talk-templates',
     '/trade-school-guide',
     '/not-sure',
@@ -111,17 +109,6 @@ const Navbar = () => {
     '/contact',
     '/about',
     '/military',
-    '/test-link-2',
-    '/test-link-3',
-    '/test-link-4',
-    '/test-link-5',
-    '/test-link-6',
-    '/test-link-7',
-    '/test-link-8',
-    '/test-link-9',
-    '/test-link-10',
-    '/test-link-11',
-    '/test-link-12',
   ].map(path => ({
     path,
     label: path.replace(/-/g, ' ').replace('/', '').replace(/\b\w/g, c => c.toUpperCase())
