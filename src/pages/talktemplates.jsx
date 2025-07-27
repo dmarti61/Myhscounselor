@@ -2,7 +2,15 @@ import React from 'react';
 
 const TalkTemplates = () => {
   return (
-   <div className="fear-notes">
+    <section className="talk-templates">
+      <h1>🗣️ Templates for Asking for Recommendations or References</h1>
+      <p>
+        Feeling a bit unsure about how to ask for a reference or recommendation? It's completely normal to feel that way! These templates are here to help guide you and make starting the conversation a little easier, whether you're applying to college, trade school, or your first job.
+      </p>
+
+      ---
+
+      <div className="fear-notes">
         <h2>Overcoming the Fear of Asking</h2>
         <p>
           It's completely normal to feel a bit anxious when you need to ask someone for a favor, especially something as important as a recommendation or reference. Those feelings are valid, but they don't have to stop you from getting what you need. Here are some thoughts to help you navigate that fear:
@@ -43,11 +51,8 @@ const TalkTemplates = () => {
           Remember, taking that first step can be the hardest part, but you've got this!
         </p>
       </div>
-    <section className="talk-templates">
-      <h1>🗣️ Templates for Asking for Recommendations or References</h1>
-      <p>
-        Feeling a bit unsure about how to ask for a reference or recommendation? It's completely normal to feel that way! These templates are here to help guide you and make starting the conversation a little easier, whether you're applying to college, trade school, or your first job.
-      </p>
+
+      ---
 
       <div className="template-section">
         <h2>🎓 College Recommendation</h2>
@@ -56,7 +61,7 @@ const TalkTemplates = () => {
           I hope you're doing well! I'm reaching out because I'm applying to [College Name] and I was wondering if you might be willing to write a recommendation letter for me. Your class, [insert class name], really helped me grow, and I believe your perspective would be incredibly valuable. I'm more than happy to share any details you might need to make this as easy as possible for you. Thank you so much for considering this!
         </p>
       </div>
-<p></p>
+      <p></p>
       <div className="template-section">
         <h2>🔧 Trade School Reference</h2>
         <p>
@@ -64,7 +69,7 @@ const TalkTemplates = () => {
           I’m planning to apply to [Trade School Name] to study [Field], and I was hoping you'd be able to provide a reference for me. Working with you gave me a lot of confidence in pursuing this path, and I think your insights would really help my application stand out. Please let me know if there's any information I can provide to assist you!
         </p>
       </div>
-<p></p>
+      <p></p>
       <div className="template-section">
         <h2>💼 Job Reference</h2>
         <p>
@@ -72,11 +77,7 @@ const TalkTemplates = () => {
           I’m currently applying for a job at [Company Name] and was wondering if you would be comfortable serving as a reference for me. I really valued our time working together, and I believe you could speak well to my strengths. I'm happy to provide any details or context you might need. Thanks again for considering!
         </p>
       </div>
-  <p></p>
-
-      ---
-
-     
+      <p></p>
     </section>
   );
 };
