@@ -35,7 +35,7 @@
 
 /* ─────────── Hamburger Button ─────────── */
 .hamburger {
-  display: none;
+  display: none; /* Hidden by default on desktop */
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -74,34 +74,11 @@
   transform: rotate(-45deg) translate(5px, -5px);
 }
 
-/* ─────────── Desktop Nav Links ─────────── */
+/* ─────────── Desktop Nav Links (Empty for now, will be populated via JS media query) ─────────── */
+/* These styles will only apply when the mobile menu is NOT active (i.e., desktop view) */
+/* Initially hidden to be controlled by media query for desktop */
 .nav-links {
-  list-style: none; /* Ensure no bullet points on desktop */
-  display: flex; /* Ensure menu is displayed on desktop */
-  margin-top: 0px;
-  width: 100%;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-}
-
-.nav-links li a {
-  color: #fff;
-  font-weight: 500;
-  text-decoration: none;
-  padding: 0.25rem 0;
-  border-bottom: 2px solid transparent;
-  transition: color 0.2s ease, border-bottom 0.2s ease;
-}
-
-.nav-links li a:hover,
-.nav-links li a:focus {
-  color: #a8c0ff;
-  border-bottom-color: #a8c0ff;
-  outline: 2px solid #a8c0ff;
-  outline-offset: 2px;
-}
-
-.nav-links li a.active {
-  border-bottom: 2px solid #fff;
+  display: none; /* Hidden by default; shown by media query for desktop */
 }
 
 /* Hide the close container by default for all screen sizes */
@@ -109,11 +86,7 @@
   display: none;
 }
 
-.nav-links .nav-links-scroll-wrapper {
-    display: flex;
-  }
-
-/* ─────────── Mobile Menu ─────────── */
+/* ─────────── Mobile Menu & Common Styles for Mobile/Overlay ─────────── */
 @media (max-width: 900px) {
   .hamburger {
     display: flex; /* Show hamburger on mobile */
@@ -142,7 +115,6 @@
     transform: translateY(-100%);
     z-index: 1001;
     transition: opacity 0.3s ease, transform 0.3s ease, visibility 0s linear 0.3s;
-    /* Important for mobile layout and scrolling: */
     display: flex; /* Make the mobile menu itself a flex container */
     flex-direction: column; /* Stack children (close button, scroll wrapper) vertically */
   }
@@ -150,12 +122,10 @@
   .nav-links.show {
     visibility: visible;
     opacity: 1;
-    /* display: flex; and flex-direction: column; are already set above in .nav-links */
-    max-height: 100dvh; /* Can stay as a fallback */
-    align-items: flex-start;
+    max-height: 100dvh;
+    align-items: flex-start; /* Align content to the left */
     pointer-events: auto;
     transform: translateY(0);
-    flex-direction: column;
     transition: opacity 0.3s ease, transform 0.3s ease;
   }
 
@@ -190,7 +160,7 @@
     width: 100%;
     background-color: #003366;
     padding: 0.5rem 1rem;
-    z-index: 1002;
+    z-index: 1002; /* Ensure it stays above scrollable content */
     justify-content: flex-end;
     align-items: center;
     border-bottom: 1px solid #ffffff22;
@@ -217,15 +187,14 @@
   .nav-links-scroll-wrapper {
     flex-grow: 1; /* Allows the scrollable content to take up remaining vertical space */
     overflow-y: auto; /* Enable vertical scrolling for content that overflows */
-    /* REMOVED: overflow: visible !important; - This was preventing scrolling */
     -webkit-overflow-scrolling: touch;
     overscroll-behavior: contain;
     width: 100%;
     flex-direction: column; /* Ensure list items within the wrapper stack vertically */
-    /* REMOVED: min-height: 200px !important; - flex-grow handles sizing better here */
     display: flex; /* Make the wrapper itself a flex container */
     scrollbar-width: thin;
     scrollbar-color: #ccc #036;
+    padding: 0 1rem; /* Add horizontal padding to the scroll wrapper for content */
   }
 
   .nav-links-scroll-wrapper li {
@@ -237,32 +206,129 @@
     border-bottom: none;
   }
 
-  .nav-links-scroll-wrapper li a {
+  /* Styles for direct NavLink items */
+  .nav-links-scroll-wrapper > ul > li > .nav-link { /* Target direct NavLinks */
     display: block;
     font-size: 1.1rem;
     font-weight: 500;
     color: #fff;
-    padding: 0.75rem 0;
+    padding: 0.75rem 0; /* Adjusted for better spacing */
     width: 100%;
     text-align: left;
     transition: color 0.2s ease, padding-left 0.2s ease;
+    text-decoration: none; /* Ensure no underline */
   }
 
-  .nav-links-scroll-wrapper li a:hover,
-  .nav-links-scroll-wrapper li a:focus {
+  .nav-links-scroll-wrapper > ul > li > .nav-link:hover,
+  .nav-links-scroll-wrapper > ul > li > .nav-link:focus {
     color: #a8c0ff;
     padding-left: 1rem;
     outline: 2px solid #a8c0ff;
     outline-offset: -2px;
   }
 
-  .nav-links-scroll-wrapper li a.active {
+  .nav-links-scroll-wrapper > ul > li > .nav-link.active {
     color: #a8c0ff;
     border-left: 3px solid #a8c0ff;
     padding-left: 1rem;
+    border-bottom: none; /* No bottom border for active state on mobile */
+  }
+
+  /* Styles for the new dropdown structure (details/summary) */
+  .nav-dropdown {
+    width: 100%;
+    /* Remove default margin/padding from details */
+    margin: 0;
+    padding: 0;
+  }
+
+  .nav-dropdown summary {
+    display: flex; /* Use flex to align text and icon */
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #fff;
+    padding: 0.75rem 0; /* Matches direct link padding */
+    width: 100%;
+    list-style: none; /* Remove default summary arrow */
+    transition: color 0.2s ease, padding-left 0.2s ease;
+  }
+
+  /* Custom arrow for summary */
+  .nav-dropdown summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .nav-dropdown summary .dropdown-icon {
+    font-size: 0.8em; /* Make it a bit smaller than the text */
+    margin-left: 0.5rem;
+    transition: transform 0.2s ease;
+  }
+
+  .nav-dropdown[open] summary .dropdown-icon {
+    transform: rotate(180deg);
+  }
+
+  .nav-dropdown summary:hover,
+  .nav-dropdown summary:focus {
+    color: #a8c0ff;
+    padding-left: 1rem;
+    outline: 2px solid #a8c0ff;
+    outline-offset: -2px;
+  }
+
+  .nav-dropdown summary.active-category { /* Class for active category summary */
+    color: #a8c0ff;
+    border-left: 3px solid #a8c0ff;
+    padding-left: 1rem;
+  }
+
+  .nav-submenu {
+    list-style: none;
+    padding-left: 1rem; /* Indent sub-items */
+    margin: 0; /* Remove default margin */
+    border-top: 1px solid #ffffff1a;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+
+  .nav-submenu li {
+    border-bottom: none; /* Sub-items don't need individual bottom borders within the submenu */
+  }
+
+  .nav-submenu li:last-child {
     border-bottom: none;
   }
 
+  .nav-submenu li a {
+    display: block;
+    font-size: 1rem; /* Slightly smaller font for sub-items */
+    font-weight: 400; /* Lighter weight for sub-items */
+    color: #ccc; /* Slightly less prominent color */
+    padding: 0.5rem 0; /* Adjusted padding for sub-items */
+    width: 100%;
+    text-align: left;
+    transition: color 0.2s ease, padding-left 0.2s ease;
+    text-decoration: none;
+  }
+
+  .nav-submenu li a:hover,
+  .nav-submenu li a:focus {
+    color: #a8c0ff;
+    padding-left: 0.5rem; /* Further indent on hover/focus */
+    outline: 2px solid #a8c0ff;
+    outline-offset: -2px;
+  }
+
+  .nav-submenu li a.active {
+    color: #a8c0ff;
+    border-left: 3px solid #a8c0ff;
+    padding-left: 0.5rem;
+  }
+
+  /* Scrollbar styles for the menu scroll wrapper */
   .nav-links-scroll-wrapper::-webkit-scrollbar {
     width: 6px;
   }
@@ -286,13 +352,198 @@
   }
 }
 
-/* ─────────── Dark Mode Scrollbar ─────────── */
-@media (prefers-color-scheme: dark) {
-  .nav-links-scroll-wrapper::-webkit-scrollbar-thumb {
-    background: #666;
+/* ─────────── Desktop Specific Styles (>= 901px) ─────────── */
+@media (min-width: 901px) {
+  .navbar {
+    padding: 1rem 2rem; /* More padding on wider screens */
   }
 
-  .nav-links-scroll-wrapper::-webkit-scrollbar-thumb:hover {
-    background: #888;
+  .navbar-header {
+    justify-content: flex-start; /* Align logo to the left */
   }
+
+  .navbar-logo-link {
+    margin-right: 2rem; /* Space between logo and nav links */
+  }
+
+  .nav-links {
+    display: flex; /* Show nav links horizontally */
+    position: static; /* No fixed positioning */
+    width: auto;
+    height: auto;
+    background-color: transparent;
+    box-shadow: none;
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+    transform: none;
+    z-index: auto;
+    flex-direction: row; /* Horizontal alignment */
+    align-items: center;
+    flex-grow: 1; /* Allow links to take available space */
+    justify-content: flex-end; /* Push links to the right */
+  }
+
+  .nav-links-scroll-wrapper {
+    flex-grow: 1;
+    overflow-y: visible; /* No scroll on desktop */
+    display: flex;
+    justify-content: flex-end; /* Align main nav items to the right */
+    padding: 0; /* Remove padding from scroll wrapper on desktop */
+  }
+
+  .nav-links ul {
+    display: flex;
+    flex-direction: row; /* Horizontal main list */
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    width: auto;
+  }
+
+  .nav-links li {
+    margin-left: 1.5rem; /* Space between main nav items */
+    border-bottom: none; /* No bottom borders on desktop */
+    width: auto;
+  }
+
+  /* Direct NavLink styles for desktop */
+  .nav-links li > .nav-link { /* Target direct NavLinks */
+    display: block; /* Make sure padding works */
+    padding: 0.25rem 0; /* Adjust padding for desktop */
+    font-size: 1rem;
+    color: #fff;
+    text-decoration: none;
+    border-bottom: 2px solid transparent;
+    transition: color 0.2s ease, border-bottom 0.2s ease;
+  }
+
+  .nav-links li > .nav-link:hover,
+  .nav-links li > .nav-link:focus {
+    color: #a8c0ff;
+    border-bottom-color: #a8c0ff;
+    outline: 2px solid #a8c0ff;
+    outline-offset: 2px;
+    padding-left: 0; /* Remove mobile padding-left */
+  }
+
+  .nav-links li > .nav-link.active {
+    border-bottom: 2px solid #fff;
+    color: #fff; /* Keep color consistent with non-hover */
+    padding-left: 0; /* Remove mobile padding-left */
+  }
+
+
+  /* Dropdown styles for desktop */
+  .nav-dropdown {
+    position: relative; /* For positioning the submenu */
+    margin: 0;
+    padding: 0;
+  }
+
+  .nav-dropdown summary {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #fff;
+    padding: 0.25rem 0; /* Match direct link padding */
+    list-style: none;
+    transition: color 0.2s ease;
+  }
+
+  .nav-dropdown summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .nav-dropdown summary .dropdown-icon {
+    margin-left: 0.4em;
+    font-size: 0.7em;
+    transition: transform 0.2s ease;
+  }
+
+  .nav-dropdown[open] summary .dropdown-icon {
+    transform: rotate(180deg);
+  }
+
+  .nav-dropdown summary:hover,
+  .nav-dropdown summary:focus {
+    color: #a8c0ff;
+    outline: 2px solid #a8c0ff;
+    outline-offset: 2px;
+    padding-left: 0;
+  }
+
+  .nav-dropdown summary.active-category {
+    color: #fff; /* Active category on desktop stays white */
+    border-bottom: 2px solid #fff; /* Matches active direct link */
+    padding-left: 0;
+  }
+
+  .nav-submenu {
+    display: none; /* Hidden by default */
+    position: absolute;
+    top: calc(100% + 10px); /* Position below the summary */
+    left: 0;
+    background-color: #003366;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    min-width: 200px; /* Ensure enough width for text */
+    padding: 0.5rem 0;
+    list-style: none;
+    border-radius: 4px;
+    z-index: 1000; /* Ensure it's above other content */
+    border: 1px solid #004d99;
+  }
+
+  .nav-dropdown[open] > .nav-submenu {
+    display: block; /* Show submenu when parent details is open */
+  }
+
+  .nav-submenu li {
+    margin: 0; /* Remove margin from submenu items */
+    width: 100%;
+  }
+
+  .nav-submenu li a {
+    display: block;
+    font-size: 0.95rem; /* Slightly smaller for sub-items */
+    font-weight: 400;
+    color: #fff;
+    padding: 0.5rem 1rem; /* Padding for submenu items */
+    text-decoration: none;
+    white-space: nowrap; /* Prevent text wrapping */
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+
+  .nav-submenu li a:hover,
+  .nav-submenu li a:focus {
+    background-color: #004d99;
+    color: #a8c0ff;
+    outline: none; /* Outline on the whole menu item, not just the text */
+  }
+
+  .nav-submenu li a.active {
+    background-color: #004d99;
+    color: #a8c0ff;
+    font-weight: 500;
+    border-left: 3px solid #a8c0ff; /* Visual indicator for active submenu item */
+    padding-left: calc(1rem - 3px); /* Adjust padding to account for border */
+  }
+
+  /* Dark Mode Scrollbar */
+  @media (prefers-color-scheme: dark) {
+    .nav-links-scroll-wrapper::-webkit-scrollbar-thumb {
+      background: #666;
+    }
+
+    .nav-links-scroll-wrapper::-webkit-scrollbar-thumb:hover {
+      background: #888;
+    }
+  }
+}
+
+/* Base style for menu-open on html/body (for freezing scroll) */
+html.menu-open, body.menu-open {
+  overflow: hidden;
 }
