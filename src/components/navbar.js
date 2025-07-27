@@ -139,12 +139,12 @@ const Navbar = () => {
       id: 'resources',
       children: [
         { label: 'Find Careers', path: '/explore-careers' },
-        { label: 'Conversation Starters', path: '/talk-templates' },
-        // NEW SUPPORT PAGES ADDED HERE
+        { label: 'Asking For Recommendations', path: '/talk-templates' },
         { label: 'Funding Your Future', path: '/financial-aid' },
         { label: 'Making It Official', path: '/decision-official' },
         { label: 'Job Search Essentials', path: '/job-search' },
         { label: 'Navigating Your First Months', path: '/first-months' },
+        { label: 'Gap Year & Alternative Paths', path: '/gap-year' },
       ]
     },
     {
