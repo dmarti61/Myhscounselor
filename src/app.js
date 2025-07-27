@@ -1,13 +1,13 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Layout from './components/layout';
-import Navbar from './components/navbar'; // This import is not directly used in Routes, but likely in Layout
+// Navbar is likely used within Layout, so no direct route needed for it here
 import Contact from './pages/contact';
 import Explore from './pages/explore';
 import About from './pages/about';
 import Careers from './pages/careers';
-import Military from './pages/military'; // Corrected path from '.pages/military'
-import Trade from './pages/tradeschoolguide'; // Corrected path from '.pages/tradeschoolguide'
+import Military from './pages/military';
+import Trade from './pages/tradeschoolguide';
 import TalkTemplates from './pages/talktemplates';
 import Home from './pages/home';
 import NotSure from './pages/notsure';
@@ -16,6 +16,12 @@ import CollegeGuide from './pages/collegeguide';
 import NotFound from './pages/notfound';
 import Quiz from './components/quiz/quiz';
 import ResultBadge from './components/quiz/resultbadge';
+
+// Import the new support pages
+import FinancialAid from './pages/financialaidguide';
+import DecisionOfficial from './pages/decisionofficial';
+import JobSearch from './pages/jobsearch';
+import FirstMonths from './pages/firstmonths';
 
 const App = () => (
   <Router basename="/Myhscounselor">
@@ -36,6 +42,11 @@ const App = () => (
 
         {/* Resources */}
         <Route path="/talk-templates" element={<TalkTemplates />} />
+        {/* New Support Pages nested under Resources in Navbar */}
+        <Route path="/financial-aid" element={<FinancialAid />} />
+        <Route path="/decision-official" element={<DecisionOfficial />} />
+        <Route path="/job-search" element={<JobSearch />} />
+        <Route path="/first-months" element={<FirstMonths />} />
 
         {/* About Us */}
         <Route path="/about" element={<About />} />
