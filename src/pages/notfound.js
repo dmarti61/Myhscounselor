@@ -1,4 +1,3 @@
-// NotFound.js
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -7,12 +6,15 @@ const NotFound = () => {
 
   return (
     <div className="not-sure-page">
-      <h2>🚧 Page Not Found</h2>
+      <h1>✨ Poof! Page Vanished!</h1>
       <p>
-        Hmm... we couldn’t find that page. Try heading back to your homepage or restarting your journey.
+        Well, that's unexpected! This page seems to have pulled a disappearing act faster than a teenager on chores day.
+      </p>
+      <p>
+        No magic spells needed to fix this, though. Just click below to get back to solid ground.
       </p>
       <button onClick={() => navigate('/')}>
-        🏠 Return to Home
+        🏠 Return to Home Base
       </button>
     </div>
   );
