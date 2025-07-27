@@ -5,15 +5,13 @@ import '../styles/global.css'; // Optional for styling tweaks
 const OnboardingOverlay = () => (
   <div className="onboarding-overlay" role="dialog" aria-labelledby="onboarding-title" aria-describedby="onboarding-desc">
     <div className="overlay-content">
-      <h2 id="onboarding-title" tabIndex="0">🧭 Not Sure What Path to Take?</h2>
+      <h2 id="onboarding-title" tabIndex="0">Hey there, future leader!</h2>
       <div id="onboarding-desc">
         <p>
-          Welcome! Whether you're thinking about college, trade school, or something in between—
-          this platform helps you discover your strengths and match them to real options.
+          Welcome! It's awesome to have you here. Thinking about what comes after high school can feel like a big puzzle, right? Whether you're picturing college, diving into a trade, or just exploring all your options, this is the place to figure out what truly sparks your interest and how it connects to real opportunities out in the world.
         </p>
         <p>
-          Answer 20 quick questions to find your personality type followed by your 4 preferences and get a personalized checklist
-          with timelines, resources, and next steps.
+          Ready to unlock your potential? Take a quick 20-question assessment to discover your unique personality and what really makes you tick. After that, you'll get a personalized roadmap—complete with timelines, helpful resources, and clear next steps—to guide you toward a path that's perfect for *you*.
         </p>
       </div>
     </div>
