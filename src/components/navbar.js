@@ -100,10 +100,10 @@ const Navbar = () => {
   }, [isOpen]);
 
   const navItems = [
-    '/view-results',    
+    '/results',    
     '/explore-careers',
     '/college-guide',
-    '/trade-school-guide',
+    '/trade',
     '/direct-entry-careers',
     '/military',
     '/not-sure',
