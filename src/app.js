@@ -16,12 +16,11 @@ import CollegeGuide from './pages/collegeguide';
 import NotFound from './pages/notfound';
 import Quiz from './components/quiz/quiz';
 import ResultBadge from './components/quiz/resultbadge';
-
-// Import the new support pages
 import FinancialAid from './pages/financialaidguide';
 import DecisionOfficial from './pages/decisionofficial';
 import JobSearch from './pages/jobsearch';
 import FirstMonths from './pages/firstmonths';
+import GapYear from './pages/gapyear';
 
 const App = () => (
   <Router basename="/Myhscounselor">
@@ -42,11 +41,11 @@ const App = () => (
 
         {/* Resources */}
         <Route path="/talk-templates" element={<TalkTemplates />} />
-        {/* New Support Pages nested under Resources in Navbar */}
         <Route path="/financial-aid" element={<FinancialAid />} />
         <Route path="/decision-official" element={<DecisionOfficial />} />
         <Route path="/job-search" element={<JobSearch />} />
         <Route path="/first-months" element={<FirstMonths />} />
+        <Route path="/gap-year" element={<GapYear />} />
 
         {/* About Us */}
         <Route path="/about" element={<About />} />
