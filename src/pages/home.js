@@ -19,6 +19,7 @@ const Home = () => {
     if (stored) {
       const parsed = JSON.parse(stored);
       const now = new Date().getTime();
+      // Ensure 'expires' property exists before comparing
       if (parsed.expires && parsed.expires > now) {
         setHasResult(true);
       } else {
@@ -34,17 +35,14 @@ const Home = () => {
   return (
     <main className="home" role="main">
       {showOnboarding && <OnboardingOverlay />}
-      <h1 tabIndex="0" aria-label="Welcome to My High School Counselor">🎓 Welcome to My HS Counselor</h1>
+      <h1 tabIndex="0" aria-label="Welcome to My High School Counselor">🎓 My HS Counselor</h1>
 
       <p>
-        You don’t have to figure out your future alone.
-        Whether you’re thinking about college, trade school, or just exploring your options,
-        this platform is designed to guide you—step by step, decision by decision.
+        **Ready to map out your future?** You don't have to navigate it alone. Whether you're aiming for college, exploring trade school, or still considering your options, we're here to guide you every step of the way.
       </p>
 
       <p>
-        Answer 20 questions to get your personality type followed by your 4 preferences, and we’ll help you discover your strengths, interests,
-        and next steps toward a career path that fits who you are.
+        Discover your unique strengths and interests! Our quick 20-question assessment reveals your personality type and preferences, helping you pinpoint the best next steps toward a career path that truly fits you.
       </p>
 
       <div className="button-group">
