@@ -100,16 +100,16 @@ const Navbar = () => {
   }, [isOpen]);
 
   const navItems = [
+    '/view-results',    
     '/explore-careers',
-    '/view-results',
-    '/talk-templates',
-    '/trade-school-guide',
-    '/not-sure',
-    '/direct-entry-careers',
     '/college-guide',
-    '/contact',
-    '/about',
+    '/trade-school-guide',
+    '/direct-entry-careers',
     '/military',
+    '/not-sure',
+    '/talk-templates',
+    '/about',
+    '/contact',
   ].map(path => ({
     path,
     label: path.replace(/-/g, ' ').replace('/', '').replace(/\b\w/g, c => c.toUpperCase())
