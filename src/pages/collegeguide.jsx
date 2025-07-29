@@ -7,7 +7,7 @@ const CollegeGuide = () => (
     <h2>🎓 How to Apply to College (U.S.)</h2>
 
     <p className="intro">
-      Applying to college can feel overwhelming — but we’re got you! Here’s a clear path with resources,
+      Applying to college can feel overwhelming — but we’ve got you! Here’s a clear path with resources,
       checklists, and tips for every step of the journey. Take it one step at a time, and remember, your hard work will pay off!
     </p>
 
@@ -24,7 +24,7 @@ const CollegeGuide = () => (
       While this guide focuses on traditional civilian colleges, if you're interested in a path that combines higher education with military service and leadership, you might want to explore U.S. Military Service Academies or ROTC programs. These offer a distinct experience with unique application processes. For detailed information, please visit our dedicated <a href="/military" rel="noopener noreferrer">Military Academies & ROTC Guide</a>.
     </p>
 
-    <hr /> {/* Replaced '---' with <hr /> for proper HTML */}
+    <hr />
 
     <h3>Junior Year: Laying the Foundation</h3>
 
@@ -80,7 +80,7 @@ const CollegeGuide = () => (
       </li>
     </ul>
 
-    <hr /> {/* Replaced '---' with <hr /> for proper HTML */}
+    <hr />
 
     <h3>Choosing Your Colleges: Location, Cost & Fit</h3>
     <p>This is where your research really pays off. Don't just pick colleges based on reputation; think about where you'll be happiest and most successful.</p>
@@ -108,7 +108,7 @@ const CollegeGuide = () => (
     <p className="why-it-matters">This mix provides a good balance of aspiration and security.</p>
     <p>Once you've picked these 5, make sure to **visit them** (in person or virtually) to ensure you can see yourself being happy there and imagine yourself starting your career from that location.</p>
 
-    <hr /> {/* Replaced '---' with <hr /> for proper HTML */}
+    <hr />
 
     <h3>Senior Year: Application Season</h3>
 
@@ -186,7 +186,7 @@ const CollegeGuide = () => (
       <li>**Celebrate!** You've worked hard! Take a moment to acknowledge your achievements.</li>
     </ul>
 
-    <hr /> {/* Replaced '---' with <hr /> for proper HTML */}
+    <hr />
 
     <h3>Understanding Financial Aid: FAFSA, Loans & Work-Study</h3>
     <p>This is where things can get a little complicated, but understanding financial aid is key to making college affordable.</p>
@@ -200,7 +200,7 @@ const CollegeGuide = () => (
       </li>
       <li>**Work-Study:** If you qualify for work-study (which you'll find out after FAFSA), that's GREAT! You'll be able to get a job on-campus (much sought after) and support yourself a little bit with gas and groceries.
         <p className="advice-box">
-          If you don't qualify, don't worry. Make sure you have some money saved up before college, because otherwise, it'll be tough to leave campus or get groceries. Try to get a job while going to school, because college will be a lot harder without income. Things cost money! On-campus work-study jobs are highly sought after because they are more flexible with your schedule, and being on-campus means no travel or wasted gas. They also help build your resume and connect you with people who might help you land your first job. Ideally, you want to work with a company where you want your first full-time job; you'll have already worked with the people and have a better shot at being offered a job after you graduate.
+          If you don't qualify, don't worry. Make sure you have some money saved up before college, because otherwise, it'll be tough to leave campus or get groceries. Try to get a job while going to school, because college will be a lot harder without income. Things cost money! On-campus work-study jobs are highly sought after because they are more flexible with your schedule, and being on-campus means no travel or wasted gas. They also help build your resume and connect you with people who might help you land their first job. Ideally, you want to work with a company where you want your first full-time job; you'll have already worked with the people and have a better shot at being offered a job after you graduate.
         </p>
       </li>
       <li>**Student Loans:** Everyone qualifies for loans.
@@ -212,7 +212,7 @@ const CollegeGuide = () => (
       </li>
     </ul>
 
-    <hr /> {/* Replaced '---' with <hr /> for proper HTML */}
+    <hr />
 
     <h3>Thriving in College: Tips for Success</h3>
     <p>Once you've been accepted and are ready to go, CONGRATS!!! I KNEW YOU COULD DO IT!!! Now, let's talk about making the most of your time.</p>
@@ -222,7 +222,7 @@ const CollegeGuide = () => (
       <li>**Owning Your Schedule:** You are responsible for scheduling your classes and making sure they fit your degree plan. Don't freak out about this too much. Just make sure you take them in the correct order and give yourself plenty of time to get to each class. A schedule of 3 classes Monday-Wednesday-Friday between 9 AM and 3 PM, and 3 classes Tuesday-Thursday between 9 AM and 3 PM, works pretty well, but that also depends on what job you have and what hours you have to work.</li>
     </ul>
 
-    <hr /> {/* Replaced '---' with <hr /> for proper HTML */}
+    <hr />
 
     <h3>🛠️ Tools & Resources</h3>
     <ul>
@@ -240,7 +240,7 @@ const CollegeGuide = () => (
       <li>**College Websites:** Always check each individual college's admissions and financial aid pages for the most accurate and up-to-date information.</li>
     </ul>
 
-    <hr /> {/* Replaced '---' with <hr /> for proper HTML */}
+    <hr />
 
     <h3>✍️ Essay Pro Tips</h3>
     <ul>
@@ -254,7 +254,7 @@ const CollegeGuide = () => (
       <li>**Proofread Meticulously:** Read your essay aloud to catch awkward phrasing and typos. A fresh pair of eyes (or even a spelling/grammar checker) is crucial.</li>
     </ul>
 
-    <hr /> {/* Replaced '---' with <hr /> for proper HTML */}
+    <hr />
 
     <h3>💡 Bonus Tips </h3>
     <ul>
@@ -265,7 +265,7 @@ const CollegeGuide = () => (
       <li>**It's YOUR Choice:** Ultimately, this is your future. Choose a college that feels right for *you*, not just one that others expect you to attend.</li>
     </ul>
 
-    <hr /> {/* Replaced '---' with <hr /> for proper HTML */}
+    <hr />
 
     <h3>🚫 Common Mistakes to Avoid</h3>
     <ul>
