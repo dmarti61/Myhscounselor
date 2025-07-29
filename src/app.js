@@ -21,6 +21,7 @@ import DecisionOfficial from './pages/decisionofficial';
 import JobSearch from './pages/jobsearch';
 import FirstMonths from './pages/firstmonths';
 import GapYear from './pages/gapyear';
+import TwoYear from './pages/twoyear';
 
 const App = () => (
   <Router basename="/Myhscounselor">
@@ -35,6 +36,7 @@ const App = () => (
 
         {/* Explore My Path */}
         <Route path="/college-guide" element={<CollegeGuide />} />
+        <Route path="/two-year" element={<TwoYear />} />
         <Route path="/military" element={<Military />} />
         <Route path="/direct-entry-careers" element={<Careers />} />
         <Route path="/trade" element={<Trade />} />
