@@ -129,6 +129,7 @@ const Navbar = () => {
       children: [
         { label: 'Not Sure Where to Start?', path: '/not-sure' },
         { label: 'College Guide', path: '/college-guide' },
+        { label: 'Two-Year College Guide', path: '/two-year' },
         { label: 'Trade School Guide', path: '/trade' },
         { label: 'Military Service', path: '/military' },
         { label: 'Work After High School', path: '/direct-entry-careers' },
