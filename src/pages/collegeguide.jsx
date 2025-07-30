@@ -7,16 +7,16 @@ const CollegeGuide = () => (
     <h2>🎓 Your College Application Roadmap</h2>
 
     <p className="intro">
-  Applying to college might feel overwhelming, but with the right approach, it's a journey you can navigate with confidence. This guide is your practical roadmap—offering step-by-step strategies, key resources, and insights for every stage. Take it one step at a time, and know this: your effort today is an investment in your future.
-</p>
+    Applying to college might feel overwhelming, but with the right approach, it's a journey you can navigate with confidence. This guide is your practical roadmap—offering step-by-step strategies, key resources, and insights for every stage. Take it one step at a time, and know this: your effort today is an investment in your future.
+    </p>
 
-<p className="pathway-note">
-  While this guide focuses on securing a <strong>four-year bachelor's degree</strong>, it’s equally important to consider <strong>two-year colleges (community colleges)</strong> as a powerful starting point. These institutions often offer more affordable tuition, flexible schedules, and career-ready training—and many students use this path to transfer smoothly to four-year universities. To explore this option further, visit our <a href="/two-year-college" rel="noopener noreferrer">Two-Year College & Community College Guide</a>.
-</p>
+    <p className="pathway-note">
+    While this guide focuses on securing a <strong>four-year bachelor's degree</strong>, it’s equally important to consider <strong>two-year colleges (community colleges)</strong> as a powerful starting point. These institutions often offer more affordable tuition, flexible schedules, and career-ready training—and many students use this path to transfer smoothly to four-year universities. To explore this option further, visit our <a href="/two-year-college" rel="noopener noreferrer">Two-Year College & Community College Guide</a>.
+    </p>
 
-<p className="military-interest-note">
-  If you're interested in combining higher education with military service, <strong>U.S. Military Service Academies and ROTC programs</strong> offer unique and rewarding pathways. These options emphasize leadership, service, and scholarship, and require a distinct application process. Learn more through our <a href="/military" rel="noopener noreferrer">Military Academies & ROTC Guide</a>.
-</p>
+    <p className="military-interest-note">
+    If you're interested in combining higher education with military service, <strong>U.S. Military Service Academies and ROTC programs</strong> offer unique and rewarding pathways. These options emphasize leadership, service, and scholarship, and require a distinct application process. Learn more through our <a href="/military" rel="noopener noreferrer">Military Academies & ROTC Guide</a>.
+    </p>
 
     <hr />
 
