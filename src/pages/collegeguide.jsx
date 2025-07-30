@@ -7,18 +7,16 @@ const CollegeGuide = () => (
     <h2>🎓 Your College Application Roadmap</h2>
 
     <p className="intro">
-      Applying to college can feel like a huge undertaking, but it's a process we can navigate strategically. This guide is designed to be your clear roadmap, offering practical steps, key resources, and actionable insights for every stage. Take it one step at a time, and remember: your dedicated effort now is an investment in your future.
-    </p>
+  Applying to college might feel overwhelming, but with the right approach, it's a journey you can navigate with confidence. This guide is your practical roadmap—offering step-by-step strategies, key resources, and insights for every stage. Take it one step at a time, and know this: your effort today is an investment in your future.
+</p>
 
-    {/* New paragraph to introduce two-year colleges */}
-    <p className="pathway-note">
-      This guide primarily focuses on securing a **four-year bachelor's degree**. However, it's important to recognize that **two-year colleges (community colleges)** offer an excellent and often more affordable starting point. This path can lead to a seamless transfer to a four-year university or provide immediate career skills. For a comprehensive look at this option, please visit our <a href="/two-year-college" rel="noopener noreferrer">Two-Year College & Community College Guide</a>.
-    </p>
+<p className="pathway-note">
+  While this guide focuses on securing a <strong>four-year bachelor's degree</strong>, it’s equally important to consider <strong>two-year colleges (community colleges)</strong> as a powerful starting point. These institutions often offer more affordable tuition, flexible schedules, and career-ready training—and many students use this path to transfer smoothly to four-year universities. To explore this option further, visit our <a href="/two-year-college" rel="noopener noreferrer">Two-Year College & Community College Guide</a>.
+</p>
 
-    {/* Note about Military Academies - kept for cross-referencing */}
-    <p className="military-interest-note">
-      While our focus here is on traditional civilian colleges, if you're exploring higher education combined with military service and leadership, **U.S. Military Service Academies or ROTC programs** are distinct and valuable options. They have unique application processes. For detailed information on these pathways, please refer to our dedicated <a href="/military" rel="noopener noreferrer">Military Academies & ROTC Guide</a>.
-    </p>
+<p className="military-interest-note">
+  If you're interested in combining higher education with military service, <strong>U.S. Military Service Academies and ROTC programs</strong> offer unique and rewarding pathways. These options emphasize leadership, service, and scholarship, and require a distinct application process. Learn more through our <a href="/military" rel="noopener noreferrer">Military Academies & ROTC Guide</a>.
+</p>
 
     <hr />
 
