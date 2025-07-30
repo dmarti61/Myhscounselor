@@ -156,7 +156,7 @@ const Contact = () => {
 
         {/* Rate this site (Optional) - Star Scale */}
         <fieldset>
-          <legend>Rate this site (1-Poor, 5-Best):</legend>
+          <legend>How Would You Rate This Site? (1-Poor, 5-Best):</legend>
           <p>
             <input
               type="radio"
