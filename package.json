@@ -8,16 +8,20 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "postbuild": "react-snap"
   },
   "dependencies": {
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-scripts": "^5.0.1",
-    "react-router-dom": "^7.7.1",
+    "react-router-dom": "^7.x.x",
     "jspdf": "^3.0.1"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "react-snap": "^1.23.0",
+    "@netlify/plugin-sitemap": "^0.x.x"
+  },
   "browserslist": {
     "production": [
       ">0.2%",
@@ -29,5 +33,31 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "reactSnap": {
+    "puppeteerArgs": ["--no-sandbox", "--disable-setuid-sandbox"],
+    "include": [
+      "/",
+      "/not-sure",
+      "/explore-careers",
+      "/quiz",
+      "/preferences",
+      "/results",
+      "/college-guide",
+      "/two-year",
+      "/military",
+      "/direct-entry-careers",
+      "/trade",
+      "/talk-templates",
+      "/financial-aid",
+      "/decision-official",
+      "/job-search",
+      "/first-months",
+      "/gap-year",
+      "/about",
+      "/contact"
+    ],
+    "source": "build",
+    "destination": "build"
   }
 }
