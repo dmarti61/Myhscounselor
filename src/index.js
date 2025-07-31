@@ -2,7 +2,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client'; // For createRoot (initial client-side render)
 import { hydrateRoot } from 'react-dom/client'; // For hydrateRoot (taking over pre-rendered HTML)
-import App from './App'; // Assuming your main app component is 'App.js'
+import App from './app'; // Assuming your main app component is 'App.js'
 import './styles/global.css'; // Your global styles import
 
 const rootElement = document.getElementById('root');
