@@ -16,7 +16,7 @@ import CollegeGuide from './pages/collegeguide';
 import NotFound from './pages/notfound';
 import Quiz from './components/quiz/quiz';
 import ResultBadge from './components/quiz/resultbadge';
-import FinancialAid from './pages/financialaidguide';
+import FinancialAid from './pages/financialaid';
 import DecisionOfficial from './pages/decisionofficial';
 import JobSearch from './pages/jobsearch';
 import FirstMonths from './pages/firstmonths';
