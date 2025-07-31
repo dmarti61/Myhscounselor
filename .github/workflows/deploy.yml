@@ -24,13 +24,15 @@ jobs:
   # Build job
   build:
     runs-on: ubuntu-latest
+    environment: # <--- ADD THIS SECTION
+      name: github-pages # <--- ADD THIS LINE
     steps:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 20  # Use a modern Node.js version
+          node-version: 20
       - name: Install dependencies
         run: npm ci
       - name: Build with Vite
@@ -40,7 +42,6 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Upload the dist folder
           path: './dist'
       - name: Deploy to GitHub Pages
         id: deployment
