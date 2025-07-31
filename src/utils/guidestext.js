@@ -1,9 +1,9 @@
 // Helper to extract text from React elements, simplifying for PDF
 import React from 'react';
 // import { renderToString } from 'react-dom/server'; // renderToString is not actually used here for the conversion
-import CollegeGuide from '../pages/CollegeGuide'; // Adjusted path
-import TradeSchoolGuide from '../pages/TradeSchoolGuide'; // Adjusted path
-import DirectEntryCareersGuide from '../pages/Careers'; // Adjusted path, assuming Careers.jsx is the Direct Entry Guide
+import CollegeGuide from '../pages/collegeguide'; // Adjusted path
+import TradeSchoolGuide from '../pages/tradeschoolguide'; // Adjusted path
+import DirectEntryCareersGuide from '../pages/careers'; // Adjusted path, assuming Careers.jsx is the Direct Entry Guide
 
 const extractTextFromReactNode = (node) => {
   if (typeof node === 'string' || typeof node === 'number') {
