@@ -9,8 +9,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
-    // The "postbuild": "react-snap" line has been removed to prevent Puppeteer issues on Cloudflare Pages.
-  },
+    },
   "dependencies": {
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
