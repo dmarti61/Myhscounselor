@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import '../styles/careers.css'; // Assuming you'll have specific styles for this page
+
 const Careers = () => {
 return (
 <section className="no-college-degree-careers-container">
