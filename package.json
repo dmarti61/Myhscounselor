@@ -18,8 +18,6 @@
     "jspdf": "^3.0.1"
   },
   "devDependencies": {
-    // "react-snap": "^1.23.0", // Removed: Only needed if you're actively prerendering/SSG. For a standard SPA on Pages, it's not required unless you configure it.
-    // "@netlify/plugin-sitemap": "^0.8.1" // Removed: This is a Netlify-specific plugin and serves no purpose on Cloudflare Pages.
   },
   "browserslist": {
     "production": [
@@ -33,30 +31,4 @@
       "last 1 safari version"
     ]
   }
-  // "reactSnap": { // Removed: This configuration block is only needed if react-snap is installed and being used.
-  //   "puppeteerArgs": ["--no-sandbox", "--disable-setuid-sandbox"],
-  //   "include": [
-  //     "/",
-  //     "/not-sure",
-  //     "/explore-careers",
-  //     "/quiz",
-  //     "/preferences",
-  //     "/results",
-  //     "/college-guide",
-  //     "/two-year",
-  //     "/military",
-  //     "/direct-entry-careers",
-  //     "/trade",
-  //     "/talk-templates",
-  //     "/financial-aid",
-  //     "/decision-official",
-  //     "/job-search",
-  //     "/first-months",
-  //     "/gap-year",
-  //     "/about",
-  //     "/contact"
-  //   ],
-  //   "source": "build",
-  //   "destination": "build"
-  // }
 }
