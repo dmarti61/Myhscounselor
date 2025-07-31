@@ -1,7 +1,7 @@
 // src/pages/ExploreCareers.js
 
 import React from 'react';
-import styles from '../styles/explore.css';
+import styles from '../styles/explore.module.css';
 import { MBTI_MAP } from '../components/quiz/mbtimap';
 
 const groupCareersByPathway = () => {
