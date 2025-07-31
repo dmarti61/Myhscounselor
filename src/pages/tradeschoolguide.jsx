@@ -1,5 +1,4 @@
 import React from 'react';
-import '../styles/tradeschoolguide.css'; // Assuming this path is correct for your styles
 
 const TradeSchoolGuide = () => (
   <div className="trade-school-guide-container">
