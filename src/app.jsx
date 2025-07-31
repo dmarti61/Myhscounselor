@@ -26,7 +26,7 @@ const Contact = lazy(() => import('./pages/contact'));
 
 
 const App = () => (
-  <Router basename="/Myhscounselor">
+  <Router>
     <Suspense fallback={<div>Loading...</div>}> {/* Add Suspense wrapper here */}
       <Routes>
         <Route element={<Layout />}>
