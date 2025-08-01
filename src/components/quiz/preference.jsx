@@ -46,7 +46,11 @@ const PreferenceQuiz = () => {
   };
 
   const handleNext = () => {
-    // Removed the check: if (Object.keys(answers).length < questions.length) return;
+    const expirationTime = new Date().getTime() + 24 * 60 * 60 * 1000;
+    localStorage.setItem('user_preferences', JSON.stringify({
+        data: answers,
+        expires: expirationTime,
+    }));
     navigate('/results', {
       state: {
         mbtiType,
