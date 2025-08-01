@@ -244,7 +244,7 @@ button:hover {
 }
 
 /* Media Queries for smaller screens */
-@media (max-width: 600px) {
+@media (max-width: 900px) {
   .button-group {
     flex-direction: row; /* Buttons side-by-side on larger screens */
     justify-content: center; /* Center buttons when side-by-side */
@@ -255,6 +255,7 @@ button:hover {
     width: auto; /* Allow buttons to take natural width */
     max-width: none; /* Remove max-width constraint */
   }
+ 
   .main-content {
   overflow-y: auto;
   padding-left: 10px;
