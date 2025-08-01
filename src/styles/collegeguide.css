@@ -104,14 +104,14 @@ ul li {
   position: relative; /* For custom bullet positioning */
 }
 
-ul li::before {
+/* ul li::before {
   content: '✔️'; /* Checkmark emoji as bullet */
   position: absolute;
   left: 0;
   color: #28a745; /* Green checkmark */
   font-size: 1.1em;
   top: 0; /* Align with text */
-}
+} */
 
 /* Emphasis within list items (e.g., **Volunteering**) */
 ul li strong {
