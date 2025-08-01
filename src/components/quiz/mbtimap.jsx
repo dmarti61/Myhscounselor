@@ -52,6 +52,7 @@ export const MBTI_MAP = {
       }
     ],
     recommendedNextStep: "Bachelor’s or Master’s Degree",
+    recommendedNextStepLink: "/college-guide",
     relevantMajors: ["Computer Science", "Engineering", "Mathematics", "Architecture", "Information Technology"]
   },
   INTP: {
@@ -105,6 +106,7 @@ export const MBTI_MAP = {
       }
     ],
     recommendedNextStep: "Master’s or Ph.D.",
+    recommendedNextStepLink: "/college-guide",
     relevantMajors: ["Physics", "Philosophy", "Computer Science", "Engineering", "Chemistry", "Biology"]
   },
   ENTJ: {
@@ -158,6 +160,7 @@ export const MBTI_MAP = {
       }
     ],
     recommendedNextStep: "Bachelor's, Master's, or J.D. Degree",
+    recommendedNextStepLink: "/college-guide",
     relevantMajors: ["Business Administration", "Law", "Economics", "Management", "Finance"]
   },
   ENTP: {
@@ -211,6 +214,7 @@ export const MBTI_MAP = {
       }
     ],
     recommendedNextStep: "Bachelor's Degree",
+    recommendedNextStepLink: "/college-guide",
     relevantMajors: ["Business", "Marketing", "Communications", "Design", "Innovation", "Engineering"]
   },
   INFJ: {
@@ -264,6 +268,7 @@ export const MBTI_MAP = {
       }
     ],
     recommendedNextStep: "Bachelor's or Doctoral Degree",
+    recommendedNextStepLink: "/college-guide",
     relevantMajors: ["Psychology", "Social Work", "English", "Sociology", "Counseling"]
   },
   INFP: {
@@ -317,6 +322,7 @@ export const MBTI_MAP = {
       }
     ],
     recommendedNextStep: "Bachelor’s or Master’s Degree",
+    recommendedNextStepLink: "/college-guide",
     relevantMajors: ["Creative Writing", "Fine Arts", "Psychology", "Counseling", "Liberal Arts"]
   },
   ENFJ: {
@@ -370,6 +376,7 @@ export const MBTI_MAP = {
       }
     ],
     recommendedNextStep: "Bachelor's Degree",
+    recommendedNextStepLink: "/college-guide",
     relevantMajors: ["Education", "Communications", "Human Resources", "Marketing", "Social Sciences"]
   },
   ENFP: {
@@ -423,6 +430,7 @@ export const MBTI_MAP = {
       }
     ],
     recommendedNextStep: "Bachelor's Degree or Relevant Training/Experience",
+    recommendedNextStepLink: "/college-guide",
     relevantMajors: ["Drama", "Journalism", "Communications", "Business", "Marketing"]
   },
   ISTJ: {
@@ -476,6 +484,7 @@ export const MBTI_MAP = {
       }
     ],
     recommendedNextStep: "Bachelor's Degree, Police Academy Training, or Associate's Degree",
+    recommendedNextStepLink: "/college-guide",
     relevantMajors: ["Accounting", "Criminal Justice", "Engineering", "Business Administration", "Paralegal Studies"]
   },
   ISFJ: {
@@ -529,6 +538,7 @@ export const MBTI_MAP = {
       }
     ],
     recommendedNextStep: "Bachelor’s or Master’s Degree",
+    recommendedNextStepLink: "/college-guide",
     relevantMajors: ["Nursing", "Library Science", "Education", "Social Work", "Early Childhood Education"]
   },
   ESTJ: {
@@ -582,6 +592,7 @@ export const MBTI_MAP = {
       }
     ],
     recommendedNextStep: "Bachelor’s or Master’s Degree",
+    recommendedNextStepLink: "/college-guide",
     relevantMajors: ["Business Administration", "Education Leadership", "Management", "Construction Management"]
   },
   ESFJ: {
@@ -635,6 +646,7 @@ export const MBTI_MAP = {
       }
     ],
     recommendedNextStep: "Bachelor’s or Master’s Degree",
+    recommendedNextStepLink: "/college-guide",
     relevantMajors: ["Hospitality Management", "Nursing", "Business", "Communications", "Marketing"]
   },
   ISTP: {
@@ -688,6 +700,7 @@ export const MBTI_MAP = {
       }
     ],
     recommendedNextStep: "Postsecondary Training or Bachelor's Degree",
+    recommendedNextStepLink: "/two-year",
     relevantMajors: ["Automotive Technology", "Aviation", "Electronics", "Vocational Training", "Engineering Technology"]
   },
   ISFP: {
@@ -741,6 +754,7 @@ export const MBTI_MAP = {
       }
     ],
     recommendedNextStep: "High School Diploma, Associate's, or Bachelor's Degree",
+    recommendedNextStepLink: "/two-year",
     relevantMajors: ["Graphic Design", "Fine Arts", "Veterinary Technology", "Photography", "Horticulture"]
   },
   ESTP: {
@@ -794,6 +808,7 @@ export const MBTI_MAP = {
       }
     ],
     recommendedNextStep: "High School Diploma with Training, or Associate's Degree",
+    recommendedNextStepLink: "/two-year",
     relevantMajors: ["Business", "Emergency Medical Services", "Construction Management", "Fire Science", "Kinesiology"]
   },
   ESFP: {
@@ -847,6 +862,7 @@ export const MBTI_MAP = {
       }
     ],
     recommendedNextStep: "Varies (Experience, High School, or Bachelor's Degree)",
+    recommendedNextStepLink: "/direct-entry-careers",
     relevantMajors: ["Theater", "Recreation Management", "Hospitality Management", "Cosmetology", "Tourism"]
   }
 };
