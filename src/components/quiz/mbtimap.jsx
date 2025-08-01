@@ -4,13 +4,13 @@ import React from 'react';
 export const getPathwayDisplay = (path) => {
   switch (path) {
     case "college":
-      return "**College**";
+      return "College";
     case "community":
-      return "**Community College**";
+      return "Community College";
     case "trade":
-      return "**Trade School**";
+      return "Trade School";
     case "job":
-      return "**Direct Job Entry**";
+      return "Direct Job Entry";
     default:
       return path; // Fallback for any unexpected paths
   }
