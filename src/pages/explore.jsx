@@ -1,13 +1,16 @@
+// src/pages/ExploreCareers.js
+
 import React, { useMemo } from 'react';
 import styles from '../styles/explore.module.css';
 import { MBTI_MAP } from '../components/quiz/mbtimap';
 
+// This function has been updated to use the 'education' property
 const groupCareersByPathway = () => {
   const pathwayMap = {};
 
   Object.values(MBTI_MAP).forEach(({ careers }) => {
     careers.forEach(career => {
-      const key = career.pathway || 'Other';
+      const key = career.education || 'Other'; // Corrected from 'pathway'
       if (!pathwayMap[key]) {
         pathwayMap[key] = new Map();
       }
