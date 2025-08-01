@@ -1,52 +1,90 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom'; // **Import useNavigate**
-import { MBTI_MAP } from './mbtimap'; // Make sure the path is correct
-import { CAREER_STATS } from './careerstats'; // Make sure the path is correct
+import { useLocation, useNavigate } from 'react-router-dom';
+// Ensure correct paths to your data files (MBTI_MAP and CAREER_STATS)
+import { MBTI_MAP } from '../../data/mbtimap'; // Example: Adjust path as needed
+import { CAREER_STATS } from '../../data/careerstats'; // Example: Adjust path as needed
 import Share_Card from './sharecard';
 import '../../styles/resultbadge.css';
 
 const ResultBadge = () => {
   const location = useLocation();
-  const navigate = useNavigate(); // **Initialize useNavigate hook**
+  const navigate = useNavigate();
 
   const [mbtiType, setMbtiType] = useState(null);
-  const [quizResults, setQuizResults] = useState(null);
-
+  const [quizResults, setQuizResults] = useState(null); // This state will hold the user's preferences
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
 
+  // Derive preferredPathway from quizResults state, which now correctly holds preferences
   const preferredPathway = quizResults?.pathPreference?.toLowerCase();
 
+  // This useEffect is responsible for loading the initial mbtiType and preferences
+  // either from location.state or localStorage.
   useEffect(() => {
+    let loadedMbti = null;
+    let loadedPreferences = null;
+
+    // 1. Attempt to load from location.state (preferred for fresh quiz completion)
     if (location.state && location.state.mbtiType && location.state.preferences) {
       console.log('ResultBadge: Received mbtiType from location.state:', location.state.mbtiType);
       console.log('ResultBadge: Received preferences from location.state:', location.state.preferences);
-      setMbtiType(location.state.mbtiType);
-      setQuizResults(location.state.preferences);
+      loadedMbti = location.state.mbtiType;
+      loadedPreferences = location.state.preferences;
     } else {
+      // 2. Fallback to localStorage if location.state is empty (e.g., page refresh, direct URL access)
       console.warn('ResultBadge: mbtiType or preferences not found in location.state. Checking localStorage...');
       try {
         const storedMbti = localStorage.getItem('mbti_result');
+        const storedPreferences = localStorage.getItem('user_preferences'); // *** NEW: Get stored preferences ***
+
+        // Load MBTI type from localStorage
         if (storedMbti) {
           const parsedMbti = JSON.parse(storedMbti);
           if (parsedMbti.type && new Date().getTime() < parsedMbti.expires) {
-            setMbtiType(parsedMbti.type);
-            setQuizResults(null);
+            loadedMbti = parsedMbti.type;
             console.log('ResultBadge: Loaded mbtiType from localStorage:', parsedMbti.type);
           } else {
-            console.warn('ResultBadge: Stored MBTI result expired or invalid.');
+            console.warn('ResultBadge: Stored MBTI result expired or invalid. Clearing it.');
+            localStorage.removeItem('mbti_result'); // Clear expired data
+          }
+        }
+
+        // *** NEW: Load preferences from localStorage ***
+        if (storedPreferences) {
+          const parsedPreferences = JSON.parse(storedPreferences);
+          if (parsedPreferences.data && new Date().getTime() < parsedPreferences.expires) {
+            loadedPreferences = parsedPreferences.data; // Assign the 'data' part of your stored object
+            console.log('ResultBadge: Loaded preferences from localStorage:', parsedPreferences.data);
+          } else {
+            console.warn('ResultBadge: Stored preferences expired or invalid. Clearing them.');
+            localStorage.removeItem('user_preferences'); // Clear expired data
           }
         }
       } catch (e) {
-        console.error('ResultBadge: Failed to parse MBTI result from localStorage:', e);
+        console.error('ResultBadge: Failed to parse data from localStorage:', e);
       }
     }
-  }, [location.state]);
 
+    // Update state variables. The second useEffect will trigger once these are set.
+    setMbtiType(loadedMbti);
+    setQuizResults(loadedPreferences);
+
+    // Initial loading state check: If we have both, we can theoretically set loading to false immediately,
+    // but the second useEffect is designed to handle the data processing, so keeping loading true
+    // until it finishes is safer.
+    if (!loadedMbti || !loadedPreferences) {
+      setLoading(true); // Ensure loading is true if data is missing, until second useEffect resolves
+    }
+
+  }, [location.state]); // Only re-run if location.state changes (initial load or navigation)
+
+  // This useEffect is responsible for processing the loaded mbtiType and quizResults
+  // and setting the 'data' state for display.
   useEffect(() => {
+    // Only proceed if both mbtiType and quizResults are available
     if (!mbtiType || !quizResults) {
-      setLoading(true);
-      return;
+      setLoading(true); // Keep loading if data is incomplete
+      return; // Exit early if dependencies are not met
     }
 
     console.log('Second useEffect triggered with mbtiType:', mbtiType);
@@ -54,60 +92,55 @@ const ResultBadge = () => {
 
     const standardizedMbtiType = mbtiType.toUpperCase();
 
-    console.log('Standardized MBTI Type:', standardizedMbtiType);
-    console.log('Does standardizedMbtiType exist in MBTI_MAP?', !!MBTI_MAP[standardizedMbtiType]);
-    if (!MBTI_MAP[standardizedMbtiType] && standardizedMbtiType) {
+    if (!MBTI_MAP[standardizedMbtiType]) {
       console.error(`MBTI_MAP does not contain key: ${standardizedMbtiType}`);
+      setData(null); // Clear data if MBTI type is invalid
+      setLoading(false); // Stop loading, but indicate an error state
+      return; // Exit early
     }
 
-    if (MBTI_MAP[standardizedMbtiType]) {
-      const mbtiData = MBTI_MAP[standardizedMbtiType];
-      let careers = [...mbtiData.careers];
+    const mbtiData = MBTI_MAP[standardizedMbtiType];
+    let careers = [...mbtiData.careers];
 
-      const currentPreferredPathway = quizResults?.pathPreference?.toLowerCase();
+    // Ensure preferredPathway is derived from the *state* `quizResults` that was set
+    const currentPreferredPathway = quizResults?.pathPreference?.toLowerCase();
 
-      let matchingCareers = [];
-      let nonMatchingCareers = [];
+    let matchingCareers = [];
+    let nonMatchingCareers = [];
 
-      careers.forEach(c => {
-        if (c.postSchoolPath && typeof c.postSchoolPath === 'string' && c.postSchoolPath.toLowerCase() === currentPreferredPathway) {
-          matchingCareers.push(c);
-        } else {
-          nonMatchingCareers.push(c);
-        }
-      });
+    careers.forEach(c => {
+      if (c.postSchoolPath && typeof c.postSchoolPath === 'string' && c.postSchoolPath.toLowerCase() === currentPreferredPathway) {
+        matchingCareers.push(c);
+      } else {
+        nonMatchingCareers.push(c);
+      }
+    });
 
-      const sortedCareers = [...matchingCareers, ...nonMatchingCareers];
+    const sortedCareers = [...matchingCareers, ...nonMatchingCareers];
 
-      setData({
-        vibe: mbtiData.vibe,
-        strengths: mbtiData.strengths,
-        recommendedNextStep: mbtiData.recommendedNextStep,
-        relevantMajors: mbtiData.relevantMajtiors,
-        sortedCareers: sortedCareers,
-      });
-      setLoading(false);
-    } else {
-      setData(null);
-      setLoading(false);
-    }
-  }, [mbtiType, quizResults]);
+    setData({
+      vibe: mbtiData.vibe,
+      strengths: mbtiData.strengths,
+      recommendedNextStep: mbtiData.recommendedNextStep,
+      relevantMajors: mbtiData.relevantMajors, // Corrected potential typo from 'relevantMajtiors' to 'relevantMajors'
+      sortedCareers: sortedCareers,
+    });
+    setLoading(false); // Data processed successfully, set loading to false
+  }, [mbtiType, quizResults]); // Re-run when mbtiType or quizResults states change
 
-  // **New function to handle retake button click**
+  // Function to handle retaking the quiz
   const handleRetakeQuiz = () => {
-    // 1. Remove the saved MBTI result from localStorage
+    // Remove both MBTI result and user preferences from localStorage
     localStorage.removeItem('mbti_result');
-    // If you also stored preferences in localStorage, remove them here:
-    // localStorage.removeItem('user_preferences'); // Example if you add this later
-
-    // 2. Redirect back to the homepage (or the start of your quiz)
-    navigate('/');
+    localStorage.removeItem('user_preferences'); // *** NEW: Clear preferences on retake ***
+    navigate('/'); // Redirect to the homepage/quiz start
   };
 
   if (loading) {
     return <div className="loading">Loading your results...</div>;
   }
 
+  // If loading is false but data is null, it means there was an error loading or processing MBTI data
   if (!data) {
     return <div className="error-message">Could not load MBTI data. Please try again.</div>;
   }
