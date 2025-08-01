@@ -54,11 +54,10 @@ const ExploreCareers = () => {
 
   return (
     <div className={styles.container}>
-      <h1>Explore Careers by Education Level</h1>
+      <h1>Explore Careers by Educational Path</h1>
       <p className={styles.intro}>
-        Not ready for the quiz? Start by exploring real careers grouped by their required education level.
+        Not ready for the quiz? Start by exploring careers that share similar skills and interests. Careers are grouped into "clusters" to help you find the right fit.
       </p>
-
       {Object.entries(groupedCareers).map(([educationLevel, careers]) => (
         <section key={educationLevel} className={styles.section}>
           <h2 className={styles.pathway}>{educationLevel}</h2>
