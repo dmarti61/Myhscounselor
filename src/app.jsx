@@ -13,6 +13,7 @@ const Military = lazy(() => import('./pages/military'));
 const Trade = lazy(() => import('./pages/tradeschoolguide'));
 const TalkTemplates = lazy(() => import('./pages/talktemplates'));
 const PreferenceQuiz = lazy(() => import('./components/quiz/preference'));
+const CareerStats = lazy(() => import('./components/quiz/careerstats'));
 const CollegeGuide = lazy(() => import('./pages/collegeguide'));
 const Quiz = lazy(() => import('./components/quiz/quiz'));
 const ResultBadge = lazy(() => import('./components/quiz/resultbadge'));
