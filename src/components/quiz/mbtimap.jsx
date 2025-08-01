@@ -8,6 +8,7 @@ export const MBTI_MAP = {
       {
         title: "Software Developer",
         pathway: "Technology",
+        postSchoolPath: "college", // Added
         education: "Bachelor’s degree",
         salary: "$132,270", // Median annual wage (2023)
         outlook: "Much faster than average (25% growth, 2022-2032)",
@@ -16,6 +17,7 @@ export const MBTI_MAP = {
       {
         title: "Architect",
         pathway: "Art & Design",
+        postSchoolPath: "college", // Added
         education: "Bachelor’s degree in Architecture",
         salary: "$95,490", // Median annual wage (2023)
         outlook: "Slower than average (1% growth, 2022-2032)",
@@ -24,13 +26,15 @@ export const MBTI_MAP = {
       {
         title: "Data Scientist",
         pathway: "Technology",
+        postSchoolPath: "college", // Added
         education: "Bachelor’s or Master’s in Data Science, Statistics, or CS",
         salary: "$108,700", // Median annual wage (2023)
         outlook: "Much faster than average (35% growth, 2022-2032)",
         description: "Suits your analytical mind in uncovering insights from data."
       }
     ],
-    recommendedNextStep: "Bachelor’s or Master’s Degree"
+    recommendedNextStep: "Bachelor’s or Master’s Degree",
+    relevantMajors: ["Computer Science", "Engineering", "Mathematics", "Architecture"] // Added
   },
   INTP: {
     vibe: "You're a curious and innovative thinker, always dissecting ideas and exploring new theories.",
@@ -39,6 +43,7 @@ export const MBTI_MAP = {
       {
         title: "Academic Researcher",
         pathway: "Research & Academia",
+        postSchoolPath: "college", // Added
         education: "Master’s or Ph.D.",
         salary: "$84,380", // Median annual wage for Postsecondary Teachers (2023)
         outlook: "Faster than average (8% growth, 2022-2032)",
@@ -47,6 +52,7 @@ export const MBTI_MAP = {
       {
         title: "Engineer",
         pathway: "Engineering",
+        postSchoolPath: "college", // Added
         education: "Bachelor’s degree in Engineering",
         salary: "$100,830", // Median annual wage for Mechanical Engineers (2023)
         outlook: "Faster than average (10% growth, 2022-2032)",
@@ -55,13 +61,15 @@ export const MBTI_MAP = {
       {
         title: "Philosopher",
         pathway: "Research & Academia",
+        postSchoolPath: "college", // Added
         education: "Ph.D.",
         salary: "$84,380", // Median annual wage for Postsecondary Teachers (2023)
         outlook: "Faster than average (8% growth, 2022-2032)",
         description: "Matches your love for exploring fundamental questions and concepts."
       }
     ],
-    recommendedNextStep: "Master’s or Ph.D."
+    recommendedNextStep: "Master’s or Ph.D.",
+    relevantMajors: ["Physics", "Philosophy", "Computer Science", "Engineering"] // Added
   },
   ENTJ: {
     vibe: "You're a natural-born leader, decisive and efficient, who thrives on achieving ambitious goals.",
@@ -70,6 +78,7 @@ export const MBTI_MAP = {
       {
         title: "Business Executive",
         pathway: "Business & Management",
+        postSchoolPath: "college", // Added
         education: "Bachelor's or Master's degree",
         salary: "$99,100", // Median annual wage for Top Executives (2023)
         outlook: "Slower than average (3% growth, 2022-2032)",
@@ -78,6 +87,7 @@ export const MBTI_MAP = {
       {
         title: "Lawyer",
         pathway: "Legal",
+        postSchoolPath: "college", // Added
         education: "Juris Doctor (J.D.)",
         salary: "$145,760", // Median annual wage (2023)
         outlook: "Faster than average (8% growth, 2022-2032)",
@@ -86,13 +96,15 @@ export const MBTI_MAP = {
       {
         title: "Management Consultant",
         pathway: "Consulting",
+        postSchoolPath: "college", // Added
         education: "Bachelor's degree (often MBA preferred)",
         salary: "$99,440", // Median annual wage for Management Analysts (2023)
         outlook: "Faster than average (10% growth, 2022-2032)",
         description: "Perfect for analyzing businesses and guiding them to success."
       }
     ],
-    recommendedNextStep: "Bachelor's, Master's, or J.D. Degree"
+    recommendedNextStep: "Bachelor's, Master's, or J.D. Degree",
+    relevantMajors: ["Business Administration", "Law", "Economics"] // Added
   },
   ENTP: {
     vibe: "You're an energetic and inventive debater, always seeking new challenges and innovative solutions.",
@@ -101,6 +113,7 @@ export const MBTI_MAP = {
       {
         title: "Entrepreneur",
         pathway: "Business & Management",
+        postSchoolPath: "college", // Added (though varies, many start with a degree)
         education: "Varies (often Bachelor's in Business)",
         salary: "$118,500", // Median annual wage for Management Occupations (2023)
         outlook: "Average (5% growth, 2022-2032)",
@@ -109,6 +122,7 @@ export const MBTI_MAP = {
       {
         title: "Marketing Strategist",
         pathway: "Marketing & Sales",
+        postSchoolPath: "college", // Added
         education: "Bachelor’s degree in Marketing or related field",
         salary: "$146,800", // Median annual wage for Marketing Managers (2023)
         outlook: "Faster than average (6% growth, 2022-2032)",
@@ -117,13 +131,15 @@ export const MBTI_MAP = {
       {
         title: "Creative Director",
         pathway: "Art & Design",
+        postSchoolPath: "college", // Added
         education: "Bachelor’s in Art, Design, or Marketing",
         salary: "$108,290", // Median annual wage for Art Directors (2023)
         outlook: "Slower than average (2% growth, 2022-2032)",
         description: "Ideal for leading artistic visions and inspiring creative teams."
       }
     ],
-    recommendedNextStep: "Bachelor's Degree"
+    recommendedNextStep: "Bachelor's Degree",
+    relevantMajors: ["Business", "Marketing", "Communications", "Design"] // Added
   },
   INFJ: {
     vibe: "You're an insightful and compassionate advocate, driven by your values to make a meaningful difference.",
@@ -132,6 +148,7 @@ export const MBTI_MAP = {
       {
         title: "Psychologist",
         pathway: "Healthcare",
+        postSchoolPath: "college", // Added
         education: "Doctoral degree (Ph.D. or Psy.D.)",
         salary: "$94,010", // Median annual wage (2023)
         outlook: "Faster than average (6% growth, 2022-2032)",
@@ -140,6 +157,7 @@ export const MBTI_MAP = {
       {
         title: "Nonprofit Director",
         pathway: "Community & Social Services",
+        postSchoolPath: "college", // Added
         education: "Bachelor's degree (Master's often preferred)",
         salary: "$76,700", // Median annual wage for Social and Community Service Managers (2023)
         outlook: "Faster than average (9% growth, 2022-2032)",
@@ -148,13 +166,15 @@ export const MBTI_MAP = {
       {
         title: "Writer",
         pathway: "Art & Design",
+        postSchoolPath: "college", // Added
         education: "Bachelor’s in English, Journalism, or Communications",
         salary: "$73,150", // Median annual wage for Writers and Authors (2023)
         outlook: "Average (4% growth, 2022-2032)",
         description: "Ideal for expressing complex ideas and emotions through storytelling."
       }
     ],
-    recommendedNextStep: "Bachelor's or Doctoral Degree"
+    recommendedNextStep: "Bachelor's or Doctoral Degree",
+    relevantMajors: ["Psychology", "Social Work", "English", "Sociology"] // Added
   },
   INFP: {
     vibe: "You're a creative and idealistic dreamer, driven by your personal values and a desire for harmony.",
@@ -163,6 +183,7 @@ export const MBTI_MAP = {
       {
         title: "Author",
         pathway: "Art & Design",
+        postSchoolPath: "college", // Added
         education: "Bachelor’s in English, Creative Writing, or related field",
         salary: "$73,150", // Median annual wage for Writers and Authors (2023)
         outlook: "Average (4% growth, 2022-2032)",
@@ -171,6 +192,7 @@ export const MBTI_MAP = {
       {
         title: "Therapist",
         pathway: "Healthcare",
+        postSchoolPath: "college", // Added
         education: "Master’s degree",
         salary: "$57,070", // Median annual wage for Marriage and Family Therapists (2023)
         outlook: "Much faster than average (15% growth, 2022-2032)",
@@ -179,13 +201,15 @@ export const MBTI_MAP = {
       {
         title: "Art Director",
         pathway: "Art & Design",
+        postSchoolPath: "college", // Added
         education: "Bachelor’s in Art, Design, or Marketing",
         salary: "$108,290", // Median annual wage (2023)
         outlook: "Slower than average (2% growth, 2022-2032)",
         description: "Perfect for bringing artistic visions to life and inspiring creative teams."
       }
     ],
-    recommendedNextStep: "Bachelor’s or Master’s Degree"
+    recommendedNextStep: "Bachelor’s or Master’s Degree",
+    relevantMajors: ["Creative Writing", "Fine Arts", "Psychology", "Counseling"] // Added
   },
   ENFJ: {
     vibe: "You're a charismatic and empathetic leader, inspiring others and building strong, positive connections.",
@@ -194,6 +218,7 @@ export const MBTI_MAP = {
       {
         title: "Teacher",
         pathway: "Education & Training",
+        postSchoolPath: "college", // Added
         education: "Bachelor’s in Education + State Teaching Credential",
         salary: "$65,220", // Median annual wage for High School Teachers (2023)
         outlook: "Slower than average (1% growth, 2022-2032)",
@@ -202,6 +227,7 @@ export const MBTI_MAP = {
       {
         title: "Public Relations Specialist",
         pathway: "Marketing & Sales",
+        postSchoolPath: "college", // Added
         education: "Bachelor’s degree in Public Relations, Journalism, or Communications",
         salary: "$70,050", // Median annual wage (2023)
         outlook: "Faster than average (6% growth, 2022-2032)",
@@ -210,13 +236,15 @@ export const MBTI_MAP = {
       {
         title: "HR Manager",
         pathway: "Business & Management",
+        postSchoolPath: "college", // Added
         education: "Bachelor's degree",
         salary: "$136,890", // Median annual wage for Human Resources Managers (2023)
         outlook: "Average (5% growth, 2022-2032)",
         description: "Perfect for fostering a positive work environment and supporting employees."
       }
     ],
-    recommendedNextStep: "Bachelor's Degree"
+    recommendedNextStep: "Bachelor's Degree",
+    relevantMajors: ["Education", "Communications", "Human Resources", "Marketing"] // Added
   },
   ENFP: {
     vibe: "You're an imaginative and energetic enthusiast, always seeking new possibilities and exciting experiences.",
@@ -225,6 +253,7 @@ export const MBTI_MAP = {
       {
         title: "Actor",
         pathway: "Art & Design",
+        postSchoolPath: "job", // Can be direct entry, also college for training
         education: "Varies; talent and experience are key",
         salary: "Varies widely ($27.97/hour, 2023)", // Median hourly wage for Actors (2023)
         outlook: "Slower than average (3% growth, 2022-2032)",
@@ -233,6 +262,7 @@ export const MBTI_MAP = {
       {
         title: "Journalist",
         pathway: "Journalism & Media",
+        postSchoolPath: "college", // Added
         education: "Bachelor’s degree in Journalism or Communications",
         salary: "$55,960", // Median annual wage for Reporters and Correspondents (2023)
         outlook: "Little or no change (-2% decline, 2022-2032)",
@@ -241,13 +271,15 @@ export const MBTI_MAP = {
       {
         title: "Social Entrepreneur",
         pathway: "Community & Social Services",
+        postSchoolPath: "college", // Added (often involves a degree)
         education: "Varies (often Bachelor's in Business, Social Work, or related field)",
         salary: "$64,360", // Median annual wage for Fundraisers (2023)
         outlook: "Average (5% growth, 2022-2032)",
         description: "Ideal for combining your innovative ideas with a passion for social impact."
       }
     ],
-    recommendedNextStep: "Bachelor's Degree or Relevant Training/Experience"
+    recommendedNextStep: "Bachelor's Degree or Relevant Training/Experience",
+    relevantMajors: ["Drama", "Journalism", "Communications", "Business"] // Added
   },
   ISTJ: {
     vibe: "You're a responsible and detail-oriented organizer, valuing structure and dependable execution.",
@@ -256,6 +288,7 @@ export const MBTI_MAP = {
       {
         title: "Accountant",
         pathway: "Business & Finance",
+        postSchoolPath: "college", // Added
         education: "Bachelor's degree in accounting",
         salary: "$79,880", // Median annual wage (2023)
         outlook: "Average (4% growth, 2022-2032)",
@@ -264,6 +297,7 @@ export const MBTI_MAP = {
       {
         title: "Police Officer",
         pathway: "Public Service",
+        postSchoolPath: "trade", // Can be direct entry into academy
         education: "High school diploma + Police Academy",
         salary: "$72,280", // Median annual wage for Police and Detectives (2023)
         outlook: "Slower than average (3% growth, 2022-2032)",
@@ -272,13 +306,15 @@ export const MBTI_MAP = {
       {
         title: "Engineer",
         pathway: "Engineering",
+        postSchoolPath: "college", // Added
         education: "Bachelor’s degree in Engineering",
         salary: "$100,830", // Median annual wage for Mechanical Engineers (2023)
         outlook: "Faster than average (10% growth, 2022-2032)",
         description: "Ideal for designing and overseeing essential infrastructure projects."
       }
     ],
-    recommendedNextStep: "Bachelor's Degree or Police Academy Training"
+    recommendedNextStep: "Bachelor's Degree or Police Academy Training",
+    relevantMajors: ["Accounting", "Criminal Justice", "Engineering", "Business"] // Added
   },
   ISFJ: {
     vibe: "You're a nurturing and reliable supporter, always ready to care for others and maintain harmony.",
@@ -287,6 +323,7 @@ export const MBTI_MAP = {
       {
         title: "Nurse",
         pathway: "Healthcare",
+        postSchoolPath: "college", // Added
         education: "Bachelor’s in Nursing (BSN) + RN license",
         salary: "$86,070", // Median annual wage for Registered Nurses (2023)
         outlook: "Faster than average (6% growth, 2022-2032)",
@@ -295,6 +332,7 @@ export const MBTI_MAP = {
       {
         title: "Librarian",
         pathway: "Education & Training",
+        postSchoolPath: "college", // Added
         education: "Master’s in Library and Information Science (MLIS)",
         salary: "$64,320", // Median annual wage (2023)
         outlook: "Faster than average (6% growth, 2022-2032)",
@@ -303,13 +341,15 @@ export const MBTI_MAP = {
       {
         title: "Elementary Teacher",
         pathway: "Education & Training",
+        postSchoolPath: "college", // Added
         education: "Bachelor’s in Education + State Teaching Credential",
         salary: "$63,680", // Median annual wage (2023)
         outlook: "Slower than average (1% growth, 2022-2032)",
         description: "Perfect for patiently guiding young learners and creating a supportive environment."
       }
     ],
-    recommendedNextStep: "Bachelor’s or Master’s Degree"
+    recommendedNextStep: "Bachelor’s or Master’s Degree",
+    relevantMajors: ["Nursing", "Library Science", "Education", "Social Work"] // Added
   },
   ESTJ: {
     vibe: "You're an organized and practical leader, focused on efficiency and getting things done effectively.",
@@ -318,6 +358,7 @@ export const MBTI_MAP = {
       {
         title: "Operations Manager",
         pathway: "Business & Management",
+        postSchoolPath: "college", // Added
         education: "Bachelor’s in Business or related field",
         salary: "$94,920", // Median annual wage for Operations Research Analysts (2023)
         outlook: "Much faster than average (23% growth, 2022-2032)",
@@ -326,6 +367,7 @@ export const MBTI_MAP = {
       {
         title: "School Principal",
         pathway: "Education & Training",
+        postSchoolPath: "college", // Added
         education: "Master's degree + administrative license",
         salary: "$103,100", // Median annual wage for Education Administrators, K-12 (2023)
         outlook: "Slower than average (1% growth, 2022-2032)",
@@ -334,13 +376,15 @@ export const MBTI_MAP = {
       {
         title: "Project Manager",
         pathway: "Business & Management",
+        postSchoolPath: "college", // Added
         education: "Bachelor’s in Business or related field",
         salary: "$104,700", // Median annual wage for Construction Managers (2023)
         outlook: "Average (5% growth, 2022-2032)",
         description: "Perfect for planning, executing, and closing projects efficiently."
       }
     ],
-    recommendedNextStep: "Bachelor’s or Master’s Degree"
+    recommendedNextStep: "Bachelor’s or Master’s Degree",
+    relevantMajors: ["Business Administration", "Education Leadership", "Management"] // Added
   },
   ESFJ: {
     vibe: "You're a social and caring individual, excelling at connecting with people and organizing community efforts.",
@@ -349,6 +393,7 @@ export const MBTI_MAP = {
       {
         title: "Event Planner",
         pathway: "Hospitality & Events",
+        postSchoolPath: "college", // Added (can also be experience)
         education: "Bachelor's degree",
         salary: "$55,460", // Median annual wage (2023)
         outlook: "Faster than average (8% growth, 2022-2032)",
@@ -357,6 +402,7 @@ export const MBTI_MAP = {
       {
         title: "Nurse Educator",
         pathway: "Education & Training",
+        postSchoolPath: "college", // Added
         education: "Master's or doctoral degree in nursing",
         salary: "$84,380", // Median annual wage for Postsecondary Teachers (2023)
         outlook: "Faster than average (8% growth, 2022-2032)",
@@ -365,13 +411,15 @@ export const MBTI_MAP = {
       {
         title: "Customer Success Manager",
         pathway: "Business & Management",
+        postSchoolPath: "college", // Added
         education: "Bachelor's degree",
         salary: "$99,440", // Median annual wage for Management Analysts (2023)
         outlook: "Faster than average (10% growth, 2022-2032)",
         description: "Ideal for building strong relationships and ensuring client satisfaction."
       }
     ],
-    recommendedNextStep: "Bachelor’s or Master’s Degree"
+    recommendedNextStep: "Bachelor’s or Master’s Degree",
+    relevantMajors: ["Hospitality Management", "Nursing", "Business", "Communications"] // Added
   },
   ISTP: {
     vibe: "You're a tactical and observant problem-solver, excelling at hands-on tasks and figuring out how things work.",
@@ -380,6 +428,7 @@ export const MBTI_MAP = {
       {
         title: "Mechanic",
         pathway: "Trades & Technical",
+        postSchoolPath: "trade", // Added
         education: "High school diploma or equivalent; postsecondary training",
         salary: "$49,150", // Median annual wage for Automotive Technicians (2023)
         outlook: "Slower than average (1% growth, 2022-2032)",
@@ -388,6 +437,7 @@ export const MBTI_MAP = {
       {
         title: "Pilot",
         pathway: "Transportation",
+        postSchoolPath: "college", // Often a bachelor's for commercial, or flight school
         education: "Bachelor's degree (often) + flight training",
         salary: "$119,770", // Median annual wage for Commercial Pilots (2023)
         outlook: "Average (4% growth, 2022-2032)",
@@ -396,13 +446,15 @@ export const MBTI_MAP = {
       {
         title: "Technician",
         pathway: "Trades & Technical",
+        postSchoolPath: "community", // Added (Associate's or certificate)
         education: "Associate’s degree or postsecondary non-degree award",
         salary: "$64,320", // Median annual wage for Electrical and Electronics Repairers (2023)
         outlook: "Slower than average (3% growth, 2022-2032)",
         description: "Ideal for hands-on troubleshooting and maintaining technical systems."
       }
     ],
-    recommendedNextStep: "Postsecondary Training or Bachelor's Degree"
+    recommendedNextStep: "Postsecondary Training or Bachelor's Degree",
+    relevantMajors: ["Automotive Technology", "Aviation", "Electronics", "Vocational Training"] // Added
   },
   ISFP: {
     vibe: "You're an artistic and sensitive free spirit, expressing yourself creatively and enjoying the present moment.",
@@ -411,6 +463,7 @@ export const MBTI_MAP = {
       {
         title: "Graphic Designer",
         pathway: "Art & Design",
+        postSchoolPath: "college", // Added
         education: "Bachelor’s degree",
         salary: "$63,770", // Median annual wage (2023)
         outlook: "Slower than average (3% growth, 2022-2032)",
@@ -419,6 +472,7 @@ export const MBTI_MAP = {
       {
         title: "Veterinary Technician",
         pathway: "Healthcare",
+        postSchoolPath: "community", // Added (Associate's degree)
         education: "Associate’s degree or postsecondary non-degree award",
         salary: "$43,760", // Median annual wage (2023)
         outlook: "Much faster than average (21% growth, 2022-2032)",
@@ -427,13 +481,15 @@ export const MBTI_MAP = {
       {
         title: "Florist",
         pathway: "Art & Design",
+        postSchoolPath: "job", // Can be direct entry/on-the-job training
         education: "High school diploma or equivalent",
         salary: "$33,620", // Median annual wage (2023)
         outlook: "Slower than average (2% growth, 2022-2032)",
         description: "Perfect for your artistic touch in creating beautiful arrangements."
       }
     ],
-    recommendedNextStep: "High School Diploma, Associate's, or Bachelor's Degree"
+    recommendedNextStep: "High School Diploma, Associate's, or Bachelor's Degree",
+    relevantMajors: ["Graphic Design", "Fine Arts", "Veterinary Technology"] // Added
   },
   ESTP: {
     vibe: "You're an energetic and practical adventurer, thriving in dynamic environments and hands-on situations.",
@@ -442,6 +498,7 @@ export const MBTI_MAP = {
       {
         title: "Sales Representative",
         pathway: "Marketing & Sales",
+        postSchoolPath: "job", // Often direct entry or certificate
         education: "High school diploma or equivalent",
         salary: "$66,660", // Median annual wage for Wholesale and Manufacturing Sales Reps (2023)
         outlook: "Slower than average (2% growth, 2022-2032)",
@@ -450,6 +507,7 @@ export const MBTI_MAP = {
       {
         title: "Paramedic",
         pathway: "Healthcare",
+        postSchoolPath: "trade", // Can be certification or associate's
         education: "EMT certification or Associate’s degree in Paramedicine",
         salary: "$49,020", // Median annual wage for EMTs and Paramedics (2023)
         outlook: "Average (5% growth, 2022-2032)",
@@ -458,13 +516,15 @@ export const MBTI_MAP = {
       {
         title: "Construction Supervisor",
         pathway: "Construction & Trades",
+        postSchoolPath: "trade", // Can be apprenticeship/experience
         education: "High school diploma + apprenticeship or associate degree",
         salary: "$104,700", // Median annual wage for Construction Managers (2023)
         outlook: "Average (5% growth, 2022-2032)",
         description: "Perfect for leading teams and managing hands-on building projects."
       }
     ],
-    recommendedNextStep: "High School Diploma with Training, or Associate's Degree"
+    recommendedNextStep: "High School Diploma with Training, or Associate's Degree",
+    relevantMajors: ["Business", "Emergency Medical Services", "Construction Management"] // Added
   },
   ESFP: {
     vibe: "You're a fun-loving and warm performer, bringing joy and energy to every situation.",
@@ -473,6 +533,7 @@ export const MBTI_MAP = {
       {
         title: "Performer",
         pathway: "Art & Design",
+        postSchoolPath: "job", // Varies widely
         education: "Varies; talent and experience are key",
         salary: "Varies widely ($27.97/hour, 2023)", // Median hourly wage for Actors (2023)
         outlook: "Slower than average (3% growth, 2022-2032)",
@@ -481,6 +542,7 @@ export const MBTI_MAP = {
       {
         title: "Recreation Coordinator",
         pathway: "Community & Social Services",
+        postSchoolPath: "college", // Added (often a bachelor's)
         education: "Bachelor's degree",
         salary: "$32,600", // Median annual wage for Recreation Workers (2023)
         outlook: "Faster than average (6% growth, 2022-2032)",
@@ -489,12 +551,14 @@ export const MBTI_MAP = {
       {
         title: "Hospitality Manager",
         pathway: "Hospitality & Events",
+        postSchoolPath: "job", // Can be direct entry or bachelor's
         education: "High school diploma or Bachelor's in Hospitality",
         salary: "$68,960", // Median annual wage for Lodging Managers (2023)
         outlook: "Slower than average (1% growth, 2022-2032)",
         description: "Ideal for creating welcoming experiences and leading service teams."
       }
     ],
-    recommendedNextStep: "Varies (Experience, High School, or Bachelor's Degree)"
+    recommendedNextStep: "Varies (Experience, High School, or Bachelor's Degree)",
+    relevantMajors: ["Theater", "Recreation Management", "Hospitality Management"] // Added
   }
 };
