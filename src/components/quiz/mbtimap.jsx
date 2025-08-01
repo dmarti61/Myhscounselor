@@ -1,5 +1,77 @@
 import React from 'react';
 
+// Helper function to get more user-friendly names for pathways
+export const getPathwayDisplay = (path) => {
+  switch (path) {
+    case "college":
+      return "**College**";
+    case "community":
+      return "**Community College**";
+    case "trade":
+      return "**Trade School**";
+    case "job":
+      return "**Direct Job Entry**";
+    default:
+      return path; // Fallback for any unexpected paths
+  }
+};
+
+// Function to generate the recommended next step phrase dynamically
+export const generateNextStepPhrase = (mbtiTypeData) => {
+  const pathways = new Set();
+  mbtiTypeData.careers.forEach((career) => {
+    // Ensure postSchoolPath exists before adding
+    if (career.postSchoolPath) {
+      pathways.add(career.postSchoolPath.toLowerCase()); // Store in lowercase for consistency
+    }
+  });
+
+  let phrase = "Your journey could involve ";
+  // Sort pathways for consistent output order (e.g., college, community, job, trade)
+  // This custom sort order places 'college' first, then 'community', 'trade', 'job'.
+  const sortedPathways = Array.from(pathways).sort((a, b) => {
+    const order = { "college": 1, "community": 2, "trade": 3, "job": 4 };
+    return (order[a] || 99) - (order[b] || 99); // Use 99 for unknown paths to push them to end
+  });
+
+  if (sortedPathways.length === 0) {
+    phrase = "No specific post-school paths are listed for this type. Consider exploring various educational and career avenues.";
+  } else if (sortedPathways.length === 1) {
+    phrase += getPathwayDisplay(sortedPathways[0]);
+  } else if (sortedPathways.length === 2) {
+    phrase += `${getPathwayDisplay(sortedPathways[0])} or ${getPathwayDisplay(sortedPathways[1])}`;
+  } else { // More than two pathways
+    const lastPathway = getPathwayDisplay(sortedPathways.pop()); // Remove and get the last one
+    phrase += `${sortedPathways.map((p) => getPathwayDisplay(p)).join(", ")}, or ${lastPathway}`;
+  }
+
+  phrase += ".";
+  return phrase;
+};
+
+// Function to generate the recommended next step link dynamically based on the primary pathway
+export const generateNextStepLink = (mbtiTypeData) => {
+  const pathways = new Set();
+  mbtiTypeData.careers.forEach((career) => {
+    if (career.postSchoolPath) {
+      pathways.add(career.postSchoolPath.toLowerCase());
+    }
+  });
+
+  // Determine a primary link based on the most common or highest "level" pathway
+  if (pathways.has("college")) {
+    return "/college-guide";
+  } else if (pathways.has("community")) {
+    return "/two-year"; // Or a specific community college guide
+  } else if (pathways.has("trade")) {
+    return "/trade-school-guide"; // Or a specific trade school guide
+  } else if (pathways.has("job")) {
+    return "/direct-entry-careers";
+  }
+  return "/education-paths"; // A general fallback link
+};
+
+
 export const MBTI_MAP = {
   INTJ: {
     vibe: "You're a strategic mastermind who loves solving complex problems with logic and innovation.",
@@ -51,8 +123,6 @@ export const MBTI_MAP = {
         description: "Translates complex technical information into clear, concise documentation."
       }
     ],
-    recommendedNextStep: "Bachelor’s or Master’s Degree",
-    recommendedNextStepLink: "/college-guide",
     relevantMajors: ["Computer Science", "Engineering", "Mathematics", "Architecture", "Information Technology"]
   },
   INTP: {
@@ -105,8 +175,6 @@ export const MBTI_MAP = {
         description: "Communicates complex scientific concepts to a general audience."
       }
     ],
-    recommendedNextStep: "Master’s or Ph.D.",
-    recommendedNextStepLink: "/college-guide",
     relevantMajors: ["Physics", "Philosophy", "Computer Science", "Engineering", "Chemistry", "Biology"]
   },
   ENTJ: {
@@ -159,8 +227,6 @@ export const MBTI_MAP = {
         description: "Leads sales teams and develops strategies to achieve revenue goals."
       }
     ],
-    recommendedNextStep: "Bachelor's, Master's, or J.D. Degree",
-    recommendedNextStepLink: "/college-guide",
     relevantMajors: ["Business Administration", "Law", "Economics", "Management", "Finance"]
   },
   ENTP: {
@@ -213,8 +279,6 @@ export const MBTI_MAP = {
         description: "Helps businesses develop and implement new ideas and technologies."
       }
     ],
-    recommendedNextStep: "Bachelor's Degree",
-    recommendedNextStepLink: "/college-guide",
     relevantMajors: ["Business", "Marketing", "Communications", "Design", "Innovation", "Engineering"]
   },
   INFJ: {
@@ -267,8 +331,6 @@ export const MBTI_MAP = {
         description: "Mobilizes communities to advocate for social change and address local issues."
       }
     ],
-    recommendedNextStep: "Bachelor's or Doctoral Degree",
-    recommendedNextStepLink: "/college-guide",
     relevantMajors: ["Psychology", "Social Work", "English", "Sociology", "Counseling"]
   },
   INFP: {
@@ -321,8 +383,6 @@ export const MBTI_MAP = {
         description: "Creates visual art for clients across various mediums, expressing unique vision."
       }
     ],
-    recommendedNextStep: "Bachelor’s or Master’s Degree",
-    recommendedNextStepLink: "/college-guide",
     relevantMajors: ["Creative Writing", "Fine Arts", "Psychology", "Counseling", "Liberal Arts"]
   },
   ENFJ: {
@@ -375,8 +435,6 @@ export const MBTI_MAP = {
         description: "Ensures passenger safety and comfort, excelling in service and communication."
       }
     ],
-    recommendedNextStep: "Bachelor's Degree",
-    recommendedNextStepLink: "/college-guide",
     relevantMajors: ["Education", "Communications", "Human Resources", "Marketing", "Social Sciences"]
   },
   ENFP: {
@@ -429,8 +487,6 @@ export const MBTI_MAP = {
         description: "Shares knowledge and enthusiasm about places of interest with groups."
       }
     ],
-    recommendedNextStep: "Bachelor's Degree or Relevant Training/Experience",
-    recommendedNextStepLink: "/college-guide",
     relevantMajors: ["Drama", "Journalism", "Communications", "Business", "Marketing"]
   },
   ISTJ: {
@@ -483,8 +539,6 @@ export const MBTI_MAP = {
         description: "Maintains financial records, ensuring accuracy and compliance."
       }
     ],
-    recommendedNextStep: "Bachelor's Degree, Police Academy Training, or Associate's Degree",
-    recommendedNextStepLink: "/college-guide",
     relevantMajors: ["Accounting", "Criminal Justice", "Engineering", "Business Administration", "Paralegal Studies"]
   },
   ISFJ: {
@@ -537,8 +591,6 @@ export const MBTI_MAP = {
         description: "Provides care and supervision to children in various settings."
       }
     ],
-    recommendedNextStep: "Bachelor’s or Master’s Degree",
-    recommendedNextStepLink: "/college-guide",
     relevantMajors: ["Nursing", "Library Science", "Education", "Social Work", "Early Childhood Education"]
   },
   ESTJ: {
@@ -591,8 +643,6 @@ export const MBTI_MAP = {
         description: "Oversees daily office operations, maintaining efficiency and order."
       }
     ],
-    recommendedNextStep: "Bachelor’s or Master’s Degree",
-    recommendedNextStepLink: "/college-guide",
     relevantMajors: ["Business Administration", "Education Leadership", "Management", "Construction Management"]
   },
   ESFJ: {
@@ -645,8 +695,6 @@ export const MBTI_MAP = {
         description: "Oversees daily operations of a retail store, focusing on customer service and sales."
       }
     ],
-    recommendedNextStep: "Bachelor’s or Master’s Degree",
-    recommendedNextStepLink: "/college-guide",
     relevantMajors: ["Hospitality Management", "Nursing", "Business", "Communications", "Marketing"]
   },
   ISTP: {
@@ -699,8 +747,6 @@ export const MBTI_MAP = {
         description: "Operates machine tools to produce precision metal parts."
       }
     ],
-    recommendedNextStep: "Postsecondary Training or Bachelor's Degree",
-    recommendedNextStepLink: "/two-year",
     relevantMajors: ["Automotive Technology", "Aviation", "Electronics", "Vocational Training", "Engineering Technology"]
   },
   ISFP: {
@@ -753,8 +799,6 @@ export const MBTI_MAP = {
         description: "Captures images for artistic, commercial, or journalistic purposes."
       }
     ],
-    recommendedNextStep: "High School Diploma, Associate's, or Bachelor's Degree",
-    recommendedNextStepLink: "/two-year",
     relevantMajors: ["Graphic Design", "Fine Arts", "Veterinary Technology", "Photography", "Horticulture"]
   },
   ESTP: {
@@ -807,8 +851,6 @@ export const MBTI_MAP = {
         description: "Leads groups in physical activities and promotes healthy lifestyles."
       }
     ],
-    recommendedNextStep: "High School Diploma with Training, or Associate's Degree",
-    recommendedNextStepLink: "/two-year",
     relevantMajors: ["Business", "Emergency Medical Services", "Construction Management", "Fire Science", "Kinesiology"]
   },
   ESFP: {
@@ -861,8 +903,6 @@ export const MBTI_MAP = {
         description: "Uses creative skills to style hair, apply makeup, and provide beauty services."
       }
     ],
-    recommendedNextStep: "Varies (Experience, High School, or Bachelor's Degree)",
-    recommendedNextStepLink: "/direct-entry-careers",
     relevantMajors: ["Theater", "Recreation Management", "Hospitality Management", "Cosmetology", "Tourism"]
   }
 };
