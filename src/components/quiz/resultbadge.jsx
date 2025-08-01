@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 // Ensure correct paths to your data files (MBTI_MAP and CAREER_STATS)
-import { MBTI_MAP } from '../../data/mbtimap'; // Example: Adjust path as needed
-import { CAREER_STATS } from '../../data/careerstats'; // Example: Adjust path as needed
+import { MBTI_MAP } from './mbtimap'; // Make sure the path is correct
+import { CAREER_STATS } from './careerstats';
 import Share_Card from './sharecard';
 import '../../styles/resultbadge.css';
 
