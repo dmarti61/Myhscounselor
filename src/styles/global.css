@@ -255,6 +255,11 @@ button:hover {
     width: auto; /* Allow buttons to take natural width */
     max-width: none; /* Remove max-width constraint */
   }
+  .main-content {
+  overflow-y: auto;
+  padding-left: 10px;
+  padding-right: 10px;
+  }
 }
 
 .option-btn.selected {
@@ -266,9 +271,4 @@ button:hover {
 .option-btn:disabled {
   opacity: 0.7;
   pointer-events: none;
-}
-.main-content {
-  overflow-y: auto;
-  padding-left: 10px;
-  padding-right: 10px;
 }
