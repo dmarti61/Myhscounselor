@@ -258,6 +258,7 @@ button:hover {
   .main-content {
   overflow-y: auto;
   padding-left: 10px;
+  padding-top: 0px;
   padding-right: 10px;
   }
 }
