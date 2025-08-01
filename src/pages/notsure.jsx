@@ -9,7 +9,6 @@ const NotSure = () => {
       <p className="intro">
         It’s completely okay to feel unsure about your path after high school. You’re not behind—and you’re definitely not alone. The truth is, most people don't have it all figured out, especially at your age! This page is here to help you slow down, explore your options without pressure, and find some calm amidst the big decisions.
       </p>
-      <br></br>
       <hr />
       <h3>🧠 Taking a Deep Breath: Actionable Steps to Calm Down</h3>
       <p>When you're feeling overwhelmed, the first step is to recognize that feeling and then give yourself permission to pause. Here are some strategies that can help you find your calm:</p>
@@ -24,7 +23,6 @@ const NotSure = () => {
           </ul>
         </li>
       </ul>
-<br></br>
       <hr />
 
       <h3>🔍 Regrouping: Actionable Steps for Exploration</h3>
@@ -58,7 +56,6 @@ const NotSure = () => {
           <p className="action-tip">**Action:** Do a quick online search for "career centers near [your city/region]" or "job shadow programs for high school students [your city/region]". See what resources are available. You don't have to sign up for anything, just knowing what's out there can feel empowering.</p>
         </li>
       </ul>
-<br></br>
       <hr />
 
       <h3>✨ Remember: You're in Control</h3>
