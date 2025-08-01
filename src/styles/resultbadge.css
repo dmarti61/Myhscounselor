@@ -11,7 +11,7 @@
 }
 
 /* --- MBTI Type Section --- */
-.mbti-type-header {
+.mbti-type {
   font-size: 2.5rem; /* Larger for impact */
   color: #0056b3; /* A prominent color */
   text-align: center;
@@ -19,12 +19,12 @@
   letter-spacing: -0.5px;
 }
 
-.mbti-type-bold {
+.mbti-type {
   font-weight: 800; /* Extra bold for the type itself */
   color: #007bff; /* A vibrant blue */
 }
 
-.mbti-vibe {
+.vibe {
   font-size: 1.15rem;
   text-align: center;
   color: #555;
@@ -33,7 +33,7 @@
 }
 
 /* --- Strengths Section --- */
-h4 {
+h3 {
   font-size: 1.4rem;
   color: #0056b3;
   margin-top: 2rem;
@@ -42,7 +42,7 @@ h4 {
   padding-bottom: 5px;
 }
 
-.strength-list {
+.strengths-list {
   list-style: none; /* Remove default bullets */
   padding: 0;
   display: grid; /* For a nice grid layout */
@@ -50,7 +50,7 @@ h4 {
   gap: 0.5rem;
 }
 
-.strength-list li {
+.strengths-list li {
   background: #e9f5ff; /* Light blue background for each strength */
   padding: 0.6rem 1rem;
   border-radius: 8px;
