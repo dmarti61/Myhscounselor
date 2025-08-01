@@ -129,7 +129,8 @@ const ResultBadge = () => {
       vibe: mbtiData.vibe,
       strengths: mbtiData.strengths,
       recommendedNextStep: mbtiData.recommendedNextStep,
-      relevantMajors: mbtiData.relevantMajors, // Corrected potential typo from 'relevantMajtiors' to 'relevantMajors'
+      recommendedNextStepLink: mbtiData.recommendedNextStepLink,
+      relevantMajors: mbtiData.relevantMajors,
       sortedCareers: sortedCareers,
     });
     setLoading(false); // Data processed successfully, set loading to false
@@ -167,9 +168,17 @@ const ResultBadge = () => {
       </div>
 
       <div className="section-block">
-        <h3>Recommended Next Step:</h3>
-        <p>{data.recommendedNextStep}</p>
-      </div>
+      <h3>Recommended Next Step:</h3>
+        {data.recommendedNextStepLink ? ( // Conditionally render as a link
+        <p>
+          <a href={data.recommendedNextStepLink} target="_blank" rel="noopener noreferrer">
+        {data.recommendedNextStep}
+          </a>
+        </p>
+    ) : (
+    <p>{data.recommendedNextStep}</p>
+  )}
+</div>
 
       {data.relevantMajors && data.relevantMajors.length > 0 && (
         <div className="section-block">
