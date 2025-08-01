@@ -52,7 +52,7 @@ const TalkTemplates = () => {
         </p>
       </div>
 
-      ---
+  <hr>  </hr>
 
       <div className="template-section">
         <h2>🎓 College Recommendation</h2>
@@ -62,6 +62,7 @@ const TalkTemplates = () => {
         </p>
       </div>
       <p></p>
+      <hr></hr>
       <div className="template-section">
         <h2>🔧 Trade School Reference</h2>
         <p>
@@ -70,6 +71,7 @@ const TalkTemplates = () => {
         </p>
       </div>
       <p></p>
+      <hr></hr>
       <div className="template-section">
         <h2>💼 Job Reference</h2>
         <p>
