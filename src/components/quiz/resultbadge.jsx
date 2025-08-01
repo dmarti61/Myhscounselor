@@ -1,47 +1,67 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { MBTI_MAP } from './mbtimap';
-import ShareCard from './sharecard';
-import '../../styles/resultbadge.css';
+import { MBTI_MAP } from './mbtimap'; // Assuming mbtimap.js is in the same directory
+import ShareCard from './sharecard'; // Assuming sharecard.js is in the same directory
+import '../../styles/resultbadge.css'; // Assuming your CSS is located here
 
-const ResultBadge = ({ mbtiType: propType, preferenceResult: propPreference }) => {
+const ResultBadge = ({ mbtiType: propMbtiType, preferences: propPreferences }) => {
   const location = useLocation();
   const navigate = useNavigate();
   const [error, setError] = useState('');
   const [data, setData] = useState(null);
 
-  let mbtiType = propType || location.state?.mbtiType;
-  let preferenceResult = propPreference || location.state?.preferences?.pathPreference; // Access specific preference ID
+  // Determine MBTI type: priority from props, then location state, then localStorage
+  let mbtiType = propMbtiType || location.state?.mbtiType;
 
-  // Try to recover MBTI from localStorage if not passed via props or state
+  // Determine preferences: priority from props, then location state
+  // We now receive the full 'preferences' object
+  let preferences = propPreferences || location.state?.preferences;
+
+  // Try to recover MBTI from localStorage if not found yet
   if (!mbtiType) {
     const stored = localStorage.getItem('mbti_result');
     if (stored) {
-      const parsed = JSON.parse(stored);
-      const now = new Date().getTime();
-      if (parsed.expires && parsed.expires > now) {
-        mbtiType = parsed.type;
-      } else {
-        localStorage.removeItem('mbti_result');
+      try {
+        const parsed = JSON.parse(stored);
+        const now = new Date().getTime();
+        // Check if stored data is still valid (e.g., not expired)
+        if (parsed.expires && parsed.expires > now && parsed.type) {
+          mbtiType = parsed.type;
+        } else {
+          localStorage.removeItem('mbti_result'); // Clear expired or malformed data
+        }
+      } catch (e) {
+        console.error("Failed to parse MBTI from localStorage:", e);
+        localStorage.removeItem('mbti_result'); // Clear invalid JSON
       }
     }
   }
 
   useEffect(() => {
-    const key = (mbtiType || '').toUpperCase();
+    // Only proceed if we have an MBTI type
+    if (!mbtiType) {
+      setError('Oops! We couldn\'t find your personality type. Please retake the quiz.');
+      return;
+    }
+
+    const key = mbtiType.toUpperCase();
     const found = MBTI_MAP[key];
 
     if (found) {
-      let careers = [...found.careers]; // Start with all careers for the MBTI type
+      let careers = [...(found.careers || [])]; // Ensure careers is an array, even if empty
 
-      // Prioritize/highlight careers based on preferenceResult
-      if (preferenceResult) {
-        const preferredPathway = preferenceResult.toLowerCase();
+      // --- Apply Preference-based Sorting/Highlighting ---
+      // We will now primarily use 'pathPreference' for sorting careers,
+      // but the structure is ready to expand for other preferences.
+      const preferredPathway = preferences?.pathPreference?.toLowerCase();
+
+      if (preferredPathway) {
         const matchingCareers = [];
         const otherCareers = [];
 
         careers.forEach(c => {
-          if (c.pathway.toLowerCase() === preferredPathway) {
+          // Ensure career pathway exists and is a string for comparison
+          if (c.pathway && typeof c.pathway === 'string' && c.pathway.toLowerCase() === preferredPathway) {
             matchingCareers.push(c);
           } else {
             otherCareers.push(c);
@@ -51,80 +71,104 @@ const ResultBadge = ({ mbtiType: propType, preferenceResult: propPreference }) =
         // Combine them, putting preferred careers first
         careers = [...matchingCareers, ...otherCareers];
       }
+      // --- End Preference Logic ---
 
       setData({
         ...found,
-        sortedCareers: careers, // Renamed from filteredCareers for clarity
+        // Ensure strengths, relevantMajors are arrays
+        strengths: found.strengths || [],
+        relevantMajors: found.relevantMajors || [],
+        sortedCareers: careers, // Contains careers potentially reordered by preference
       });
     } else {
       setError('Oops! We couldn\'t find your personality type. Please retake the quiz.');
     }
-  }, [mbtiType, preferenceResult]);
+  }, [mbtiType, preferences]); // Depend on preferences as well, so re-sorts if they change
 
   const handleRetake = () => {
-    localStorage.removeItem('mbti_result');
-    navigate('/');
+    localStorage.removeItem('mbti_result'); // Clear stored result on retake
+    navigate('/'); // Navigate to the root path, presumably where the MBTI quiz starts
   };
 
+  // --- Render Logic ---
   if (error) {
-    return <p className="error">{error}</p>;
+    return (
+      <div className="result-badge error-container">
+        <p className="error-message">{error}</p>
+        <button className="retake-btn" onClick={handleRetake}>
+          🔁 Retake the Quiz
+        </button>
+      </div>
+    );
   }
 
   if (!data) {
-    return <p>Loading your results...</p>;
+    return <p className="loading-message">Loading your results...</p>;
   }
+
+  // Ensure mbtiType is available for display (should be, given the checks above)
+  const displayMbtiType = mbtiType ? mbtiType.toUpperCase() : 'UNKNOWN';
 
   return (
     <div className="result-badge">
-      {/* The MBTI Part: "Yeah, that's me!" */}
-      <h2 className="mbti-type-header">You're an <span className="mbti-type-bold">{mbtiType.toUpperCase()}</span>!</h2>
-      {/* Directly use data.vibe from MBTI_MAP */}
+      <h2 className="mbti-type-header">You're an <span className="mbti-type-bold">{displayMbtiType}</span>!</h2>
       <p className="mbti-vibe">{data.vibe}</p>
 
       <h4>My Superpowers (Strengths)</h4>
-      <ul className="strength-list">
-        {data.strengths.map((s) => (
-          <li key={s}>{s}</li>
-        ))}
-      </ul>
+      {data.strengths.length > 0 ? (
+        <ul className="strength-list">
+          {data.strengths.map((s, idx) => (
+            <li key={idx}>{s}</li> // Using index for key as strengths are simple strings
+          ))}
+        </ul>
+      ) : (
+        <p>No specific strengths listed for this type.</p>
+      )}
 
       ---
 
-      {/* The Career Recommendations: "What can I actually DO?" */}
       <h4>Suggested Careers for You</h4>
-      <ul className="career-list">
-        {data.sortedCareers.map((c) => (
-          <li key={c.name} className="career-item">
-            <span className={`career-name ${c.pathway.toLowerCase() === preferenceResult?.toLowerCase() ? 'highlighted-career' : ''}`}>
-              {c.pathway.toLowerCase() === preferenceResult?.toLowerCase() ? '🌟 ' : ''}
-              {c.name}
-            </span>
-            <span className="pathway"> ({c.pathway})</span>
-            {c.description && (
-              <p className="career-description">{c.description}</p>
-            )}
-          </li>
-        ))}
-      </ul>
+      {data.sortedCareers.length > 0 ? (
+        <ul className="career-list">
+          {data.sortedCareers.map((c, idx) => ( // Using idx as a fallback key; consider c.id if available
+            <li key={c.name || idx} className="career-item"> {/* Fallback to idx if c.name is missing */}
+              <span className={`career-name ${c.pathway?.toLowerCase() === preferredPathway ? 'highlighted-career' : ''}`}>
+                {c.pathway?.toLowerCase() === preferredPathway ? '🌟 ' : ''}
+                {c.name}
+              </span>
+              {c.pathway && <span className="pathway"> ({c.pathway})</span>}
+              {c.description && (
+                <p className="career-description">{c.description}</p>
+              )}
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p>No specific career suggestions found for your type.</p>
+      )}
 
-      {/* Simplified Relevant College Majors (Conditional Display) */}
-      {data.relevantMajors && data.relevantMajors.length > 0 && (
+
+      {/* Display relevant majors only if they exist */}
+      {data.relevantMajors.length > 0 && (
         <>
           <h4>Relevant College Majors</h4>
           <ul className="major-list">
-            {data.relevantMajors.map((major) => (
-              <li key={major}>{major}</li>
+            {data.relevantMajors.map((major, idx) => (
+              <li key={idx}>{major}</li> // Using index for key as majors are simple strings
             ))}
           </ul>
         </>
       )}
 
-      <ShareCard
-        type={mbtiType.toUpperCase()}
-        title={mbtiType.toUpperCase()}
-        topCareer={data.sortedCareers[0]} // uses sorted result
-        preference={preferenceResult}
-      />
+      {/* ShareCard only if data is fully loaded and careers exist */}
+      {data.sortedCareers.length > 0 && (
+        <ShareCard
+          type={displayMbtiType}
+          title={`My MBTI Type: ${displayMbtiType}`}
+          topCareer={data.sortedCareers[0]} // Pass the first (potentially highlighted) career
+          preference={preferences?.pathPreference} // Pass the specific preference if needed by ShareCard
+        />
+      )}
 
       <button className="retake-btn" onClick={handleRetake}>
         🔁 Retake the Quiz
