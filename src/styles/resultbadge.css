@@ -1,5 +1,5 @@
 /* General styling for the entire result badge component */
-.result-badge {
+.result-badge-container {
   max-width: 700px;
   margin: auto;
   padding: 2rem;
@@ -182,13 +182,4 @@ h4 {
     padding: 12px 20px;
     font-size: 1rem;
   }
-}
-
-/* --- You can remove these if not used by any other component --- */
-.section-block, .career-card {
-  /* Ensure these classes are either used or removed if they are leftovers */
-  /* If .result-page is the main container, you might not need .section-block */
-  /* If you replaced .career-card with .career-item, remove .career-card */
-  /* If disclaimer is no longer needed, remove it */
-  display: none; /* Temporarily hide if not used to avoid confusion */
 }
