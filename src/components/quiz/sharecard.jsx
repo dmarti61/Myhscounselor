@@ -2,19 +2,21 @@ import React from 'react';
 import { exportResultsAsPDF } from '../../utils/exportpdf';
 import '../../styles/sharecard.css';
 
+// Changed 'type' to 'mbtiType' to match the prop name passed from ResultBadge
+// Added 'quizResults' to destructure the user's preferences
 const ShareCard = ({
-  type,              // MBTI type string, e.g. "INTJ"
-  title,             // MBTI title, e.g. "The Architect" (from ResultBadge, but not directly used in PDF export)
-  topCareer,         // Career object: { name, pathway } (passed to PDF, though PDF uses MBTI_MAP careers)
-  preference = null, // Optional: user's path preference, e.g. "College", "Trade School"
-  preferenceDesc = ''// Optional: description of the preferred path (not currently used in PDF export)
+  mbtiType,           // MBTI type string, e.g., "ESTJ"
+  quizResults = {}    // Contains the preferences, e.g., { pathPreference: 'college' }
 }) => {
+
+  // Extract the specific preference needed for PDF export
+  const preference = quizResults?.pathPreference;
+
   const handleDownload = () => {
-    // The exportResultsAsPDF function only needs 'type' and 'preference'
-    // to generate the correct PDF content based on MBTI_MAP and CAREER_STATS.
+    // Pass 'mbtiType' and 'preference' to the export function
     exportResultsAsPDF({
-      type,
-      preference,
+      type: mbtiType, // 'exportResultsAsPDF' expects 'type', so we map 'mbtiType' to it
+      preference: preference,
     });
   };
 
