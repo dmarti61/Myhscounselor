@@ -185,7 +185,7 @@ h4 {
 }
 
 /* --- You can remove these if not used by any other component --- */
-.section-block, .career-card, .disclaimer {
+.section-block, .career-card {
   /* Ensure these classes are either used or removed if they are leftovers */
   /* If .result-page is the main container, you might not need .section-block */
   /* If you replaced .career-card with .career-item, remove .career-card */
