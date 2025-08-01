@@ -34,6 +34,12 @@ body {
   padding-right: 10px;
 }
 
+hr {
+  border: none;
+  border-top: 2px dashed #ccc; /* Dashed line for subtle separation */
+  margin: 3rem 0; /* More spacing around horizontal rules */
+}
+
 /* Prevent background scrolling when nav is open */
 /* IMPORTANT: Apply overflow hidden directly to html and body, and use position: fixed on body */
 body.menu-open {
