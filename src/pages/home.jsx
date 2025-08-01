@@ -1,17 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import OnboardingOverlay from '../components/onboardingoverlay';
 import '../styles/global.css';
 
 const Home = () => {
-  const [showOnboarding, setShowOnboarding] = useState(false);
   const [hasResult, setHasResult] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
     const hasVisited = localStorage.getItem('hasVisited');
     if (!hasVisited) {
-      setShowOnboarding(true);
       localStorage.setItem('hasVisited', 'true');
     }
 
@@ -34,7 +31,6 @@ const Home = () => {
 
   return (
     <main className="home" role="main">
-      {showOnboarding && <OnboardingOverlay />}
       <h1 tabIndex="0" aria-label="Welcome to My High School Counselor">🎓 My HS Counselor</h1>
 
       <p>
