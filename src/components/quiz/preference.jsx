@@ -77,8 +77,7 @@ const PreferenceQuiz = () => {
       <button
         onClick={handleNext}
         className="next-btn"
-        disabled={Object.keys(answers).length < questions.length}
-      >
+       >
         See Your Results →
       </button>
     </div>
