@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom'; // Import useLocation
 import { MBTI_MAP } from './mbtimap'; // Make sure the path is correct
 import { CAREER_STATS } from './careerstats'; // Make sure the path is correct
 import Share_Card from './sharecard';
+import '../../styles/resultbadge.css';
 
 // ResultBadge no longer receives mbtiType and quizResults as direct props
 // It will now extract them from location.state
