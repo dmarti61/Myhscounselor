@@ -92,6 +92,12 @@ const ResultBadge = () => {
 
     const standardizedMbtiType = mbtiType.toUpperCase();
 
+    // --- ADD THESE NEW CONSOLE.LOGS HERE ---
+    console.log('DEBUG: quizResults object:', quizResults);
+    console.log('DEBUG: quizResults.pathPreference:', quizResults?.pathPreference);
+    console.log('DEBUG: currentPreferredPathway (lowercase):', preferredPathway); // preferredPathway is already derived from quizResults?.pathPreference?.toLowerCase()
+    // --- END NEW CONSOLE.LOGS ---
+    
     if (!MBTI_MAP[standardizedMbtiType]) {
       console.error(`MBTI_MAP does not contain key: ${standardizedMbtiType}`);
       setData(null); // Clear data if MBTI type is invalid
@@ -109,7 +115,8 @@ const ResultBadge = () => {
     let nonMatchingCareers = [];
 
     careers.forEach(c => {
-      if (c.postSchoolPath && typeof c.postSchoolPath === 'string' && c.postSchoolPath.toLowerCase() === currentPreferredPathway) {
+      console.log(`DEBUG: Career: ${c.title}, postSchoolPath: ${c.postSchoolPath?.toLowerCase()}, matches preferredPathway: ${c.postSchoolPath?.toLowerCase() === preferredPathway}`); // NEW DEBUG
+       if (c.postSchoolPath && typeof c.postSchoolPath === 'string' && c.postSchoolPath.toLowerCase() === currentPreferredPathway) {
         matchingCareers.push(c);
       } else {
         nonMatchingCareers.push(c);
