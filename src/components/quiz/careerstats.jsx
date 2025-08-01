@@ -46,8 +46,6 @@ export const CAREER_STATS = {
     environment: "Corporate offices, tech companies, or freelance, focusing on clear documentation",
   },
 
-  ---
-
   // College & Research
   "Academic Researcher": { // Often falls under various research categories
     soc_code: "25-1000", // Postsecondary Teachers (as a proxy, given the academic context)
