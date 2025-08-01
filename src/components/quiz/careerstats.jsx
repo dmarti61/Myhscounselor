@@ -93,8 +93,6 @@ export const CAREER_STATS = {
     environment: "News organizations, online media, freelance, communicating complex scientific topics",
   },
 
-  ---
-
   // Business & Law
   "Business Executive": { // Falls under Top Executives
     soc_code: "11-1011", // Chief Executives
@@ -205,8 +203,6 @@ export const CAREER_STATS = {
     environment: "Hotels, resorts, event venues, dynamic and people-centric",
   },
 
-  ---
-
   // Creative Arts
   "Creative Director": { // Often categorized as Art Directors
     soc_code: "27-1011", // Art Directors
@@ -289,8 +285,6 @@ export const CAREER_STATS = {
     certifications: [],
     environment: "Studios, on-location shoots, freelance, combining technical skill with artistic vision",
   },
-
-  ---
 
   // Education & Human Services
   "Psychologist": {
@@ -438,8 +432,6 @@ export const CAREER_STATS = {
     environment: "Homes, daycare centers, schools, providing direct care and supervision",
   },
 
-  ---
-
   // Communication & Media
   "Public Relations Specialist": {
     soc_code: "13-1073", // Public Relations Specialists
@@ -487,7 +479,6 @@ export const CAREER_STATS = {
     environment: "Travel agencies, call centers, remote work, helping clients plan trips",
   },
 
-  ---
 
   // Public Service & Safety
   "Police Officer": {
@@ -509,7 +500,6 @@ export const CAREER_STATS = {
     environment: "Fire stations, emergency sites, physically demanding and high-stakes",
   },
 
-  ---
 
   // Health & Wellness
   "Registered Nurse (RN)": {
@@ -558,7 +548,6 @@ export const CAREER_STATS = {
     environment: "Physicians' offices, hospitals, outpatient clinics, performing administrative and clinical duties",
   },
 
-  ---
 
   // Skilled Trades & Hands-On Careers
   "Automotive Mechanic": {
@@ -616,7 +605,6 @@ export const CAREER_STATS = {
     environment: "Outdoor, various weather conditions, physically demanding and safety-critical",
   },
 
-  ---
 
   // Other specific careers from the previous list:
   "Accountant": {
