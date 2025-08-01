@@ -8,7 +8,7 @@ const TalkTemplates = () => {
         Feeling a bit unsure about how to ask for a reference or recommendation? It's completely normal to feel that way! These templates are here to help guide you and make starting the conversation a little easier, whether you're applying to college, trade school, or your first job.
       </p>
 
-      ---
+ <hr />
 
       <div className="fear-notes">
         <h2>Overcoming the Fear of Asking</h2>
