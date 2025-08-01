@@ -1,6 +1,4 @@
-// src/pages/ExploreCareers.js
-
-import React from 'react';
+import React, { useMemo } from 'react';
 import styles from '../styles/explore.module.css';
 import { MBTI_MAP } from '../components/quiz/mbtimap';
 
@@ -11,13 +9,12 @@ const groupCareersByPathway = () => {
     careers.forEach(career => {
       const key = career.pathway || 'Other';
       if (!pathwayMap[key]) {
-        pathwayMap[key] = new Map(); // Use Map to avoid duplicates
+        pathwayMap[key] = new Map();
       }
-      pathwayMap[key].set(career.title, career); // Deduplicate by title
+      pathwayMap[key].set(career.title, career);
     });
   });
 
-  // Convert Maps to arrays
   const result = {};
   Object.entries(pathwayMap).forEach(([pathway, careerMap]) => {
     result[pathway] = Array.from(careerMap.values());
@@ -36,7 +33,7 @@ const CareerCard = ({ title, salary, education, outlook }) => (
 );
 
 const ExploreCareers = () => {
-  const groupedCareers = groupCareersByPathway();
+  const groupedCareers = useMemo(() => groupCareersByPathway(), []);
 
   return (
     <div className={styles.container}>
@@ -47,8 +44,8 @@ const ExploreCareers = () => {
         <section key={pathway} className={styles.section}>
           <h2 className={styles.pathway}>{pathway}</h2>
           <div className={styles.cardGrid}>
-            {careers.map((career, index) => (
-              <CareerCard key={index} {...career} />
+            {careers.map(career => (
+              <CareerCard key={career.title} {...career} />
             ))}
           </div>
         </section>
