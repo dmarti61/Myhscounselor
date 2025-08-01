@@ -199,6 +199,10 @@ const ResultBadge = () => { // Removed { mbtiType, quizResults } from props
           <p>No specific career suggestions found for your type.</p>
         )}
       </div>
+      <div className="share-section">
+        <h3>Share Your Results!</h3>
+        <Share_Card mbtiType={mbtiType} /> {/* Pass mbtiType to Share_Card if it needs it */}
+      </div>
     </div>
   );
 };
