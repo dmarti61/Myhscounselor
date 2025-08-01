@@ -198,7 +198,7 @@ const ResultBadge = () => {
         <h3>Share Your Results!</h3>
         <Share_Card mbtiType={mbtiType} quizResults={quizResults} />
       </div>
-      <div className="retake-btn">
+      <div className="retake-quiz">
         <button onClick={handleRetakeQuiz} className="retake-btn">
           Retake Quiz
         </button>
