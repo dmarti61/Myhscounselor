@@ -9,8 +9,19 @@ const ResultBadge = ({ mbtiType, quizResults }) => {
   const preferredPathway = quizResults?.pathPreference?.toLowerCase();
 
   useEffect(() => {
+     // --- ADD THIS CONSOLE LOG ---
+    console.log('useEffect triggered. mbtiType inside effect:', mbtiType);
     // Convert mbtiType to uppercase before checking MBTI_MAP
     const standardizedMbtiType = mbtiType ? mbtiType.toUpperCase() : null;
+
+    // --- ADD THIS CONSOLE LOG ---
+    console.log('Standardized MBTI Type:', standardizedMbtiType);
+    // --- ADD THIS CONSOLE LOG ---
+    console.log('Does standardizedMbtiType exist in MBTI_MAP?', !!MBTI_MAP[standardizedMbtiType]);
+    // --- ADD THIS CONSOLE LOG ---
+    if (!MBTI_MAP[standardizedMbtiType] && standardizedMbtiType) {
+        console.error(`MBTI_MAP does not contain key: ${standardizedMbtiType}`);
+    }
 
     if (standardizedMbtiType && MBTI_MAP[standardizedMbtiType]) {
       const mbtiData = MBTI_MAP[standardizedMbtiType]; // Use the standardized type
