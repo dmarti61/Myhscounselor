@@ -15,27 +15,27 @@ const MilitaryAcademiesGuide = () => (
         <div className="academy-item">
             <h4>United States Naval Academy (USNA)</h4>
             <p>Trains officers for the U.S. Navy and Marine Corps.</p>
-            <p><a href="http://www.usna.edu/Admissions/Steps-for-Admission/" target="_blank" rel="noopener noreferrer">Admission Steps &rightarrow;</a></p>
+            <p><a href="http://www.usna.edu/Admissions/Steps-for-Admission/" target="_blank" rel="noopener noreferrer">Admission Steps</a></p>
         </div>
         <div className="academy-item">
             <h4>United States Air Force Academy (USAFA)</h4>
             <p>Develops leaders for the U.S. Air Force and U.S. Space Force.</p>
-            <p><a href="http://www.academyadmissions.com/admissions/the-application-process/application-steps/" target="_blank" rel="noopener noreferrer">Application Process &rightarrow;</a></p>
+            <p><a href="http://www.academyadmissions.com/admissions/the-application-process/application-steps/" target="_blank" rel="noopener noreferrer">Application Process</a></p>
         </div>
         <div className="academy-item">
             <h4>United States Coast Guard Academy (USCGA)</h4>
             <p>Trains officers for the U.S. Coast Guard. <strong>Unique Feature: No congressional nomination is needed for admission!</strong></p>
-            <p><a href="http://www.cga.edu/admissions2.aspx?id=60" target="_blank" rel="noopener noreferrer">Admissions Information &rightarrow;</a></p>
+            <p><a href="http://www.uscga.edu/admissions2.aspx?id=60" target="_blank" rel="noopener noreferrer">Admissions Information</a></p>
         </div>
         <div className="academy-item">
             <h4>United States Merchant Marine Academy (USMMA)</h4>
             <p>Educates leaders for the U.S. Merchant Marine and armed forces.</p>
-            <p><a href="http://www.usmma.edu/admissions/admissions-a-to-z" target="_blank" rel="noopener noreferrer">Admissions A to Z &rightarrow;</a></p>
+            <p><a href="http://www.usmma.edu/admissions/admissions-a-to-z" target="_blank" rel="noopener noreferrer">Admissions A to Z</a></p>
         </div>
         <div className="academy-item">
             <h4>United States Military Academy (USMA - West Point)</h4>
             <p>Prepares future officers for the U.S. Army.</p>
-            <p><a href="http://www.usma.edu/admissions/SitePages/Steps.aspx" target="_blank" rel="noopener noreferrer">Admission Steps &rightarrow;</a></p>
+            <p><a href="http://www.usma.edu/admissions/SitePages/Steps.aspx" target="_blank" rel="noopener noreferrer">Admission Steps</a></p>
         </div>
       </div>
     </section>
