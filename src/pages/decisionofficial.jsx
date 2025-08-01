@@ -4,7 +4,7 @@ import '../styles/global.css';
 
 const DecisionOfficial = () => (
   <div className="page-container">
-    <h1 tabIndex="0">✅ Making Your Decision Official: You Next Steps After Graduation</h1>
+    <h1 tabIndex="0">✅ Making Your Decision Official: Your Next Steps After Graduation</h1>
     <p>
       Congratulations! You’ve explored your options, received offers, and are now ready to commit to your next big step after high school. This stage is exciting, but it also comes with important deadlines and details. Let’s make sure you nail the next steps, no matter which path you’ve chosen.
     </p>
