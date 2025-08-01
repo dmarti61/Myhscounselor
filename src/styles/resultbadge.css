@@ -141,7 +141,7 @@ h3 {
 }
 
 .retake-btn:hover {
-  background-color: #5a359d; /* Darker purple on hover */
+  background-color: #50C878;
   transform: translateY(-2px); /* Slight lift on hover */
 }
 
