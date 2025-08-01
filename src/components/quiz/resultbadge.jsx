@@ -6,24 +6,20 @@ const ResultBadge = ({ mbtiType, quizResults }) => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  // Define preferredPathway (and other preferences) here,
-  // so they are accessible throughout the component's render scope and useEffect.
   const preferredPathway = quizResults?.pathPreference?.toLowerCase();
-  const preferredLearningStyle = quizResults?.learningStyle?.toLowerCase(); // Example: if you have this preference
-  const preferredWorkEnvironment = quizResults?.workEnvironment?.toLowerCase(); // Example: if you have this preference
 
   useEffect(() => {
-    if (mbtiType && MBTI_MAP[mbtiType]) {
-      const mbtiData = MBTI_MAP[mbtiType];
-      let careers = [...mbtiData.careers]; // Create a mutable copy to sort
+    // Convert mbtiType to uppercase before checking MBTI_MAP
+    const standardizedMbtiType = mbtiType ? mbtiType.toUpperCase() : null;
 
-      // Initialize arrays for matching and non-matching careers
+    if (standardizedMbtiType && MBTI_MAP[standardizedMbtiType]) {
+      const mbtiData = MBTI_MAP[standardizedMbtiType]; // Use the standardized type
+      let careers = [...mbtiData.careers];
+
       let matchingCareers = [];
       let nonMatchingCareers = [];
 
       careers.forEach(c => {
-        // Use the new 'postSchoolPath' property for comparison
-        // and ensure it's a string before calling toLowerCase
         if (c.postSchoolPath && typeof c.postSchoolPath === 'string' && c.postSchoolPath.toLowerCase() === preferredPathway) {
           matchingCareers.push(c);
         } else {
@@ -31,7 +27,6 @@ const ResultBadge = ({ mbtiType, quizResults }) => {
         }
       });
 
-      // Combine matching careers first, then non-matching ones
       const sortedCareers = [...matchingCareers, ...nonMatchingCareers];
 
       setData({
@@ -45,7 +40,7 @@ const ResultBadge = ({ mbtiType, quizResults }) => {
       setData(null);
     }
     setLoading(false);
-  }, [mbtiType, quizResults, preferredPathway]); // Add preferredPathway to dependencies if it's used in the effect's logic that triggers re-run
+  }, [mbtiType, quizResults, preferredPathway]); // mbtiType is still a dependency
 
   if (loading) {
     return <div className="loading">Loading your results...</div>;
@@ -57,7 +52,7 @@ const ResultBadge = ({ mbtiType, quizResults }) => {
 
   return (
     <div className="result-badge-container">
-      <h2 className="mbti-type">{mbtiType}</h2>
+      <h2 className="mbti-type">{mbtiType}</h2> {/* Display the original mbtiType */}
       <p className="vibe">{data.vibe}</p>
 
       <div className="section-block">
@@ -90,12 +85,11 @@ const ResultBadge = ({ mbtiType, quizResults }) => {
         {data.sortedCareers.length > 0 ? (
           <ul className="career-list">
             {data.sortedCareers.map((c, idx) => {
-              const detailedStats = CAREER_STATS[c.title]; // Get detailed stats for this career
+              const detailedStats = CAREER_STATS[c.title];
 
               return (
                 <li key={c.title || idx} className="career-item">
                   <span className={`career-name ${c.postSchoolPath?.toLowerCase() === preferredPathway ? 'highlighted-career' : ''}`}>
-                    {/* Use preferredPathway for the highlight star */}
                     {c.postSchoolPath?.toLowerCase() === preferredPathway ? '🌟 ' : ''}
                     {c.title}
                   </span>
@@ -104,7 +98,6 @@ const ResultBadge = ({ mbtiType, quizResults }) => {
                     <p className="career-description">{c.description}</p>
                   )}
 
-                  {/* Display additional details from CAREER_STATS if available */}
                   {detailedStats ? (
                     <div className="career-details">
                       <p><strong>Education:</strong> {detailedStats.education}</p>
