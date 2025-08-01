@@ -46,7 +46,7 @@ const PreferenceQuiz = () => {
   };
 
   const handleNext = () => {
-    if (Object.keys(answers).length < questions.length) return;
+    // Removed the check: if (Object.keys(answers).length < questions.length) return;
     navigate('/results', {
       state: {
         mbtiType,
