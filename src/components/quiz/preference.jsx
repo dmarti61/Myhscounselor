@@ -63,6 +63,7 @@ const PreferenceQuiz = () => {
     <div className="preference-quiz">
       <h2>🎯 Your Preferences</h2>
       <p> Please answer any preferences you may have, only one selection per question.</p>
+      <br></br>
       {questions.map((q) => (
         <div className="preference-question" key={q.id}>
           <p>{q.text}</p>
