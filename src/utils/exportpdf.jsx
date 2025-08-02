@@ -48,11 +48,11 @@ ${mbtiData.strengths.map(s => `- ${s}`).join('\n')}
 ---
 
 Suggested Careers:
-${careersToDisplay.map(c => `- ${c.name} (${c.pathway})`).join('\n')}
+${careersToDisplay.map(c => `- ${c.title} (${c.pathway})`).join('\n')}
 
 ---
 
-Top Career Snapshot (${topCareer?.name || 'N/A'}):
+Top Career Snapshot (${topCareer?.title || 'N/A'}):
 - Salary: ${topCareerStats.salary || 'N/A'}
 - Outlook: ${topCareerStats.outlook || 'N/A'}
 - Education: ${topCareerStats.education || 'N/A'}
