@@ -1,7 +1,7 @@
 import jsPDF from 'jspdf';
 import { CAREER_STATS } from '../components/quiz/careerstats';
 import { MBTI_MAP } from '../components/quiz/mbtimap';
-import { GUIDES_TEXT_CONTENT } from './guidestext'; // Import the new guides content
+import { GUIDES_TEXT_CONTENT } from './guidestext';
 
 export const exportResultsAsPDF = ({ type, preference }) => {
   const doc = new jsPDF();
@@ -13,85 +13,124 @@ export const exportResultsAsPDF = ({ type, preference }) => {
     return;
   }
 
-  let careersToDisplay = [...mbtiData.careers];
+  const allCareers = [...mbtiData.careers];
+  let starredCareers = [];
+  let nonStarredCareers = [];
+
   if (preference) {
-    const filtered = careersToDisplay.filter(c =>
-      c.pathway.toLowerCase() === preference.toLowerCase()
+    starredCareers = allCareers.filter(
+      (c) => c.pathway?.toLowerCase() === preference.toLowerCase()
     );
-    careersToDisplay = filtered.length > 0 ? filtered : careersToDisplay;
+    nonStarredCareers = allCareers.filter(
+      (c) => c.pathway?.toLowerCase() !== preference.toLowerCase()
+    );
+  } else {
+    nonStarredCareers = allCareers;
   }
 
+  const careersToDisplay = [...starredCareers, ...nonStarredCareers];
   const topCareer = careersToDisplay[0];
-  const topCareerStats = topCareer?.blsCode ? CAREER_STATS[topCareer.blsCode] || {} : {};
+  const topCareerStats =
+    topCareer?.blsCode && CAREER_STATS[topCareer.blsCode]
+      ? CAREER_STATS[topCareer.blsCode]
+      : {};
 
-  let majorsSection = '';
-  if (mbtiData.recommendedNextStep === 'College' && mbtiData.relevantMajors && mbtiData.relevantMajors.length > 0) {
-    majorsSection = `
----
+  // === Summary Page ===
+  doc.setFont('Helvetica');
+  doc.setFontSize(18);
+  doc.text(`MyHSCounselor Quiz Results`, 10, 20);
 
-Relevant College Majors:
-${mbtiData.relevantMajors.map(m => `- ${m}`).join('\n')}
-`;
+  doc.setFontSize(14);
+  doc.text(`Personality Type: ${mbtiType}`, 10, 30);
+
+  if (preference) {
+    doc.setFontSize(12);
+    const found = starredCareers.length > 0;
+    doc.text(
+      `Career Pathway Preference: ${found ? preference : `${preference} (no direct match found)`}`,
+      10,
+      38
+    );
   }
 
-  // --- Summary Page Content ---
-  const summaryContent = `
-MyHSCounselor Quiz Results
-
-Personality Type: ${mbtiType}
-
----
-
-Strengths:
-${mbtiData.strengths.map(s => `- ${s}`).join('\n')}
-
----
-
-Suggested Careers:
-${careersToDisplay.map(c => `- ${c.title} (${c.pathway})`).join('\n')}
-
----
-
-Top Career Snapshot (${topCareer?.title || 'N/A'}):
-- Salary: ${topCareerStats.salary || 'N/A'}
-- Outlook: ${topCareerStats.outlook || 'N/A'}
-- Education: ${topCareerStats.education || 'N/A'}
-
----
-
-Recommended Next Step:
-${mbtiData.recommendedNextStep}
-${majorsSection}
-`;
-
-  doc.setFont('Helvetica');
+  let y = preference ? 48 : 42;
   doc.setFontSize(12);
-  const summaryTextLines = doc.splitTextToSize(summaryContent.trim(), 180);
-  doc.text(summaryTextLines, 10, 20);
+  doc.text('Strengths:', 10, y);
+  y += 8;
+  mbtiData.strengths.forEach((s) => {
+    doc.text(`- ${s}`, 14, y);
+    y += 7;
+  });
 
-  // --- Append Full Guide as Appendix based on recommendedNextStep ---
-  const guideKey = mbtiData.recommendedNextStep; // This is 'College', 'Trade School', or 'Direct Entry'
+  y += 5;
+  doc.text('Suggested Careers:', 10, y);
+  y += 8;
+
+  careersToDisplay.forEach((c) => {
+    const isStarred =
+      preference && c.pathway?.toLowerCase() === preference.toLowerCase();
+    const line = `${isStarred ? '★ ' : ''}- ${c.title} (${c.pathway})`;
+    doc.text(line, 14, y);
+    y += 7;
+    if (y > 270) {
+      doc.addPage();
+      y = 20;
+    }
+  });
+
+  y += 5;
+  doc.text(`Top Career Snapshot: ${topCareer?.title || 'N/A'}`, 10, y);
+  y += 8;
+  doc.text(`- Salary: ${topCareerStats.salary || 'N/A'}`, 14, y);
+  y += 7;
+  doc.text(`- Outlook: ${topCareerStats.outlook || 'N/A'}`, 14, y);
+  y += 7;
+  doc.text(`- Education: ${topCareerStats.education || 'N/A'}`, 14, y);
+  y += 10;
+
+  doc.text('Recommended Next Step:', 10, y);
+  y += 8;
+  doc.text(`- ${mbtiData.recommendedNextStep}`, 14, y);
+  y += 10;
+
+  if (
+    mbtiData.recommendedNextStep === 'College' &&
+    mbtiData.relevantMajors?.length
+  ) {
+    doc.text('Relevant College Majors:', 10, y);
+    y += 8;
+    mbtiData.relevantMajors.forEach((m) => {
+      doc.text(`- ${m}`, 14, y);
+      y += 7;
+      if (y > 270) {
+        doc.addPage();
+        y = 20;
+      }
+    });
+  }
+
+  const guideKey = mbtiData.recommendedNextStep;
   const fullGuideContent = GUIDES_TEXT_CONTENT[guideKey];
 
   if (fullGuideContent) {
-    doc.addPage(); // Add a new page for the appendix
-
+    doc.addPage();
     doc.setFontSize(16);
-    doc.text(`Appendix: ${guideKey} Guide`, 10, 20); // Dynamic title for the guide
+    doc.text(`Appendix: ${guideKey} Guide`, 10, 20);
     doc.setFontSize(12);
 
     let yOffset = 30;
-    const guideTextLines = doc.splitTextToSize(fullGuideContent.trim(), 180);
+    const guideTextLines = doc.splitTextToSize(
+      fullGuideContent.trim(),
+      180
+    );
 
-    guideTextLines.forEach(line => {
-      // Check if new page is needed before adding the line
-      // 10 units for bottom margin roughly
+    guideTextLines.forEach((line) => {
       if (yOffset > doc.internal.pageSize.height - 20) {
         doc.addPage();
-        yOffset = 20; // Reset yOffset for new page
+        yOffset = 20;
       }
       doc.text(line, 10, yOffset);
-      yOffset += 7; // Adjust line height
+      yOffset += 7;
     });
   }
 
