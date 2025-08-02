@@ -3,7 +3,7 @@ import React from 'react';
 // import { renderToString } from 'react-dom/server'; // renderToString is not actually used here for the conversion
 import CollegeGuide from '../pages/collegeguide'; // Adjusted path
 import TradeSchoolGuide from '../pages/tradeschoolguide'; // Adjusted path
-import CommunityCollegeGuide from '../pages/two-year'; // Added import for Community College
+import CommunityCollegeGuide from '../pages/twoyear'; // Added import for Community College
 import DirectEntryCareersGuide from '../pages/careers'; // Adjusted path, assuming Careers.jsx is the Direct Entry Guide
 
 const extractTextFromReactNode = (node) => {
