@@ -3,101 +3,152 @@ import { CAREER_STATS } from '../components/quiz/careerstats';
 import { MBTI_MAP, generateNextStepPhrase } from '../components/quiz/mbtimap';
 import { GUIDES_TEXT_CONTENT } from './guidestext';
 
+// Import the logo image
+import logo from '../public/logo.png';
+
 export const exportResultsAsPDF = ({ type, preference }) => {
-  const doc = new jsPDF();
+  const doc = new jsPDF('p', 'mm', 'a4'); // Use 'mm' for consistent units
   const mbtiType = type.toUpperCase();
   const mbtiData = MBTI_MAP[mbtiType];
+  const pageHeight = doc.internal.pageSize.height;
 
   if (!mbtiData) {
     console.error(`MBTI data not found for type: ${mbtiType}`);
     return;
   }
 
-  const allCareers = [...mbtiData.careers];
-  let starredCareers = [];
-  let nonStarredCareers = [];
+  // Set up font styles that match the CSS
+  const primaryColor = '#0056b3';
+  const secondaryColor = '#28a745';
+  const accentColor = '#007bff';
+  const textColor = '#333';
 
-  const userPreference = preference ? preference.toLowerCase() : null;
+  // --- Summary Page ---
 
-  if (userPreference) {
-    starredCareers = allCareers.filter(
-      (c) => c.postSchoolPath?.toLowerCase() === userPreference
-    );
-    nonStarredCareers = allCareers.filter(
-      (c) => c.postSchoolPath?.toLowerCase() !== userPreference
-    );
-  } else {
-    nonStarredCareers = allCareers;
-  }
+  // Add the logo at the top
+  doc.addImage(logo, 'PNG', 15, 15, 40, 10); // x, y, width, height
 
-  const careersToDisplay = [...starredCareers, ...nonStarredCareers];
-  const topCareer = careersToDisplay[0];
-  const topCareerStats = topCareer?.title && CAREER_STATS[topCareer.title]
-    ? CAREER_STATS[topCareer.title]
-    : {};
+  // Add the title
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(24);
+  doc.setTextColor(primaryColor);
+  doc.text('MyHSCounselor Quiz Results', 15, 35);
+  doc.line(15, 37, 195, 37); // Underline for main heading
 
-  // === Summary Page ===
-  doc.setFont('Helvetica');
-  doc.setFontSize(18);
-  doc.text(`MyHSCounselor Quiz Results`, 10, 20);
+  // Personality Type Section
+  let y = 48;
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(16);
+  doc.setTextColor(primaryColor);
+  doc.text(`Personality Type: ${mbtiType}`, 15, y);
 
-  doc.setFontSize(14);
-  doc.text(`Personality Type: ${mbtiType}`, 10, 30);
-
-  if (userPreference) {
+  // Preference Section
+  y += 8;
+  if (preference) {
+    doc.setFont('helvetica', 'normal');
     doc.setFontSize(12);
-    const found = starredCareers.length > 0;
+    doc.setTextColor(textColor);
+    const found = mbtiData.careers.some(c => c.postSchoolPath?.toLowerCase() === preference.toLowerCase());
     doc.text(
       `Career Pathway Preference: ${found ? preference : `${preference} (no direct match found)`}`,
-      10,
-      38
+      15,
+      y
     );
+    y += 10;
+  } else {
+    y += 5;
   }
 
-  let y = userPreference ? 48 : 42;
-  doc.setFontSize(12);
-  doc.text('Strengths:', 10, y);
+  // Strengths Section
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(14);
+  doc.setTextColor(secondaryColor);
+  doc.text('Strengths', 15, y);
+  doc.line(15, y + 2, 195, y + 2);
   y += 8;
+
+  doc.setFont('helvetica', 'normal');
+  doc.setFontSize(12);
+  doc.setTextColor(textColor);
   mbtiData.strengths.forEach((s) => {
-    doc.text(`- ${s}`, 14, y);
+    doc.text(`• ${s}`, 20, y);
     y += 7;
   });
 
-  y += 5;
-  doc.text('Suggested Careers:', 10, y);
+  y += 10;
+
+  // Suggested Careers Section
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(14);
+  doc.setTextColor(secondaryColor);
+  doc.text('Suggested Careers', 15, y);
+  doc.line(15, y + 2, 195, y + 2);
   y += 8;
+
+  doc.setFont('helvetica', 'normal');
+  doc.setFontSize(12);
+  doc.setTextColor(textColor);
+  const allCareers = [...mbtiData.careers];
+  const userPreference = preference ? preference.toLowerCase() : null;
+  const starredCareers = userPreference ? allCareers.filter(c => c.postSchoolPath?.toLowerCase() === userPreference) : [];
+  const nonStarredCareers = userPreference ? allCareers.filter(c => c.postSchoolPath?.toLowerCase() !== userPreference) : allCareers;
+  const careersToDisplay = [...starredCareers, ...nonStarredCareers];
 
   careersToDisplay.forEach((c) => {
     const isStarred = userPreference && c.postSchoolPath?.toLowerCase() === userPreference;
-    const line = `${isStarred ? '★ ' : ''}- ${c.title} (${c.pathway})`;
-    doc.text(line, 14, y);
+    const line = `${isStarred ? '★ ' : '• '}${c.title} (${c.pathway})`;
+    doc.text(line, 20, y);
     y += 7;
-    if (y > 270) {
+    if (y > pageHeight - 20) {
       doc.addPage();
       y = 20;
     }
   });
 
-  y += 5;
-  doc.text(`Top Career Snapshot: ${topCareer?.title || 'N/A'}`, 10, y);
-  y += 8;
-  doc.text(`- Salary: ${topCareerStats.salary || 'N/A'}`, 14, y);
-  y += 7;
-  doc.text(`- Outlook: ${topCareerStats.outlook || 'N/A'}`, 14, y);
-  y += 7;
-  doc.text(`- Education: ${topCareerStats.education || 'N/A'}`, 14, y);
   y += 10;
 
-  const nextStepText = generateNextStepPhrase(mbtiData, userPreference);
-  doc.text('Recommended Next Step:', 10, y);
+  // Top Career Snapshot Section
+  const topCareer = careersToDisplay[0];
+  const topCareerStats = topCareer?.title && CAREER_STATS[topCareer.title] ? CAREER_STATS[topCareer.title] : {};
+
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(14);
+  doc.setTextColor(secondaryColor);
+  doc.text(`Top Career Snapshot: ${topCareer?.title || 'N/A'}`, 15, y);
+  doc.line(15, y + 2, 195, y + 2);
   y += 8;
+
+  doc.setFont('helvetica', 'normal');
+  doc.setFontSize(12);
+  doc.setTextColor(textColor);
+  doc.text(`• Salary: ${topCareerStats.salary || 'N/A'}`, 20, y);
+  y += 7;
+  doc.text(`• Outlook: ${topCareerStats.outlook || 'N/A'}`, 20, y);
+  y += 7;
+  doc.text(`• Education: ${topCareerStats.education || 'N/A'}`, 20, y);
+  y += 10;
+
+  // Recommended Next Step Section
+  const nextStepText = generateNextStepPhrase(mbtiData, preference);
   const nextStepPlainText = nextStepText.replace(/<[^>]*>/g, '');
-  const wrappedNextStepText = doc.splitTextToSize(nextStepPlainText, 180);
-  doc.text(`- ${wrappedNextStepText.join('\n- ')}`, 14, y);
-  y += wrappedNextStepText.length * 7;
-  y += 10;
+  const wrappedNextStepText = doc.splitTextToSize(nextStepPlainText, 175);
 
-  // --- UPDATED LOGIC TO DETERMINE GUIDE ---
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(14);
+  doc.setTextColor(secondaryColor);
+  doc.text('Recommended Next Step', 15, y);
+  doc.line(15, y + 2, 195, y + 2);
+  y += 8;
+
+  doc.setFont('helvetica', 'normal');
+  doc.setFontSize(12);
+  doc.setTextColor(textColor);
+  const bulletY = y;
+  doc.text(`•`, 20, bulletY); // Bullet for the whole block
+  doc.text(wrappedNextStepText.join('\n'), 25, bulletY);
+  y += (wrappedNextStepText.length * 7) + 10;
+
+  // --- Appendix: Guide ---
   const pathwayMap = {
     college: 'College',
     community: 'Community College',
@@ -105,28 +156,66 @@ export const exportResultsAsPDF = ({ type, preference }) => {
     job: 'Direct Job Entry',
   };
 
-  const pathwayToUse = userPreference || mbtiData.careers[0]?.postSchoolPath?.toLowerCase();
-
+  const pathwayToUse = preference || mbtiData.careers[0]?.postSchoolPath?.toLowerCase();
   const guideKey = pathwayMap[pathwayToUse] || null;
+  const guideContent = guideKey ? GUIDES_TEXT_CONTENT[guideKey] : null;
 
-  const fullGuideContent = guideKey ? GUIDES_TEXT_CONTENT[guideKey] : null;
-
-  if (fullGuideContent) {
+  if (guideContent) {
     doc.addPage();
-    doc.setFontSize(16);
-    doc.text(`Appendix: ${guideKey} Guide`, 10, 20);
-    doc.setFontSize(12);
+    let guideY = 20;
 
-    let yOffset = 30;
-    const guideTextLines = doc.splitTextToSize(fullGuideContent.trim(), 180);
+    // Add guide title
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(24);
+    doc.setTextColor(primaryColor);
+    doc.text(`Appendix: ${guideKey} Guide`, 15, guideY);
+    doc.line(15, guideY + 2, 195, guideY + 2);
+    guideY += 15;
 
-    guideTextLines.forEach((line) => {
-      if (yOffset > doc.internal.pageSize.height - 20) {
-        doc.addPage();
-        yOffset = 20;
+    const sections = guideContent.trim().split(/\n\s*##\s*/);
+
+    sections.forEach((section, index) => {
+      const lines = section.split('\n').filter(line => line.trim() !== '');
+      if (lines.length === 0) return;
+
+      let sectionTitle = lines[0].trim();
+      let sectionContent = lines.slice(1).join('\n').trim();
+
+      // Check if this is the first section, which is the intro
+      if (index === 0 && !sectionTitle.startsWith('#')) {
+        sectionTitle = 'Introduction';
+        sectionContent = section;
+      } else {
+        sectionTitle = sectionTitle.replace(/###\s*/, '').trim();
       }
-      doc.text(line, 10, yOffset);
-      yOffset += 7;
+
+      // If we are close to the bottom of the page, add a new page
+      if (guideY > pageHeight - 40) {
+        doc.addPage();
+        guideY = 20;
+      }
+
+      // Add section heading
+      doc.setFont('helvetica', 'bold');
+      doc.setFontSize(16);
+      doc.setTextColor(secondaryColor);
+      doc.text(sectionTitle, 15, guideY);
+      guideY += 8;
+
+      // Add section content
+      doc.setFont('helvetica', 'normal');
+      doc.setFontSize(12);
+      doc.setTextColor(textColor);
+      const wrappedText = doc.splitTextToSize(sectionContent, 175);
+      wrappedText.forEach((line) => {
+        if (guideY > pageHeight - 20) {
+          doc.addPage();
+          guideY = 20;
+        }
+        doc.text(line, 15, guideY);
+        guideY += 7;
+      });
+      guideY += 10;
     });
   }
 
