@@ -13,6 +13,13 @@ const ShareCard = ({
   const preference = quizResults?.pathPreference;
 
   const handleDownload = () => {
+     // --- Add these debug statements ---
+    console.log("Attempting to download PDF...");
+    console.log("MBTI Type to pass:", mbtiType);
+    console.log("Preference to pass:", preference);
+    // --- End debug statements ---
+    
+    
     // Pass 'mbtiType' and 'preference' to the export function
     exportResultsAsPDF({
       type: mbtiType, // 'exportResultsAsPDF' expects 'type', so we map 'mbtiType' to it
