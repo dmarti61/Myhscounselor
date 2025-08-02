@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 
-<h3> Please answer any preferences you may have </h3>
 const questions = [
   {
     id: 'pathPreference',
@@ -63,6 +62,7 @@ const PreferenceQuiz = () => {
   return (
     <div className="preference-quiz">
       <h2>🎯 Your Preferences</h2>
+      <p> Please answer any preferences you may have </p>
       {questions.map((q) => (
         <div className="preference-question" key={q.id}>
           <p>{q.text}</p>
