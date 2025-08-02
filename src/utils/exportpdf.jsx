@@ -1,7 +1,7 @@
 import jsPDF from 'jspdf';
 import { CAREER_STATS } from '../components/quiz/careerstats';
 import { MBTI_MAP, generateNextStepPhrase } from '../components/quiz/mbtimap';
-import { GUIDES_TEXT_CONTENT } from './guidestext';
+import { GUIDES_TEXT_CONTENT } from './guidestext'; // Assuming this file exists and is keyed by "College", "Community College", etc.
 
 export const exportResultsAsPDF = ({ type, preference }) => {
   const doc = new jsPDF();
@@ -88,34 +88,52 @@ export const exportResultsAsPDF = ({ type, preference }) => {
   doc.text(`- Education: ${topCareerStats.education || 'N/A'}`, 14, y);
   y += 10;
 
-  // Use the new function to generate the text
-  const nextStepText = generateNextStepPhrase(mbtiData);
+  // **UPDATED**: Pass userPreference to generateNextStepPhrase
+  const nextStepText = generateNextStepPhrase(mbtiData, userPreference);
   doc.text('Recommended Next Step:', 10, y);
   y += 8;
   // This will include HTML tags, which jsPDF doesn't render. 
-  // You might want to strip them or handle them separately.
-  // For simplicity, let's just use the plain text.
-  doc.text(`- ${nextStepText.replace(/<[^>]*>/g, '')}`, 14, y); 
+  // We'll strip them for the PDF to prevent literal tag display.
+  const nextStepPlainText = nextStepText.replace(/<[^>]*>/g, '');
+  const wrappedNextStepText = doc.splitTextToSize(nextStepPlainText, 180);
+  doc.text(`- ${wrappedNextStepText.join('\n- ')}`, 14, y);
+  y += wrappedNextStepText.length * 7; // Adjust y based on the number of lines
   y += 10;
 
-  if (
-    mbtiData.recommendedNextStep === 'College' &&
-    mbtiData.relevantMajors?.length
-  ) {
-    doc.text('Relevant College Majors:', 10, y);
-    y += 8;
-    mbtiData.relevantMajors.forEach((m) => {
-      doc.text(`- ${m}`, 14, y);
-      y += 7;
-      if (y > 270) {
-        doc.addPage();
-        y = 20;
-      }
-    });
+  // **UPDATED**: Logic to find the correct guide key based on user preference
+  let guideKey = null;
+  if (userPreference) {
+    // Attempt to match the guide key with the user's preference
+    const formattedPreference = preference.charAt(0).toUpperCase() + preference.slice(1);
+    if (formattedPreference === "Community") {
+        guideKey = "Community College"; // Special case for "community"
+    } else if (formattedPreference === "Trade") {
+        guideKey = "Trade School"; // Special case for "trade"
+    } else if (formattedPreference === "Job") {
+        guideKey = "Direct Job Entry"; // Special case for "job"
+    } else {
+        guideKey = formattedPreference; // e.g., "College"
+    }
   }
 
-  const guideKey = mbtiData.recommendedNextStep;
-  const fullGuideContent = GUIDES_TEXT_CONTENT[guideKey];
+  // Fallback if the user's preference doesn't match a guide
+  if (!guideKey && mbtiData.careers.length > 0) {
+    const primaryPath = mbtiData.careers[0].postSchoolPath;
+    if (primaryPath) {
+      const formattedPrimary = primaryPath.charAt(0).toUpperCase() + primaryPath.slice(1);
+      if (formattedPrimary === "Community") {
+          guideKey = "Community College";
+      } else if (formattedPrimary === "Trade") {
+          guideKey = "Trade School";
+      } else if (formattedPrimary === "Job") {
+          guideKey = "Direct Job Entry";
+      } else {
+          guideKey = formattedPrimary;
+      }
+    }
+  }
+
+  const fullGuideContent = guideKey ? GUIDES_TEXT_CONTENT[guideKey] : null;
 
   if (fullGuideContent) {
     doc.addPage();
@@ -124,10 +142,7 @@ export const exportResultsAsPDF = ({ type, preference }) => {
     doc.setFontSize(12);
 
     let yOffset = 30;
-    const guideTextLines = doc.splitTextToSize(
-      fullGuideContent.trim(),
-      180
-    );
+    const guideTextLines = doc.splitTextToSize(fullGuideContent.trim(), 180);
 
     guideTextLines.forEach((line) => {
       if (yOffset > doc.internal.pageSize.height - 20) {
