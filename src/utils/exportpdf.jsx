@@ -1,7 +1,7 @@
 import jsPDF from 'jspdf';
 import { CAREER_STATS } from '../components/quiz/careerstats';
 import { MBTI_MAP, generateNextStepPhrase } from '../components/quiz/mbtimap';
-import { GUIDES_TEXT_CONTENT } from './guidestext'; // Assuming this file exists and is keyed by "College", "Community College", etc.
+import { GUIDES_TEXT_CONTENT } from './guidestext';
 
 export const exportResultsAsPDF = ({ type, preference }) => {
   const doc = new jsPDF();
@@ -88,50 +88,26 @@ export const exportResultsAsPDF = ({ type, preference }) => {
   doc.text(`- Education: ${topCareerStats.education || 'N/A'}`, 14, y);
   y += 10;
 
-  // **UPDATED**: Pass userPreference to generateNextStepPhrase
   const nextStepText = generateNextStepPhrase(mbtiData, userPreference);
   doc.text('Recommended Next Step:', 10, y);
   y += 8;
-  // This will include HTML tags, which jsPDF doesn't render. 
-  // We'll strip them for the PDF to prevent literal tag display.
   const nextStepPlainText = nextStepText.replace(/<[^>]*>/g, '');
   const wrappedNextStepText = doc.splitTextToSize(nextStepPlainText, 180);
   doc.text(`- ${wrappedNextStepText.join('\n- ')}`, 14, y);
-  y += wrappedNextStepText.length * 7; // Adjust y based on the number of lines
+  y += wrappedNextStepText.length * 7;
   y += 10;
 
-  // **UPDATED**: Logic to find the correct guide key based on user preference
-  let guideKey = null;
-  if (userPreference) {
-    // Attempt to match the guide key with the user's preference
-    const formattedPreference = preference.charAt(0).toUpperCase() + preference.slice(1);
-    if (formattedPreference === "Community") {
-        guideKey = "Community College"; // Special case for "community"
-    } else if (formattedPreference === "Trade") {
-        guideKey = "Trade School"; // Special case for "trade"
-    } else if (formattedPreference === "Job") {
-        guideKey = "Direct Job Entry"; // Special case for "job"
-    } else {
-        guideKey = formattedPreference; // e.g., "College"
-    }
-  }
+  // --- UPDATED LOGIC TO DETERMINE GUIDE ---
+  const pathwayMap = {
+    college: 'College',
+    community: 'Community College',
+    trade: 'Trade School',
+    job: 'Direct Job Entry',
+  };
 
-  // Fallback if the user's preference doesn't match a guide
-  if (!guideKey && mbtiData.careers.length > 0) {
-    const primaryPath = mbtiData.careers[0].postSchoolPath;
-    if (primaryPath) {
-      const formattedPrimary = primaryPath.charAt(0).toUpperCase() + primaryPath.slice(1);
-      if (formattedPrimary === "Community") {
-          guideKey = "Community College";
-      } else if (formattedPrimary === "Trade") {
-          guideKey = "Trade School";
-      } else if (formattedPrimary === "Job") {
-          guideKey = "Direct Job Entry";
-      } else {
-          guideKey = formattedPrimary;
-      }
-    }
-  }
+  const pathwayToUse = userPreference || mbtiData.careers[0]?.postSchoolPath?.toLowerCase();
+
+  const guideKey = pathwayMap[pathwayToUse] || null;
 
   const fullGuideContent = guideKey ? GUIDES_TEXT_CONTENT[guideKey] : null;
 
