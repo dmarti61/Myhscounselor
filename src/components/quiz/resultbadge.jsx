@@ -126,10 +126,10 @@ const ResultBadge = () => {
 
     const sortedCareers = [...matchingCareers, ...nonMatchingCareers];
 
-    // --- NEW: Generate dynamic next step phrase and link ---
-    const dynamicNextStepPhrase = generateNextStepPhrase(mbtiData);
-    const dynamicNextStepLink = generateNextStepLink(mbtiData);
-    // --- END NEW ---
+    // --- UPDATED: Generate dynamic next step phrase and link with user preference ---
+    const dynamicNextStepPhrase = generateNextStepPhrase(mbtiData, preferredPathway);
+    const dynamicNextStepLink = generateNextStepLink(mbtiData, preferredPathway);
+    // --- END UPDATED ---
 
     setData({
       vibe: mbtiData.vibe,
