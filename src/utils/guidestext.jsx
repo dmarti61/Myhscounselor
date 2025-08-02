@@ -3,6 +3,7 @@ import React from 'react';
 // import { renderToString } from 'react-dom/server'; // renderToString is not actually used here for the conversion
 import CollegeGuide from '../pages/collegeguide'; // Adjusted path
 import TradeSchoolGuide from '../pages/tradeschoolguide'; // Adjusted path
+import CommunityCollegeGuide from '../pages/communitycollegeguide'; // Added import for Community College
 import DirectEntryCareersGuide from '../pages/careers'; // Adjusted path, assuming Careers.jsx is the Direct Entry Guide
 
 const extractTextFromReactNode = (node) => {
@@ -76,5 +77,6 @@ const getPlainTextFromReactComponent = (Component) => {
 export const GUIDES_TEXT_CONTENT = {
   College: getPlainTextFromReactComponent(CollegeGuide),
   "Trade School": getPlainTextFromReactComponent(TradeSchoolGuide),
-  "Direct Entry": getPlainTextFromReactComponent(DirectEntryCareersGuide),
+  "Community College": getPlainTextFromReactComponent(CommunityCollegeGuide), // Added Community College
+  "Direct Job Entry": getPlainTextFromReactComponent(DirectEntryCareersGuide), // Key changed from "Direct Entry"
 };
