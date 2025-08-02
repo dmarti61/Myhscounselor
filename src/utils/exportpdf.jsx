@@ -1,6 +1,6 @@
 import jsPDF from 'jspdf';
 import { CAREER_STATS } from '../components/quiz/careerstats';
-import { MBTI_MAP } from '../components/quiz/mbtimap';
+import { MBTI_MAP, generateNextStepPhrase } from '../components/quiz/mbtimap';
 import { GUIDES_TEXT_CONTENT } from './guidestext';
 
 export const exportResultsAsPDF = ({ type, preference }) => {
@@ -17,12 +17,14 @@ export const exportResultsAsPDF = ({ type, preference }) => {
   let starredCareers = [];
   let nonStarredCareers = [];
 
-  if (preference) {
+  const userPreference = preference ? preference.toLowerCase() : null;
+
+  if (userPreference) {
     starredCareers = allCareers.filter(
-      (c) => c.pathway?.toLowerCase() === preference.toLowerCase()
+      (c) => c.postSchoolPath?.toLowerCase() === userPreference
     );
     nonStarredCareers = allCareers.filter(
-      (c) => c.pathway?.toLowerCase() !== preference.toLowerCase()
+      (c) => c.postSchoolPath?.toLowerCase() !== userPreference
     );
   } else {
     nonStarredCareers = allCareers;
@@ -30,10 +32,9 @@ export const exportResultsAsPDF = ({ type, preference }) => {
 
   const careersToDisplay = [...starredCareers, ...nonStarredCareers];
   const topCareer = careersToDisplay[0];
-  const topCareerStats =
-    topCareer?.blsCode && CAREER_STATS[topCareer.blsCode]
-      ? CAREER_STATS[topCareer.blsCode]
-      : {};
+  const topCareerStats = topCareer?.title && CAREER_STATS[topCareer.title]
+    ? CAREER_STATS[topCareer.title]
+    : {};
 
   // === Summary Page ===
   doc.setFont('Helvetica');
@@ -43,7 +44,7 @@ export const exportResultsAsPDF = ({ type, preference }) => {
   doc.setFontSize(14);
   doc.text(`Personality Type: ${mbtiType}`, 10, 30);
 
-  if (preference) {
+  if (userPreference) {
     doc.setFontSize(12);
     const found = starredCareers.length > 0;
     doc.text(
@@ -53,7 +54,7 @@ export const exportResultsAsPDF = ({ type, preference }) => {
     );
   }
 
-  let y = preference ? 48 : 42;
+  let y = userPreference ? 48 : 42;
   doc.setFontSize(12);
   doc.text('Strengths:', 10, y);
   y += 8;
@@ -67,8 +68,7 @@ export const exportResultsAsPDF = ({ type, preference }) => {
   y += 8;
 
   careersToDisplay.forEach((c) => {
-    const isStarred =
-      preference && c.pathway?.toLowerCase() === preference.toLowerCase();
+    const isStarred = userPreference && c.postSchoolPath?.toLowerCase() === userPreference;
     const line = `${isStarred ? '★ ' : ''}- ${c.title} (${c.pathway})`;
     doc.text(line, 14, y);
     y += 7;
@@ -88,9 +88,14 @@ export const exportResultsAsPDF = ({ type, preference }) => {
   doc.text(`- Education: ${topCareerStats.education || 'N/A'}`, 14, y);
   y += 10;
 
+  // Use the new function to generate the text
+  const nextStepText = generateNextStepPhrase(mbtiData);
   doc.text('Recommended Next Step:', 10, y);
   y += 8;
-  doc.text(`- ${mbtiData.recommendedNextStep}`, 14, y);
+  // This will include HTML tags, which jsPDF doesn't render. 
+  // You might want to strip them or handle them separately.
+  // For simplicity, let's just use the plain text.
+  doc.text(`- ${nextStepText.replace(/<[^>]*>/g, '')}`, 14, y); 
   y += 10;
 
   if (
