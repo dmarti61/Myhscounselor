@@ -34,7 +34,7 @@ const ShareCard = ({
       <button onClick={handleDownload} className="share-card-button">
         Download My Career Packet
       </button>
-      <p className="share-card-message">Share your unique journey with friends!</p>
+      <p className="share-card-message">Be sure to download this, as your results will be deleted in 24 hours</p>
     </div>
   );
 };
