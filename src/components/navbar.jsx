@@ -215,7 +215,6 @@ const Navbar = () => {
                   </NavLink>
                 ) : (
                   <details className="nav-dropdown">
-                  }}>
                     <summary role="menuitem" aria-haspopup="true" className={
                        item.children.some(child => location.pathname === child.path) ? 'active-category' : ''
                     }>
