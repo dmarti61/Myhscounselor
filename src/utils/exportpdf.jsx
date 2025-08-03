@@ -11,6 +11,7 @@ export const exportResultsAsPDF = ({ type, preference }) => {
   const mbtiType = type.toUpperCase();
   const mbtiData = MBTI_MAP[mbtiType];
   const pageHeight = doc.internal.pageSize.height;
+  const websiteURL = 'https://www.myhscounselor.com';
 
   if (!mbtiData) {
     console.error(`MBTI data not found for type: ${mbtiType}`);
@@ -217,6 +218,23 @@ export const exportResultsAsPDF = ({ type, preference }) => {
       });
       guideY += 10;
     });
+  }
+
+  // Loop through all pages to add the footer and page numbers
+  const totalPages = doc.internal.getNumberOfPages();
+  for (let i = 1; i <= totalPages; i++) {
+    doc.setPage(i);
+    const currentPageNumber = i;
+
+    // Add the website address to the footer
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(10);
+    doc.setTextColor(textColor);
+    doc.text(websiteURL, 15, pageHeight - 10);
+
+    // Add the page number to the bottom right
+    const pageNumberText = `Page ${currentPageNumber} of ${totalPages}`;
+    doc.text(pageNumberText, doc.internal.pageSize.width - 15, pageHeight - 10, { align: 'right' });
   }
 
   doc.save(`${mbtiType}_Quiz_Results.pdf`);
