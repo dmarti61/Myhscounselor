@@ -27,7 +27,7 @@ export const exportResultsAsPDF = ({ type, preference }) => {
   // --- Summary Page ---
 
   // NEW: Add a dark blue rectangle as the background for the logo
-  doc.setFillColor(0, 56, 179); // #0038B3 in RGB
+  doc.setFillColor(0, 86, 179); // #0038B3 in RGB
   doc.rect(0, 0, doc.internal.pageSize.width, 30, 'F');
 
   // Add the logo on top of the background
