@@ -242,7 +242,7 @@ Apprenticeships are widely considered the gold standard for trade education. Thi
 * **Typical Timelines:**
     * **Generally:** 1 to 6 years, depending on the complexity of the trade and state requirements. Most reputable apprenticeships are 3-5 years.
 * **Examples:...`,
-  "Community College": `
+ "Community College": `
 YOUR PATH TO SUCCESS: TWO-YEAR COLLEGES (U.S.)
 
 Two-year colleges, often called community colleges or junior colleges, offer an excellent and flexible pathway to higher education and career readiness. Whether you're aiming to transfer to a four-year university, gain specific job skills, or explore your options, a two-year college might be the perfect fit for you. Let's explore how!
@@ -274,23 +274,91 @@ Beyond transfer programs, two-year colleges offer a wide array of career and tec
 This is one of the most popular reasons to attend a two-year college. You complete your general education requirements and often some major-specific courses, earning an Associate of Arts (A.A.) or Associate of Science (A.S.) degree. These credits are then transferred to a four-year university, where you complete your remaining junior and senior year coursework for a bachelor's degree.
 
 * **Benefits:** Significant cost savings, a smoother transition to college academics, and often guaranteed admission agreements with state universities.
-* **Key Tip:** Work closely with your community college advisor AND research the transfer requirements of your target four-year universities to ensure your credits will transfer seamlessly. Look for "**articulation agreements**" or "**transfer pathways**."
+* **Key Tip:** Work closely with your community college advisor AND research the transfer requirements of your target four-year universities to ensure your credits will transfer seamlessly. Look for "articulation agreements" or "transfer pathways."
 
 #### 2. Career & Technical Training (Associate of Applied Science & Certificates)
 
 If your goal is to enter the workforce quickly with specialized skills, two-year colleges are an excellent choice. They offer hands-on training in high-demand fields, leading to Associate of Applied Science (A.A.S.) degrees or shorter-term certificates.
 
-* **Benefits:** Accelerated training, practical job skills, and high job placement rates in growing industries.
-* **Key Tip:** Choose a program with strong industry connections and a good reputation for helping graduates find employment.
+* **Examples:** Nursing, automotive technology, culinary arts, cybersecurity, paralegal studies, welding, HVAC, dental hygiene, and many more.
+* **Benefits:** Faster entry into the workforce, practical skills directly applicable to a job, and often higher earning potential than with only a high school diploma.
+* **Key Tip:** Research local job markets to identify in-demand fields and choose a program that aligns with those opportunities. Many programs include internships or co-op experiences.
 
 #### 3. Professional Development & Lifelong Learning (Non-Degree Certificates)
 
 Community colleges also serve as a resource for adults looking to update their skills, change careers, or pursue a hobby. They offer a wide variety of non-degree certificates and continuing education courses.
 
 * **Benefits:** Flexible, short-term training; no formal admission requirements for many courses; and a chance to explore new interests.
+* **Key Tip:** Look for programs that offer industry-recognized certifications to boost your resume and employability.
 
-Explore trade school as another great alternative for hands-on, career-specific training!`,
-  "Direct Job Entry": `
+#### 4. Undecided or Exploratory
+
+If you're unsure about your major or career path, a two-year college provides an affordable environment to explore different subjects and gain college-level experience without committing to a costly four-year program right away.
+
+* **Benefits:** Low-risk way to take introductory courses in various fields, develop study habits, and potentially save money while you figure things out.
+* **Key Tip:** Utilize academic advising and career counseling services to help you discover your interests and strengths.
+
+---
+
+### APPLYING TO A TWO-YEAR COLLEGE
+
+**Typically simpler than four-year applications!**
+
+* **Application Form:** Complete the college's online application.
+* **High School Transcript/GED:** Submit official copies.
+* **Placement Tests:** Many community colleges use placement tests (like Accuplacer) in reading, writing, and math to determine which courses you're ready for. Your SAT/ACT scores might exempt you from these.
+* **Orientation & Advising:** Once accepted, you'll typically attend an orientation and meet with an academic advisor to plan your courses.
+* **Deadlines:** While many have rolling admissions, specific program applications (like nursing) may have competitive deadlines. Financial aid deadlines are also crucial (see FAFSA below!).
+
+---
+
+### FINANCING YOUR TWO-YEAR COLLEGE EDUCATION
+
+Even though two-year colleges are more affordable, financial aid can still significantly reduce your costs.
+
+* **FAFSA (Free Application for Federal Student Aid):**
+    * **Essential:** Just like for four-year colleges, filling out the FAFSA is the first step to access federal grants (like Pell Grants, which you don't have to pay back!), federal student loans, and work-study.
+    * **Deadline:** Aim to complete the FAFSA as early as possible after it opens (typically October 1st for the following academic year) to maximize your aid eligibility. Remember, some state and institutional aid is first-come, first-served.
+    * **Website:** https://studentaid.gov/h/apply-for-aid/fafsa
+
+* **State Grants & Scholarships:** Many states offer grants specifically for community college students. Check with your state's higher education agency and your chosen college's financial aid office.
+* **College-Specific Scholarships:** Community colleges often have their own scholarship programs, sometimes funded by local businesses or foundations. Inquire with their financial aid office.
+* **Private Scholarships:** Search for external scholarships using resources like Fastweb and Scholarships.com (listed in the Four-Year Guide).
+* **Work-Study & Part-Time Jobs:** If you qualify, federal work-study allows you to earn money through a part-time job on campus. Many community college students also work off-campus to support their education.
+
+---
+
+### THRIVING AT A TWO-YEAR COLLEGE: TIPS FOR SUCCESS
+
+* **Engage with Advisors:** Your academic advisor is a crucial resource, especially if you plan to transfer. Meet with them regularly to ensure you're taking the right courses for your goals.
+* **Utilize Support Services:** Take advantage of free tutoring, writing centers, and career services.
+* **Get Involved:** Join clubs, student government, or volunteer. This helps you build community and develop leadership skills.
+* **Network:** Connect with professors, classmates, and professionals in your field. These connections can lead to internships, job opportunities, or strong recommendation letters.
+* **Stay Focused on Your Goal:** Whether it's transferring or entering a specific career, keep your end goal in mind to stay motivated and make strategic course choices.
+
+---
+
+### 🛠️ TOOLS & RESOURCES (APPLICABLE TO TWO-YEAR COLLEGES)
+
+* **FAFSA** — Apply for federal student aid. Essential for grants and loans.
+* **Fastweb** — Comprehensive scholarship search engine.
+* **Scholarships.com** — Another popular scholarship database.
+* **Your State's Higher Education Website:** Search for "[Your State] higher education" to find information on state grants and transfer agreements.
+* **Individual College Websites:** Always check the admissions, financial aid, and academic program pages of the specific two-year college you're interested in.
+* **Transfer Agreements:** Look for "articulation agreements" or "transfer guides" on both the community college's and your target four-year university's websites.
+
+---
+
+### 💡 BONUS TIPS FOR TWO-YEAR COLLEGE STUDENTS
+
+* **Consider Summer Classes:** Taking a few classes in the summer can help you complete your degree or transfer requirements faster.
+* **Build a Strong Transcript:** Even if you're transferring, strong grades at your two-year college are important for university admissions and scholarships.
+* **Explore Campus Resources:** Libraries, computer labs, and student success centers are there to help you succeed.
+* **Don't Underestimate the Experience:** Two-year colleges offer a valuable educational experience and are a legitimate pathway to success. Be proud of your choice!
+
+“Education is the most powerful weapon which you can use to change the world.” — Nelson Mandela
+`
+ "Direct Job Entry": `
 ## Your Future Starts Now: High School Grads, No College Degree Needed!
 
 Congratulations, high school graduates! You've reached a major milestone, and now, an exciting world of career possibilities awaits you – even without a four-year college degree. Many rewarding paths offer direct entry, on-the-job training, and excellent growth potential. All it takes is a clear plan, a willingness to learn, and the determination to build a successful future.
