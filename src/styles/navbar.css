@@ -331,8 +331,8 @@
   .nav-submenu li a:focus {
     color: #a8c0ff;
     padding-left: 0.5rem; /* Further indent on hover/focus */
-    outline: 2px solid #a8c0ff;
-    outline-offset: -2px;
+    /*outline: 2px solid #a8c0ff;
+    outline-offset: -2px;*/
   }
 
   /* Active state for sub-items - ADJUSTED to use only left border */
