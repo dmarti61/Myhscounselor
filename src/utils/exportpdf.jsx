@@ -33,7 +33,7 @@ export const exportResultsAsPDF = ({ type, preference }) => {
   // Add the logo on top of the background
   // doc.addImage(logo, 'PNG', x, y, width, height);
   // Adjusted position to be centered on the dark background
-  const logoWidth = 40;
+  const logoWidth = 60;
   const logoHeight = 10;
   const logoX = (doc.internal.pageSize.width - logoWidth) / 2;
   const logoY = 10;
