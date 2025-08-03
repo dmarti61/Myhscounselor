@@ -36,7 +36,7 @@ export const exportResultsAsPDF = ({ type, preference }) => {
   const logoWidth = 60;
   const logoHeight = 20;
   const logoX = (doc.internal.pageSize.width - logoWidth) / 2;
-  const logoY = 20;
+  const logoY = 10;
   doc.addImage(logo, 'PNG', logoX, logoY, logoWidth, logoHeight);
 
   // Add the title
