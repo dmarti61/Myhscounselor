@@ -1,4 +1,4 @@
-Export const GUIDES_TEXT_CONTENT = {
+export const GUIDES_TEXT_CONTENT = {
   "College": `
 ## 🎓 Your College Application Roadmap
 
