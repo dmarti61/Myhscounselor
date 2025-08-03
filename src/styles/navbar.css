@@ -180,8 +180,8 @@
   .nav-close-btn:hover,
   .nav-close-btn:focus {
     color: #a8c0ff;
-    outline: 2px solid #a8c0ff;
-    outline-offset: 2px;
+    /*outline: 2px solid #a8c0ff;
+    outline-offset: 2px;*/
   }
 
   .nav-links-scroll-wrapper {
@@ -437,8 +437,8 @@
   .nav-links li > .nav-link:focus {
     color: #a8c0ff;
     border-bottom-color: #a8c0ff;
-    outline: 2px solid #a8c0ff;
-    outline-offset: 2px;
+    /*outline: 2px solid #a8c0ff;
+    outline-offset: 2px;*/
     padding-left: 0; /* Remove mobile padding-left */
   }
 
@@ -486,8 +486,8 @@
   .nav-dropdown summary:hover,
   .nav-dropdown summary:focus {
     color: #a8c0ff;
-    outline: 2px solid #a8c0ff;
-    outline-offset: 2px;
+    /*outline: 2px solid #a8c0ff;
+    outline-offset: 2px;*/
     padding-left: 0;
   }
 
