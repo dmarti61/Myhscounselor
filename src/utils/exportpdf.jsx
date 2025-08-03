@@ -34,9 +34,9 @@ export const exportResultsAsPDF = ({ type, preference }) => {
   // doc.addImage(logo, 'PNG', x, y, width, height);
   // Adjusted position to be centered on the dark background
   const logoWidth = 60;
-  const logoHeight = 10;
+  const logoHeight = 20;
   const logoX = (doc.internal.pageSize.width - logoWidth) / 2;
-  const logoY = 10;
+  const logoY = 20;
   doc.addImage(logo, 'PNG', logoX, logoY, logoWidth, logoHeight);
 
   // Add the title
