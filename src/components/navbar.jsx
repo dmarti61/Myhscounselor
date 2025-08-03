@@ -214,11 +214,7 @@ const Navbar = () => {
                     {item.label}
                   </NavLink>
                 ) : (
-                  <details className="nav-dropdown" onToggle={(e) => {
-                    const isActiveChild = item.children.some(child => location.pathname === child.path);
-                    if (isActiveChild) {
-                      e.target.open = true;
-                    }
+                  <details className="nav-dropdown">
                   }}>
                     <summary role="menuitem" aria-haspopup="true" className={
                        item.children.some(child => location.pathname === child.path) ? 'active-category' : ''
