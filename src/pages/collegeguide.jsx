@@ -4,7 +4,7 @@ import '../styles/collegeguide.css'; // Assuming this path is correct for your s
 
 const CollegeGuide = () => (
   <div className="college-guide-container">
-    <h2>🎓 Your College Application Roadmap</h2>
+    <h2>🎓 Your College Application Roadmap (U.S.)</h2>
 
     <p className="intro">
     Applying to college might feel overwhelming, but with the right approach, it's a journey you can navigate with confidence. This guide is your practical roadmap—offering step-by-step strategies, key resources, and insights for every stage. Take it one step at a time, and know this: your effort today is an investment in your future.
