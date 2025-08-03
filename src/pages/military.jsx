@@ -1,4 +1,5 @@
 import React from 'react';
+import '../styles/collegeguide.css';
 
 const MilitaryAcademiesGuide = () => (
   <div className="military-academies-container">
