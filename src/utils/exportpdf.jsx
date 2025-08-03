@@ -26,18 +26,28 @@ export const exportResultsAsPDF = ({ type, preference }) => {
 
   // --- Summary Page ---
 
-  // Add the logo at the top
-  doc.addImage(logo, 'PNG', 15, 15, 40, 10); // x, y, width, height
+  // NEW: Add a dark blue rectangle as the background for the logo
+  doc.setFillColor(0, 56, 179); // #0038B3 in RGB
+  doc.rect(0, 0, doc.internal.pageSize.width, 30, 'F');
+
+  // Add the logo on top of the background
+  // doc.addImage(logo, 'PNG', x, y, width, height);
+  // Adjusted position to be centered on the dark background
+  const logoWidth = 40;
+  const logoHeight = 10;
+  const logoX = (doc.internal.pageSize.width - logoWidth) / 2;
+  const logoY = 10;
+  doc.addImage(logo, 'PNG', logoX, logoY, logoWidth, logoHeight);
 
   // Add the title
   doc.setFont('helvetica', 'bold');
   doc.setFontSize(24);
   doc.setTextColor(primaryColor);
-  doc.text('MyHSCounselor Quiz Results', 15, 35);
-  doc.line(15, 37, 195, 37); // Underline for main heading
+  doc.text('MyHSCounselor Quiz Results', 15, 45); // Adjusted y position to be below the new banner
+  doc.line(15, 47, 195, 47); // Underline for main heading
 
   // Personality Type Section
-  let y = 48;
+  let y = 58; // Adjusted y position
   doc.setFont('helvetica', 'bold');
   doc.setFontSize(16);
   doc.setTextColor(primaryColor);
