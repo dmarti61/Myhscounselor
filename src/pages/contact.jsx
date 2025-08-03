@@ -8,23 +8,26 @@ const Contact = () => {
     email: '',
     suggestionsFeedback: '',
     siteRating: '',
-    howDidYouHear: '', // NEW FIELD ADDED HERE
+    howDidYouHear: '',
     'bot-field': '',
   });
 
   const [submissionStatus, setSubmissionStatus] = useState(null);
 
+  // This function now creates a FormData object, which is easier to work with.
   const encode = (data) => {
-    return Object.keys(data)
-      .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
-      .join("&");
+    const form = new FormData();
+    for (const key in data) {
+      form.append(key, data[key]);
+    }
+    return form;
   };
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     setFormData(prevData => ({
       ...prevData,
-      [name]: type === 'radio' ? value : value // Handle radios and other inputs
+      [name]: type === 'radio' ? value : value
     }));
   };
 
@@ -32,20 +35,18 @@ const Contact = () => {
     e.preventDefault();
     setSubmissionStatus('submitting');
 
+    // Honeypot check: If the bot-field is filled, it's a bot. Block the submission.
     if (formData['bot-field']) {
       console.log('Bot detected, submission blocked.');
-      setSubmissionStatus('success');
+      setSubmissionStatus('success'); // Still show success to the bot.
       return;
     }
 
     try {
-      const response = await fetch("/", {
+      // POST the data to the new Cloudflare Pages Function endpoint.
+      const response = await fetch("/contact", {
         method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: encode({
-          "form-name": "contact",
-          ...formData,
-        }),
+        body: encode(formData),
       });
 
       if (response.ok) {
@@ -56,7 +57,7 @@ const Contact = () => {
           email: '',
           suggestionsFeedback: '',
           siteRating: '',
-          howDidYouHear: '', // Clear the new field on success
+          howDidYouHear: '',
           'bot-field': ''
         });
         alert('Thank you for your message! We will get back to you soon.');
@@ -79,7 +80,8 @@ const Contact = () => {
         missing, and what you’d love to see next.
       </p>
 
-      <form name="contact" onSubmit={handleSubmit} className="netlify-form">
+      {/* We're no longer relying on Netlify, so remove Netlify-specific attributes */}
+      <form name="contact" onSubmit={handleSubmit} className="cloudflare-form">
         <input type="hidden" name="form-name" value="contact" />
 
         {/* Honeypot field */}
