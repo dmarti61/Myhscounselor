@@ -133,6 +133,7 @@ const Navbar = () => {
         { label: 'Trade School Guide', path: '/trade' },
         { label: 'Military Service', path: '/military' },
         { label: 'Work After High School', path: '/direct-entry-careers' },
+        { label: 'Gap Year & Alternative Paths', path: '/gap-year' },
       ]
     },
     {
@@ -145,7 +146,6 @@ const Navbar = () => {
         { label: 'Making It Official', path: '/decision-official' },
         { label: 'Job Search Essentials', path: '/job-search' },
         { label: 'Navigating Your First Months', path: '/first-months' },
-        { label: 'Gap Year & Alternative Paths', path: '/gap-year' },
       ]
     },
     {
