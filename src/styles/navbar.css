@@ -407,28 +407,27 @@
     width: auto;
   }
 
-  /* Direct NavLink styles for desktop */
+  /* Direct NavLink styles for desktop - ADJUSTED to match summary */
   .nav-links li > .nav-link { /* Target direct NavLinks */
     display: block; /* Make sure padding works */
     padding: 0.25rem 0; /* Adjust padding for desktop */
     font-size: 1rem;
     color: #fff;
     text-decoration: none;
-    border-bottom: 2px solid transparent;
     transition: color 0.2s ease, border-bottom 0.2s ease;
   }
 
   .nav-links li > .nav-link:hover,
   .nav-links li > .nav-link:focus {
     color: #a8c0ff;
-    border-bottom-color: #a8c0ff;
+    /* Removed border-bottom-color */
     outline: 2px solid #a8c0ff;
     outline-offset: 2px;
     padding-left: 0; /* Remove mobile padding-left */
   }
 
   .nav-links li > .nav-link.active {
-    border-bottom: 2px solid #fff;
+    /* Removed border-bottom */
     color: #fff; /* Keep color consistent with non-hover */
     padding-left: 0; /* Remove mobile padding-left */
   }
@@ -441,6 +440,7 @@
     padding: 0;
   }
 
+  /* Dropdown summary styles for desktop - ADJUSTED */
   .nav-dropdown summary {
     display: flex;
     align-items: center;
@@ -477,7 +477,7 @@
 
   .nav-dropdown summary.active-category {
     color: #fff; /* Active category on desktop stays white */
-    border-bottom: 2px solid #fff; /* Matches active direct link */
+    /* Removed border-bottom from here */
     padding-left: 0;
   }
 
