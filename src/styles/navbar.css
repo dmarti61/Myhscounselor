@@ -232,8 +232,8 @@
   .nav-links-scroll-wrapper > ul > li > .nav-link:focus {
     color: #a8c0ff;
     padding-left: 1rem;
-    outline: 2px solid #a8c0ff;
-    outline-offset: -2px;
+    /*outline: 2px solid #a8c0ff;
+    outline-offset: -2px;*/
   }
 
   .nav-links-scroll-wrapper > ul > li > .nav-link.active {
@@ -286,8 +286,8 @@
   .nav-dropdown summary:focus {
     color: #a8c0ff;
     padding-left: 1rem;
-    outline: 2px solid #a8c0ff;
-    outline-offset: -2px;
+    /*outline: 2px solid #a8c0ff;
+    outline-offset: -2px;*/
   }
 
   /* Removed active-category styling to prevent border */
