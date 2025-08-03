@@ -4,7 +4,7 @@ import { MBTI_MAP, generateNextStepPhrase } from '../components/quiz/mbtimap';
 import { GUIDES_TEXT_CONTENT } from './guidestext';
 
 // Import the logo image
-import logo from '../public/logo.png';
+import logo from '../../public/logo.png';
 
 export const exportResultsAsPDF = ({ type, preference }) => {
   const doc = new jsPDF('p', 'mm', 'a4'); // Use 'mm' for consistent units
