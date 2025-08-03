@@ -1,6 +1,6 @@
 export const GUIDES_TEXT_CONTENT = {
   "College": `
-## 🎓 Your College Application Roadmap
+## Your College Application Roadmap
 
 Applying to college might feel overwhelming, but with the right approach, it's a journey you can navigate with confidence. This guide is your practical roadmap—offering step-by-step strategies, key resources, and insights for every stage. Take it one step at a time, and know this: your effort today is an investment in your future.
 
@@ -163,7 +163,7 @@ Once you've been accepted and are ready to go, congratulations! This is a tremen
 
 ---
 
-## 🛠️ Key Tools & Resources
+## Key Tools & Resources
 
 * **Common App** — Apply to 1,000+ colleges using one common application.
 * **Coalition App** — Another widely used application platform by many colleges.
@@ -180,7 +180,7 @@ Once you've been accepted and are ready to go, congratulations! This is a tremen
 
 ---
 
-## ✍️ Crafting Compelling Essays: Expert Tips
+## Crafting Compelling Essays: Expert Tips
 
 * **Start Early:** Procrastination is the enemy of a strong essay. Give yourself weeks, not just days, to develop and refine your thoughts.
 * **Be Authentic:** Your unique voice and perspective are what colleges genuinely want to see. Don't try to be someone you're not; let your true self shine through.
@@ -192,7 +192,7 @@ Once you've been accepted and are ready to go, congratulations! This is a tremen
 
 ---
 
-## 💡 Strategic Bonus Tips
+## Strategic Bonus Tips
 
 * **Stay Organized!** Create a detailed spreadsheet with each college, its application type (Common App, direct), all deadlines (application, financial aid, scholarships), and required materials (essay prompts, LoRs, test scores). This organizational tool will be a lifesaver.
 * **Prioritize Depth Over Breadth:** It's more impactful to be deeply involved in a few activities (including meaningful volunteering!) than superficially involved in many. Colleges value quality and sustained commitment.
@@ -202,7 +202,7 @@ Once you've been accepted and are ready to go, congratulations! This is a tremen
 
 ---
 
-## 🚫 Common Pitfalls to Avoid
+## Common Pitfalls to Avoid
 
 * **Missing Deadlines:** This is the most common and critical application error. Always aim to submit your materials a few days early to avoid last-minute issues.
 * **Generic Essays:** Do not use the same essay for every college unless the prompt is identical and you've verified it's acceptable. Tailor your essays to each institution.
@@ -396,7 +396,7 @@ Even though two-year colleges are more affordable, financial aid can still signi
 
 ---
 
-### 🛠️ TOOLS & RESOURCES (APPLICABLE TO TWO-YEAR COLLEGES)
+### TOOLS & RESOURCES (APPLICABLE TO TWO-YEAR COLLEGES)
 
 * **FAFSA** — Apply for federal student aid. Essential for grants and loans.
 * **Fastweb** — Comprehensive scholarship search engine.
@@ -407,7 +407,7 @@ Even though two-year colleges are more affordable, financial aid can still signi
 
 ---
 
-### 💡 BONUS TIPS FOR TWO-YEAR COLLEGE STUDENTS
+### BONUS TIPS FOR TWO-YEAR COLLEGE STUDENTS
 
 * **Consider Summer Classes:** Taking a few classes in the summer can help you complete your degree or transfer requirements faster.
 * **Build a Strong Transcript:** Even if you're transferring, strong grades at your two-year college are important for university admissions and scholarships.
@@ -415,7 +415,7 @@ Even though two-year colleges are more affordable, financial aid can still signi
 * **Don't Underestimate the Experience:** Two-year colleges offer a valuable educational experience and are a legitimate pathway to success. Be proud of your choice!
 
 “Education is the most powerful weapon which you can use to change the world.” — Nelson Mandela
-`
+`,
  "Direct Job Entry": `
 ## Your Future Starts Now: High School Grads, No College Degree Needed!
 
@@ -425,7 +425,7 @@ This page is your guide to exploring diverse fields where your diploma is your t
 
 ---
 
-### 🛠️ Skilled Trades & Apprenticeships: Build Your Future with Your Hands
+### Skilled Trades & Apprenticeships: Build Your Future with Your Hands
 
 If you enjoy hands-on work, problem-solving, and seeing tangible results, the **skilled trades** offer incredible stability, high demand, and excellent earning potential. Many roles begin with an **apprenticeship**, a "learn-while-you-earn" model where you get paid to train directly on the job, often alongside experienced professionals. This means little to no student debt!
 
@@ -445,7 +445,7 @@ If you enjoy hands-on work, problem-solving, and seeing tangible results, the **
 
 ---
 
-### 📦 Logistics & Transportation: Keep the World Moving
+### Logistics & Transportation: Keep the World Moving
 
 The backbone of our economy, **logistics and transportation** fields are constantly in need of organized, reliable individuals. If you're comfortable on the go and can manage tasks efficiently, there are many entry points to a stable career.
 
@@ -463,7 +463,7 @@ The backbone of our economy, **logistics and transportation** fields are constan
 
 ---
 
-### 🏢 Administrative & Office Support: The Backbone of Every Business
+### Administrative & Office Support: The Backbone of Every Business
 
 Every successful business relies on organized, efficient people to manage daily operations. If you're detail-oriented, enjoy supporting a team, and have strong communication skills, **office support roles** are an excellent starting point.
 
@@ -480,7 +480,7 @@ Every successful business relies on organized, efficient people to manage daily 
 
 ---
 
-### 🤝 Customer Service & Sales: Connect with People
+### Customer Service & Sales: Connect with People
 
 If you thrive on interacting with people, enjoy solving problems, and have a friendly demeanor, **customer-facing roles** are abundant and offer valuable experience in almost any industry.
 
@@ -498,7 +498,7 @@ If you thrive on interacting with people, enjoy solving problems, and have a fri
 
 ---
 
-### 🏥 Healthcare Support: Make a Difference in Lives
+### Healthcare Support: Make a Difference in Lives
 
 Want to contribute to people's well-being and work in a high-demand field? Many essential roles in **healthcare** don't require a four-year degree and offer a direct path to employment after high school, often with short-term certifications.
 
@@ -517,7 +517,7 @@ Want to contribute to people's well-being and work in a high-demand field? Many 
 
 ---
 
-### 💻 Tech & Digital Skills: Your Gateway to Innovation
+### Tech & Digital Skills: Your Gateway to Innovation
 
 The digital world is booming, and you don't always need a four-year degree to get started! If you're tech-savvy, enjoy solving puzzles, or have a knack for online creativity, many roles can be learned through self-study, online courses, and bootcamps.
 
@@ -535,7 +535,7 @@ The digital world is booming, and you don't always need a four-year degree to ge
 
 ---
 
-### 🏛️ Government & Public Service: Serve Your Community
+### Government & Public Service: Serve Your Community
 
 Serving your community directly through a variety of public service roles can provide great stability, valuable benefits, and a sense of purpose. Many of these positions offer comprehensive training and clear career ladders.
 
@@ -553,7 +553,7 @@ Serving your community directly through a variety of public service roles can pr
 
 ---
 
-### 🛠️ General Labor & Manufacturing: Hands-On & Essential
+### General Labor & Manufacturing: Hands-On & Essential
 
 Many industries rely on skilled and dedicated individuals to produce goods, maintain facilities, and handle day-to-day operations. These roles often offer on-the-job training and a clear path to gaining valuable skills.
 
