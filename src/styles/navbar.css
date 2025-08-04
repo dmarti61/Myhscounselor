@@ -152,7 +152,6 @@
     z-index: 1002;
     justify-content: flex-end;
     align-items: center;
-    border-bottom: 1px solid #ffffff22;
     margin-bottom: 0.5rem;
   }
 
@@ -192,7 +191,6 @@
 
   .nav-links-scroll-wrapper li {
     width: 100%;
-    border-bottom: 1px solid #ffffff1a;
   }
 
   .nav-links-scroll-wrapper li:last-child {
@@ -252,7 +250,6 @@
     list-style: none;
     padding-left: 1rem;
     margin: 0;
-    border-top: 1px solid #ffffff1a;
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
     display: none; /* Hide submenu by default */
