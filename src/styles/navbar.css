@@ -427,8 +427,12 @@
   }
 
   /* Submenu styles for desktop */
-    .nav-submenu {
-    display: none; /* This line is crucial for desktop view */
+   .nav-submenu {
+    /* Change these three properties */
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+    
     position: absolute;
     top: calc(100% + 10px);
     left: 50%;
@@ -442,10 +446,16 @@
     border-radius: 4px;
     z-index: 1000;
     border: 1px solid #004d99;
+    
+    /* Add a transition for a smooth fade-in/out effect */
+    transition: opacity 0.3s ease, visibility 0.3s ease;
   }
 
+  /* This class now makes the submenu visible */
   .nav-submenu.show {
-    display: block;
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
   }
   
   .nav-submenu li {
