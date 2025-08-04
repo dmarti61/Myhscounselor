@@ -38,7 +38,7 @@ const Home = () => {
       </p>
 
       <p>
-        Discover your unique strengths and interests! Our quick 20-question assessment reveals your personality type and preferences, helping you pinpoint the best next steps toward a career path that truly fits you.
+        Discover your unique strengths and interests! Our quick 24-question assessment reveals your personality type and preferences, helping you pinpoint the best next steps toward a career path that truly fits you.
       </p>
 
       <div className="button-group">
