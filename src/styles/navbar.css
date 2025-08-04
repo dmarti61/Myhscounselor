@@ -428,13 +428,15 @@
 
   /* Submenu styles for desktop */
   .nav-submenu {
-    display: none; /* Hidden by default */
+    display: none; /* Add this line to hide the submenu by default */
     position: absolute;
     top: calc(100% + 10px);
-    left: 0;
+    left: 50%;
+    transform: translateX(-50%);
     background-color: #003366;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    min-width: 200px;
+    min-width: 220px;
+    max-width: 300px;
     padding: 0.5rem 0;
     list-style: none;
     border-radius: 4px;
