@@ -436,7 +436,8 @@
     visibility: hidden;
     opacity: 0;
     pointer-events: none;
-    display: flex;
+    /* FIX: Set display to none by default */
+    display: none; 
     flex-direction: column;
     position: absolute;
     top: calc(100% + 10px);
@@ -461,6 +462,7 @@
     visibility: visible;
     opacity: 1;
     pointer-events: auto;
+    /* FIX: Override display to show as a flex column */
     display: flex;
     flex-direction: column;
     padding: .5rem 0;
