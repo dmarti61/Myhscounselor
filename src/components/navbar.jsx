@@ -83,6 +83,11 @@ const Navbar = () => {
     // Close the dropdown menus whenever the page path changes
     setActiveDropdown(null);
   }, [location.pathname]);
+  
+  useEffect(() => {
+    // This new hook ensures dropdowns are hidden on initial load
+    setActiveDropdown(null);
+  }, []);
 
   useEffect(() => {
     const onKey = e => {
