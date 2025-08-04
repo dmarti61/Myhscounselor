@@ -144,7 +144,7 @@ const Contact = () => {
 
         <div className="form-group">
           <fieldset>
-            <legend>How would you rate your experience on our site? <span className="required">*</span></legend>
+            <legend>How would you rate your experience on our site? <span className="optional">(optional)</span></legend>
             <div className="radio-group">
               <label>
                 <input
@@ -153,7 +153,7 @@ const Contact = () => {
                   value="Excellent"
                   checked={formData.siteRating === 'Excellent'}
                   onChange={handleChange}
-                  required
+                  // The 'required' attribute has been removed
                 />
                 Excellent
               </label>
@@ -164,7 +164,7 @@ const Contact = () => {
                   value="Good"
                   checked={formData.siteRating === 'Good'}
                   onChange={handleChange}
-                  required
+                  // The 'required' attribute has been removed
                 />
                 Good
               </label>
@@ -175,7 +175,7 @@ const Contact = () => {
                   value="Fair"
                   checked={formData.siteRating === 'Fair'}
                   onChange={handleChange}
-                  required
+                  // The 'required' attribute has been removed
                 />
                 Fair
               </label>
@@ -186,7 +186,7 @@ const Contact = () => {
                   value="Poor"
                   checked={formData.siteRating === 'Poor'}
                   onChange={handleChange}
-                  required
+                  // The 'required' attribute has been removed
                 />
                 Poor
               </label>
@@ -195,13 +195,13 @@ const Contact = () => {
         </div>
 
         <div className="form-group">
-          <label htmlFor="howDidYouHear">How did you hear about us? <span className="required">*</span></label>
+          <label htmlFor="howDidYouHear">How did you hear about us? <span className="optional">(optional)</span></label>
           <select
             id="howDidYouHear"
             name="howDidYouHear"
             value={formData.howDidYouHear}
             onChange={handleChange}
-            required
+            // The 'required' attribute has been removed
           >
             <option value="">--Please choose an option--</option>
             <option value="Friend/Colleague">Friend/Colleague</option>
