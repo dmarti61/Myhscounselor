@@ -395,7 +395,7 @@
     flex-direction: row; /* Horizontal alignment */
     align-items: center;
     flex-grow: 1; /* Allow links to take available space */
-    justify-content: flex-end; /* Push links to the right */
+    justify-content: space-evenly; /* Push links to the right */
   }
 
   .nav-links-scroll-wrapper {
