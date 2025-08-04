@@ -257,16 +257,19 @@ const Navbar = () => {
                       onClick={() => { closeMenu(); setActiveDropdown(null); }}
                     >
                       {child.label}
-                    </NavLink>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
-        </li>
-      ))}
-    </ul>
-  </div>
-</div>
+                   </NavLink>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </nav>
+  );
+};
 
 export default Navbar;
