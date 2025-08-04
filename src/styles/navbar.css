@@ -459,6 +459,7 @@
     pointer-events: auto;
     display: flex;
     flex-direction: column;
+    padding: .5rem 0;
   }
   
   .nav-submenu li {
