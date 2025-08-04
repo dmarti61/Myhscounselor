@@ -185,90 +185,88 @@ const Navbar = () => {
         </button>
       </div>
 
-      <div
-        id="primary-navigation"
-        className={`nav-links ${isOpen ? 'show' : ''}`}
-        role="menu"
-        aria-hidden={!isOpen}
-      >
-        <div className="nav-close-container">
-          <button
-            ref={closeButtonRef}
-            className="nav-close-btn"
-            onClick={closeMenu}
-            aria-label="Close menu"
-          >
-            &times;
-          </button>
-        </div>
+      // ... (rest of the component)
+<div
+  id="primary-navigation"
+  className={`nav-links ${isOpen ? 'show' : ''}`}
+  role="menu"
+  aria-hidden={!isOpen}
+>
+  <div className="nav-close-container">
+    <button
+      ref={closeButtonRef}
+      className="nav-close-btn"
+      onClick={closeMenu}
+      aria-label="Close menu"
+    >
+      &times;
+    </button>
+  </div>
 
-        <div className="nav-links-scroll-wrapper">
-          <ul role="menubar">
-            {navItems.map(item => (
-              <li
-                key={item.id || item.path}
-                role="none"
-                onMouseEnter={() => {
-                  if (window.innerWidth > 900) setActiveDropdown(item.id);
-                }}
-                onMouseLeave={() => {
-                  if (window.innerWidth > 900) setActiveDropdown(null);
-                }}
+  <div className="nav-links-scroll-wrapper">
+    <ul role="menubar">
+      {navItems.map(item => (
+        <li
+          key={item.id || item.path}
+          role="none"
+          onMouseEnter={() => {
+            if (window.innerWidth > 900) setActiveDropdown(item.id);
+          }}
+          onMouseLeave={() => {
+            if (window.innerWidth > 900) setActiveDropdown(null);
+          }}
+        >
+          {item.path ? (
+            <NavLink
+              to={item.path}
+              role="menuitem"
+              className={({ isActive }) =>
+                `nav-top-level-item ${isActive ? 'active-item' : ''}`
+              }
+              onClick={() => { closeMenu(); setActiveDropdown(null); }}
+            >
+              {item.label}
+            </NavLink>
+          ) : (
+            <div className="nav-dropdown">
+              <button
+                className={`nav-top-level-item nav-dropdown-btn ${
+                  item.children.some(child => location.pathname === child.path) ? 'active-item' : ''
+                }`}
+                onClick={() => setActiveDropdown(activeDropdown === item.id ? null : item.id)}
+                aria-expanded={activeDropdown === item.id}
+                aria-haspopup="true"
+                aria-controls={`submenu-${item.id}`}
               >
-                {item.path ? (
-                  <NavLink
-                    to={item.path}
-                    role="menuitem"
-                    className={({ isActive }) =>
-                      `nav-top-level-item ${isActive ? 'active-item' : ''}`
-                    }
-                    onClick={() => { closeMenu(); setActiveDropdown(null); }}
-                  >
-                    {item.label}
-                  </NavLink>
-                ) : (
-                  <div className="nav-dropdown">
-                    <button
-                      className={`nav-top-level-item nav-dropdown-btn ${
-                        item.children.some(child => location.pathname === child.path) ? 'active-item' : ''
-                      }`}
-                      onClick={() => setActiveDropdown(activeDropdown === item.id ? null : item.id)}
-                      aria-expanded={activeDropdown === item.id}
-                      aria-haspopup="true"
-                      aria-controls={`submenu-${item.id}`}
+                {item.label}
+                <span className="dropdown-icon" aria-hidden="true">
+                  {activeDropdown === item.id ? '▲' : '▼'}
+                </span>
+              </button>
+              <ul
+                id={`submenu-${item.id}`}
+                role="menu"
+                className={`nav-submenu ${activeDropdown === item.id ? 'show' : ''}`}
+              >
+                {item.children.map(child => (
+                  <li key={child.path} role="none">
+                    <NavLink
+                      to={child.path}
+                      role="menuitem"
+                      className={({ isActive }) => isActive ? 'active' : ''}
+                      onClick={() => { closeMenu(); setActiveDropdown(null); }}
                     >
-                      {item.label}
-                      <span className="dropdown-icon" aria-hidden="true">
-                        {activeDropdown === item.id ? '▲' : '▼'}
-                      </span>
-                    </button>
-                    <ul
-                      id={`submenu-${item.id}`}
-                      role="menu"
-                      className={`nav-submenu ${activeDropdown === item.id ? 'show' : ''}`}
-                    >
-                      {item.children.map(child => (
-                        <li key={child.path} role="none">
-                          <NavLink
-                            to={child.path}
-                            role="menuitem"
-                            className={({ isActive }) => isActive ? 'active' : ''}
-                            onClick={() => { closeMenu(); setActiveDropdown(null); }}
-                          >
-                            {child.label}
-                          </NavLink>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
-    </nav>
-  );
-};
+                      {child.label}
+                    </NavLink>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </li>
+      ))}
+    </ul>
+  </div>
+</div>
 
 export default Navbar;
