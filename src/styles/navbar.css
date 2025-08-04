@@ -221,7 +221,6 @@
   font-size: 1rem;
   font-weight: 500;
   color: #fff;
-  padding: 0.25rem 0;
   text-decoration: none;
   /* Updated line: Adds a transparent border to reserve space */
   border-bottom: 2px solid transparent; 
