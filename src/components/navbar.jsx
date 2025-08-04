@@ -184,8 +184,6 @@ const Navbar = () => {
           ))}
         </button>
       </div>
-
-      // ... (rest of the component)
 <div
   id="primary-navigation"
   className={`nav-links ${isOpen ? 'show' : ''}`}
