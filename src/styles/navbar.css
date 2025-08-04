@@ -468,6 +468,8 @@
     visibility: visible;
     opacity: 1;
     pointer-events: auto;
+    display: flex;
+    flex-direction: column;
   }
   
   .nav-submenu li {
