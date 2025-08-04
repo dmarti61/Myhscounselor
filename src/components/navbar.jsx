@@ -79,6 +79,10 @@ const Navbar = () => {
     if (isOpen) {
       closeMenu();
     }
+    const openDetails = document.querySelectorAll('.nav-dropdown[open]');
+    openDetails.forEach(details => {
+      details.open = false;
+    });    
   }, [location.pathname]);
 
   useEffect(() => {
