@@ -376,7 +376,6 @@
     font-size: 1rem;
     font-weight: 500;
     color: #fff;
-    padding: 0.25rem 0;
     text-decoration: none;
     /* Added transparent border to prevent content shifting */
     border-bottom: 2px solid transparent; 
