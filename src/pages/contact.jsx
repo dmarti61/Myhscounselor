@@ -13,7 +13,6 @@ const Contact = () => {
 
   const [submissionStatus, setSubmissionStatus] = useState(null);
 
-  // This function creates a FormData object.
   const encode = (data) => {
     const form = new FormData();
     for (const key in data) {
@@ -34,7 +33,6 @@ const Contact = () => {
     e.preventDefault();
     setSubmissionStatus('submitting');
 
-    // Honeypot check: If the bot-field is filled, it's a bot.
     if (formData['bot-field']) {
       console.log('Bot detected, submission blocked.');
       setSubmissionStatus('success');
@@ -42,7 +40,6 @@ const Contact = () => {
     }
 
     try {
-      // POST the data to the new Cloudflare Pages Function endpoint.
       const response = await fetch("/contact", {
         method: "POST",
         body: encode(formData),
@@ -94,32 +91,34 @@ const Contact = () => {
           </label>
         </p>
 
-        <p>
-          <label htmlFor="firstName">First Name:</label>
-          <input
-            type="text"
-            id="firstName"
-            name="firstName"
-            value={formData.firstName}
-            onChange={handleChange}
-            required
-          />
-        </p>
+        <div className="form-group-container">
+          <div className="form-group">
+            <label htmlFor="firstName">First Name <span className="required">*</span></label>
+            <input
+              type="text"
+              id="firstName"
+              name="firstName"
+              value={formData.firstName}
+              onChange={handleChange}
+              required
+            />
+          </div>
 
-        <p>
-          <label htmlFor="lastName">Last Name:</label>
-          <input
-            type="text"
-            id="lastName"
-            name="lastName"
-            value={formData.lastName}
-            onChange={handleChange}
-            required
-          />
-        </p>
+          <div className="form-group">
+            <label htmlFor="lastName">Last Name <span className="required">*</span></label>
+            <input
+              type="text"
+              id="lastName"
+              name="lastName"
+              value={formData.lastName}
+              onChange={handleChange}
+              required
+            />
+          </div>
+        </div>
 
-        <p>
-          <label htmlFor="email">Email:</label>
+        <div className="form-group">
+          <label htmlFor="email">Email <span className="required">*</span></label>
           <input
             type="email"
             id="email"
@@ -128,10 +127,10 @@ const Contact = () => {
             onChange={handleChange}
             required
           />
-        </p>
+        </div>
 
-        <p>
-          <label htmlFor="suggestionsFeedback">Suggestions & Feedback:</label>
+        <div className="form-group">
+          <label htmlFor="suggestionsFeedback">Suggestions & Feedback <span className="required">*</span></label>
           <textarea
             id="suggestionsFeedback"
             name="suggestionsFeedback"
@@ -140,54 +139,62 @@ const Contact = () => {
             rows="5"
             required
           />
-        </p>
+        </div>
 
-        <fieldset>
-          <legend>How would you rate your experience on our site?</legend>
-          <label>
-            <input
-              type="radio"
-              name="siteRating"
-              value="Excellent"
-              checked={formData.siteRating === 'Excellent'}
-              onChange={handleChange}
-            />{' '}
-            Excellent
-          </label>
-          <label>
-            <input
-              type="radio"
-              name="siteRating"
-              value="Good"
-              checked={formData.siteRating === 'Good'}
-              onChange={handleChange}
-            />{' '}
-            Good
-          </label>
-          <label>
-            <input
-              type="radio"
-              name="siteRating"
-              value="Fair"
-              checked={formData.siteRating === 'Fair'}
-              onChange={handleChange}
-            />{' '}
-            Fair
-          </label>
-          <label>
-            <input
-              type="radio"
-              name="siteRating"
-              value="Poor"
-              checked={formData.siteRating === 'Poor'}
-              onChange={handleChange}
-            />{' '}
-            Poor
-          </label>
-        </fieldset>
+        <div className="form-group">
+          <fieldset>
+            <legend>How would you rate your experience on our site? <span className="required">*</span></legend>
+            <div className="radio-group">
+              <label>
+                <input
+                  type="radio"
+                  name="siteRating"
+                  value="Excellent"
+                  checked={formData.siteRating === 'Excellent'}
+                  onChange={handleChange}
+                  required
+                />
+                Excellent
+              </label>
+              <label>
+                <input
+                  type="radio"
+                  name="siteRating"
+                  value="Good"
+                  checked={formData.siteRating === 'Good'}
+                  onChange={handleChange}
+                  required
+                />
+                Good
+              </label>
+              <label>
+                <input
+                  type="radio"
+                  name="siteRating"
+                  value="Fair"
+                  checked={formData.siteRating === 'Fair'}
+                  onChange={handleChange}
+                  required
+                />
+                Fair
+              </label>
+              <label>
+                <input
+                  type="radio"
+                  name="siteRating"
+                  value="Poor"
+                  checked={formData.siteRating === 'Poor'}
+                  onChange={handleChange}
+                  required
+                />
+                Poor
+              </label>
+            </div>
+          </fieldset>
+        </div>
 
-        <p>
-          <label htmlFor="howDidYouHear">How did you hear about us?</label>
+        <div className="form-group">
+          <label htmlFor="howDidYouHear">How did you hear about us? <span className="required">*</span></label>
           <select
             id="howDidYouHear"
             name="howDidYouHear"
@@ -202,16 +209,16 @@ const Contact = () => {
             <option value="Blog Post">Blog Post</option>
             <option value="Other">Other</option>
           </select>
-        </p>
+        </div>
 
-        <p>
+        <div className="form-group button-group">
           <button type="submit" disabled={submissionStatus === 'submitting'}>
             {submissionStatus === 'submitting' ? 'Sending...' : 'Send Message'}
           </button>
-        </p>
+        </div>
 
         {submissionStatus === 'error' && (
-          <p className="form-error-message" style={{ color: 'red' }}>
+          <p className="form-error-message">
             There was an error submitting your form. Please try again.
           </p>
         )}
