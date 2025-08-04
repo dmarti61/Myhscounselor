@@ -213,35 +213,41 @@
     border-bottom: none;
   }
 
-  /* Styles for direct NavLink items - ADJUSTED for consistent active state */
-  .nav-links-scroll-wrapper > ul > li > .nav-link { /* Target direct NavLinks */
-    display: block;
+  /* Shared top-level item styles */
+  .nav-top-level-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     font-size: 1.1rem;
     font-weight: 500;
     color: #fff;
-    padding: 0.75rem 0; /* Adjusted for better spacing */
+    padding: 0.75rem 0;
     width: 100%;
-    text-align: left;
     transition: color 0.2s ease, padding-left 0.2s ease;
-    text-decoration: none; /* Ensure no underline */
-    background-color: transparent; /* Ensure no background by default */
-    border-left: 3px solid transparent; /* Added transparent border for consistent spacing */
+    text-decoration: none;
+    background-color: transparent;
+    border-left: 3px solid transparent;
   }
-
-  .nav-links-scroll-wrapper > ul > li > .nav-link:hover,
-  .nav-links-scroll-wrapper > ul > li > .nav-link:focus {
+  
+  .nav-top-level-item:hover,
+  .nav-top-level-item:focus {
     color: #a8c0ff;
     padding-left: 1rem;
-    /*outline: 2px solid #a8c0ff;
-    outline-offset: -2px;*/
+    outline: none;
+  }
+  
+  .nav-top-level-item.active-item {
+    color: #a8c0ff;
+    border-left: 3px solid #a8c0ff;
+    padding-left: 1rem;
+    border-bottom: none;
   }
 
-  .nav-links-scroll-wrapper > ul > li > .nav-link.active {
-    color: #a8c0ff;
-    border-left: 3px solid #a8c0ff; /* Only left border for active state */
-    padding-left: 1rem;
-    border-bottom: none; /* No bottom border for active state on mobile */
-  }
+  /* Styles for direct NavLink items - these are now replaced by the new class */
+  /* .nav-links-scroll-wrapper > ul > li > .nav-link { ... } */
+  /* .nav-links-scroll-wrapper > ul > li > .nav-link:hover, .nav-links-scroll-wrapper > ul > li > .nav-link:focus { ... } */
+  /* .nav-links-scroll-wrapper > ul > li > .nav-link.active { ... } */
+
 
   /* Styles for the new dropdown structure (details/summary) */
   .nav-dropdown {
@@ -251,20 +257,9 @@
     padding: 0;
   }
 
-  /* Dropdown summary styles - ADJUSTED for uniform top-level links */
-  .nav-dropdown summary, .href\=\/results {
-    display: flex; /* Use flex to align text and icon */
-    justify-content: space-between;
-    align-items: center;
-    cursor: pointer;
-    font-size: 1.1rem;
-    font-weight: 500;
-    color: #fff;
-    padding: 0.75rem 0; /* Matches direct link padding */
-    width: 100%;
-    list-style: none; /* Remove default summary arrow */
-    transition: color 0.2s ease, padding-left 0.2s ease;
-    border-left: 3px solid transparent; /* Added transparent border for consistent spacing */
+  /* Dropdown summary specific styles - simplified */
+  .nav-dropdown summary {
+    list-style: none;
   }
 
   /* Custom arrow for summary */
@@ -282,20 +277,8 @@
     transform: rotate(180deg);
   }
 
-  .nav-dropdown summary:hover,
-  .nav-dropdown summary:focus {
-    color: #a8c0ff;
-    padding-left: 1rem;
-    /*outline: 2px solid #a8c0ff;
-    outline-offset: -2px;*/
-  }
-
   /* Removed active-category styling to prevent border */
-  .nav-dropdown summary.active-category { /* Class for active category summary */
-    color: #a8c0ff;
-    border-left: 3px solid #a8c0ff;
-    padding-left: 1rem;
-  }
+  /* .nav-dropdown summary.active-category { ... } */
   
   .nav-submenu {
     list-style: none;
@@ -421,33 +404,38 @@
     border-bottom: none; /* No bottom borders on desktop */
     width: auto;
   }
-
-  /* Direct NavLink styles for desktop - ADJUSTED */
-  .nav-links li > .nav-link { /* Target direct NavLinks */
-    display: block; /* Make sure padding works */
-    padding: 0.25rem 0; /* Adjust padding for desktop */
+  
+  /* Shared top-level item styles */
+  .nav-top-level-item {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
     font-size: 1rem;
+    font-weight: 500;
     color: #fff;
+    padding: 0.25rem 0;
     text-decoration: none;
     border-bottom: 2px solid transparent;
     transition: color 0.2s ease, border-bottom 0.2s ease;
+    justify-content: flex-start; /* Align to left on desktop */
   }
-
-  .nav-links li > .nav-link:hover,
-  .nav-links li > .nav-link:focus {
+  
+  .nav-top-level-item:hover,
+  .nav-top-level-item:focus {
     color: #a8c0ff;
     border-bottom-color: #a8c0ff;
-    /*outline: 2px solid #a8c0ff;
-    outline-offset: 2px;*/
-    padding-left: 0; /* Remove mobile padding-left */
+    outline: none;
+  }
+  
+  .nav-top-level-item.active-item {
+    border-bottom: 2px solid #fff;
+    color: #fff;
   }
 
-  /* Direct NavLink active state for desktop - ADJUSTED */
-  .nav-links li > .nav-link.active {
-    border-bottom: 2px solid #fff;
-    color: #fff; /* Keep color consistent with non-hover */
-    padding-left: 0; /* Remove mobile padding-left */
-  }
+  /* Direct NavLink styles for desktop - these are now replaced by the new class */
+  /* .nav-links li > .nav-link { ... } */
+  /* .nav-links li > .nav-link:hover, .nav-links li > .nav-link:focus { ... } */
+  /* .nav-links li > .nav-link.active { ... } */
 
   /* Dropdown styles for desktop */
   .nav-dropdown {
@@ -456,17 +444,10 @@
     padding: 0;
   }
 
-  /* Dropdown summary styles for desktop - ADJUSTED */
+  /* Dropdown summary specific styles for desktop - simplified */
   .nav-dropdown summary {
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    font-size: 1rem;
-    font-weight: 500;
-    color: #fff;
-    padding: 0.25rem 0; /* Match direct link padding */
     list-style: none;
-    transition: color 0.2s ease;
+    padding: 0;
   }
 
   .nav-dropdown summary::-webkit-details-marker {
@@ -483,20 +464,8 @@
     transform: rotate(180deg);
   }
 
-  .nav-dropdown summary:hover,
-  .nav-dropdown summary:focus {
-    color: #a8c0ff;
-    /*outline: 2px solid #a8c0ff;
-    outline-offset: 2px;*/
-    padding-left: 0;
-  }
-
   /* Active state for summary on desktop - ADJUSTED */
-  .nav-dropdown summary.active-category {
-    color: #fff; /* Active category on desktop stays white */
-    border-bottom: 2px solid #fff; /* Matches active direct link */
-    padding-left: 0;
-  }
+  /* .nav-dropdown summary.active-category { ... } */
 
   .nav-submenu {
     display: none; /* Hidden by default */
@@ -561,6 +530,7 @@
 }
 
 /* Base style for menu-open on html/body (for freezing scroll) */
-html.menu-open, body.menu-open {
+html.menu-open,
+body.menu-open {
   overflow: hidden;
 }
