@@ -181,6 +181,8 @@
     scrollbar-width: thin;
     scrollbar-color: #ccc #036;
     padding: 0 1rem;
+    /* FIX: Remove the outline that causes the border on mobile */
+    outline: none; 
   }
 
   .nav-links ul {
@@ -188,9 +190,11 @@
     margin: 0;
     padding: 0;
   }
-
+  
+  /* FIX: Add a bottom border to list items for visual separation */
   .nav-links-scroll-wrapper li {
     width: 100%;
+    border-bottom: 1px solid #004d99; 
   }
 
   .nav-links-scroll-wrapper li:last-child {
@@ -305,21 +309,25 @@
   .nav-links-scroll-wrapper::-webkit-scrollbar-thumb:hover {
     background: #aaa;
   }
-
-  .nav-links-scroll-wrapper:focus-within {
-    outline: 2px solid #a8c0ff;
-    outline-offset: -2px;
-  }
 }
 
 /* ─────────── Desktop Specific Styles (>= 901px) ─────────── */
 @media (min-width: 901px) {
+  /* FIX: Use flexbox on the main navbar to align logo and links */
   .navbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     padding: 1rem 2rem;
   }
 
   .navbar-header {
     justify-content: flex-start;
+  }
+  
+  /* NEW: Add a gap to space the logo and navigation links */
+  .navbar-logo-link {
+    margin-right: 3rem;
   }
 
   .nav-links {
