@@ -19,7 +19,8 @@ const getUniqueCareers = () => {
 
 const groupCareersByEducation = (careers) => {
   const grouped = careers.reduce((acc, career) => {
-    const educationLevel = career.education || 'Other';
+    // Check for `postSchoolPath` as the education level
+    const educationLevel = career.postSchoolPath || 'Other';
     if (!acc[educationLevel]) {
       acc[educationLevel] = [];
     }
@@ -28,23 +29,29 @@ const groupCareersByEducation = (careers) => {
   }, {});
 
   // Sort the keys (education levels) for consistent display order
-  const sortedKeys = Object.keys(grouped).sort();
+  // A custom order is used to place them logically
+  const customOrder = ["college", "community", "trade", "job", "other"];
+  const sortedKeys = Object.keys(grouped).sort((a, b) => {
+    return customOrder.indexOf(a.toLowerCase()) - customOrder.indexOf(b.toLowerCase());
+  });
 
   // Create a new object with sorted keys
   const sortedGrouped = {};
   sortedKeys.forEach(key => {
-    sortedGrouped[key] = grouped[key];
+    // Capitalize the first letter for display
+    const displayKey = key.charAt(0).toUpperCase() + key.slice(1);
+    sortedGrouped[displayKey] = grouped[key];
   });
 
   return sortedGrouped;
 };
 
-const CareerCard = ({ title, salary, education, outlook }) => (
+// **UPDATED** CareerCard to use new data structure
+const CareerCard = ({ title, pathway, description }) => (
   <div className={styles.card}>
     <h4>{title}</h4>
-    <p><strong>Salary:</strong> {salary}</p>
-    <p><strong>Education:</strong> {education}</p>
-    <p><strong>Job Outlook:</strong> {outlook}</p>
+    <p><strong>Career Pathway:</strong> {pathway}</p>
+    <p>{description}</p>
   </div>
 );
 
@@ -56,7 +63,7 @@ const ExploreCareers = () => {
     <div className={styles.container}>
       <h1>Explore Careers by Educational Path</h1>
       <p className={styles.intro}>
-        Not ready for the quiz? Start by exploring careers that share similar skills and interests. Careers are grouped into "clusters" to help you find the right fit.
+        Not ready for the quiz? Start by exploring careers that share similar skills and interests. Careers are grouped by the most common educational path.
       </p>
       {Object.entries(groupedCareers).map(([educationLevel, careers]) => (
         <section key={educationLevel} className={styles.section}>
