@@ -441,12 +441,11 @@
     z-index: 1000;
     border: 1px solid #004d99;
   }
-  
-  /* Show submenu on hover of the parent li */
-  .nav-links ul li:hover .nav-submenu {
+
+  .nav-submenu.show{
     display: block;
   }
-
+  
   .nav-submenu li {
     margin: 0;
     width: 100%;
