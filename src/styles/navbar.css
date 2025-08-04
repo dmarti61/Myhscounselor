@@ -180,7 +180,7 @@
     display: flex;
     scrollbar-width: thin;
     scrollbar-color: #ccc #036;
-    padding: 0;
+    padding: 0 1rem;
   }
 
   .nav-links ul {
