@@ -252,7 +252,7 @@
   }
 
   /* Dropdown summary styles - ADJUSTED for uniform top-level links */
-  .nav-dropdown summary {
+  .nav-dropdown summary, #my-results {
     display: flex; /* Use flex to align text and icon */
     justify-content: space-between;
     align-items: center;
