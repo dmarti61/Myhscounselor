@@ -9,6 +9,7 @@ const Contact = () => {
     suggestionsFeedback: '',
     siteRating: '',
     howDidYouHear: '',
+    userRole: '',
     'bot-field': '',
   });
 
@@ -211,6 +212,23 @@ const Contact = () => {
             <option value="Other">Other</option>
           </select>
         </div>
+        
+        <div className="form-group">
+  <label htmlFor="userRole">I am a... <span className="optional">(optional)</span></label>
+  <select
+    id="userRole"
+    name="userRole"
+    value={formData.userRole}
+    onChange={handleChange}
+  >
+    <option value="">--Please choose one--</option>
+    <option value="Parent">Parent</option>
+    <option value="High School Student">High School Student</option>
+    <option value="College Student">College Student</option>
+    <option value="High School Counselor">High School Counselor</option>
+    <option value="Other">Other</option>
+  </select>
+</div>
 
         <div className="form-group button-group">
           <button type="submit" disabled={submissionStatus === 'submitting'}>
