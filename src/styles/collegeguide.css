@@ -100,7 +100,6 @@ ul {
 ul li {
   margin-bottom: 1rem; /* More space between list items */
   line-height: 1.5;
-  padding-left: 25px; /* Space for custom bullet */
   position: relative; /* For custom bullet positioning */
 }
 
