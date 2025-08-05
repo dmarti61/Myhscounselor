@@ -55,7 +55,6 @@ const CareerCard = ({ title, pathway, description, soc_code, salary, outlook, ed
     <h4>{title}</h4>
     <p><strong>Career Pathway:</strong> {pathway}</p>
     <p>{description}</p>
-    <hr />
     <p><strong>Median Salary:</strong> {salary}</p>
     <p><strong>Typical Education:</strong> {education}</p>
     <p><strong>Job Outlook:</strong> {outlook}</p>
