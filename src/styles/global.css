@@ -101,7 +101,7 @@ button {
 }
 
 button:hover {
-  background-color: #2D86E9;
+  background-color: #fff;
   transform: translateY(-2px);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
@@ -133,7 +133,7 @@ button:hover {
 }
 
 .option-btn:hover {
-  background-color: #2776cc;
+  background-color: #fff;
   transform: translateY(-2px);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
