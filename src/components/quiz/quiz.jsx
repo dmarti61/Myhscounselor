@@ -67,6 +67,7 @@ const Quiz = () => {
         totalQuestions={questions.length}
         // onAnswer now only needs to pass the letter
         onAnswer={handleAnswer}
+        questionKey={questionKey}
       />
     </div>
   );
