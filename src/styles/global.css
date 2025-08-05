@@ -162,13 +162,13 @@ button:hover {
 /* This rule targets the specific state where the bug occurs (selected and disabled)
    and forces it to look like a normal, unselected button. */
 .option-btn.selected:disabled {
-  background-color: #fff !important;
-  color: #154982;
-  border-color: #c7d2fe;
-  font-weight: normal;
-  transform: none;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-  opacity: 1; /* Reset opacity to ensure it's fully visible */
+  background-color: #154982 !important;
+  color: #fff !important;
+  border-color: #154982 !important;
+  font-weight: bold;
+  transform: scale(1.02);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  opacity: 1 !important;
 }
 
 /* Default disabled style, applied to all other disabled buttons */
