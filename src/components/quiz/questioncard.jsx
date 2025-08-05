@@ -1,38 +1,30 @@
 // src/components/quiz/questioncard.jsx
-import React, { useState } from 'react';
+import React from 'react';
 
+// The key is now handled by the parent component (Quiz.jsx)
 const QuestionCard = ({ question, onAnswer, progress, totalQuestions }) => {
-  const [selected, setSelected] = useState(null);
 
   const handleClick = (value) => {
-    // Only allow selecting an answer once
-    if (selected) return;
-
-    // Apply the highlight immediately
-    setSelected(value);
-
-    // Call the parent's onAnswer function after a slight delay
-    // This gives the visual feedback a moment to render before the next question loads
-    setTimeout(() => {
-      onAnswer(value);
-    }, 100); // A short delay (e.g., 100ms) is often sufficient
+    // Call the parent's onAnswer function immediately
+    onAnswer(value);
   };
 
   return (
-    <div className="question-card">
+    // Apply a key to the top-level element as an extra safeguard
+    <div key={question.id} className="question-card">
       <h3>
         Question {progress} of {totalQuestions}
       </h3>
       <p>{question.text}</p>
       <div className="options">
         {question.options.map((option, index) => {
-          const isSelected = selected === option.value;
+          // No internal state needed for highlighting
           return (
             <button
               key={index}
-              className={`option-btn ${isSelected ? 'selected' : ''}`}
+              className={`option-btn`} // No 'selected' class initially
               onClick={() => handleClick(option.value)}
-              disabled={!!selected}
+              // The button should not be disabled here
               aria-label={`Answer option ${index + 1}: ${option.label}`}
             >
               {option.label}
