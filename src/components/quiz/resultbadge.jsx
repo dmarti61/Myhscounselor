@@ -4,6 +4,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 // Import the new functions from mbtimap
 import { MBTI_MAP, generateNextStepPhrase, getPathwayDisplay, generateNextStepLink } from './mbtimap'; 
 import { CAREER_STATS } from './careerstats';
+import { BLS_MAP } from './blsmap';
 import Share_Card from './sharecard';
 import '../../styles/resultbadge.css';
 
@@ -231,11 +232,11 @@ const ResultBadge = () => {
                       {detailedStats.environment && (
                         <p><strong>Work Environment:</strong> {detailedStats.environment}</p>
                       )}
-                      {detailedStats.soc_code && (
+                     {detailedStats.soc_code && BLS_URL_MAP[detailedStats.soc_code] && (
                         <p className="bls-link">
-                          <a href={`https://www.bls.gov/ooh/standard-occupational-classification/${detailedStats.soc_code}.htm`} target="_blank" rel="noopener noreferrer">
-                            More info from BLS ({detailedStats.soc_code})
-                          </a>
+                        <a href={`https://www.bls.gov/ooh/${BLS_URL_MAP[detailedStats.soc_code]}.htm`} target="_blank" rel="noopener noreferrer">
+                        More info from BLS ({detailedStats.soc_code})
+                        </a>
                         </p>
                       )}
                     </div>
