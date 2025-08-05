@@ -1,7 +1,18 @@
 // src/components/quiz/questioncard.jsx
-import React from 'react';
+import React, { useState } from 'react';
 
-const QuestionCard = ({ question, onAnswer, progress, totalQuestions, selectedAnswer }) => {
+const QuestionCard = ({ question, onAnswer, progress, totalQuestions }) => {
+  // Add an internal state to track the selected answer
+  const [selected, setSelected] = useState(null);
+
+  const handleClick = (value) => {
+    // Only allow selecting an answer once
+    if (selected) return;
+    
+    setSelected(value); // Highlight the selected button
+    onAnswer(value); // Pass the answer to the parent
+  };
+
   return (
     <div className="question-card">
       <h3>
@@ -10,13 +21,14 @@ const QuestionCard = ({ question, onAnswer, progress, totalQuestions, selectedAn
       <p>{question.text}</p>
       <div className="options">
         {question.options.map((option, index) => {
-          const isSelected = selectedAnswer === option.value;
+          const isSelected = selected === option.value;
           return (
             <button
               key={index}
               className={`option-btn ${isSelected ? 'selected' : ''}`}
-              onClick={() => onAnswer(option.value)}
-              disabled={!!selectedAnswer}
+              onClick={() => handleClick(option.value)}
+              // The button is disabled once an answer is selected
+              disabled={!!selected} 
               aria-label={`Answer option ${index + 1}: ${option.label}`}
             >
               {option.label}
