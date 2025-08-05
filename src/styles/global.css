@@ -115,21 +115,60 @@ button:hover {
   margin-bottom: 30px;
 }
 
+/* Quiz Styles */
 .option-btn {
   display: block;
   width: 100%;
   margin: 8px 0;
   padding: 12px;
-  background-color: #154982;
+  background-color: #fff; /* Changed to white for a cleaner look */
+  color: #154982; /* Changed text color to match branding */
   border: 1px solid #c7d2fe;
   border-radius: 6px;
   font-size: 1rem;
   text-align: left;
+  transition: all 0.2s ease-in-out; /* Smooth transitions for visual feedback */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* Subtle shadow for depth */
 }
 
+/* On mouse hover, buttons lift slightly */
 .option-btn:hover {
-  background-color: #2D86E9;
+  background-color: #f0f4ff; /* Light hover effect */
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
+
+/* Accessibility & Focus Fix */
+/* This rule removes the default browser highlight on mouse click,
+   but keeps it for keyboard navigation (for accessibility). */
+.option-btn:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* This creates a custom, accessible focus style for keyboard users */
+.option-btn:focus-visible {
+  outline: none; /* Remove default outline */
+  box-shadow: 0 0 0 3px #154982; /* Custom focus ring */
+}
+
+/* The style for a selected button */
+.option-btn.selected {
+  background-color: #154982;
+  color: #fff; /* White text on selected state */
+  border-color: #154982;
+  font-weight: bold;
+  transform: scale(1.02); /* Pop out slightly when selected */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* More prominent shadow */
+}
+
+/* Style for disabled buttons */
+.option-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none; /* Disable hover/selected transform */
+  box-shadow: none; /* Disable shadow */
+}
+
 
 .result-badge {
   text-align: center;
@@ -269,14 +308,4 @@ button:hover {
   padding-top: 0px;
   padding-right: 10px;
   }
-}
-
-.option-btn.selected {
-  background-color: #d1eaff;
-  border: 2px solid #3399ff;
-  font-weight: bold;
-}
-
-.option-btn:disabled {
-  opacity: 0.7;
 }
