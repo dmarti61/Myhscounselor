@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import questions from '../../data/questions';
 import QuestionCard from './questioncard';
-import ProgressBar from './progressbar';
+import ProgressBar from './progressbar'; 
 
 const mbtiDimensions = ['EI', 'SN', 'TF', 'JP'];
 
