@@ -1,4 +1,3 @@
-// src/pages/FinancialAidGuide.js
 import React from 'react';
 import '../styles/global.css'; // Assuming you have a global CSS for consistent styling
 
@@ -22,6 +21,17 @@ const FinancialAid = () => (
       </ul>
       <p className="emphasis">
         <strong>Wise Tip:</strong> Gather all necessary financial documents (tax returns, W-2s, bank statements) for both you and your parents (if applicable) before you start. It makes the process much smoother!
+      </p>
+      <p>
+        <a href="https://studentaid.gov/h/apply-for-aid/fafsa" target="_blank" rel="noopener noreferrer">
+          <strong>Start your FAFSA application here.</strong>
+        </a>
+      </p>
+      <p>
+        For many private colleges, you'll also need to complete the{" "}
+        <a href="https://cssprofile.collegeboard.org/" target="_blank" rel="noopener noreferrer">
+          <strong>CSS Profile.</strong>
+        </a>
       </p>
     </section>
 
@@ -64,7 +74,12 @@ const FinancialAid = () => (
       </p>
       <ul>
         <li><strong>Start Local:</strong> Check with your high school counselor, local community foundations, churches, and civic organizations. Local scholarships often have less competition.</li>
-        <li><strong>Online Databases:</strong> Websites like Fastweb, College Board, Niche, and Scholarships.com are great starting points, but be prepared to filter.</li>
+        <li><strong>Online Databases:</strong> Websites like{" "}
+          <a href="https://www.fastweb.com/" target="_blank" rel="noopener noreferrer">Fastweb</a>,{" "}
+          <a href="https://bigfuture.collegeboard.org/scholarship-search" target="_blank" rel="noopener noreferrer">College Board's BigFuture</a>,{" "}
+          <a href="https://www.niche.com/colleges/scholarships/" target="_blank" rel="noopener noreferrer">Niche</a>, and{" "}
+          <a href="https://www.scholarships.com/" target="_blank" rel="noopener noreferrer">Scholarships.com</a> are great starting points, but be prepared to filter.
+        </li>
         <li><strong>Your College/Trade School's Website:</strong> Many institutions have their own scholarships for admitted students.</li>
         <li><strong>Match Your Passions & Background:</strong> Look for scholarships related to your intended major, hobbies, volunteer work, ethnicity, or unique talents.</li>
         <li><strong>Essay Tips:</strong> Reuse and adapt essays for multiple applications. Proofread carefully!</li>
