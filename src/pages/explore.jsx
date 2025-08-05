@@ -47,11 +47,18 @@ const groupCareersByEducation = (careers) => {
 };
 
 // **UPDATED** CareerCard to use new data structure
-const CareerCard = ({ title, pathway, description }) => (
+const CareerCard = ({ title, pathway, description, link }) => (
   <div className={styles.card}>
     <h4>{title}</h4>
     <p><strong>Career Pathway:</strong> {pathway}</p>
     <p>{description}</p>
+      {detailedStats.soc_code && BLS_MAP[detailedStats.soc_code] && (
+                        <p className="bls-link">
+                        <a href={`https://www.bls.gov/ooh/${BLS_MAP[detailedStats.soc_code]}.htm`} target="_blank" rel="noopener noreferrer">
+                        More info from BLS ({detailedStats.soc_code})
+                        </a>
+                        </p>
+                      )}
   </div>
 );
 
