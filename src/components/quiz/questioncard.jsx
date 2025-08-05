@@ -9,17 +9,15 @@ const QuestionCard = ({ question, onAnswer, progress, totalQuestions, selectedAn
       </h3>
       <p>{question.text}</p>
       <div className="options">
-        {question.options.map((option, index) => {
-          // The isSelected logic now depends entirely on the selectedAnswer prop
+        {question.options.map((option) => {
           const isSelected = selectedAnswer === option.value;
           return (
             <button
-              key={index}
+              key={`${question.text}-${option.value}`} // Unique key per question & answer
               className={`option-btn ${isSelected ? 'selected' : ''}`}
               onClick={() => onAnswer(option.value)}
-              // The button is disabled if an answer has been selected
               disabled={!!selectedAnswer}
-              aria-label={`Answer option ${index + 1}: ${option.label}`}
+              aria-label={`Answer option: ${option.label}`}
             >
               {option.label}
             </button>
