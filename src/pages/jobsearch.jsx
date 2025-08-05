@@ -1,4 +1,3 @@
-// src/pages/JobSearchGuide.js
 import React from 'react';
 import '../styles/global.css';
 
@@ -45,6 +44,10 @@ const JobSearch = () => (
       </ul>
       <p>
         There are many free online resume templates you can use to get started!
+        <br />
+        <a href="../utils/ResumeGuide.pdf" target="_blank" rel="noopener noreferrer">
+          <strong>Download our high school resume template and guide here!</strong>
+        </a>
       </p>
     </section>
 
