@@ -279,5 +279,4 @@ button:hover {
 
 .option-btn:disabled {
   opacity: 0.7;
-  pointer-events: none;
 }
