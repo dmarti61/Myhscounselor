@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import questions from '../../data/questions';
 import QuestionCard from './questioncard';
@@ -16,27 +16,30 @@ const Quiz = () => {
   });
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [questionKey, setQuestionKey] = useState(0);
+  const timerRef = useRef(null); // NEW: Create a ref to store the timer ID
 
   const navigate = useNavigate();
 
   const handleAnswer = (dimension, letter, event) => {
-    // 1. Immediately set the selected answer to trigger the highlight
+    // Immediately set the selected answer to highlight the button
     setSelectedAnswer(letter);
-
-    // 2. Disable the button and remove browser focus to prevent multiple clicks
+    
+    // Clear any existing timer to prevent a race condition from a quick click
+    if (timerRef.current) {
+      clearTimeout(timerRef.current);
+    }
+    
+    // Use the event object to blur the button and remove browser focus
     if (event && event.target) {
       event.target.blur();
     }
-
-    // 3. Use a setTimeout to handle all other logic AFTER the highlight is visible.
-    // This removes the race condition.
-    setTimeout(() => {
-      // Update MBTI letter count
+    
+    // Store the new timer ID in the ref
+    timerRef.current = setTimeout(() => {
+      // All the transition logic is now here
       setCounts(prev => ({ ...prev, [letter]: prev[letter] + 1 }));
 
-      // Check if it's the final question
       if (step + 1 === questions.length) {
-        // Build and save the result
         const result = buildType();
         localStorage.setItem('mbti_result', JSON.stringify({
           type: result,
@@ -44,12 +47,12 @@ const Quiz = () => {
         }));
         navigate('/preferences', { state: { mbtiType: result } });
       } else {
-        // Move to the next question
-        setSelectedAnswer(null);          // Clear the selection for the next question
-        setStep(prev => prev + 1);        // Go to the next step
-        setQuestionKey(prev => prev + 1); // Force a new component render
+        setSelectedAnswer(null);
+        setStep(prev => prev + 1);
+        setQuestionKey(prev => prev + 1);
       }
-    }, 250); // This delay is now for the *transition*, not the entire logic.
+      timerRef.current = null; // Clear the ref after the timer runs
+    }, 250);
   };
 
   const buildType = () => {
