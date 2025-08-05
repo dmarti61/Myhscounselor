@@ -1,19 +1,21 @@
 // src/components/quiz/questioncard.jsx
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 const QuestionCard = ({ question, onAnswer, progress, totalQuestions }) => {
   const [selected, setSelected] = useState(null);
 
-  // This useEffect will reset the 'selected' state every time the question changes.
-  useEffect(() => {
-    setSelected(null);
-  }, [question]);
-
   const handleClick = (value) => {
+    // Only allow selecting an answer once
     if (selected) return;
-    
-    setSelected(value); 
-    onAnswer(value);
+
+    // Apply the highlight immediately
+    setSelected(value);
+
+    // Call the parent's onAnswer function after a slight delay
+    // This gives the visual feedback a moment to render before the next question loads
+    setTimeout(() => {
+      onAnswer(value);
+    }, 100); // A short delay (e.g., 100ms) is often sufficient
   };
 
   return (
@@ -30,7 +32,7 @@ const QuestionCard = ({ question, onAnswer, progress, totalQuestions }) => {
               key={index}
               className={`option-btn ${isSelected ? 'selected' : ''}`}
               onClick={() => handleClick(option.value)}
-              disabled={!!selected} 
+              disabled={!!selected}
               aria-label={`Answer option ${index + 1}: ${option.label}`}
             >
               {option.label}
