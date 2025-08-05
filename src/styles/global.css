@@ -97,11 +97,13 @@ button {
   border-radius: 6px;
   font-size: 1rem;
   cursor: pointer;
-  transition: background 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 button:hover {
   background-color: #2D86E9;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 /* Start Button */
@@ -115,60 +117,67 @@ button:hover {
   margin-bottom: 30px;
 }
 
-/* Quiz Styles */
 .option-btn {
   display: block;
   width: 100%;
   margin: 8px 0;
   padding: 12px;
-  background-color: #fff; /* Changed to white for a cleaner look */
-  color: #154982; /* Changed text color to match branding */
+  background-color: #fff;
+  color: #154982;
   border: 1px solid #c7d2fe;
   border-radius: 6px;
   font-size: 1rem;
   text-align: left;
-  transition: all 0.2s ease-in-out; /* Smooth transitions for visual feedback */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* Subtle shadow for depth */
+  transition: all 0.2s ease-in-out;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
-/* On mouse hover, buttons lift slightly */
 .option-btn:hover {
-  background-color: #fff; /* Light hover effect */
+  background-color: #2776cc;
   transform: translateY(-2px);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 /* Accessibility & Focus Fix */
-/* This rule removes the default browser highlight on mouse click,
-   but keeps it for keyboard navigation (for accessibility). */
 .option-btn:focus:not(:focus-visible) {
   outline: none;
 }
 
-/* This creates a custom, accessible focus style for keyboard users */
 .option-btn:focus-visible {
-  outline: none; /* Remove default outline */
-  box-shadow: 0 0 0 3px #154982; /* Custom focus ring */
+  outline: none;
+  box-shadow: 0 0 0 3px #154982;
 }
 
 /* The style for a selected button */
 .option-btn.selected {
   background-color: #154982;
-  color: #fff; /* White text on selected state */
+  color: #fff;
   border-color: #154982;
   font-weight: bold;
-  transform: scale(1.02); /* Pop out slightly when selected */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* More prominent shadow */
+  transform: scale(1.02);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
-/* Style for disabled buttons */
+/* The WORKAROUND for the persistent highlight bug */
+/* This rule targets the specific state where the bug occurs (selected and disabled)
+   and forces it to look like a normal, unselected button. */
+.option-btn.selected:disabled {
+  background-color: #fff;
+  color: #154982;
+  border-color: #c7d2fe;
+  font-weight: normal;
+  transform: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  opacity: 1; /* Reset opacity to ensure it's fully visible */
+}
+
+/* Default disabled style, applied to all other disabled buttons */
 .option-btn:disabled {
   opacity: 0.7;
   cursor: not-allowed;
-  transform: none; /* Disable hover/selected transform */
-  box-shadow: none; /* Disable shadow */
+  transform: none;
+  box-shadow: none;
 }
-
 
 .result-badge {
   text-align: center;
@@ -208,7 +217,7 @@ button:hover {
   text-align: center;
 }
 .still-not-sure-btn {
-  background: linear-gradient(135deg, #2C6FB3, #28A38A); /* Compass Blue to Discovery Teal */
+  background: linear-gradient(135deg, #2C6FB3, #28A38A);
   color: #FAFAFA;
   font-size: 1rem;
   font-weight: 600;
@@ -221,60 +230,57 @@ button:hover {
 }
 
 .still-not-sure-btn:hover {
-  background: linear-gradient(135deg, #28A38A, #2C6FB3); /* gentle color shift */
+  background: linear-gradient(135deg, #28A38A, #2C6FB3);
   transform: translateY(-2px);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
-
 
 .explore-btn {
   margin-top: 10px;
 }
 
 .button-group {
-  margin-top: 30px; /* More space above buttons */
+  margin-top: 30px;
   display: flex;
-  flex-direction: column; /* Stack buttons vertically on smaller screens */
-  gap: 15px; /* Space between buttons */
-  align-items: center; /* Center buttons horizontally */
+  flex-direction: column;
+  gap: 15px;
+  align-items: center;
 }
 
 /* Use your existing button styles for consistency */
 .onboarding-overlay .primary-btn {
-  /* Inherit from your main button styles, but perhaps with a specific color */
-  background-color: #154982; /* Your primary blue */
+  background-color: #154982;
   color: white;
-  padding: 14px 25px; /* Slightly larger clickable area */
-  font-size: 1.1rem; /* Match other primary buttons */
-  font-weight: 600; /* Bolder text */
-  border-radius: 8px; /* Match your general button radius */
+  padding: 14px 25px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: 8px;
   transition: background 0.3s ease, transform 0.2s ease;
-  width: 100%; /* Make full width within overlay-content */
-  max-width: 300px; /* Limit max width for aesthetic */
+  width: 100%;
+  max-width: 300px;
 }
 
 .onboarding-overlay .primary-btn:hover {
-  background-color: #2D86E9; /* Your lighter blue on hover */
-  transform: translateY(-2px); /* Subtle lift effect */
+  background-color: #2D86E9;
+  transform: translateY(-2px);
 }
 
 .onboarding-overlay .secondary-btn {
-  /* Style for a secondary action, like "No Thanks" or "Learn More" */
-  background-color: transparent; /* Transparent background */
-  color: #154982; /* Text color matching primary */
-  border: 2px solid #154982; /* Blue border */
-  padding: 12px 23px; /* Slightly less padding to visually balance border */
+  background-color: transparent;
+  color: #154982;
+  border: 2px solid #154982;
+  padding: 12px 23px;
   font-size: 1.1rem;
   font-weight: 600;
   border-radius: 8px;
   transition: background 0.3s ease, color 0.3s ease;
-  width: 100%; /* Make full width within overlay-content */
-  max-width: 300px; /* Limit max width for aesthetic */
+  width: 100%;
+  max-width: 300px;
 }
 
 .onboarding-overlay .secondary-btn:hover {
-  background-color: #154982; /* Fill with blue on hover */
-  color: white; /* White text on hover */
+  background-color: #154982;
+  color: white;
 }
 
 /* Optional: Animation for overlay appearance */
@@ -292,14 +298,14 @@ button:hover {
 /* Media Queries for smaller screens */
 @media (max-width: 900px) {
   .button-group {
-    flex-direction: row; /* Buttons side-by-side on larger screens */
-    justify-content: center; /* Center buttons when side-by-side */
+    flex-direction: row;
+    justify-content: center;
   }
 
   .onboarding-overlay .primary-btn,
   .onboarding-overlay .secondary-btn {
-    width: auto; /* Allow buttons to take natural width */
-    max-width: none; /* Remove max-width constraint */
+    width: auto;
+    max-width: none;
   }
  
   .main-content {
