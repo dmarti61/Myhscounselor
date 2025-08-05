@@ -5,6 +5,9 @@ const QuestionCard = ({ question, onAnswer, progress, totalQuestions }) => {
   // NEW: A local state for the selected button
   const [localSelectedAnswer, setLocalSelectedAnswer] = useState(null);
 
+  // Add this line to see the initial state
+  console.log('QuestionCard rendered. localSelectedAnswer is:', localSelectedAnswer);
+
   const handleButtonClick = (value, event) => {
     // Set the local state to highlight the button
     setLocalSelectedAnswer(value);
