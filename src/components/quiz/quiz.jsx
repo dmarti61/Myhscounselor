@@ -15,31 +15,33 @@ const Quiz = () => {
     T: 0, F: 0,
     J: 0, P: 0,
   });
-  // Use a state to store the currently selected answer
   const [selectedAnswer, setSelectedAnswer] = useState(null);
+  const [questionKey, setQuestionKey] = useState(0); // NEW: force re-render
 
   const navigate = useNavigate();
 
   const handleAnswer = (dimension, letter) => {
-    // Immediately set the selected answer to trigger the highlight
-    setSelectedAnswer(letter);
+    setSelectedAnswer(letter); // trigger highlight
 
-    // Delay the rest of the logic to allow visual feedback
     setTimeout(() => {
-  setCounts(prev => ({ ...prev, [letter]: prev[letter] + 1 }));
+      // update MBTI letter count
+      setCounts(prev => ({ ...prev, [letter]: prev[letter] + 1 }));
 
-  if (step + 1 === questions.length) {
-    const result = buildType();
-    localStorage.setItem('mbti_result', JSON.stringify({
-      type: result,
-      expires: new Date().getTime() + 24 * 60 * 60 * 1000,
-    }));
-    navigate('/preferences', { state: { mbtiType: result } });
-  } else {
-    setSelectedAnswer(null); // Clear highlight
-    setTimeout(() => setStep(prev => prev + 1), 50); // Delay next question
-  }
-}, 250);
+      if (step + 1 === questions.length) {
+        // final question — build result and save
+        const result = buildType();
+        localStorage.setItem('mbti_result', JSON.stringify({
+          type: result,
+          expires: new Date().getTime() + 24 * 60 * 60 * 1000,
+        }));
+        navigate('/preferences', { state: { mbtiType: result } });
+      } else {
+        // move to next question
+        setSelectedAnswer(null);             // clear selection
+        setStep(prev => prev + 1);           // go to next step
+        setQuestionKey(prev => prev + 1);    // force new component render
+      }
+    }, 250);
   };
 
   const buildType = () => {
@@ -57,12 +59,10 @@ const Quiz = () => {
     <div>
       <ProgressBar currentStep={step + 1} totalSteps={questions.length} />
       <QuestionCard
-        // We can still use the key as a safeguard, but it's not strictly necessary with this approach
-        key={step}
+        key={questionKey} // 🔑 ensures re-render of each question
         question={current}
         progress={step + 1}
         totalQuestions={questions.length}
-        // Pass the selectedAnswer state down as a prop
         selectedAnswer={selectedAnswer}
         onAnswer={(value) => handleAnswer(current.dimension, value)}
       />
