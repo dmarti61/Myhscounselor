@@ -1,6 +1,6 @@
-// src/utils/bls-url-map.js
+// src/utils/bls-map.js
 
-export const BLS_URL_MAP = {
+export const BLS_MAP = {
   // STEM & Tech
   "15-1256": "computer-and-information-technology/software-developers",
   "17-1011": "architecture-and-engineering/architects",
