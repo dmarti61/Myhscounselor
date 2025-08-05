@@ -34,7 +34,8 @@ const Quiz = () => {
     setSelectedAnswer(letter);
 
     if (event && event.target) {
-      event.target.blur();
+      console.log('Attempting to blur element:', event.target);
+    event.target.blur();
     }
     
     // LOG 3: The timer is set. Look for this before the transition.
