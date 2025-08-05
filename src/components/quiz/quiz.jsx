@@ -16,30 +16,41 @@ const Quiz = () => {
   });
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [questionKey, setQuestionKey] = useState(0);
-  const timerRef = useRef(null); // NEW: Create a ref to store the timer ID
+  const timerRef = useRef(null);
 
   const navigate = useNavigate();
 
   const handleAnswer = (dimension, letter, event) => {
-    // Immediately set the selected answer to highlight the button
-    setSelectedAnswer(letter);
-    
-    // Clear any existing timer to prevent a race condition from a quick click
+    // LOG 1: Fired on every click.
+    console.log(`-- Click Event --`);
+    console.log(`Answering Q${step + 1} with value: ${letter}`);
+
+    // Check for and clear any existing timer
     if (timerRef.current) {
+      console.log('LOG 2: Clearing previous timer to prevent race condition.');
       clearTimeout(timerRef.current);
     }
     
-    // Use the event object to blur the button and remove browser focus
+    setSelectedAnswer(letter);
+
     if (event && event.target) {
       event.target.blur();
     }
     
-    // Store the new timer ID in the ref
+    // LOG 3: The timer is set. Look for this before the transition.
+    console.log('LOG 3: Setting a new timer for the transition.');
     timerRef.current = setTimeout(() => {
-      // All the transition logic is now here
-      setCounts(prev => ({ ...prev, [letter]: prev[letter] + 1 }));
+      // All the transition logic is inside here.
+      console.log(`LOG 4: Timer for Q${step + 1} has executed.`);
+      
+      setCounts(prev => {
+        const newCounts = { ...prev, [letter]: prev[letter] + 1 };
+        console.log('LOG 5: Updated counts:', newCounts);
+        return newCounts;
+      });
 
       if (step + 1 === questions.length) {
+        // Final question logic
         const result = buildType();
         localStorage.setItem('mbti_result', JSON.stringify({
           type: result,
@@ -47,11 +58,14 @@ const Quiz = () => {
         }));
         navigate('/preferences', { state: { mbtiType: result } });
       } else {
+        // LOG 6: Transitioning to the next question.
+        console.log(`LOG 6: Transitioning to Q${step + 2}.`);
         setSelectedAnswer(null);
         setStep(prev => prev + 1);
         setQuestionKey(prev => prev + 1);
       }
-      timerRef.current = null; // Clear the ref after the timer runs
+      timerRef.current = null;
+      console.log('LOG 7: Timer has finished and is cleared.');
     }, 250);
   };
 
