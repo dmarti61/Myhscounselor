@@ -15,14 +15,19 @@ const Quiz = () => {
     T: 0, F: 0,
     J: 0, P: 0,
   });
+  // Add a state to manage the selected answer for the *current* question
+  const [selectedAnswer, setSelectedAnswer] = useState(null);
 
   const navigate = useNavigate();
 
   const handleAnswer = (dimension, letter) => {
-    setCounts(prev => ({ ...prev, [letter]: prev[letter] + 1 }));
+    // 1. Immediately set the selected answer to show the highlight
+    setSelectedAnswer(letter);
 
-    // Delay for visual feedback before loading the next question
+    // 2. Schedule the rest of the logic after a brief delay
     setTimeout(() => {
+      setCounts(prev => ({ ...prev, [letter]: prev[letter] + 1 }));
+
       if (step + 1 === questions.length) {
         const result = buildType();
         localStorage.setItem('mbti_result', JSON.stringify({
@@ -31,6 +36,8 @@ const Quiz = () => {
         }));
         navigate('/preferences', { state: { mbtiType: result } });
       } else {
+        // 3. Before moving to the next question, reset the selected answer state
+        setSelectedAnswer(null); 
         setStep(prev => prev + 1);
       }
     }, 250);
@@ -51,10 +58,12 @@ const Quiz = () => {
     <div>
       <ProgressBar currentStep={step + 1} totalSteps={questions.length} />
       <QuestionCard
-        key={step} // This is the most important part of the fix
+        // We can remove the key={step} prop here because the selectedAnswer prop will handle the reset
+        // The key is still a valid approach, but with this change, it's no longer necessary
         question={current}
         progress={step + 1}
         totalQuestions={questions.length}
+        selectedAnswer={selectedAnswer} // Pass the selected answer state to the child
         onAnswer={(value) => handleAnswer(current.dimension, value)}
       />
     </div>
