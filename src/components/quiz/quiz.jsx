@@ -26,21 +26,20 @@ const Quiz = () => {
 
     // Delay the rest of the logic to allow visual feedback
     setTimeout(() => {
-      setCounts(prev => ({ ...prev, [letter]: prev[letter] + 1 }));
+  setCounts(prev => ({ ...prev, [letter]: prev[letter] + 1 }));
 
-      if (step + 1 === questions.length) {
-        const result = buildType();
-        localStorage.setItem('mbti_result', JSON.stringify({
-          type: result,
-          expires: new Date().getTime() + 24 * 60 * 60 * 1000,
-        }));
-        navigate('/preferences', { state: { mbtiType: result } });
-      } else {
-        // Explicitly reset the selected answer before moving to the next question
-        setSelectedAnswer(null);
-        setStep(prev => prev + 1);
-      }
-    }, 250);
+  if (step + 1 === questions.length) {
+    const result = buildType();
+    localStorage.setItem('mbti_result', JSON.stringify({
+      type: result,
+      expires: new Date().getTime() + 24 * 60 * 60 * 1000,
+    }));
+    navigate('/preferences', { state: { mbtiType: result } });
+  } else {
+    setSelectedAnswer(null); // Clear highlight
+    setTimeout(() => setStep(prev => prev + 1), 50); // Delay next question
+  }
+}, 250);
   };
 
   const buildType = () => {
