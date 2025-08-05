@@ -28,7 +28,7 @@ const JobSearch = () => (
           <ul>
             <li><strong>Volunteer Work:</strong> Any time you've helped out counts!</li>
             <li><strong>Extracurricular Activities:</strong> Sports, clubs, drama, school newspaper – highlight leadership roles or teamwork.</li>
-            <li><strong>Babysitting/Pet Sitting/Yard Work:</strong> Informal jobs show responsibility.</li>
+            <li><strong>Babysitting/Pet Sitting/Yard Work:</b> Informal jobs show responsibility.</li>
             <li><strong>Class Projects:</strong> Did you lead a team? Solve a problem?</li>
           </ul>
           <p className="emphasis">
@@ -45,7 +45,7 @@ const JobSearch = () => (
       <p>
         There are many free online resume templates you can use to get started!
         <br />
-        <a href="../utils/ResumeGuide.pdf" target="_blank" rel="noopener noreferrer">
+        <a href="/ResumeGuide.pdf" target="_blank" rel="noopener noreferrer">
           <strong>Download our high school resume template and guide here!</strong>
         </a>
       </p>
