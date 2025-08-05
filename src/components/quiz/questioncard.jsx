@@ -1,4 +1,4 @@
-m// src/components/quiz/questioncard.jsx
+// src/components/quiz/questioncard.jsx
 import React from 'react';
 
 const QuestionCard = ({ question, onAnswer, progress, totalQuestions, selectedAnswer }) => {
