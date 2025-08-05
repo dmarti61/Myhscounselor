@@ -162,7 +162,7 @@ button:hover {
 /* This rule targets the specific state where the bug occurs (selected and disabled)
    and forces it to look like a normal, unselected button. */
 .option-btn.selected:disabled {
-  background-color: #fff;
+  background-color: #fff !important;
   color: #154982;
   border-color: #c7d2fe;
   font-weight: normal;
