@@ -45,7 +45,7 @@ const QuestionCard = ({ question, onAnswer, progress, totalQuestions }) => {
               className={`option-btn ${isSelected ? 'selected' : ''}`}
               onClick={(e) => handleButtonClick(option.value, e)}
               // Disable buttons after one is selected to prevent multiple clicks
-              disabled={!!localSelectedAnswer}
+              //disabled={!!localSelectedAnswer}
               aria-label={`Answer option: ${option.label}`}
             >
               {option.label}
