@@ -1,12 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
-// The QuestionCard component no longer needs the selectedAnswer prop
 const QuestionCard = ({ question, onAnswer, progress, totalQuestions }) => {
   // NEW: A local state for the selected button
   const [localSelectedAnswer, setLocalSelectedAnswer] = useState(null);
 
-  // Add this line to see the initial state
-  console.log('QuestionCard rendered. localSelectedAnswer is:', localSelectedAnswer);
+  // LOG 1: This log shows the state on every render, including the initial mount.
+  console.log('LOG 1 - QuestionCard rendered. localSelectedAnswer is:', localSelectedAnswer);
+
+  // Use a useEffect hook to explicitly reset the state when the question changes.
+  // This is the final and definitive fix for the persistent highlight bug.
+  useEffect(() => {
+    // We expect this to run when the question changes.
+    setLocalSelectedAnswer(null);
+    // LOG 2: This log confirms the state has been explicitly reset to null.
+    console.log('LOG 2 - useEffect fired, state reset.');
+  }, [question.text]);
 
   const handleButtonClick = (value, event) => {
     // Set the local state to highlight the button
