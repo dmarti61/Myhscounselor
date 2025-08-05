@@ -232,9 +232,9 @@ const ResultBadge = () => {
                       {detailedStats.environment && (
                         <p><strong>Work Environment:</strong> {detailedStats.environment}</p>
                       )}
-                     {detailedStats.soc_code && BLS_URL_MAP[detailedStats.soc_code] && (
+                     {detailedStats.soc_code && BLS_MAP[detailedStats.soc_code] && (
                         <p className="bls-link">
-                        <a href={`https://www.bls.gov/ooh/${BLS_URL_MAP[detailedStats.soc_code]}.htm`} target="_blank" rel="noopener noreferrer">
+                        <a href={`https://www.bls.gov/ooh/${BLS_MAP[detailedStats.soc_code]}.htm`} target="_blank" rel="noopener noreferrer">
                         More info from BLS ({detailedStats.soc_code})
                         </a>
                         </p>
