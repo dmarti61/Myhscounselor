@@ -136,8 +136,8 @@ const questions = [
     dimension: 'TF',
     text: 'You’re more comfortable with decisions that are...',
     options: [
-      { label: 'Just, even if unpopular.', value: 'T' },
-      { label: 'Compassionate, even if imperfect.', value: 'F' }
+      { label: 'Logical and fair.', value: 'T' },
+      { label: 'Kind and caring.', value: 'F' }
     ]
   },
 
