@@ -20,19 +20,23 @@ const Quiz = () => {
   const navigate = useNavigate();
 
   const handleAnswer = (dimension, letter, event) => {
-    // Immediately remove focus from the button that was just clicked
+    // 1. Immediately set the selected answer to trigger the highlight
+    setSelectedAnswer(letter);
+
+    // 2. Disable the button and remove browser focus to prevent multiple clicks
     if (event && event.target) {
       event.target.blur();
     }
 
-    setSelectedAnswer(letter); // trigger highlight
-
+    // 3. Use a setTimeout to handle all other logic AFTER the highlight is visible.
+    // This removes the race condition.
     setTimeout(() => {
-      // update MBTI letter count
+      // Update MBTI letter count
       setCounts(prev => ({ ...prev, [letter]: prev[letter] + 1 }));
 
+      // Check if it's the final question
       if (step + 1 === questions.length) {
-        // final question — build result and save
+        // Build and save the result
         const result = buildType();
         localStorage.setItem('mbti_result', JSON.stringify({
           type: result,
@@ -40,12 +44,12 @@ const Quiz = () => {
         }));
         navigate('/preferences', { state: { mbtiType: result } });
       } else {
-        // move to next question
-        setSelectedAnswer(null);             // clear selection
-        setStep(prev => prev + 1);           // go to next step
-        setQuestionKey(prev => prev + 1);    // force new component render
+        // Move to the next question
+        setSelectedAnswer(null);          // Clear the selection for the next question
+        setStep(prev => prev + 1);        // Go to the next step
+        setQuestionKey(prev => prev + 1); // Force a new component render
       }
-    }, 250);
+    }, 250); // This delay is now for the *transition*, not the entire logic.
   };
 
   const buildType = () => {
