@@ -133,7 +133,7 @@ button:hover {
 
 /* On mouse hover, buttons lift slightly */
 .option-btn:hover {
-  background-color: #f0f4ff; /* Light hover effect */
+  background-color: #154982; /* Light hover effect */
   transform: translateY(-2px);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
