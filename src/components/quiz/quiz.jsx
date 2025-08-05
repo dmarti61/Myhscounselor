@@ -1,4 +1,3 @@
-// src/components/quiz/quiz.jsx
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import questions from '../../data/questions';
@@ -16,11 +15,16 @@ const Quiz = () => {
     J: 0, P: 0,
   });
   const [selectedAnswer, setSelectedAnswer] = useState(null);
-  const [questionKey, setQuestionKey] = useState(0); // NEW: force re-render
+  const [questionKey, setQuestionKey] = useState(0);
 
   const navigate = useNavigate();
 
-  const handleAnswer = (dimension, letter) => {
+  const handleAnswer = (dimension, letter, event) => {
+    // Immediately remove focus from the button that was just clicked
+    if (event && event.target) {
+      event.target.blur();
+    }
+
     setSelectedAnswer(letter); // trigger highlight
 
     setTimeout(() => {
@@ -59,12 +63,12 @@ const Quiz = () => {
     <div>
       <ProgressBar currentStep={step + 1} totalSteps={questions.length} />
       <QuestionCard
-        key={questionKey} // 🔑 ensures re-render of each question
+        key={questionKey}
         question={current}
         progress={step + 1}
         totalQuestions={questions.length}
         selectedAnswer={selectedAnswer}
-        onAnswer={(value) => handleAnswer(current.dimension, value)}
+        onAnswer={(value, event) => handleAnswer(current.dimension, value, event)}
       />
     </div>
   );
