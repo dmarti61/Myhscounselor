@@ -1,5 +1,3 @@
-// src/pages/ExploreCareers.js
-
 import React, { useMemo } from 'react';
 import styles from '../styles/explore.module.css';
 import { MBTI_MAP } from '../components/quiz/mbtimap';
@@ -10,9 +8,14 @@ const getUniqueCareers = () => {
   const allCareers = new Map();
   Object.values(MBTI_MAP).forEach(({ careers }) => {
     careers.forEach(career => {
-      // Use the career title as a unique key to prevent duplicates
+      // Use the career title as a unique key
       if (!allCareers.has(career.title)) {
-        allCareers.set(career.title, career);
+        // Look up the career stats and merge them with the career object
+        const careerWithStats = {
+          ...career,
+          ...CAREER_STATS[career.title],
+        };
+        allCareers.set(career.title, careerWithStats);
       }
     });
   });
@@ -31,7 +34,6 @@ const groupCareersByEducation = (careers) => {
   }, {});
 
   // Sort the keys (education levels) for consistent display order
-  // A custom order is used to place them logically
   const customOrder = ["college", "community", "trade", "job", "other"];
   const sortedKeys = Object.keys(grouped).sort((a, b) => {
     return customOrder.indexOf(a.toLowerCase()) - customOrder.indexOf(b.toLowerCase());
@@ -40,7 +42,6 @@ const groupCareersByEducation = (careers) => {
   // Create a new object with sorted keys
   const sortedGrouped = {};
   sortedKeys.forEach(key => {
-    // Capitalize the first letter for display
     const displayKey = key.charAt(0).toUpperCase() + key.slice(1);
     sortedGrouped[displayKey] = grouped[key];
   });
@@ -48,19 +49,26 @@ const groupCareersByEducation = (careers) => {
   return sortedGrouped;
 };
 
-// **UPDATED** CareerCard to use new data structure
-const CareerCard = ({ title, pathway, description, link }) => (
+// UPDATED CareerCard to display all relevant stats
+const CareerCard = ({ title, pathway, description, soc_code, salary, outlook, education, skills }) => (
   <div className={styles.card}>
     <h4>{title}</h4>
     <p><strong>Career Pathway:</strong> {pathway}</p>
     <p>{description}</p>
-      {detailedStats.soc_code && BLS_MAP[detailedStats.soc_code] && (
-                        <p className="bls-link">
-                        <a href={`https://www.bls.gov/ooh/${BLS_MAP[detailedStats.soc_code]}.htm`} target="_blank" rel="noopener noreferrer">
-                        More info from BLS ({detailedStats.soc_code})
-                        </a>
-                        </p>
-                      )}
+    <hr />
+    <p><strong>Median Salary:</strong> {salary}</p>
+    <p><strong>Typical Education:</strong> {education}</p>
+    <p><strong>Job Outlook:</strong> {outlook}</p>
+    {skills && skills.length > 0 && (
+      <p><strong>Common Skills:</strong> {skills.join(', ')}</p>
+    )}
+    {soc_code && BLS_MAP[soc_code] && (
+      <p className="bls-link">
+        <a href={`https://www.bls.gov/ooh/${BLS_MAP[soc_code]}.htm`} target="_blank" rel="noopener noreferrer">
+          More info from BLS ({soc_code})
+        </a>
+      </p>
+    )}
   </div>
 );
 
