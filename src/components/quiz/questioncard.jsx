@@ -1,4 +1,3 @@
-// src/components/quiz/questioncard.jsx
 import React from 'react';
 
 const QuestionCard = ({ question, onAnswer, progress, totalQuestions, selectedAnswer }) => {
@@ -15,7 +14,7 @@ const QuestionCard = ({ question, onAnswer, progress, totalQuestions, selectedAn
             <button
               key={`${question.text}-${option.value}`} // Unique key per question & answer
               className={`option-btn ${isSelected ? 'selected' : ''}`}
-              onClick={() => onAnswer(option.value)}
+              onClick={(e) => onAnswer(option.value, e)} // Pass the value AND the event object
               disabled={!!selectedAnswer}
               aria-label={`Answer option: ${option.label}`}
             >
