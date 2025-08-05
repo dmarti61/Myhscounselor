@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import questions from '../../data/questions';
 import QuestionCard from './questioncard';
-import ProgressBar from './progressbar'; 
+import ProgressBar from './progressbar';
 
 const mbtiDimensions = ['EI', 'SN', 'TF', 'JP'];
 
@@ -21,37 +21,25 @@ const Quiz = () => {
   const navigate = useNavigate();
 
   const handleAnswer = (dimension, letter, event) => {
-    // LOG 1: Fired on every click.
-    console.log(`-- Click Event --`);
-    console.log(`Answering Q${step + 1} with value: ${letter}`);
+    // 1. Instantly update the selected state to show the highlight
+    setSelectedAnswer(letter);
 
-    // Check for and clear any existing timer
+    // 2. Clear any pending transitions to prevent a race condition
     if (timerRef.current) {
-      console.log('LOG 2: Clearing previous timer to prevent race condition.');
       clearTimeout(timerRef.current);
     }
     
-    setSelectedAnswer(letter);
-
+    // 3. Blur the button
     if (event && event.target) {
-      console.log('Attempting to blur element:', event.target);
-    event.target.blur();
+      event.target.blur();
     }
     
-    // LOG 3: The timer is set. Look for this before the transition.
-    console.log('LOG 3: Setting a new timer for the transition.');
-    timerRef.current = setTimeout(() => {
-      // All the transition logic is inside here.
-      console.log(`LOG 4: Timer for Q${step + 1} has executed.`);
-      
-      setCounts(prev => {
-        const newCounts = { ...prev, [letter]: prev[letter] + 1 };
-        console.log('LOG 5: Updated counts:', newCounts);
-        return newCounts;
-      });
+    // 4. Update the counts immediately (no delay for this)
+    setCounts(prev => ({ ...prev, [letter]: prev[letter] + 1 }));
 
+    // 5. Use the timer ONLY for the visual transition
+    timerRef.current = setTimeout(() => {
       if (step + 1 === questions.length) {
-        // Final question logic
         const result = buildType();
         localStorage.setItem('mbti_result', JSON.stringify({
           type: result,
@@ -59,14 +47,12 @@ const Quiz = () => {
         }));
         navigate('/preferences', { state: { mbtiType: result } });
       } else {
-        // LOG 6: Transitioning to the next question.
-        console.log(`LOG 6: Transitioning to Q${step + 2}.`);
+        // CRITICAL FIX: Reset the state BEFORE moving to the next step
         setSelectedAnswer(null);
         setStep(prev => prev + 1);
         setQuestionKey(prev => prev + 1);
       }
       timerRef.current = null;
-      console.log('LOG 7: Timer has finished and is cleared.');
     }, 250);
   };
 
