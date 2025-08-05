@@ -14,30 +14,22 @@ const Quiz = () => {
     T: 0, F: 0,
     J: 0, P: 0,
   });
-  const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [questionKey, setQuestionKey] = useState(0);
   const timerRef = useRef(null);
 
   const navigate = useNavigate();
 
-  const handleAnswer = (dimension, letter, event) => {
-    // 1. Instantly update the selected state to show the highlight
-    setSelectedAnswer(letter);
-
-    // 2. Clear any pending transitions to prevent a race condition
+  // The handleAnswer function now receives the letter directly from QuestionCard
+  const handleAnswer = (letter) => {
+    // Clear any pending transitions to prevent a race condition
     if (timerRef.current) {
       clearTimeout(timerRef.current);
     }
     
-    // 3. Blur the button
-    if (event && event.target) {
-      event.target.blur();
-    }
-    
-    // 4. Update the counts immediately (no delay for this)
+    // Update the counts immediately
     setCounts(prev => ({ ...prev, [letter]: prev[letter] + 1 }));
-
-    // 5. Use the timer ONLY for the visual transition
+    
+    // Use the timer ONLY for the visual transition to the next question
     timerRef.current = setTimeout(() => {
       if (step + 1 === questions.length) {
         const result = buildType();
@@ -47,8 +39,6 @@ const Quiz = () => {
         }));
         navigate('/preferences', { state: { mbtiType: result } });
       } else {
-        // CRITICAL FIX: Reset the state BEFORE moving to the next step
-        setSelectedAnswer(null);
         setStep(prev => prev + 1);
         setQuestionKey(prev => prev + 1);
       }
@@ -75,8 +65,8 @@ const Quiz = () => {
         question={current}
         progress={step + 1}
         totalQuestions={questions.length}
-        selectedAnswer={selectedAnswer}
-        onAnswer={(value, event) => handleAnswer(current.dimension, value, event)}
+        // onAnswer now only needs to pass the letter
+        onAnswer={handleAnswer}
       />
     </div>
   );
