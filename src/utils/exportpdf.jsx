@@ -106,6 +106,7 @@ export const exportResultsAsPDF = ({ type, preference }) => {
   careersToDisplay.forEach((c) => {
     const isStarred = userPreference && c.postSchoolPath?.toLowerCase() === userPreference;
     const line = `${isStarred ? '★ ' : '• '}${c.title} (${c.pathway})`;
+    doc.setTextColor(textColor);
     doc.text(line, 20, y);
     y += 7;
     if (y > pageHeight - 20) {
