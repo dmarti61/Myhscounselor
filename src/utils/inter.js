@@ -5,6 +5,6 @@ this.addFileToVFS('Inter_18pt-Regular-normal.ttf', font);
 this.addFont('Inter_18pt-Regular-normal.ttf', 'Inter_18pt-Regular', 'normal');
 };
 jsPDF.API.events.push(['addFonts', callAddFont])
-export const interFont = interRegular;
+export const interFont = font;
 
 
