@@ -64,7 +64,7 @@ const CareerCard = ({ title, pathway, description, soc_code, salary, outlook, ed
     {soc_code && BLS_MAP[soc_code] && (
       <p className="bls-link">
         <a href={`https://www.bls.gov/ooh/${BLS_MAP[soc_code]}.htm`} target="_blank" rel="noopener noreferrer">
-          More info from BLS ({soc_code})
+          Learn more from BLS ({soc_code})
         </a>
       </p>
     )}
