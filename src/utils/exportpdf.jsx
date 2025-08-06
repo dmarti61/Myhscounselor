@@ -5,9 +5,8 @@ import { GUIDES_TEXT_CONTENT } from './guidestext';
 
 // Import the logo image
 import logo from '../../public/logo.png';
-// Import the single custom font file you have
-// IMPORTANT: Make sure `inter.js` is in the same directory as this file.
-import interRegular from './inter.js';
+// Correct import assuming a named export `interFont`
+import { interFont } from './inter.js';
 
 export const exportResultsAsPDF = ({ type, preference }) => {
   const doc = new jsPDF('p', 'mm', 'a4');
@@ -22,28 +21,18 @@ export const exportResultsAsPDF = ({ type, preference }) => {
   }
 
   // --- Add the custom Inter font ---
-  // Step 1: Add the Base64-encoded font file to the PDF's virtual file system (VFS)
-  doc.addFileToVFS('Inter-Regular.ttf', interRegular);
-  
-  // Step 2: Add the font to the document so it can be used by name
+  doc.addFileToVFS('Inter-Regular.ttf', interFont);
   doc.addFont('Inter-Regular.ttf', 'Inter', 'normal');
-  
-  // Step 3: Set 'Inter' as the default font for the document
   doc.setFont('Inter');
 
-  // Set up font styles that match the CSS
   const primaryColor = '#0056b3';
   const secondaryColor = '#28a745';
   const accentColor = '#007bff';
   const textColor = '#333';
 
   // --- Summary Page ---
-
-  // Add a dark blue rectangle as the background for the logo
   doc.setFillColor(0, 86, 179);
   doc.rect(0, 0, doc.internal.pageSize.width, 30, 'F');
-
-  // Add the logo on top of the background
   const logoWidth = 60;
   const logoHeight = 20;
   const logoX = (doc.internal.pageSize.width - logoWidth) / 2;
@@ -51,7 +40,7 @@ export const exportResultsAsPDF = ({ type, preference }) => {
   doc.addImage(logo, 'PNG', logoX, logoY, logoWidth, logoHeight);
 
   // Add the title
-  doc.setFont('Inter', 'normal'); // Set to normal as bold is not available
+  doc.setFont('Inter', 'normal');
   doc.setFontSize(24);
   doc.setTextColor(primaryColor);
   doc.text('MyHSCounselor Quiz Results', 15, 45);
@@ -59,7 +48,7 @@ export const exportResultsAsPDF = ({ type, preference }) => {
 
   // Personality Type Section
   let y = 58;
-  doc.setFont('Inter', 'normal'); // Set to normal
+  doc.setFont('Inter', 'normal');
   doc.setFontSize(16);
   doc.setTextColor(primaryColor);
   doc.text(`Personality Type: ${mbtiType}`, 15, y);
@@ -82,7 +71,7 @@ export const exportResultsAsPDF = ({ type, preference }) => {
   }
 
   // Strengths Section
-  doc.setFont('Inter', 'normal'); // Set to normal
+  doc.setFont('Inter', 'normal');
   doc.setFontSize(14);
   doc.setTextColor(secondaryColor);
   doc.text('Strengths', 15, y);
@@ -100,7 +89,7 @@ export const exportResultsAsPDF = ({ type, preference }) => {
   y += 10;
 
   // Suggested Careers Section
-  doc.setFont('Inter', 'normal'); // Set to normal
+  doc.setFont('Inter', 'normal');
   doc.setFontSize(14);
   doc.setTextColor(secondaryColor);
   doc.text('Suggested Careers', 15, y);
@@ -133,7 +122,7 @@ export const exportResultsAsPDF = ({ type, preference }) => {
   const topCareer = careersToDisplay[0];
   const topCareerStats = topCareer?.title && CAREER_STATS[topCareer.title] ? CAREER_STATS[topCareer.title] : {};
 
-  doc.setFont('Inter', 'normal'); // Set to normal
+  doc.setFont('Inter', 'normal');
   doc.setFontSize(14);
   doc.setTextColor(secondaryColor);
   doc.text(`Top Career Snapshot: ${topCareer?.title || 'N/A'}`, 15, y);
@@ -155,7 +144,7 @@ export const exportResultsAsPDF = ({ type, preference }) => {
   const nextStepPlainText = nextStepText.replace(/<[^>]*>/g, '');
   const wrappedNextStepText = doc.splitTextToSize(nextStepPlainText, 175);
 
-  doc.setFont('Inter', 'normal'); // Set to normal
+  doc.setFont('Inter', 'normal');
   doc.setFontSize(14);
   doc.setTextColor(secondaryColor);
   doc.text('Recommended Next Step', 15, y);
@@ -187,7 +176,7 @@ export const exportResultsAsPDF = ({ type, preference }) => {
     let guideY = 20;
 
     // Add guide title
-    doc.setFont('Inter', 'normal'); // Set to normal
+    doc.setFont('Inter', 'normal');
     doc.setFontSize(24);
     doc.setTextColor(primaryColor);
     doc.text(`Appendix: ${guideKey} Guide`, 15, guideY);
@@ -216,7 +205,7 @@ export const exportResultsAsPDF = ({ type, preference }) => {
       }
 
       // Add section heading
-      doc.setFont('Inter', 'normal'); // Set to normal
+      doc.setFont('Inter', 'normal');
       doc.setFontSize(16);
       doc.setTextColor(secondaryColor);
       doc.text(sectionTitle, 15, guideY);
