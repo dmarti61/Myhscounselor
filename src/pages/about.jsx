@@ -36,7 +36,7 @@ const About = () => {
       </p>
 
       <p className="founder-signature">
-        — [Your Name], Founder
+        — Daniel Martinez, Founder
       </p>
     </section>
   );
