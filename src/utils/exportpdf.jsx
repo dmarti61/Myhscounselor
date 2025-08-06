@@ -4,8 +4,8 @@ import { MBTI_MAP, generateNextStepPhrase } from '../components/quiz/mbtimap';
 import { GUIDES_TEXT_CONTENT } from './guidestext';
 // Import the logo image
 import logo from '../../public/logo.png';
-// Correct import assuming a named export `interRegularFont`
-import { interRegularFont } from './inter.js';
+// Correct import assuming a named export `interFont`
+import { interFont } from './inter.js';
 export const exportResultsAsPDF = ({ type, preference }) => {
   const doc = new jsPDF('p', 'mm', 'a4');
   const mbtiType = type.toUpperCase();
@@ -17,7 +17,7 @@ export const exportResultsAsPDF = ({ type, preference }) => {
     return;
   }
   // --- Add the custom Inter font ---
-  doc.addFileToVFS('Inter-Regular.ttf', interRegularFont);
+  doc.addFileToVFS('Inter-Regular.ttf', interFont);
   doc.addFont('Inter-Regular.ttf', 'Inter', 'normal');
   doc.setFont('Inter');
   const primaryColor = '#0056b3';
