@@ -5,8 +5,7 @@ const About = () => {
     <section className="about-page">
       <h1>💡 Our Story: From a Personal Framework to a Proven Solution</h1>
       <p>
-        Like many high school graduates, I earned my bachelor's degree in communications and jumped into a career in public relations, only to realize it wasn’t my true passion. It wasn't until I became a parent that I took a step back and truly identified my personality type and strengths, which gave me the clarity to go back to school for my MBA. That journey of self-discovery was my turning point.
-      </p>
+        After graduating college with a communications degree, I dove into a career in public relations, only to realize it wasn't my passion. My professional path felt uncertain until I became a parent. This new perspective prompted a period of deep self-reflection, where I finally identified my core strengths and personality type. That clarity was my turning point, giving me the confidence to return to school and earn my MBA. </p>
       <p>
         When my younger brothers began asking for advice on their own paths, I didn't want them to feel as lost as I once did. I drafted a detailed email for them in 2014—a step-by-step framework to help them find a path that was the right fit. That email became the blueprint for MyHSCounselor.com.
       </p>
