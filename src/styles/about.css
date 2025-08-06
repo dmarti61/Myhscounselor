@@ -1,0 +1,77 @@
+/* About.css */
+
+/*
+  Base styles from global.css apply automatically.
+  This file adds specific styling for the about page content.
+*/
+
+.about-page {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.about-page h1 {
+  /* Inherits from global.css but with added padding for better spacing */
+  margin-bottom: 2rem;
+  font-size: 2.2rem;
+  text-align: center;
+  color: #154982;
+}
+
+.about-page h2 {
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  color: #2c3e50;
+  text-align: center;
+}
+
+.about-intro-section {
+  text-align: left;
+}
+
+.what-makes-us-different {
+  background-color: #f0f4f8; /* A very light blue-grey to subtly separate this section */
+  border-radius: 12px;
+  padding: 30px;
+  margin-top: 30px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.what-makes-us-different ul {
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0 0;
+}
+
+.what-makes-us-different li {
+  margin-bottom: 1.5rem;
+  position: relative;
+  padding-left: 2em;
+  line-height: 1.5;
+}
+
+.what-makes-us-different li::before {
+  content: '✓'; /* A simple checkmark */
+  position: absolute;
+  left: 0;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #154982;
+}
+
+.about-closing-statement {
+  font-size: 1.1rem;
+  font-style: italic;
+  text-align: center;
+  margin-top: 3rem;
+  color: #555;
+}
+
+.founder-signature {
+  font-size: 1rem;
+  font-weight: bold;
+  text-align: right;
+  margin-top: 2rem;
+  color: #154982;
+}
