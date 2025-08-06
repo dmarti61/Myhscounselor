@@ -31,6 +31,7 @@ export const exportResultsAsPDF = ({ type, preference }) => {
   const textColor = '#333';
 
   // --- Summary Page ---
+  // Header with logo
   doc.setFillColor(0, 86, 179);
   doc.rect(0, 0, doc.internal.pageSize.width, 30, 'F');
   const logoWidth = 60;
@@ -59,9 +60,13 @@ export const exportResultsAsPDF = ({ type, preference }) => {
     doc.setFont('Inter', 'normal');
     doc.setFontSize(12);
     doc.setTextColor(textColor);
-    const found = mbtiData.careers.some(c => c.postSchoolPath?.toLowerCase() === preference.toLowerCase());
+    const found = mbtiData.careers.some(
+      (c) => c.postSchoolPath?.toLowerCase() === preference.toLowerCase()
+    );
     doc.text(
-      `Career Pathway Preference: ${found ? preference : `${preference} (no direct match found)`}`,
+      `Career Pathway Preference: ${
+        found ? preference : `${preference} (no direct match found)`
+      }`,
       15,
       y
     );
@@ -101,8 +106,12 @@ export const exportResultsAsPDF = ({ type, preference }) => {
   doc.setTextColor(textColor);
   const allCareers = [...mbtiData.careers];
   const userPreference = preference ? preference.toLowerCase() : null;
-  const starredCareers = userPreference ? allCareers.filter(c => c.postSchoolPath?.toLowerCase() === userPreference) : [];
-  const nonStarredCareers = userPreference ? allCareers.filter(c => c.postSchoolPath?.toLowerCase() !== userPreference) : allCareers;
+  const starredCareers = userPreference
+    ? allCareers.filter((c) => c.postSchoolPath?.toLowerCase() === userPreference)
+    : [];
+  const nonStarredCareers = userPreference
+    ? allCareers.filter((c) => c.postSchoolPath?.toLowerCase() !== userPreference)
+    : allCareers;
   const careersToDisplay = [...starredCareers, ...nonStarredCareers];
 
   careersToDisplay.forEach((c) => {
@@ -120,7 +129,10 @@ export const exportResultsAsPDF = ({ type, preference }) => {
 
   // Top Career Snapshot Section
   const topCareer = careersToDisplay[0];
-  const topCareerStats = topCareer?.title && CAREER_STATS[topCareer.title] ? CAREER_STATS[topCareer.title] : {};
+  const topCareerStats =
+    topCareer?.title && CAREER_STATS[topCareer.title]
+      ? CAREER_STATS[topCareer.title]
+      : {};
 
   doc.setFont('Inter', 'normal');
   doc.setFontSize(14);
@@ -157,7 +169,7 @@ export const exportResultsAsPDF = ({ type, preference }) => {
   const bulletY = y;
   doc.text(`•`, 20, bulletY);
   doc.text(wrappedNextStepText.join('\n'), 25, bulletY);
-  y += (wrappedNextStepText.length * 7) + 10;
+  y += wrappedNextStepText.length * 7 + 10;
 
   // --- Appendix: Guide ---
   const pathwayMap = {
@@ -186,7 +198,7 @@ export const exportResultsAsPDF = ({ type, preference }) => {
     const sections = guideContent.trim().split(/\n\s*##\s*/);
 
     sections.forEach((section, index) => {
-      const lines = section.split('\n').filter(line => line.trim() !== '');
+      const lines = section.split('\n').filter((line) => line.trim() !== '');
       if (lines.length === 0) return;
 
       let sectionTitle = lines[0].trim();
@@ -242,8 +254,14 @@ export const exportResultsAsPDF = ({ type, preference }) => {
 
     // Add the page number to the bottom right
     const pageNumberText = `Page ${currentPageNumber} of ${totalPages}`;
-    doc.text(pageNumberText, doc.internal.pageSize.width - 15, pageHeight - 10, { align: 'right' });
+    doc.text(pageNumberText, doc.internal.pageSize.width - 15, pageHeight - 10, {
+      align: 'right',
+    });
   }
 
   doc.save(`${mbtiType}_Quiz_Results.pdf`);
 };
+
+// New inter.js code that should fix the issue
+// Make sure this is in a file named inter.js in the same directory as the original code
+export const interFont = 'AAEAAAAKAIAAA...'; // This should be the base64 string of the Inter font
