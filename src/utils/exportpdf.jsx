@@ -4,8 +4,8 @@ import { MBTI_MAP, generateNextStepPhrase } from '../components/quiz/mbtimap';
 import { GUIDES_TEXT_CONTENT } from './guidestext';
 // Import the logo image
 import logo from '../../public/logo.png';
-// Correct import assuming a named export `interFont`
-import { interFont } from './inter.js';
+// Correct import assuming a named export `interRegularFont`
+import { interRegularFont } from './inter.js';
 export const exportResultsAsPDF = ({ type, preference }) => {
   const doc = new jsPDF('p', 'mm', 'a4');
   const mbtiType = type.toUpperCase();
@@ -16,9 +16,8 @@ export const exportResultsAsPDF = ({ type, preference }) => {
     console.error(`MBTI data not found for type: ${mbtiType}`);
     return;
   }
-
   // --- Add the custom Inter font ---
-  doc.addFileToVFS('Inter-Regular.ttf', interFont);
+  doc.addFileToVFS('Inter-Regular.ttf', interRegularFont);
   doc.addFont('Inter-Regular.ttf', 'Inter', 'normal');
   doc.setFont('Inter');
   const primaryColor = '#0056b3';
@@ -66,7 +65,6 @@ export const exportResultsAsPDF = ({ type, preference }) => {
   } else {
     y += 5;
   }
-
   // Strengths Section
   doc.setFont('Inter', 'normal');
   doc.setFontSize(14);
