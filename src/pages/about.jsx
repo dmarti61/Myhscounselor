@@ -3,28 +3,31 @@ import React from 'react';
 const About = () => {
   return (
     <section className="about-page">
-      <h1>💡 The Story Behind MyHSCounselor.com</h1>
+      <h1>💡 Our Story: From a Personal Framework to a Proven Solution</h1>
       <p>
-        High school graduation can feel like stepping off a cliff if you don't know where you're landing. I remember the constant pressure to "go to college," but zero real guidance on **what to study**, **why**, or if it was even the right fit. That lack of clear direction, shared by many of my friends, stuck with me.
+        Like many high school graduates, I earned my bachelor's degree in communications and jumped into a career in public relations, only to realize it wasn’t my true passion. It wasn't until I became a parent that I took a step back and truly identified my personality type and strengths, which gave me the clarity to go back to school for my MBA. That journey of self-discovery was my turning point.
       </p>
       <p>
-        The real turning point was when my own siblings started facing the same post-high school unknowns. I wanted to give them more than just an opinion; I wanted a **one-stop shop** for answers. MyHSCounselor.com was born from that need – a desire to transform confusing questions into interactive, actionable solutions.
+        When my younger brothers began asking for advice on their own paths, I didn't want them to feel as lost as I once did. I drafted a detailed email for them in 2014—a step-by-step framework to help them find a path that was the right fit. That email became the blueprint for MyHSCounselor.com.
+      </p>
+      <p>
+        Our mission is to give every student the same clarity and confidence I found, so they can navigate their "next" with a plan that's proven to work.
       </p>
 
       <div className="about-section">
-        <h2>Navigating Your "Next"</h2>
+        <h2>What Makes Us Different</h2>
         <p>
-          We're here to change the narrative from "what's the right choice?" to "what's my best next step?" You deserve to feel **empowered** as you approach your future.
+          We believe every student deserves a personalized roadmap for their future. Our approach is built on three core pillars:
         </p>
         <ul>
-          <li>**Personalized Clarity:** Our unique quiz helps you uncover directions aligned with *your* strengths and interests.</li>
-          <li>**Actionable Roadmaps:** Forget the overwhelm – we provide concrete, step-by-step plans to get you moving.</li>
-          <li>**All Paths Honored:** Whether it's college, a trade, military, or jumping into work, we focus on genuine readiness for *any* meaningful path.</li>
+          <li><strong>Personalized Clarity:</strong> Our unique quiz goes beyond simple personality types. It helps you uncover directions that are genuinely aligned with your strengths and interests, just as it did for me.</li>
+          <li><strong>Actionable Roadmaps:</strong> We don't just give you a list of careers. Our step-by-step guides are built directly from my personal framework, providing you with a proven and reliable path forward, whether it's for college, a trade, or the military.</li>
+          <li><strong>All Paths Honored:</strong> Every meaningful path is a worthy one. Whether you choose a four-year degree, a trade certification, or a military career, we provide direct and honest guidance to help you build a future that truly excites you.</li>
         </ul>
       </div>
 
       <p>
-        Let's remove the guesswork and help you build a future that truly excites you.
+        MyHSCounselor.com is more than a website—it's the culmination of a personal journey and a proven framework designed to remove the guesswork and help you find a plan that's right for you.
       </p>
     </section>
   );
