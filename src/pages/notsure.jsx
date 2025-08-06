@@ -1,65 +1,131 @@
 // NotSure.js
 import React from 'react';
-import { NavLink } from 'react-router-dom'; // Import NavLink for internal routing
+import { NavLink } from 'react-router-dom';
 
 const NotSure = () => {
   return (
     <div className="not-sure-page-container">
-      <h2>🔍 Feeling Unsure About Your Next Step? That's Totally Normal!</h2>
-      <p className="intro">
-        It’s completely okay to feel unsure about your path after high school. You’re not behind—and you’re definitely not alone. The truth is, most people don't have it all figured out, especially at your age! This page is here to help you slow down, explore your options without pressure, and find some calm amidst the big decisions.
+      <h2 className="title">Not Sure What's Next? That's Totally Okay!</h2>
+      <p className="intro-text">
+        Feeling unsure after high school is completely normal. Most people don't have it all figured out, and that's a good thing! This page is here to help you slow down, explore your options, and find some calm without all the pressure. You're not behind—you're just taking a moment to get things right for you.
       </p>
-      <hr />
-      <h3>🧠 Taking a Deep Breath: Actionable Steps to Calm Down</h3>
-      <p>When you're feeling overwhelmed, the first step is to recognize that feeling and then give yourself permission to pause. Here are some strategies that can help you find your calm:</p>
 
-      <ul>
-        <li>**Acknowledge and Name Your Feelings:** It's okay to feel stressed, confused, or anxious. Don't fight it. Just say to yourself, "I'm feeling overwhelmed right now, and that's a normal response to a big decision." This simple act can actually reduce the power the feeling has over you.</li>
-        <li>**Take a Physical Break:** Sometimes the best thing you can do is step away from the screen and do something completely different.
-          <ul>
-            <li>**Move Your Body:** Go for a walk, stretch, do some jumping jacks, or dance to your favorite song. Physical activity is a huge stress reliever.</li>
-            <li>**Mindful Breathing:** Take a few slow, deep breaths. Inhale slowly through your nose, hold for a few seconds, and then exhale slowly through your mouth. Repeat this 5-10 times. It helps calm your nervous system.</li>
-            <li>**Engage Your Senses:** Listen to calming music, light a scented candle (if allowed), sip a warm drink, or step outside and notice the sounds and smells around you.</li>
-          </ul>
-        </li>
-      </ul>
-      <hr />
+      <hr className="divider" />
 
-      <h3>🔍 Regrouping: Actionable Steps for Exploration</h3>
-      <p>Once you feel a bit calmer, you can start exploring your options without so much pressure. These steps are designed to be small, manageable, and help you gather information at your own pace.</p>
+      <h3 className="section-title">🧠 First, Take a Deep Breath</h3>
+      <p className="section-intro">
+        When you're feeling overwhelmed, the best thing you can do is pause. Here are some quick, simple ways to find your calm.
+      </p>
 
-      <ul>
-        <li>
-          **Revisit Your Quiz Answers (and don't overthink it!):** You took the quiz for a reason! Go back and look at what you chose. Don't try to change answers or second-guess yourself. Just **reflect on the patterns** you see. What careers or fields did you lean towards? What preferences popped up consistently? Sometimes, just seeing your initial thoughts laid out can spark new insights.
-          <p className="action-tip">**Action:** Spend 5-10 minutes looking over your quiz results. What's the main takeaway?</p>
-        </li>
-        <li>
-          **Browse Our Career Explorer Toolkit (No Pressure to Commit!):** Think of this as window shopping for your future.
-          <p className="action-tip">**Action:** Spend just **10-15 minutes** Browse our <NavLink to="/explore-careers">Career Explorer Toolkit</NavLink>. Click on a few careers that sound even mildly interesting. Do any of them spark a tiny bit of curiosity? Even a "not for me" is valuable information!</p>
-        </li>
-        <li>
-          **Talk with Trusted Adults or Mentors (Just for Listening):** This isn't about getting told what to do. It's about sharing what's on your mind.
-          <p className="action-tip">**Action:** Pick one adult you trust (a parent, relative, teacher, counselor, coach). Simply tell them how you're feeling. You don't need advice unless you ask for it. Sometimes just saying it out loud helps.</p>
-        </li>
-        <li>
-          **Quickly Compare Pathways: College, Trade, Direct Entry, Military:** Don't dive into the nitty-gritty applications right now. Just get a general sense of each path your website covers.
-          <ul>
-            <li>**College:** What's the typical time commitment for a 4-year degree? (Check out our <NavLink to="/college-guide">College Guide</NavLink>).</li>
-            <li>**Skilled Trades:** How long do trade programs or apprenticeships usually take? (See our <NavLink to="/trade">Trade School Guide</NavLink>).</li>
-            <li>**Direct Entry Careers:** What kind of jobs can you get right after high school without further training? (Explore our <NavLink to="/direct-entry-careers">Direct Entry Careers</NavLink> page).</li>
-            <li>**Military:** What are the basic options and timeframes for joining? (Visit our <NavLink to="/military">Military Academies & ROTC Guide</NavLink>).</li>
-          </ul>
-          <p className="action-tip">**Action:** Spend 5-10 minutes on each of these pages. Focus on the **timelines** and **general descriptions**. The goal here is not to make a decision, but to simply **understand the different structures** of these paths.</p>
-        </li>
-        <li>
-          **Find Local Career Centers or Job Shadow Programs (Zero Commitment):** This is about getting a tiny taste of the real world.
-          <p className="action-tip">**Action:** Do a quick online search for "career centers near [your city/region]" or "job shadow programs for high school students [your city/region]". See what resources are available. You don't have to sign up for anything, just knowing what's out there can feel empowering.</p>
-        </li>
-      </ul>
-      <hr />
+      <div className="action-list">
+        <div className="action-item">
+          <p className="action-step">
+            <span className="step-number">1.</span>
+            <strong>Acknowledge Your Feelings:</strong> It's okay to feel stressed or confused. Just saying, "I'm feeling overwhelmed right now," can make the feeling less powerful.
+          </p>
+        </div>
+        <div className="action-item">
+          <p className="action-step">
+            <span className="step-number">2.</span>
+            <strong>Move Your Body:</strong> Step away from the screen and do something physical. Go for a walk, stretch, or dance to your favorite song. It's a huge stress reliever.
+          </p>
+        </div>
+        <div className="action-item">
+          <p className="action-step">
+            <span className="step-number">3.</span>
+            <strong>Try Mindful Breathing:</strong> Inhale slowly through your nose, hold for a few seconds, then exhale slowly through your mouth. Repeat this 5-10 times to calm your nervous system.
+          </p>
+        </div>
+      </div>
+      <div className="cta-container">
+        <h4 className="cta-title">Ready to explore?</h4>
+        <p className="cta-text">When you feel a bit calmer, try one of the steps below. The goal isn't to decide everything today, but just to take a small, pressure-free step forward.</p>
+      </div>
 
-      <h3>✨ Remember: You're in Control</h3>
-      <p>You're not behind, you're just taking a different path—one that prioritizes thoughtfulness over rushing. Every step you take, even just pausing to breathe, is progress. You've got time, support, and a world of choices. Keep exploring, keep learning about yourself, and return to these resources whenever it feels right. You've got this!</p>
+      <hr className="divider" />
+
+      <h3 className="section-title">🔍 Next, Let's Explore!</h3>
+      <p className="section-intro">
+        Now that you're feeling a bit calmer, let's explore your options. These steps are small and easy—no pressure to commit to anything!
+      </p>
+
+      <div className="exploration-steps">
+        <div className="exploration-item">
+          <p className="exploration-step-title">
+            <span className="step-number">1.</span>
+            <strong>Browse Our Career Explorer Toolkit</strong>
+          </p>
+          <p className="exploration-step-text">
+            Think of this as window shopping for your future. Click on a few careers that sound even mildly interesting. You don't have to choose anything right now—just see what's out there.
+          </p>
+          <NavLink to="/explore-careers" className="cta-button">
+            Start Exploring Careers
+          </NavLink>
+        </div>
+
+        <div className="exploration-item">
+          <p className="exploration-step-title">
+            <span className="step-number">2.</span>
+            <strong>Compare the Main Pathways</strong>
+          </p>
+          <p className="exploration-step-text">
+            Don't worry about applications. Just get a general sense of the different paths this website covers.
+          </p>
+          <div className="pathway-links">
+            <div className="pathway-item">
+              <NavLink to="/college-guide" className="pathway-link">
+                <strong>College:</strong> What's a typical 4-year degree timeline?
+              </NavLink>
+            </div>
+            <div className="pathway-item">
+              <NavLink to="/trade" className="pathway-link">
+                <strong>Skilled Trades:</strong> How long are trade programs?
+              </NavLink>
+            </div>
+            <div className="pathway-item">
+              <NavLink to="/direct-entry-careers" className="pathway-link">
+                <strong>Direct Entry:</strong> What jobs can you get right after high school?
+              </NavLink>
+            </div>
+            <div className="pathway-item">
+              <NavLink to="/military" className="pathway-link">
+                <strong>Military:</strong> What are the basic options and timeframes?
+              </NavLink>
+            </div>
+            <div className="pathway-item">
+              <NavLink to="/gap-year" className="pathway-link">
+                <strong>Gap Year:</strong> What's it like to take a year off?
+              </NavLink>
+            </div>
+          </div>
+        </div>
+
+        <div className="exploration-item">
+          <p className="exploration-step-title">
+            <span className="step-number">3.</span>
+            <strong>See How to Fund Your Future</strong>
+          </p>
+          <p className="exploration-step-text">
+            Money can be a big source of stress, but there are tons of options to help you pay for your next step, no matter what it is. Learn about scholarships, grants, and other financial aid resources.
+          </p>
+          <NavLink to="/financial-aid" className="cta-button">
+            Learn About Funding
+          </NavLink>
+        </div>
+      </div>
+
+      <hr className="divider" />
+
+      <h3 className="section-title">✨ Remember: You're in Control</h3>
+      <p className="conclusion-text">
+        You're not behind; you're just taking a different path—one that prioritizes thoughtfulness over rushing. Every step you take, even just pausing to breathe, is progress. You have time, support, and a world of choices. Keep exploring, keep learning about yourself, and come back to these resources whenever you need them.
+      </p>
+      <div className="final-cta">
+        <p>Ready to get started?</p>
+        <NavLink to="/quiz" className="cta-button">
+          Take the Quiz
+        </NavLink>
+      </div>
     </div>
   );
 };
