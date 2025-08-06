@@ -235,7 +235,7 @@ const ResultBadge = () => {
                      {detailedStats.soc_code && BLS_MAP[detailedStats.soc_code] && (
                         <p className="bls-link">
                         <a href={`https://www.bls.gov/ooh/${BLS_MAP[detailedStats.soc_code]}.htm`} target="_blank" rel="noopener noreferrer">
-                        More info from BLS ({detailedStats.soc_code})
+                        Learn more from BLS ({detailedStats.soc_code})
                         </a>
                         </p>
                       )}
