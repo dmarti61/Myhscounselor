@@ -1,31 +1,10 @@
 /* ─────────── CSS Variables & Base Styles ─────────── */
-:root {
-  --navbar-bg-light: #ffffff;
-  --navbar-bg-dark: #1a1a1a;
-  --text-color-light: #111111;
-  --text-color-dark: #f0f0f0;
-  --link-color-light: #0066cc;
-  --link-color-dark: #4da6ff;
-  --hover-bg-light: #f2f2f2;
-  --hover-bg-dark: #2a2a2a;
-  --border-color-light: #eaeaea;
-  --border-color-dark: #333333;
-  --accent-color: #a8c0ff;
-}
-
-@media (prefers-color-scheme: dark) {
-  .navbar {
-    background-color: var(--navbar-bg-dark);
-    color: var(--text-color-dark);
-  }
-}
-
 .navbar {
-  background-color: var(--navbar-bg-light);
-  color: var(--text-color-light);
+  background-color: #012c4a;
+  color: #fff;
   padding: 1rem 1rem;
   font-family: 'Segoe UI', sans-serif;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
   position: fixed;
   top: 0;
   left: 0;
@@ -71,14 +50,14 @@
 }
 
 .hamburger:focus-visible {
-  outline: 2px solid var(--text-color-light);
+  outline: 2px solid #fff;
   outline-offset: 2px;
 }
 
 .bar {
   width: 25px;
   height: 3px;
-  background-color: var(--text-color-light);
+  background-color: #fff;
   border-radius: 2px;
   transition: transform 0.3s ease, opacity 0.3s ease;
 }
@@ -103,7 +82,7 @@
   left: 0;
   width: 100vw;
   height: 100dvh;
-  background-color: var(--navbar-bg-light);
+  background-color: #012c4a;
   padding: 0;
   overflow: hidden;
   visibility: hidden;
@@ -114,12 +93,6 @@
   transition: opacity 0.3s ease, transform 0.3s ease, visibility 0s linear 0.3s;
   display: flex;
   flex-direction: column;
-}
-
-@media (prefers-color-scheme: dark) {
-  .nav-links {
-    background-color: var(--navbar-bg-dark);
-  }
 }
 
 .nav-links.show {
@@ -153,7 +126,7 @@
   position: sticky;
   top: 0;
   width: 100%;
-  background-color: inherit;
+  background-color: #012c4a;
   padding: 0.5rem 1rem;
   z-index: 1002;
   display: flex;
@@ -165,23 +138,17 @@
 .nav-close-btn {
   background: none;
   border: none;
-  color: var(--text-color-light);
+  color: #fff;
   font-size: 1.8rem;
   cursor: pointer;
   padding: 0.5rem 1rem;
   transition: color 0.2s ease;
 }
 
-@media (prefers-color-scheme: dark) {
-  .nav-close-btn {
-    color: var(--text-color-dark);
-  }
-}
-
 .nav-close-btn:hover,
 .nav-close-btn:focus-visible {
-  color: var(--accent-color);
-  outline: 2px solid var(--accent-color);
+  color: #7ab3ff;
+  outline: 2px solid #7ab3ff;
 }
 
 .nav-links-scroll-wrapper {
@@ -201,13 +168,7 @@
 
 .nav-links-scroll-wrapper li {
   width: 100%;
-  border-bottom: 1px solid var(--border-color-light);
-}
-
-@media (prefers-color-scheme: dark) {
-  .nav-links-scroll-wrapper li {
-    border-bottom: 1px solid var(--border-color-dark);
-  }
+  border-bottom: 1px solid #014c7f;
 }
 
 .nav-links-scroll-wrapper li:last-child {
@@ -220,7 +181,7 @@
   cursor: pointer;
   font-size: 1.1rem;
   font-weight: 500;
-  color: var(--text-color-light);
+  color: #fff;
   text-decoration: none;
   border-left: 3px solid transparent;
   transition: all 0.2s ease;
@@ -228,23 +189,17 @@
   justify-content: flex-start;
 }
 
-@media (prefers-color-scheme: dark) {
-  .nav-top-level-item {
-    color: var(--text-color-dark);
-  }
-}
-
 .nav-top-level-item:hover,
 .nav-top-level-item:focus-visible {
-  color: var(--accent-color);
+  color: #7ab3ff;
   padding-left: 0.5rem;
   outline: none;
 }
 
 .nav-top-level-item.active-item,
 .active-parent-item > .nav-dropdown > .nav-dropdown-btn {
-  border-left: 3px solid var(--accent-color);
-  color: var(--accent-color);
+  border-left: 3px solid #7ab3ff;
+  color: #7ab3ff;
   padding-left: 0.5rem;
 }
 
@@ -287,7 +242,7 @@
   display: block;
   font-size: 1rem;
   font-weight: 400;
-  color: var(--link-color-light);
+  color: #f0f4ff;
   padding: 0.5rem 0;
   width: 100%;
   text-align: left;
@@ -296,22 +251,18 @@
   border-left: 3px solid transparent;
 }
 
-@media (prefers-color-scheme: dark) {
-  .nav-submenu li a {
-    color: var(--link-color-dark);
-  }
-}
-
 .nav-submenu li a:hover,
 .nav-submenu li a:focus-visible {
-  color: var(--accent-color);
+  background-color: #014c7f;
+  color: #7ab3ff;
   padding-left: 0.5rem;
   outline: none;
 }
 
 .nav-submenu li a.active {
-  color: var(--accent-color);
-  border-left: 3px solid var(--accent-color);
+  background-color: #014c7f;
+  color: #7ab3ff;
+  border-left: 3px solid #7ab3ff;
   padding-left: 0.5rem;
 }
 
@@ -326,22 +277,13 @@
 }
 
 .nav-links-scroll-wrapper::-webkit-scrollbar-track {
-  background: #036;
+  background: #014c7f;
 }
 
 .nav-links-scroll-wrapper::-webkit-scrollbar-thumb:hover {
   background: #aaa;
 }
 
-@media (prefers-color-scheme: dark) {
-  .nav-links-scroll-wrapper::-webkit-scrollbar-thumb {
-    background: #666;
-  }
-
-  .nav-links-scroll-wrapper::-webkit-scrollbar-thumb:hover {
-    background: #888;
-  }
-}
 
 /* ─────────── Desktop Styles (>= 901px) ─────────── */
 @media (min-width: 901px) {
@@ -413,42 +355,30 @@
     border-bottom: 2px solid transparent;
     border-left: none;
     transition: all 0.2s ease;
-    color: var(--text-color-light);
-  }
-
-  @media (prefers-color-scheme: dark) {
-    .nav-top-level-item {
-      color: var(--text-color-dark);
-    }
+    color: #fff;
   }
 
   .nav-top-level-item:hover,
   .nav-top-level-item:focus-visible {
-    color: var(--accent-color);
-    border-bottom-color: var(--accent-color);
+    color: #7ab3ff;
+    border-bottom-color: #7ab3ff;
   }
 
   .nav-top-level-item.active-item {
-    border-bottom-color: var(--accent-color);
-    color: var(--accent-color);
+    border-bottom-color: #7ab3ff;
+    color: #7ab3ff;
   }
 
   .active-parent-item > .nav-dropdown > .nav-dropdown-btn {
-    border-bottom-color: var(--accent-color);
-    color: var(--accent-color);
+    border-bottom-color: #7ab3ff;
+    color: #7ab3ff;
   }
   
   .nav-dropdown-btn {
     padding: 0;
     width: auto;
     border-left: none;
-    color: var(--text-color-light);
-  }
-
-  @media (prefers-color-scheme: dark) {
-    .nav-dropdown-btn {
-      color: var(--text-color-dark);
-    }
+    color: #fff;
   }
 
   .nav-dropdown .dropdown-icon {
@@ -461,18 +391,18 @@
     visibility: visible;
     opacity: 1;
     pointer-events: auto;
-    transform: translateX(-50%) translateY(-2px); /* Raising effect for the whole dropdown */
+    transform: translateX(-50%) translateY(-2px);
   }
 
   .nav-links li:hover,
   .nav-links li:focus-within {
-    transform: translateY(-2px); /* Raising effect for the whole dropdown */
+    transform: translateY(-2px);
   }
 
   .nav-links li:hover .nav-dropdown-btn,
   .nav-links li:focus-within .nav-dropdown-btn {
-    color: var(--accent-color);
-    border-bottom-color: var(--accent-color);
+    color: #7ab3ff;
+    border-bottom-color: #7ab3ff;
   }
 
   .nav-submenu {
@@ -485,22 +415,15 @@
     top: calc(100% + 10px);
     left: 50%;
     transform: translateX(-50%);
-    background-color: var(--navbar-bg-light);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    background-color: #012c4a;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
     min-width: 220px;
     padding: 0.5rem 0;
     list-style: none;
     border-radius: 4px;
     z-index: 1000;
-    border: 1px solid var(--border-color-light);
+    border: 1px solid #014c7f;
     transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.2s ease-in-out;
-  }
-
-  @media (prefers-color-scheme: dark) {
-    .nav-submenu {
-      background-color: var(--navbar-bg-dark);
-      border: 1px solid var(--border-color-dark);
-    }
   }
 
   .nav-submenu li {
@@ -511,7 +434,7 @@
   .nav-submenu li a {
     font-size: 0.95rem;
     font-weight: 400;
-    color: var(--text-color-light);
+    color: #f0f4ff;
     padding: 0.5rem 1rem;
     text-decoration: none;
     white-space: nowrap;
@@ -519,38 +442,19 @@
     border-left: none;
   }
 
-  @media (prefers-color-scheme: dark) {
-    .nav-submenu li a {
-      color: var(--text-color-dark);
-    }
-  }
-
   .nav-submenu li a:hover,
   .nav-submenu li a:focus-visible {
-    background-color: var(--hover-bg-light);
-    color: var(--accent-color);
+    background-color: #014c7f;
+    color: #7ab3ff;
     outline: none;
-  }
-  
-  @media (prefers-color-scheme: dark) {
-    .nav-submenu li a:hover,
-    .nav-submenu li a:focus-visible {
-      background-color: var(--hover-bg-dark);
-    }
   }
 
   .nav-submenu li a.active {
-    background-color: var(--hover-bg-light);
-    color: var(--accent-color);
+    background-color: #014c7f;
+    color: #7ab3ff;
     font-weight: 500;
-    border-left: 3px solid var(--accent-color);
+    border-left: 3px solid #7ab3ff;
     padding-left: calc(1rem - 3px);
-  }
-  
-  @media (prefers-color-scheme: dark) {
-    .nav-submenu li a.active {
-      background-color: var(--hover-bg-dark);
-    }
   }
 }
 
