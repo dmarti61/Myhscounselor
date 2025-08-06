@@ -7,7 +7,7 @@ import { GUIDES_TEXT_CONTENT } from './guidestext';
 import logo from '../../public/logo.png';
 // Import the single custom font file you have
 // IMPORTANT: Make sure `inter.js` is in the same directory as this file.
-import { interRegular } from './inter.js';
+import interRegular from './inter.js';
 
 export const exportResultsAsPDF = ({ type, preference }) => {
   const doc = new jsPDF('p', 'mm', 'a4');
