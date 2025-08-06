@@ -1,20 +1,25 @@
 import React from 'react';
+import '../styles/About.css'; // Import the new CSS file
 
 const About = () => {
   return (
     <section className="about-page">
-      <h1>Our Story: A Personal Journey, a Proven Solution</h1>
-      <p>
-        After graduating from college with a communications degree, I dove into a career in public relations, only to realize it wasn't my passion. My professional path felt uncertain until I became a parent. This new perspective prompted a period of deep self-reflection, where I finally identified my core strengths and personality type. That clarity was my turning point, giving me the confidence to return to school and earn my MBA.
-      </p>
-      <p>
-        When my younger brothers began asking me for advice, I didn't want them to feel as lost as I once did. In 2014, I drafted a detailed email for them—a step-by-step framework to help them find a path that was the right fit. That email became the blueprint for MyHSCounselor.com.
-      </p>
-      <p>
-        Our mission is to give every student the same clarity and confidence I found, so they can navigate their "next" with a plan that's proven to work.
-      </p>
+      <div className="about-intro-section">
+        <h1>Our Story: A Personal Journey, a Proven Solution</h1>
+        <p>
+          After graduating from college with a communications degree, I dove into a career in public relations, only to realize it wasn't my passion. My professional path felt uncertain until I became a parent. This new perspective prompted a period of deep self-reflection, where I finally identified my core strengths and personality type. That clarity was my turning point, giving me the confidence to return to school and earn my MBA.
+        </p>
+        <p>
+          When my younger brothers began asking me for advice, I didn't want them to feel as lost as I once did. In 2014, I drafted a detailed email for them—a step-by-step framework to help them find a path that was the right fit. That email became the blueprint for MyHSCounselor.com.
+        </p>
+        <p>
+          Our mission is to give every student the same clarity and confidence I found, so they can navigate their "next" with a plan that's proven to work.
+        </p>
+      </div>
 
-      <div className="about-section">
+      <hr />
+
+      <div className="what-makes-us-different">
         <h2>What Makes Us Different</h2>
         <p>
           We believe every student deserves a personalized roadmap for their future. Our approach is built on three core pillars:
@@ -26,11 +31,12 @@ const About = () => {
         </ul>
       </div>
 
-      <p>
+      <p className="about-closing-statement">
         MyHSCounselor.com is more than a website—it's the culmination of a personal journey and a proven framework designed to remove the guesswork and help you find a plan that's right for you.
       </p>
-      <p>
-        — Daniel Martinez, Founder
+
+      <p className="founder-signature">
+        — [Your Name], Founder
       </p>
     </section>
   );
