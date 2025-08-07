@@ -2,9 +2,21 @@ import React, { useState, useEffect, useRef } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import '../styles/navbar.css';
 
+// Hook to track if the view is mobile
+const useIsMobile = () => {
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 901);
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 901);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+  return isMobile;
+};
+
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState(null);
+  const isMobile = useIsMobile();
   const navbarRef = useRef(null);
   const hamburgerRef = useRef(null);
   const closeButtonRef = useRef(null);
@@ -32,7 +44,7 @@ const Navbar = () => {
   }, [location.pathname]);
 
   useEffect(() => {
-    const onKey = e => {
+    const onKey = (e) => {
       if (e.key === 'Escape' && isOpen) {
         setIsOpen(false);
       }
@@ -83,7 +95,7 @@ const Navbar = () => {
   ];
 
   const hasActiveChild = (item) =>
-    item.children?.some(child => location.pathname === child.path);
+    item.children?.some((child) => location.pathname === child.path);
 
   return (
     <nav className="navbar" ref={navbarRef} aria-label="Main navigation">
@@ -99,12 +111,12 @@ const Navbar = () => {
         <button
           ref={hamburgerRef}
           className="hamburger"
-          onClick={() => setIsOpen(prev => !prev)}
+          onClick={() => setIsOpen((prev) => !prev)}
           aria-expanded={isOpen}
           aria-controls="primary-navigation"
           aria-label={isOpen ? 'Close menu' : 'Open menu'}
         >
-          {[0, 1, 2].map(i => (
+          {[0, 1, 2].map((i) => (
             <span key={i} className={`bar ${isOpen ? 'open' : ''}`} />
           ))}
         </button>
@@ -129,7 +141,7 @@ const Navbar = () => {
 
         <div className="nav-links-scroll-wrapper">
           <ul role="menubar">
-            {navItems.map(item => (
+            {navItems.map((item) => (
               <li
                 key={item.id || item.path}
                 role="none"
@@ -164,15 +176,19 @@ const Navbar = () => {
                       </span>
                     </button>
                     <ul
-                      className={`nav-submenu ${activeDropdown === item.id ? 'show' : ''}`}
+                      className={`nav-submenu ${
+                        isMobile && activeDropdown === item.id ? 'show' : ''
+                      }`}
                       role="menu"
                     >
-                      {item.children.map(child => (
+                      {item.children.map((child) => (
                         <li key={child.path} role="none">
                           <NavLink
                             to={child.path}
                             role="menuitem"
-                            className={({ isActive }) => isActive ? 'active' : ''}
+                            className={({ isActive }) =>
+                              isActive ? 'active' : ''
+                            }
                             onClick={() => setIsOpen(false)}
                           >
                             {child.label}
