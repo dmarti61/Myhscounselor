@@ -242,6 +242,10 @@
 
 .nav-submenu.show {
   display: block;
+  visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
+  transform: none;
 }
 
 .nav-submenu li {
