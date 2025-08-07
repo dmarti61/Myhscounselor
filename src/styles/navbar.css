@@ -402,24 +402,6 @@
   }
   
   /* Desktop hover and focus-within states for dropdowns */
-  .nav-links li:hover .nav-submenu,
-  .nav-links li:focus-within .nav-submenu {
-    visibility: visible;
-    opacity: 1;
-    pointer-events: auto;
-    transform: translateX(-50%) translateY(0); /* Simpler, cleaner animation */
-  }
-
-  .nav-links li:hover,
-  .nav-links li:focus-within {
-    transform: translateY(-2px);
-  }
-
-  .nav-links li:hover .nav-dropdown-btn,
-  .nav-links li:focus-within .nav-dropdown-btn {
-    color: #3498db;
-    border-bottom-color: #3498db;
-  }
 
   .nav-submenu {
     visibility: hidden;
