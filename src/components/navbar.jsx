@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import '../styles/navbar.css';
 
-// Hook to track if the view is mobile
 const useIsMobile = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 901);
   useEffect(() => {
@@ -45,8 +44,9 @@ const Navbar = () => {
 
   useEffect(() => {
     const onKey = (e) => {
-      if (e.key === 'Escape' && isOpen) {
+      if (e.key === 'Escape') {
         setIsOpen(false);
+        setActiveDropdown(null);
       }
     };
     document.addEventListener('keydown', onKey);
@@ -164,11 +164,21 @@ const Navbar = () => {
                       className={`nav-top-level-item nav-dropdown-btn ${hasActiveChild(item) ? 'active-item' : ''}`}
                       aria-haspopup="true"
                       aria-expanded={activeDropdown === item.id}
+                      aria-controls={`${item.id}-submenu`}
                       onClick={() =>
-                        setActiveDropdown(
-                          activeDropdown === item.id ? null : item.id
+                        setActiveDropdown((prev) =>
+                          prev === item.id ? null : item.id
                         )
                       }
+                      onKeyDown={(e) => {
+                        if (e.key === 'Escape') setActiveDropdown(null);
+                        if (e.key === 'ArrowDown') {
+                          const firstLink = document.querySelector(
+                            `#${item.id}-submenu a`
+                          );
+                          firstLink?.focus();
+                        }
+                      }}
                     >
                       {item.label}
                       <span className="dropdown-icon" aria-hidden="true">
@@ -176,20 +186,29 @@ const Navbar = () => {
                       </span>
                     </button>
                     <ul
-                      className={`nav-submenu ${
-                        isMobile && activeDropdown === item.id ? 'show' : ''
-                      }`}
+                      className={`nav-submenu ${activeDropdown === item.id ? 'show' : ''}`}
                       role="menu"
+                      aria-hidden={activeDropdown !== item.id}
+                      id={`${item.id}-submenu`}
                     >
                       {item.children.map((child) => (
                         <li key={child.path} role="none">
                           <NavLink
                             to={child.path}
                             role="menuitem"
+                            tabIndex={activeDropdown === item.id ? 0 : -1}
                             className={({ isActive }) =>
                               isActive ? 'active' : ''
                             }
-                            onClick={() => setIsOpen(false)}
+                            onClick={() => {
+                              setIsOpen(false);
+                              setActiveDropdown(null);
+                            }}
+                            onKeyDown={(e) => {
+                              if (e.key === 'Escape') {
+                                setActiveDropdown(null);
+                              }
+                            }}
                           >
                             {child.label}
                           </NavLink>
