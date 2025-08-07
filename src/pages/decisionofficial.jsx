@@ -1,10 +1,12 @@
 // src/pages/DecisionOfficialGuide.js
 import React from 'react';
-import '../styles/global.css';
+// Changed to import the dedicated guide stylesheet for consistent styling.
+import '../styles/collegeguide.css';
 
-const DecisionOfficial = () => (
-  <div className="page-container">
-    <h1 tabIndex="0">✅ Making Your Decision Official: Your Next Steps After Graduation</h1>
+const DecisionOfficialGuide = () => (
+  <div className="college-guide-container">
+    {/* Removed tabIndex="0" from the h1 as it's not needed for a heading */}
+    <h1>✅ Making Your Decision Official: Your Next Steps After Graduation</h1>
     <p>
       Congratulations! You’ve explored your options, received offers, and are now ready to commit to your next big step after high school. This stage is exciting, but it also comes with important deadlines and details. Let’s make sure you nail the next steps, no matter which path you’ve chosen.
     </p>
@@ -97,4 +99,4 @@ const DecisionOfficial = () => (
   </div>
 );
 
-export default DecisionOfficial;
+export default DecisionOfficialGuide;
