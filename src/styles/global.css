@@ -1,131 +1,187 @@
-/* global.css */
+/* global.css - Cohesive Marketing Revisions */
 
-/* Font & Reset */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+/*
+   MARKETING GOAL: Establish a clean, professional, and consistent visual
+   foundation for the entire website. The styles should be simple, highly readable,
+   and reassuring, reflecting the brand's mission of providing clarity and guidance.
+*/
+
+/* ─────────── CSS Variables for Cohesive Branding ─────────── */
+/* Using variables makes it easy to change the color scheme later. */
+:root {
+  --primary-blue: #2980b9; /* The core, professional blue */
+  --secondary-blue: #3498db; /* A slightly more vibrant blue for accents */
+  --dark-blue-gray: #2c3e50; /* A deep, professional blue-gray for headings */
+  --light-gray: #f4f7f9; /* A clean, light background color */
+  --medium-gray: #616e87; /* For body text and secondary information */
+  --border-color: #e0e6f0; /* A soft border color */
+  --success-green: #27ae60; /* A confident green for success/highlighted items */
+  --font-heading: 'Poppins', sans-serif;
+  --font-body: 'Inter', sans-serif;
+}
+
+/* ─────────── Font & Reset ─────────── */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap');
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Inter', sans-serif;
 }
 
 html, body {
   height: 100%;
   -webkit-overflow-scrolling: touch;
-  scroll-behavior: smooth; /* Allow smooth scrolling across the app */
+  scroll-behavior: smooth;
 }
 
 body {
-  background-color: #f9f9f9;
-  color: #333;
-  padding-left: 10px;
-  padding-right: 10px;
-  line-height: 1.6;
+  background-color: var(--light-gray);
+  color: var(--medium-gray);
+  font-family: var(--font-body);
+  line-height: 1.7; /* Increased for better readability */
+  padding: 0 1rem; /* Adjust padding for better spacing */
 }
+
 .nav-padding {
-  padding-top: 100px
+  padding-top: 100px; /* This seems appropriate for the navbar height */
 }
 
 .main-content {
   overflow-y: auto;
-  padding-left: 10px;
-  padding-top: 50px;
-  padding-right: 10px;
+  padding: 2rem 0; /* More vertical padding for content sections */
+  margin: 0 auto;
 }
 
 hr {
   border: none;
-  border-top: 2px dashed #ccc; /* Dashed line for subtle separation */
-  margin: 3rem 0; /* More spacing around horizontal rules */
+  border-top: 1px solid var(--border-color); /* A solid, subtle line */
+  margin: 4rem 0; /* More spacing around horizontal rules */
 }
 
 /* Prevent background scrolling when nav is open */
-/* IMPORTANT: Apply overflow hidden directly to html and body, and use position: fixed on body */
+html.menu-open,
 body.menu-open {
   overflow: hidden;
   position: fixed;
   width: 100%;
-  left: 0;
-  top: 0;
-  touch-action: none; /* Prevents iOS bounce */
+  touch-action: none;
 }
 
-body.menu-open .nav-links {
-  -webkit-overflow-scrolling: touch;
-  overscroll-behavior: contain;
-}
-
-/* Layout Containers */
-.home,
-.quiz-container,
-.checklist-page,
-.not-sure-page {
-  max-width: 700px;
+/* ─────────── Layout Containers ─────────── */
+.container { /* Use a generic .container class for consistent padding and max-width */
+  max-width: 900px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 2rem 1.5rem;
 }
 
-/* Headings */
+/* ─────────── Headings ─────────── */
 h1, h2, h3, h4 {
+  font-family: var(--font-heading);
   margin-bottom: 1rem;
-  font-weight: 600;
+  font-weight: 700;
+  color: var(--dark-blue-gray);
 }
 
 h1 {
-  font-size: 2rem;
-  color: #2c3e50;
-  text-align:center;
+  font-size: 2.5rem;
+  text-align: center;
 }
 
 h2 {
-  font-size: 1.6rem;
-  color: #34495e;
+  font-size: 2rem;
 }
 
 h3 {
-  font-size: 1.2rem;
-  color: #555;
+  font-size: 1.5rem;
+  color: var(--primary-blue);
 }
 
-/* Buttons */
-button {
-  background-color: #154982;
-  color: white;
-  border: none;
-  padding: 12px 20px;
-  border-radius: 6px;
-  font-size: 1rem;
+h4 {
+  font-size: 1.25rem;
+  color: var(--dark-blue-gray);
+}
+
+p {
+  margin-bottom: 1.5rem; /* Consistent spacing below paragraphs */
+}
+
+/* ─────────── Buttons ─────────── */
+button,
+.button { /* Use a common .button class for links that act as buttons */
+  font-family: var(--font-body);
+  font-weight: 600;
+  border-radius: 8px;
   cursor: pointer;
   transition: all 0.3s ease;
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
 }
 
-button:hover {
-  background-color: #fff;
+/* Primary Button */
+.button.primary-btn {
+  background-color: var(--primary-blue);
+  color: #fff;
+  border: 1px solid var(--primary-blue);
+  box-shadow: 0 4px 10px rgba(41, 128, 185, 0.2);
+}
+
+.button.primary-btn:hover {
+  background-color: var(--secondary-blue);
+  border-color: var(--secondary-blue);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(52, 152, 219, 0.3);
+}
+
+/* Secondary Button */
+.button.secondary-btn {
+  background-color: transparent;
+  color: var(--primary-blue);
+  border: 1px solid var(--primary-blue);
+}
+
+.button.secondary-btn:hover {
+  background-color: var(--primary-blue);
+  color: #fff;
   transform: translateY(-2px);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Start Button */
-.start-btn {
-  margin-top: 20px;
+/* Still Not Sure Button */
+.still-not-sure-btn {
+  background: linear-gradient(135deg, var(--primary-blue), var(--success-green));
+  color: #FAFAFA;
   font-size: 1.1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 50px;
+  padding: 1rem 2.5rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Quiz Styles */
+.still-not-sure-btn:hover {
+  background: linear-gradient(135deg, var(--success-green), var(--primary-blue));
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* ─────────── Quiz Styles ─────────── */
 .question-card {
-  margin-bottom: 30px;
+  margin-bottom: 2rem;
 }
 
 .option-btn {
   display: block;
   width: 100%;
-  margin: 8px 0;
-  padding: 12px;
+  margin: 0.75rem 0;
+  padding: 1rem 1.5rem; /* Larger padding for easier tapping */
   background-color: #fff;
-  color: #154982;
-  border: 1px solid #c7d2fe;
-  border-radius: 6px;
+  color: var(--dark-blue-gray);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
   font-size: 1rem;
   text-align: left;
   transition: all 0.2s ease-in-out;
@@ -133,76 +189,64 @@ button:hover {
 }
 
 .option-btn:hover {
-  background-color: #fff;
+  background-color: #f8f9fa; /* A subtle hover state */
   transform: translateY(-2px);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Accessibility & Focus Fix */
-.option-btn:focus:not(:focus-visible) {
-  outline: none;
-}
-
-.option-btn:focus-visible {
-  outline: none;
-  box-shadow: 0 0 0 3px #154982;
-}
-
-/* The style for a selected button */
 .option-btn.selected {
-  background-color: #154982;
+  background-color: var(--primary-blue);
   color: #fff;
-  border-color: #154982;
-  font-weight: bold;
-  transform: scale(1.02);
+  border-color: var(--primary-blue);
+  font-weight: 600;
+  transform: scale(1.01);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
 /* The WORKAROUND for the persistent highlight bug */
-/* This rule targets the specific state where the bug occurs (selected and disabled)
-   and forces it to look like a normal, unselected button. */
 .option-btn.selected:disabled {
-  background-color: #154982 !important;
+  background-color: var(--primary-blue) !important;
   color: #fff !important;
-  border-color: #154982 !important;
-  font-weight: bold;
-  transform: scale(1.02);
+  border-color: var(--primary-blue) !important;
+  font-weight: 600;
+  transform: scale(1.01);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
   opacity: 1 !important;
 }
 
-/* Default disabled style, applied to all other disabled buttons */
 .option-btn:disabled {
-  opacity: 1;
+  opacity: 0.6;
   cursor: not-allowed;
   transform: none;
   box-shadow: none;
 }
 
+/* ─────────── Result & Checklist Styles ─────────── */
 .result-badge {
   text-align: center;
-  padding: 20px;
-  background-color: #eef2ff;
-  border-radius: 8px;
-  margin-top: 20px;
+  padding: 2.5rem;
+  background-color: #eaf2f8; /* A light, clean blue */
+  border-radius: 12px;
+  margin-top: 3rem;
 }
 
 .badge {
-  font-size: 1.5rem;
-  margin: 10px 0;
+  font-size: 1.75rem;
+  margin: 1rem 0;
 }
 
-/* Checklist Styles */
 .checklist {
   list-style: none;
   padding-left: 0;
-  margin: 20px 0;
+  margin: 2rem 0;
 }
 
 .checklist li {
-  margin-bottom: 10px;
-  padding-left: 1.2em;
+  margin-bottom: 1rem;
+  padding-left: 1.5em;
   position: relative;
+  font-size: 1.1rem; /* Slightly larger text for readability */
+  color: var(--dark-blue-gray);
 }
 
 .checklist li::before {
@@ -211,107 +255,34 @@ button:hover {
   left: 0;
 }
 
-/* Still Not Sure */
+/* ─────────── Still Not Sure Section ─────────── */
 .still-not-sure {
-  margin-top: 30px;
+  margin-top: 4rem;
   text-align: center;
-}
-.still-not-sure-btn {
-  background: linear-gradient(135deg, #2C6FB3, #28A38A);
-  color: #FAFAFA;
-  font-size: 1rem;
-  font-weight: 600;
-  border: none;
-  border-radius: 8px;
-  padding: 12px 20px;
-  cursor: pointer;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
-}
-
-.still-not-sure-btn:hover {
-  background: linear-gradient(135deg, #28A38A, #2C6FB3);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
 .explore-btn {
-  margin-top: 10px;
+  margin-top: 1.5rem;
 }
 
 .button-group {
-  margin-top: 30px;
+  margin-top: 2rem;
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 1.5rem;
   align-items: center;
 }
 
-/* Use your existing button styles for consistency */
-.onboarding-overlay .primary-btn {
-  background-color: #154982;
-  color: white;
-  padding: 14px 25px;
-  font-size: 1.1rem;
-  font-weight: 600;
-  border-radius: 8px;
-  transition: background 0.3s ease, transform 0.2s ease;
-  width: 100%;
-  max-width: 300px;
-}
-
-.onboarding-overlay .primary-btn:hover {
-  background-color: #2D86E9;
-  transform: translateY(-2px);
-}
-
-.onboarding-overlay .secondary-btn {
-  background-color: transparent;
-  color: #154982;
-  border: 2px solid #154982;
-  padding: 12px 23px;
-  font-size: 1.1rem;
-  font-weight: 600;
-  border-radius: 8px;
-  transition: background 0.3s ease, color 0.3s ease;
-  width: 100%;
-  max-width: 300px;
-}
-
-.onboarding-overlay .secondary-btn:hover {
-  background-color: #154982;
-  color: white;
-}
-
-/* Optional: Animation for overlay appearance */
-@keyframes fadeInScale {
-  from {
-    opacity: 0;
-    transform: scale(0.9);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-/* Media Queries for smaller screens */
+/* ─────────── Media Queries for smaller screens ─────────── */
 @media (max-width: 900px) {
   .button-group {
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
   }
-
-  .onboarding-overlay .primary-btn,
-  .onboarding-overlay .secondary-btn {
-    width: auto;
-    max-width: none;
-  }
- 
-  .main-content {
-  overflow-y: auto;
-  padding-left: 10px;
-  padding-top: 0px;
-  padding-right: 10px;
+}
+@media (min-width: 601px) {
+  .button-group {
+    flex-direction: row;
+    gap: 1.5rem;
   }
 }
