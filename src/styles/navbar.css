@@ -1,23 +1,31 @@
+/* navbar.css - Cohesive Marketing Revisions */
+
+/*
+   MARKETING GOAL: Create a navigation bar that is professional, clean, and easy
+   to use. The design should convey a sense of trust and clarity, guiding users
+   effortlessly through the site without distraction.
+*/
+
 /* ─────────── CSS Variables & Base Styles ─────────── */
 .navbar {
-  background-color: #012c4a;
+  background-color: #2c3e50; /* A deep, professional blue-gray */
   color: #fff;
-  padding: 1rem 1rem;
-  font-family: 'Segoe UI', sans-serif;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  padding: 1rem 1.5rem; /* Consistent padding */
+  font-family: 'Poppins', sans-serif; /* Consistent heading font for menu items */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Softer, more refined shadow */
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   z-index: 1000;
-  transition: all 0.2s ease-in-out;
+  transition: all 0.3s ease-in-out; /* Slower, smoother transition */
 }
 
 .navbar-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  max-width: 1200px;
+  max-width: 1400px; /* Wider max-width for modern screens */
   margin: 0 auto;
 }
 
@@ -41,7 +49,7 @@
   align-items: center;
   width: 40px;
   height: 40px;
-  gap: 5px;
+  gap: 6px; /* Slightly larger gap for clarity */
   padding: 10px;
   background: none;
   border: none;
@@ -50,12 +58,12 @@
 }
 
 .hamburger:focus-visible {
-  outline: 2px solid #fff;
+  outline: 2px solid #3498db; /* Use the brand's vibrant blue for focus state */
   outline-offset: 2px;
 }
 
 .bar {
-  width: 25px;
+  width: 30px; /* Slightly wider bars */
   height: 3px;
   background-color: #fff;
   border-radius: 2px;
@@ -63,7 +71,7 @@
 }
 
 .bar.open:nth-child(1) {
-  transform: rotate(45deg) translate(5px, 5px);
+  transform: rotate(45deg) translate(8px, 8px); /* Adjusted for new size */
 }
 
 .bar.open:nth-child(2) {
@@ -71,7 +79,7 @@
 }
 
 .bar.open:nth-child(3) {
-  transform: rotate(-45deg) translate(5px, -5px);
+  transform: rotate(-45deg) translate(8px, -8px);
 }
 
 /* ─────────── Mobile Menu & Common Styles ─────────── */
@@ -82,7 +90,7 @@
   left: 0;
   width: 100vw;
   height: 100dvh;
-  background-color: #012c4a;
+  background-color: #2c3e50; /* Consistent dark blue-gray */
   padding: 0;
   overflow: hidden;
   visibility: hidden;
@@ -109,7 +117,7 @@
   left: 0;
   height: 100dvh;
   width: 100vw;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.6); /* Slightly darker overlay for better contrast */
   z-index: 999;
   visibility: hidden;
   opacity: 0;
@@ -126,8 +134,8 @@
   position: sticky;
   top: 0;
   width: 100%;
-  background-color: #012c4a;
-  padding: 0.5rem 1rem;
+  background-color: #2c3e50;
+  padding: 0.5rem 1.5rem;
   z-index: 1002;
   display: flex;
   justify-content: flex-end;
@@ -147,8 +155,8 @@
 
 .nav-close-btn:hover,
 .nav-close-btn:focus-visible {
-  color: #7ab3ff;
-  outline: 2px solid #7ab3ff;
+  color: #3498db; /* Brand's vibrant blue */
+  outline: 2px solid #3498db;
 }
 
 .nav-links-scroll-wrapper {
@@ -157,7 +165,7 @@
   -webkit-overflow-scrolling: touch;
   overscroll-behavior: contain;
   width: 100%;
-  padding: 0 1rem;
+  padding: 0 1.5rem;
 }
 
 .nav-links ul {
@@ -168,7 +176,7 @@
 
 .nav-links-scroll-wrapper li {
   width: 100%;
-  border-bottom: 1px solid #014c7f;
+  border-bottom: 1px solid #3d5066; /* Lighter border for subtlety */
 }
 
 .nav-links-scroll-wrapper li:last-child {
@@ -179,27 +187,28 @@
   display: flex;
   align-items: center;
   cursor: pointer;
-  font-size: 1.1rem;
-  font-weight: 500;
+  font-size: 1.2rem; /* Larger font size for mobile */
+  font-weight: 600; /* Bolder weight for clarity */
   color: #fff;
   text-decoration: none;
   border-left: 3px solid transparent;
   transition: all 0.2s ease;
-  padding: 0.75rem 0;
+  padding: 1rem 0; /* More padding for easier tapping */
   justify-content: flex-start;
+  font-family: 'Inter', sans-serif; /* Use Inter for menu items */
 }
 
 .nav-top-level-item:hover,
 .nav-top-level-item:focus-visible {
-  color: #7ab3ff;
+  color: #3498db;
   padding-left: 0.5rem;
   outline: none;
 }
 
 .nav-top-level-item.active-item,
 .active-parent-item > .nav-dropdown > .nav-dropdown-btn {
-  border-left: 3px solid #7ab3ff;
-  color: #7ab3ff;
+  border-left: 3px solid #3498db;
+  color: #3498db;
   padding-left: 0.5rem;
 }
 
@@ -223,7 +232,7 @@
 
 .nav-submenu {
   list-style: none;
-  padding-left: 1rem;
+  padding-left: 1.5rem;
   margin: 0;
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
@@ -240,10 +249,10 @@
 
 .nav-submenu li a {
   display: block;
-  font-size: 1rem;
+  font-size: 1.1rem; /* Larger for better readability */
   font-weight: 400;
   color: #f0f4ff;
-  padding: 0.5rem 0;
+  padding: 0.75rem 0; /* More padding */
   width: 100%;
   text-align: left;
   transition: color 0.2s ease, padding-left 0.2s ease;
@@ -253,16 +262,16 @@
 
 .nav-submenu li a:hover,
 .nav-submenu li a:focus-visible {
-  background-color: #014c7f;
-  color: #7ab3ff;
+  background-color: transparent; /* Remove background color for a cleaner hover */
+  color: #3498db;
   padding-left: 0.5rem;
   outline: none;
 }
 
 .nav-submenu li a.active {
-  background-color: #014c7f;
-  color: #7ab3ff;
-  border-left: 3px solid #7ab3ff;
+  background-color: transparent;
+  color: #3498db;
+  border-left: 3px solid #3498db;
   padding-left: 0.5rem;
 }
 
@@ -272,16 +281,16 @@
 }
 
 .nav-links-scroll-wrapper::-webkit-scrollbar-thumb {
-  background: #ccc;
+  background: #61738c; /* Matches the new palette */
   border-radius: 4px;
 }
 
 .nav-links-scroll-wrapper::-webkit-scrollbar-track {
-  background: #014c7f;
+  background: #3d5066;
 }
 
 .nav-links-scroll-wrapper::-webkit-scrollbar-thumb:hover {
-  background: #aaa;
+  background: #8c9bb7;
 }
 
 
@@ -299,7 +308,7 @@
   }
 
   .navbar-logo-link {
-    margin-right: 3rem;
+    margin-right: 3.5rem; /* More space for a distinguished look */
   }
 
   .hamburger,
@@ -330,7 +339,7 @@
     flex-grow: 1;
     overflow-y: visible;
     display: flex;
-    justify-content: center;
+    justify-content: flex-end; /* Align links to the right */
     padding: 0;
   }
 
@@ -341,7 +350,7 @@
   }
 
   .nav-links li {
-    margin-left: 1.5rem;
+    margin-left: 2rem; /* More space between links */
     border-bottom: none;
     width: auto;
     position: relative;
@@ -356,22 +365,23 @@
     border-left: none;
     transition: all 0.2s ease;
     color: #fff;
+    font-family: 'Poppins', sans-serif;
   }
 
   .nav-top-level-item:hover,
   .nav-top-level-item:focus-visible {
-    color: #7ab3ff;
-    border-bottom-color: #7ab3ff;
+    color: #3498db;
+    border-bottom-color: #3498db;
   }
 
   .nav-top-level-item.active-item {
-    border-bottom-color: #7ab3ff;
-    color: #7ab3ff;
+    border-bottom-color: #3498db;
+    color: #3498db;
   }
 
   .active-parent-item > .nav-dropdown > .nav-dropdown-btn {
-    border-bottom-color: #7ab3ff;
-    color: #7ab3ff;
+    border-bottom-color: #3498db;
+    color: #3498db;
   }
   
   .nav-dropdown-btn {
@@ -379,6 +389,7 @@
     width: auto;
     border-left: none;
     color: #fff;
+    font-family: 'Poppins', sans-serif;
   }
 
   .nav-dropdown .dropdown-icon {
@@ -391,7 +402,7 @@
     visibility: visible;
     opacity: 1;
     pointer-events: auto;
-    transform: translateX(-50%) translateY(-2px);
+    transform: translateX(-50%) translateY(0); /* Simpler, cleaner animation */
   }
 
   .nav-links li:hover,
@@ -401,8 +412,8 @@
 
   .nav-links li:hover .nav-dropdown-btn,
   .nav-links li:focus-within .nav-dropdown-btn {
-    color: #7ab3ff;
-    border-bottom-color: #7ab3ff;
+    color: #3498db;
+    border-bottom-color: #3498db;
   }
 
   .nav-submenu {
@@ -412,18 +423,18 @@
     display: flex;
     flex-direction: column;
     position: absolute;
-    top: calc(100% + 10px);
+    top: calc(100% + 15px); /* More space from the top-level item */
     left: 50%;
-    transform: translateX(-50%);
-    background-color: #012c4a;
+    transform: translateX(-50%) translateY(-10px); /* Initial position for animation */
+    background-color: #2c3e50;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-    min-width: 220px;
+    min-width: 250px; /* Wider for more substantial feel */
     padding: 0.5rem 0;
     list-style: none;
-    border-radius: 4px;
+    border-radius: 8px; /* Softer corners */
     z-index: 1000;
-    border: 1px solid #014c7f;
-    transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.2s ease-in-out;
+    border: 1px solid #3d5066;
+    transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
   }
 
   .nav-submenu li {
@@ -435,26 +446,27 @@
     font-size: 0.95rem;
     font-weight: 400;
     color: #f0f4ff;
-    padding: 0.5rem 1rem;
+    padding: 0.75rem 1.5rem; /* More padding inside dropdown for better click area */
     text-decoration: none;
     white-space: nowrap;
     transition: background-color 0.2s ease, color 0.2s ease;
     border-left: none;
+    font-family: 'Inter', sans-serif;
   }
 
   .nav-submenu li a:hover,
   .nav-submenu li a:focus-visible {
-    background-color: #014c7f;
-    color: #7ab3ff;
+    background-color: #3d5066; /* Subtle background change on hover */
+    color: #3498db;
     outline: none;
   }
 
   .nav-submenu li a.active {
-    background-color: #014c7f;
-    color: #7ab3ff;
+    background-color: #3d5066;
+    color: #3498db;
     font-weight: 500;
-    border-left: 3px solid #7ab3ff;
-    padding-left: calc(1rem - 3px);
+    border-left: 3px solid #3498db;
+    padding-left: calc(1.5rem - 3px);
   }
 }
 
