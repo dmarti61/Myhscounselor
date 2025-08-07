@@ -127,6 +127,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
+  padding-left: 20px; /* ADDED: This will indent the list and align it with the other lists */
 }
 
 .major-list li {
@@ -138,6 +139,10 @@
 }
 
 /* --- Retake Button (Actionable CTA) --- */
+.retake-quiz {
+  text-align: center; /* NEW: This container centers the button inside it */
+}
+
 .retake-btn {
   display: inline-block; /* Change to inline-block for better centering control */
   padding: 1rem 2.5rem; /* Larger, more substantial button */
