@@ -1,211 +1,237 @@
-/* src/styles/collegeguide.css */
+/* collegeguide.css - Cohesive Marketing Revisions */
+
+/*
+   MARKETING GOAL: Present complex information in a clear, organized, and
+   encouraging manner. The design should feel like a trusted companion,
+   making a daunting process seem manageable and logical.
+*/
 
 /* --- General Container and Typography --- */
 .college-guide-container {
-  max-width: 900px; /* Increased max-width for better content flow */
-  margin: 2rem auto; /* Added top/bottom margin for better spacing on page */
-  padding: 2.5rem; /* Increased padding */
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Slightly more modern font stack */
-  background: #ffffff; /* Pure white background */
-  border-radius: 16px; /* Slightly larger border-radius */
-  box-shadow: 0 8px 24px rgba(0,0,0,0.1); /* More pronounced shadow for depth */
-  line-height: 1.6; /* Improved readability */
-  color: #333; /* Darker text for better contrast */
+  max-width: 1000px; /* Increased max-width for better content flow */
+  margin: 3rem auto;
+  padding: 3rem;
+  font-family: var(--font-body); /* Consistent body font */
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+  line-height: 1.7; /* Increased for optimal readability */
+  color: var(--medium-gray); /* Consistent body text color */
 }
 
 .college-guide-container h2 {
-  color: #0056b3; /* Deeper blue for main heading */
-  font-size: 2.5rem; /* Larger main heading */
+  font-family: var(--font-heading); /* Consistent heading font */
+  color: var(--dark-blue-gray); /* Use the brand's main heading color */
+  font-size: 2.8rem; /* Larger and more impactful */
   text-align: center;
-  margin-bottom: 2rem;
-  border-bottom: 3px solid #007bff; /* Underline for main heading */
+  margin-bottom: 2.5rem;
+  border-bottom: 3px solid var(--border-color); /* Use a soft brand border color */
   padding-bottom: 1rem;
 }
 
 .college-guide-container h3 {
-  color: #28a745; /* Green for section headings */
-  font-size: 1.8rem;
-  margin-top: 2.5rem;
-  margin-bottom: 1.2rem;
+  font-family: var(--font-heading);
+  color: var(--primary-blue); /* Consistent primary brand blue for section headings */
+  font-size: 2rem;
+  font-weight: 700;
+  margin-top: 3.5rem;
+  margin-bottom: 1.5rem;
   padding-bottom: 0.5rem;
-  border-bottom: 2px solid #28a745; /* Underline for section headings */
+  border-bottom: 2px solid var(--primary-blue); /* A clear, branded separator */
 }
 
 /* --- Monthly Timeline Styling --- */
 .college-guide-container h4 {
-  background-color: #e2f2ff; /* Light blue background for month headers */
-  color: #0056b3; /* Darker blue text */
-  padding: 0.8rem 1.5rem;
-  margin-top: 2rem;
-  margin-bottom: 1rem;
-  border-left: 6px solid #007bff; /* Prominent left border */
-  font-size: 1.4rem;
-  font-weight: bold;
-  border-radius: 6px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.08);
-  position: relative; /* For the small "tag" effect */
+  font-family: var(--font-heading);
+  background-color: #eaf2f8; /* A very light brand-blue background */
+  color: var(--primary-blue);
+  padding: 1rem 2rem;
+  margin-top: 3rem;
+  margin-bottom: 1.5rem;
+  border-left: 6px solid var(--primary-blue);
+  font-size: 1.6rem;
+  font-weight: 700;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  position: relative;
 }
 
 .college-guide-container h4::before {
-  content: '📅'; /* Calendar emoji */
+  content: '📅';
   position: absolute;
-  left: -20px; /* Adjust position as needed */
+  left: 20px; /* Position inside for a cleaner look */
   top: 50%;
   transform: translateY(-50%);
-  font-size: 1.8rem;
+  font-size: 1.5rem;
+  color: var(--primary-blue);
 }
 
-
 .intro {
-  font-size: 1.15rem; /* Slightly larger intro text */
-  color: #555;
-  margin-bottom: 2rem;
+  font-family: var(--font-body);
+  font-size: 1.25rem;
+  color: var(--dark-blue-gray); /* Use dark blue-gray for the prominent intro */
+  margin-bottom: 3rem;
   text-align: center;
-  max-width: 750px; /* Constrain width for better readability */
+  max-width: 850px;
   margin-left: auto;
   margin-right: auto;
-  padding: 0 1rem; /* Add some horizontal padding */
+  padding: 0 1rem;
 }
 
 .pathway-note,
 .military-interest-note {
-  background-color: #f0f8ff; /* Light blue background for notes */
-  border-left: 4px solid #007bff;
-  padding: 1rem 1.5rem;
-  margin-top: 1.5rem;
-  margin-bottom: 1.5rem;
+  background-color: #f0f8ff; /* A clean, light blue */
+  border-left: 4px solid var(--secondary-blue); /* Use the vibrant blue for a friendly accent */
+  padding: 1.5rem 2rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
   border-radius: 8px;
-  font-size: 0.95rem;
-  color: #444;
+  font-size: 1rem;
+  color: var(--dark-blue-gray);
+  line-height: 1.6;
 }
 
 .pathway-note a,
 .military-interest-note a {
-  font-weight: bold;
+  font-weight: 700;
+  color: var(--primary-blue);
+  text-decoration: underline;
 }
 
 hr {
   border: none;
-  border-top: 2px dashed #ccc; /* Dashed line for subtle separation */
-  margin: 3rem 0; /* More spacing around horizontal rules */
+  border-top: 1px solid var(--border-color);
+  margin: 4rem 0;
 }
 
 /* --- List Items and Bullet Points --- */
 ul {
-  list-style: none; /* Remove default bullets */
-  padding-left: 0; /* Remove default padding */
-  margin-top: 0.5rem;
+  list-style: none;
+  padding-left: 0;
+  margin-top: 1rem;
 }
 
 ul li {
-  margin-bottom: 1rem; /* More space between list items */
-  line-height: 1.5;
-  position: relative; /* For custom bullet positioning */
+  margin-bottom: 1.2rem;
+  line-height: 1.6;
+  position: relative;
+  padding-left: 2em; /* Added padding for the custom bullet */
 }
 
-/* ul li::before {
-  content: '✔️'; /* Checkmark emoji as bullet */
+ul li::before {
+  content: '✓'; /* A simple, clear checkmark */
   position: absolute;
   left: 0;
-  color: #28a745; /* Green checkmark */
-  font-size: 1.1em;
-  top: 0; /* Align with text */
-} */
+  color: var(--success-green); /* Use the brand's success green */
+  font-size: 1.2em;
+  font-weight: 700;
+  line-height: 1;
+  top: 0.15em;
+}
 
-/* Emphasis within list items (e.g., **Volunteering**) */
 ul li strong {
-  color: #0056b3; /* Highlight important terms */
+  color: var(--dark-blue-gray);
+  font-weight: 600;
 }
 
 /* --- Specific Text Blocks --- */
 .why-it-matters {
   font-style: italic;
-  color: #6a6a6a; /* Softer color for explanatory text */
-  background-color: #f7f7f7; /* Light grey background */
-  padding: 0.7rem 1.2rem;
-  border-left: 3px solid #aaa;
-  margin-top: 0.8rem;
-  margin-bottom: 0.5rem;
-  border-radius: 5px;
-  font-size: 0.9em; /* Slightly smaller font */
-}
-
-.advice-box {
-  background-color: #fffde7; /* Light yellow background */
-  border-left: 5px solid #ffc107; /* Yellow border */
+  color: var(--medium-gray);
+  background-color: #f8f9fa; /* A clean, subtle gray */
   padding: 1rem 1.5rem;
+  border-left: 3px solid var(--border-color);
   margin-top: 1.5rem;
   margin-bottom: 1.5rem;
   border-radius: 8px;
   font-size: 0.95rem;
+}
+
+.advice-box {
+  background-color: #fefbec; /* A soft, calming yellow */
+  border-left: 5px solid #fec64f; /* A warm, friendly yellow border */
+  padding: 1.5rem 2rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  border-radius: 12px;
+  font-size: 1rem;
   color: #5a5a5a;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
 }
 
 .choice-considerations h4 {
-  background-color: transparent; /* Override h4 style for these sub-headings */
+  font-family: var(--font-body); /* Use body font for subheadings */
+  font-weight: 600;
+  background-color: transparent;
   border-left: none;
-  font-size: 1.25rem;
-  color: #0078d4; /* Keep a blue tone */
-  margin-top: 1.5rem;
+  font-size: 1.5rem;
+  color: var(--primary-blue);
+  margin-top: 2rem;
   padding: 0;
   box-shadow: none;
 }
 .choice-considerations h4::before {
-  content: ''; /* Remove emoji for these */
+  content: '';
 }
-
 
 /* --- Links --- */
 a {
-  color: #007bff; /* Vibrant blue for links */
+  color: var(--secondary-blue);
   text-decoration: none;
-  transition: color 0.2s ease-in-out; /* Smooth transition on hover */
+  transition: color 0.2s ease-in-out;
 }
 
 a:hover {
-  color: #0056b3; /* Darker blue on hover */
+  color: var(--primary-blue);
   text-decoration: underline;
 }
 
 /* --- Quote Block --- */
 .quote-block {
-  margin-top: 3rem;
-  margin-bottom: 2rem;
+  margin-top: 4rem;
+  margin-bottom: 3rem;
   text-align: center;
   font-style: italic;
-  font-size: 1.15rem;
-  color: #6c757d; /* Muted color for quotes */
-  padding: 1rem 2rem;
-  border-left: 5px solid #ced4da; /* Subtle border for quote */
+  font-size: 1.25rem;
+  color: var(--medium-gray);
+  padding: 1.5rem 3rem;
+  border-left: 5px solid var(--border-color);
   background-color: #fefefe;
-  border-radius: 8px;
+  border-radius: 12px;
 }
 
 .quote-block::before {
-  content: '❝'; /* Fancy opening quote */
+  content: '❝';
   display: block;
-  font-size: 3rem;
-  color: #007bff;
+  font-size: 3.5rem;
+  color: var(--secondary-blue);
   margin-bottom: -1rem;
 }
 
 .quote-block::after {
-  content: '❞'; /* Fancy closing quote */
+  content: '❞';
   display: block;
-  font-size: 3rem;
-  color: #007bff;
+  font-size: 3.5rem;
+  color: var(--secondary-blue);
   margin-top: -1rem;
   text-align: right;
 }
 
 /* Specific styling for the example within Essay Pro Tips */
 .essay-pro-tips .example {
-  background-color: #f0f0f0;
-  border-left: 4px solid #999;
-  padding: 0.7rem 1.2rem;
-  margin-top: 0.8rem;
-  font-style: normal; /* Override italic */
-  color: #444;
-  border-radius: 5px;
+  background-color: #f8f9fa;
+  border-left: 4px solid var(--border-color);
+  padding: 1rem 1.5rem;
+  margin-top: 1rem;
+  font-style: normal;
+  color: var(--dark-blue-gray);
+  border-radius: 8px;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .college-guide-container {
+    padding: 2rem 1.5rem;
+    margin: 2rem 1rem;
+  }
 }
