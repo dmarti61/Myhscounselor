@@ -60,7 +60,6 @@ const GapYear = () => (
         <li>
           <strong>Volunteering & Community Service:</strong> Dedicate time to a cause you care about, locally or internationally. This builds great skills and character.
         </li>
-        </li>
         <li>
           <strong>Skill Development:</strong> Take a coding bootcamp, learn a trade skill, pursue a passion like photography or music, or get a certification.
         </li>
