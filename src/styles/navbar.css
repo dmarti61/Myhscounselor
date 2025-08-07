@@ -397,8 +397,8 @@
   }
   
   /* Desktop hover and focus-within states for dropdowns */
-  .nav-links li:hover > .nav-dropdown > .nav-submenu,
-  .nav-links li:focus-within > .nav-dropdown > .nav-submenu {
+  .nav-links li:hover .nav-submenu,
+  .nav-links li:focus-within .nav-submenu {
     visibility: visible;
     opacity: 1;
     pointer-events: auto;
