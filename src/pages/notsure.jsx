@@ -1,10 +1,12 @@
 // NotSure.js
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import '../styles/collegeguide.css'; // ADDED: Imports the base guide styles
+import '../styles/notsure.css';      // ADDED: Imports the specific layout styles
 
 const NotSure = () => {
   return (
-    <div className="not-sure-page-container">
+    <div className="college-guide-container"> {/* CHANGED: Uses the base guide container class */}
       <h2 className="title">Not Sure What's Next? That's Totally Okay!</h2>
       <p className="intro-text">
         Feeling unsure after high school is completely normal. Most people don't have it all figured out, and that's a good thing! This page is here to help you slow down, explore your options, and find some calm without all the pressure. You're not behind—you're just taking a moment to get things right for you.
