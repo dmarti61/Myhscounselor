@@ -105,20 +105,20 @@ hr {
 }
 
 /* --- List Items and Bullet Points --- */
-ul {
+.college-guide-container ul {
   list-style: none;
   padding-left: 0;
   margin-top: 1rem;
 }
 
-ul li {
+.college-guide-container ul li {
   margin-bottom: 1.2rem;
   line-height: 1.6;
   position: relative;
   padding-left: 2em; /* Added padding for the custom bullet */
 }
 
-ul li::before {
+.college-guide-container ul li::before {
   content: '✓'; /* A simple, clear checkmark */
   position: absolute;
   left: 0;
@@ -129,7 +129,7 @@ ul li::before {
   top: 0.15em;
 }
 
-ul li strong {
+.college-guide-container ul li strong {
   color: var(--dark-blue-gray);
   font-weight: 600;
 }
