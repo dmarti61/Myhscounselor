@@ -1,11 +1,10 @@
-// src/pages/gapyear.js
 import React from 'react';
-import '../styles/global.css'; // Assuming you have a global CSS for consistent styling
+import '../styles/collegeguide.css'; // Use the guide-specific CSS for a cohesive look
 
 const GapYear = () => (
-  <div className="page-container">
+  <div className="college-guide-container">
     <h1 tabIndex="0">🗺️ Gap Year & Alternative Paths: Your Time, Your Way</h1>
-    <p>
+    <p className="intro">
       Thinking about what comes after high school? For some, it's straight to college, trade school, or a job. But for others, the idea of taking a "gap year" – a purposeful break before diving into the next big thing – can be really appealing. This isn't just a year off; it's a "year on," filled with new experiences and learning. Let's explore if it's the right path for you.
     </p>
 
@@ -14,7 +13,7 @@ const GapYear = () => (
       <p>
         A gap year is typically a structured period of time, usually a year (but can be shorter or longer!), taken between high school graduation and the start of college, trade school, military service, or a full-time career. It's a chance to step back from formal academics and explore personal interests, gain new skills, or simply get a clearer picture of your future goals.
       </p>
-      <p className="emphasis">
+      <p className="why-it-matters">
         <strong>Wise Tip:</strong> The key word is "purposeful." A successful gap year isn't just Netflix and chilling for 12 months. It involves planning and intention!
       </p>
     </section>
@@ -61,6 +60,7 @@ const GapYear = () => (
         <li>
           <strong>Volunteering & Community Service:</strong> Dedicate time to a cause you care about, locally or internationally. This builds great skills and character.
         </li>
+        </li>
         <li>
           <strong>Skill Development:</strong> Take a coding bootcamp, learn a trade skill, pursue a passion like photography or music, or get a certification.
         </li>
@@ -92,7 +92,7 @@ const GapYear = () => (
           <strong>Stay Engaged:</strong> Even if you're not in school, keep your mind active. Read, write, explore new ideas.
         </li>
       </ul>
-      <p>
+      <p className="advice-box">
         A gap year isn't for everyone, but for many, it can be a transformative experience that provides clarity, maturity, and valuable life skills before their next big step. Don't be afraid to consider if this path is right for *your* journey.
       </p>
     </section>
