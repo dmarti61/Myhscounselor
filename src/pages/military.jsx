@@ -2,7 +2,7 @@ import React from 'react';
 import '../styles/collegeguide.css';
 
 const MilitaryAcademiesGuide = () => (
-  <div className="military-academies-container">
+  <div className="college-guide-container">
     <h2>Considering a Path of Leadership and Service?</h2>
     <p>If you're drawn to a highly structured environment, rigorous academics, physical challenge, and a commitment to serving your country as a commissioned officer, then a U.S. Military Academy or an ROTC program could be a compelling option. This path is demanding, but it offers significant opportunities for personal growth, leadership development, and a defined career upon graduation.</p>
     <p className="emphasis"><strong>Crucial Consideration:</strong> This decision should ultimately align with what **YOU** genuinely want, not solely what others (like family) might suggest. Your personal commitment is essential for success in these programs!</p>
