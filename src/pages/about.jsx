@@ -17,8 +17,6 @@ const About = () => {
         </p>
       </div>
 
-      <hr />
-
       <div className="what-makes-us-different">
         <h2>What Makes Us Different</h2>
         <p>
