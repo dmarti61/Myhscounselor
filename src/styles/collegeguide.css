@@ -228,6 +228,30 @@ a:hover {
   border-radius: 8px;
 }
 
+/* --- Call to Action Link --- */
+.cta-link {
+  display: inline-block;
+  margin-top: 1.5rem;
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+}
+
+.cta-link a {
+  display: block;
+  padding: 0.75rem 1.5rem;
+  background-color: var(--secondary-blue);
+  color: #ffffff; /* White text for contrast */
+  border-radius: 8px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.cta-link a:hover {
+  background-color: var(--primary-blue);
+  text-decoration: none;
+}
+
 /* Responsive Adjustments */
 @media (max-width: 768px) {
   .college-guide-container {
