@@ -1,63 +1,78 @@
-/* src/styles/explorecareers.module.css */
+/* explorecareers.module.css - Cohesive Marketing Revisions */
+
+/*
+   MARKETING GOAL: Create a clean, organized, and inviting layout for
+   career exploration. The design should feel clear and manageable,
+   reinforcing the idea of a structured "roadmap" rather than a confusing list.
+*/
+
+/* Assume global styles and variables are loaded */
 
 .container {
-  padding: 2rem 1rem;
-  max-width: 960px;
+  padding: 3rem 1.5rem; /* More generous padding for a spacious feel */
+  max-width: 1100px; /* Wider container for a modern look */
   margin: 0 auto;
 }
 
 .intro {
-  font-size: 1.1rem;
-  margin-bottom: 2rem;
-  color: #333;
-  text-align: center; /* Center the intro text */
+  font-size: 1.25rem; /* Larger, more welcoming intro text */
+  margin-bottom: 3rem; /* More space to separate from the content */
+  color: var(--medium-gray); /* Use the brand's body text color */
+  text-align: center;
+  line-height: 1.6;
 }
 
 .section {
-  margin-bottom: 3rem;
+  margin-bottom: 4rem; /* Increased spacing between major sections */
 }
 
 .pathway {
-  font-size: 1.5rem;
-  color: #003366;
-  border-bottom: 2px solid #003366;
-  padding-bottom: 0.25rem;
-  margin-bottom: 1rem;
-  text-align: center; /* Center pathway titles */
+  font-family: var(--font-heading); /* Use the brand's heading font */
+  font-size: 2rem; /* Larger, more impactful pathway titles */
+  font-weight: 700;
+  color: var(--dark-blue-gray); /* Use the brand's heading color */
+  border-bottom: 2px solid var(--border-color); /* Soft border color */
+  padding-bottom: 0.5rem;
+  margin-bottom: 2rem;
+  text-align: center;
 }
 
 .cardGrid {
   display: grid;
-  /* This is already good for basic responsiveness */
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Wider min-width for cards */
+  gap: 2rem; /* More space between cards */
 }
 
 .card {
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  padding: 1rem;
-  background-color: #fdfdfd;
-  transition: box-shadow 0.2s ease;
-  display: flex; /* Use flexbox for vertical alignment within card */
+  border: 1px solid var(--border-color); /* Use the brand's soft border color */
+  border-radius: 12px; /* More rounded corners */
+  padding: 1.5rem; /* Increased padding inside cards */
+  background-color: #ffffff; /* Clean white background */
+  transition: box-shadow 0.3s ease, transform 0.2s ease; /* Add transform for lift effect */
+  display: flex;
   flex-direction: column;
-  justify-content: space-between; /* Distribute space evenly */
+  justify-content: space-between;
 }
 
 .card:hover {
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08); /* Softer, more pronounced shadow */
+  transform: translateY(-5px); /* Gentle lift on hover */
 }
 
 .card h4 {
+  font-family: var(--font-heading);
   margin: 0 0 0.5rem;
-  color: #222;
-  font-size: 1.1rem; /* Slightly smaller for mobile */
+  color: var(--primary-blue); /* Use the brand's primary blue for titles */
+  font-size: 1.25rem; /* Larger, more readable heading */
+  font-weight: 600;
 }
 
 .card p {
-  margin: 0.3rem 0;
-  font-size: 0.9rem; /* Slightly smaller for mobile */
-  line-height: 1.4;
+  font-family: var(--font-body);
+  margin: 0.5rem 0;
+  font-size: 1rem; /* Consistent font size for body text */
+  line-height: 1.7; /* Improved line height */
+  color: var(--medium-gray);
 }
 
 /* -------------------------------------------------------------------------- */
@@ -66,53 +81,33 @@
 
 @media (max-width: 768px) {
   .container {
-    padding: 1.5rem 0.75rem; /* Reduce overall padding on smaller screens */
+    padding: 2rem 1rem;
   }
 
   .intro {
-    font-size: 1rem;
-    margin-bottom: 1.5rem;
-  }
-
-  .section {
+    font-size: 1.1rem;
     margin-bottom: 2rem;
   }
 
+  .section {
+    margin-bottom: 3rem;
+  }
+
   .pathway {
-    font-size: 1.3rem; /* Smaller pathway titles on mobile */
-    margin-bottom: 0.75rem;
+    font-size: 1.7rem;
+    margin-bottom: 1.5rem;
   }
 
   .cardGrid {
-    /* Force a single column layout on smaller screens */
     grid-template-columns: 1fr;
-    gap: 0.75rem; /* Reduce gap between stacked cards */
+    gap: 1.5rem;
   }
 
   .card {
-    padding: 0.9rem; /* Slightly less padding inside cards */
+    padding: 1.25rem;
   }
 
   .card h4 {
-    font-size: 1rem; /* Even smaller heading for very small screens */
-  }
-
-  .card p {
-    font-size: 0.85rem; /* Even smaller paragraph text */
-  }
-}
-
-@media (max-width: 480px) {
-  /* Further adjustments for extra small mobile devices */
-  .container {
-    padding: 1rem 0.5rem;
-  }
-
-  .intro {
-    font-size: 0.95rem;
-  }
-
-  .pathway {
-    font-size: 1.2rem;
+    font-size: 1.15rem;
   }
 }
