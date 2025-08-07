@@ -223,7 +223,7 @@
 .nav-dropdown .dropdown-icon {
   font-size: 0.8em;
   margin-left: 0.5rem;
-  transition: transform 0.2s ease;
+  transition: transform 0.5s ease;
 }
 
 .nav-dropdown-btn[aria-expanded="true"] .dropdown-icon {
