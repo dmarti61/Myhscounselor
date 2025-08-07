@@ -35,7 +35,8 @@ export const exportResultsAsPDF = ({ type, preference }) => {
 
 
   // --- Summary Page Header ---
-  doc.setFillColor(brandHighlightBg); // Use a light, branded color for the header bar
+  // FIX: Changing the background to a darker color so the white logo can be seen.
+  doc.setFillColor(brandDarkBlueGray); 
   doc.rect(0, 0, doc.internal.pageSize.width, 30, 'F');
 
   const logoWidth = 80;
@@ -48,7 +49,10 @@ export const exportResultsAsPDF = ({ type, preference }) => {
   doc.setFont('Poppins', 'bold'); // Use the brand heading font for the title
   doc.setFontSize(28); // Larger title for impact
   doc.setTextColor(brandDarkBlueGray);
-  doc.text('Your Quiz Results', 15, 55); // More prominent title
+  // FIX: Apply word wrapping to the main title
+  const mainTitle = 'Your Quiz Results';
+  const wrappedMainTitle = doc.splitTextToSize(mainTitle, 175);
+  doc.text(wrappedMainTitle, 15, 55); 
   doc.line(15, 57, 195, 57);
 
   let y = 68;
@@ -56,7 +60,10 @@ export const exportResultsAsPDF = ({ type, preference }) => {
   doc.setFontSize(18); // Larger text for personality type
   doc.setTextColor(brandPrimaryBlue);
   doc.setFont('Inter', 'normal');
-  doc.text(`Your Personality Type: ${mbtiType}`, 15, y);
+  // FIX: Apply word wrapping as a precaution
+  const personalityTypeText = `Your Personality Type: ${mbtiType}`;
+  const wrappedPersonalityTypeText = doc.splitTextToSize(personalityTypeText, 175);
+  doc.text(wrappedPersonalityTypeText, 15, y);
   y += 12;
 
   if (preference) {
@@ -65,13 +72,12 @@ export const exportResultsAsPDF = ({ type, preference }) => {
     const found = mbtiData.careers.some(
       (c) => c.postSchoolPath?.toLowerCase() === preference.toLowerCase()
     );
-    doc.text(
-      `Career Pathway Preference: ${
+    // FIX: Apply word wrapping as a precaution
+    const preferenceText = `Career Pathway Preference: ${
         found ? preference : `${preference} (no direct match found)`
-      }`,
-      15,
-      y
-    );
+      }`;
+    const wrappedPreferenceText = doc.splitTextToSize(preferenceText, 175);
+    doc.text(wrappedPreferenceText, 15, y);
     y += 10;
   } else {
     y += 5;
@@ -80,7 +86,9 @@ export const exportResultsAsPDF = ({ type, preference }) => {
   // Strengths
   doc.setFontSize(16);
   doc.setTextColor(brandPrimaryBlue);
-  doc.text('Your Strengths', 15, y); // Use more personal language
+  const strengthsTitle = 'Your Strengths';
+  const wrappedStrengthsTitle = doc.splitTextToSize(strengthsTitle, 175);
+  doc.text(wrappedStrengthsTitle, 15, y);
   doc.line(15, y + 2, 195, y + 2);
   y += 10;
 
@@ -95,7 +103,9 @@ export const exportResultsAsPDF = ({ type, preference }) => {
   // Suggested Careers
   doc.setFontSize(16);
   doc.setTextColor(brandPrimaryBlue);
-  doc.text('Career Pathways for Your Type', 15, y); // Use more engaging language
+  const careerPathwaysTitle = 'Career Pathways for Your Type';
+  const wrappedCareerPathwaysTitle = doc.splitTextToSize(careerPathwaysTitle, 175);
+  doc.text(wrappedCareerPathwaysTitle, 15, y);
   doc.line(15, y + 2, 195, y + 2);
   y += 10;
 
@@ -132,7 +142,10 @@ export const exportResultsAsPDF = ({ type, preference }) => {
 
   doc.setFontSize(16);
   doc.setTextColor(brandPrimaryBlue);
-  doc.text(`Top Career Snapshot: ${topCareer?.title || 'N/A'}`, 15, y);
+  // FIX: Apply word wrapping to the career snapshot title
+  const topCareerSnapshotTitle = `Top Career Snapshot: ${topCareer?.title || 'N/A'}`;
+  const wrappedTopCareerSnapshotTitle = doc.splitTextToSize(topCareerSnapshotTitle, 175);
+  doc.text(wrappedTopCareerSnapshotTitle, 15, y);
   doc.line(15, y + 2, 195, y + 2);
   y += 10;
 
@@ -152,7 +165,9 @@ export const exportResultsAsPDF = ({ type, preference }) => {
 
   doc.setFontSize(16);
   doc.setTextColor(brandPrimaryBlue);
-  doc.text('Recommended Next Step', 15, y);
+  const recommendedNextStepTitle = 'Recommended Next Step';
+  const wrappedRecommendedNextStepTitle = doc.splitTextToSize(recommendedNextStepTitle, 175);
+  doc.text(wrappedRecommendedNextStepTitle, 15, y);
   doc.line(15, y + 2, 195, y + 2);
   y += 10;
 
@@ -178,9 +193,12 @@ export const exportResultsAsPDF = ({ type, preference }) => {
 
     doc.setFontSize(24);
     doc.setTextColor(brandPrimaryBlue);
-    doc.text(`Appendix: The ${guideKey} Guide`, 15, guideY);
+    // FIX: Apply word wrapping to the appendix title
+    const appendixTitle = `Appendix: The ${guideKey} Guide`;
+    const wrappedAppendixTitle = doc.splitTextToSize(appendixTitle, 175);
+    doc.text(wrappedAppendixTitle, 15, guideY);
     doc.line(15, guideY + 2, 195, guideY + 2);
-    guideY += 15;
+    guideY += wrappedAppendixTitle.length * 10 + 5; // Adjust Y position for multi-line headers
 
     const sections = guideContent.trim().split(/\n\s*##\s*/);
     sections.forEach((section, index) => {
@@ -204,8 +222,10 @@ export const exportResultsAsPDF = ({ type, preference }) => {
 
       doc.setFontSize(18);
       doc.setTextColor(brandDarkBlueGray);
-      doc.text(sectionTitle, 15, guideY);
-      guideY += 10;
+      // FIX: Apply text wrapping to the section titles
+      const wrappedSectionTitle = doc.splitTextToSize(sectionTitle, 175);
+      doc.text(wrappedSectionTitle, 15, guideY);
+      guideY += wrappedSectionTitle.length * 8 + 2;
 
       doc.setFontSize(12);
       doc.setTextColor(brandTextColor);
