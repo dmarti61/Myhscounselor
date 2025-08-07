@@ -2,7 +2,7 @@ import React from 'react';
 import '../styles/collegeguide.css';
 
 const TradeSchoolGuide = () => (
-  <div className="trade-school-guide-container">
+  <div className="college-guide-container">
     <h1>🛠️ Your Path to a High-Demand Skilled Trade: No Traditional College Required!</h1>
     <p className="intro">
       Congratulations, high school graduate! You're standing at the threshold of exciting career possibilities. While a four-year university is a great path for many, it's not the *only* path to a rewarding, stable, and high-paying career. Skilled trades offer incredible opportunities, often with hands-on learning, competitive salaries, and the chance to start earning quickly – often without student loan debt!
