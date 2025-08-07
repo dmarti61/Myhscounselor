@@ -1,77 +1,99 @@
-/* About.css */
+/* About.css - Cohesive Marketing Revisions */
 
 /*
-  Base styles from global.css apply automatically.
-  This file adds specific styling for the about page content.
+   MARKETING GOAL: Create an about page that feels personal, credible, and
+   distinctly on-brand. The design should clearly communicate your value
+   proposition and build trust with students and parents.
 */
 
 .about-page {
-  max-width: 700px;
-  margin: 0 auto;
-  padding: 40px 20px;
+  max-width: 800px; /* Wider for better content flow and a more modern feel */
+  margin: 3rem auto;
+  padding: 3rem 2rem; /* More generous padding */
 }
 
 .about-page h1 {
-  /* Inherits from global.css but with added padding for better spacing */
-  margin-bottom: 2rem;
-  font-size: 2.2rem;
+  font-family: var(--font-heading);
+  color: var(--dark-blue-gray);
+  font-size: 3rem; /* Larger, more impactful heading */
+  font-weight: 700;
   text-align: center;
-  color: #154982;
+  margin-bottom: 3rem;
 }
 
 .about-page h2 {
-  font-size: 1.8rem;
-  margin-bottom: 1.5rem;
-  color: #2c3e50;
+  font-family: var(--font-heading);
+  font-size: 2.2rem;
+  margin-bottom: 2rem;
+  color: var(--primary-blue); /* Use the brand's primary blue */
   text-align: center;
 }
 
 .about-intro-section {
-  text-align: left;
+  text-align: center; /* Center the intro for a more welcoming tone */
+  font-size: 1.15rem;
+  line-height: 1.7;
+  color: var(--medium-gray);
 }
 
 .what-makes-us-different {
-  background-color: #f0f4f8; /* A very light blue-grey to subtly separate this section */
-  border-radius: 12px;
-  padding: 30px;
-  margin-top: 30px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  background-color: var(--light-gray); /* Use the brand's clean, light gray */
+  border-radius: 16px;
+  padding: 3rem;
+  margin-top: 4rem; /* More space to make this section stand out */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+}
+
+.what-makes-us-different h2 {
+  color: var(--dark-blue-gray);
 }
 
 .what-makes-us-different ul {
   list-style: none;
   padding: 0;
-  margin: 1.5rem 0 0;
+  margin: 2rem 0 0;
 }
 
 .what-makes-us-different li {
   margin-bottom: 1.5rem;
   position: relative;
-  padding-left: 2em;
-  line-height: 1.5;
+  padding-left: 2.5em; /* More space for a bigger checkmark */
+  line-height: 1.6;
+  font-size: 1.1rem;
+  color: var(--medium-gray);
 }
 
 .what-makes-us-different li::before {
-  content: '✓'; /* A simple checkmark */
+  content: '✓';
   position: absolute;
   left: 0;
-  font-size: 1.2rem;
+  font-size: 1.5rem; /* Larger checkmark for emphasis */
   font-weight: bold;
-  color: #154982;
+  color: var(--success-green); /* Use the brand's success green */
 }
 
 .about-closing-statement {
-  font-size: 1.1rem;
+  font-size: 1.25rem; /* Larger, more prominent closing statement */
   font-style: italic;
   text-align: center;
-  margin-top: 3rem;
-  color: #555;
+  margin-top: 4rem;
+  line-height: 1.6;
+  color: var(--dark-blue-gray);
 }
 
 .founder-signature {
-  font-size: 1rem;
+  font-size: 1.1rem;
   font-weight: bold;
   text-align: right;
   margin-top: 2rem;
-  color: #154982;
+  color: var(--primary-blue);
+  font-family: var(--font-heading);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .about-page {
+    padding: 2rem 1rem;
+    margin: 2rem 1rem;
+  }
 }
