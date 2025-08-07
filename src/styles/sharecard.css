@@ -1,69 +1,79 @@
-/* sharecard.css */
+/* sharecard.css - Cohesive Marketing Revisions */
+
+/*
+   MARKETING GOAL: Create a sense of trust and confidence. The share card should feel
+   like a valuable, encouraging resource, not just a generic social button.
+   The updated colors and typography aim to reflect the brand's mission of clarity and guidance.
+*/
 
 .share-card {
-  background-color: #f9f9ff;
-  border: 2px solid #dcddee;
-  border-radius: 8px;
-  padding: 1.5rem;
-  margin: 2rem auto; /* Center the card horizontally */
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); /* Slightly stronger shadow */
-  max-width: 500px; /* Slightly reduced max-width for "snippet" feel */
-  text-align: center; /* Center content within the card */
+  background-color: #ffffff; /* Use a clean white for clarity and a fresh feel */
+  border: 1px solid #e0e6f0; /* Softer, more professional border */
+  border-radius: 12px; /* Slightly more rounded corners for a modern, friendly look */
+  padding: 2rem; /* Increase padding for a more premium, spacious feel */
+  margin: 3rem auto; /* More vertical space to make it stand out */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* More defined but still soft shadow */
+  max-width: 550px; /* Increase max-width for better content flow */
+  text-align: center;
 }
 
 .share-card h3 {
-  font-size: 1.5rem; /* Slightly larger heading */
-  margin-bottom: 0.8rem; /* Adjusted for tighter spacing */
-  color: #222; /* Darker for better contrast */
-  font-weight: 600; /* A bit bolder */
+  font-family: 'Poppins', sans-serif; /* Use a professional, readable font */
+  font-size: 1.75rem; /* Larger, more prominent heading */
+  margin-bottom: 1rem;
+  color: #2c3e50; /* A dark, professional blue-gray */
+  font-weight: 700; /* Bolder to draw attention */
 }
 
 .share-card p {
-  margin: 0.7rem 0; /* Consistent vertical spacing */
-  color: #555; /* Softer color for body text */
-  line-height: 1.5; /* Improved readability */
+  font-family: 'Inter', sans-serif; /* A clear, modern font for body text */
+  margin: 1rem 0;
+  color: #616e87; /* A soft, readable gray that complements the heading */
+  line-height: 1.6; /* Improved line height for better readability */
 }
 
-.share-card-button { /* Targeted specifically by its class name */
-  background-color: #007bff;
-  color: white;
+.share-card-button {
+  background-color: #2980b9; /* A professional, deep blue that signifies trust */
+  color: #ffffff;
   border: none;
-  border-radius: 6px; /* Slightly more rounded */
-  padding: 0.8rem 1.5rem; /* Larger padding for a more prominent button */
-  font-size: 1.05rem; /* Slightly larger text */
+  border-radius: 8px;
+  padding: 1rem 2rem; /* More padding to make the button feel more substantial */
+  font-size: 1.15rem; /* Larger font for call-to-action */
+  font-weight: 600; /* Semibold to stand out */
   cursor: pointer;
-  margin-top: 1.2rem; /* More space above the button */
-  transition: background-color 0.3s ease, transform 0.2s ease; /* Added transform for hover effect */
-  box-shadow: 0 4px 6px rgba(0, 123, 255, 0.2); /* Subtle button shadow */
+  margin-top: 1.5rem;
+  transition: all 0.3s ease; /* Transition all properties for a smoother effect */
+  box-shadow: 0 4px 8px rgba(41, 128, 185, 0.25); /* Shadow matching the new color */
 }
 
 .share-card-button:hover {
-  background-color: #0056b3;
-  transform: translateY(-2px); /* Lift effect on hover */
+  background-color: #3498db; /* Lighter shade on hover for a subtle lift */
+  transform: translateY(-3px); /* More pronounced lift effect */
+  box-shadow: 0 6px 15px rgba(41, 128, 185, 0.35);
 }
 
 .share-card-button:active {
-  background-color: #004085;
-  transform: translateY(0); /* Press effect */
+  background-color: #21618c; /* Darker shade on active/press */
+  transform: translateY(0);
 }
 
 .share-card-message {
-  font-size: 0.9rem;
-  color: #666;
-  margin-top: 1.5rem; /* More separation from the button */
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
+  color: #95a5a6; /* A subtle gray for secondary information */
+  margin-top: 2rem; /* More space to separate from the main CTA */
 }
 
 @media (max-width: 600px) {
   .share-card {
-    padding: 1rem;
-    margin: 1.5rem 1rem; /* Adjust margin for smaller screens */
-    max-width: calc(100% - 2rem); /* Ensure it fits with margin */
+    padding: 1.5rem;
+    margin: 2rem 1rem;
+    max-width: calc(100% - 2rem);
   }
 
   .share-card-button {
-    width: 100%; /* Full width button on small screens */
-    padding: 0.8rem 1rem;
+    width: 100%;
+    padding: 0.9rem 1rem;
+    font-size: 1.1rem;
   }
 }
-
-/* Removed unused .badge-display and .badge-icon styles */
