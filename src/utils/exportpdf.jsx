@@ -16,43 +16,52 @@ export const exportResultsAsPDF = ({ type, preference }) => {
     return;
   }
 
-  // Register custom font
+  // Register custom fonts
   doc.addFileToVFS('Inter-Regular.ttf', interFont);
   doc.addFont('Inter-Regular.ttf', 'Inter', 'normal');
   doc.setFont('Inter');
+  // NOTE: You would need to add a Poppins font file here as well
+  // doc.addFileToVFS('Poppins-Bold.ttf', poppinsFont);
+  // doc.addFont('Poppins-Bold.ttf', 'Poppins', 'bold');
 
-  // Colors
-  const primaryColor = '#0056b3';
-  const secondaryColor = '#28a745';
-  const accentColor = '#007bff';
-  const textColor = '#333';
+  // --- Brand-Aligned Colors ---
+  const brandDarkBlueGray = '#2c3e50';
+  const brandPrimaryBlue = '#2980b9';
+  const brandSecondaryBlue = '#3498db';
+  const brandSuccessGreen = '#27ae60';
+  const brandTextColor = '#616e87';
+  const brandBorderColor = '#e0e6f0';
+  const brandHighlightBg = '#eaf2f8';
 
-  // --- Summary Page ---
-  doc.setFillColor(0, 86, 179);
+
+  // --- Summary Page Header ---
+  doc.setFillColor(brandHighlightBg); // Use a light, branded color for the header bar
   doc.rect(0, 0, doc.internal.pageSize.width, 30, 'F');
 
-  const logoWidth = 60;
-  const logoHeight = 20;
+  const logoWidth = 80;
+  const logoHeight = 25;
   const logoX = (doc.internal.pageSize.width - logoWidth) / 2;
-  const logoY = 6;
+  const logoY = 3;
   const logo = '/logo.png';
   doc.addImage(logo, 'PNG', logoX, logoY, logoWidth, logoHeight);
 
-  doc.setFontSize(24);
-  doc.setTextColor(primaryColor);
-  doc.text('MyHSCounselor Quiz Results', 15, 45);
-  doc.line(15, 47, 195, 47);
+  doc.setFont('Poppins', 'bold'); // Use the brand heading font for the title
+  doc.setFontSize(28); // Larger title for impact
+  doc.setTextColor(brandDarkBlueGray);
+  doc.text('Your Quiz Results', 15, 55); // More prominent title
+  doc.line(15, 57, 195, 57);
 
-  let y = 58;
+  let y = 68;
 
-  doc.setFontSize(16);
-  doc.setTextColor(primaryColor);
-  doc.text(`Personality Type: ${mbtiType}`, 15, y);
-  y += 8;
+  doc.setFontSize(18); // Larger text for personality type
+  doc.setTextColor(brandPrimaryBlue);
+  doc.setFont('Inter', 'normal');
+  doc.text(`Your Personality Type: ${mbtiType}`, 15, y);
+  y += 12;
 
   if (preference) {
     doc.setFontSize(12);
-    doc.setTextColor(textColor);
+    doc.setTextColor(brandTextColor);
     const found = mbtiData.careers.some(
       (c) => c.postSchoolPath?.toLowerCase() === preference.toLowerCase()
     );
@@ -69,26 +78,26 @@ export const exportResultsAsPDF = ({ type, preference }) => {
   }
 
   // Strengths
-  doc.setFontSize(14);
-  doc.setTextColor(secondaryColor);
-  doc.text('Strengths', 15, y);
+  doc.setFontSize(16);
+  doc.setTextColor(brandPrimaryBlue);
+  doc.text('Your Strengths', 15, y); // Use more personal language
   doc.line(15, y + 2, 195, y + 2);
-  y += 8;
-
-  doc.setFontSize(12);
-  doc.setTextColor(textColor);
-  mbtiData.strengths.forEach((s) => {
-    doc.text(`• ${s}`, 20, y);
-    y += 7;
-  });
   y += 10;
 
+  doc.setFontSize(12);
+  doc.setTextColor(brandTextColor);
+  mbtiData.strengths.forEach((s) => {
+    doc.text(`• ${s}`, 20, y);
+    y += 8;
+  });
+  y += 12;
+
   // Suggested Careers
-  doc.setFontSize(14);
-  doc.setTextColor(secondaryColor);
-  doc.text('Suggested Careers', 15, y);
+  doc.setFontSize(16);
+  doc.setTextColor(brandPrimaryBlue);
+  doc.text('Career Pathways for Your Type', 15, y); // Use more engaging language
   doc.line(15, y + 2, 195, y + 2);
-  y += 8;
+  y += 10;
 
   const allCareers = [...mbtiData.careers];
   const userPreference = preference?.toLowerCase() || null;
@@ -105,52 +114,52 @@ export const exportResultsAsPDF = ({ type, preference }) => {
 
   careersToDisplay.forEach((c) => {
     const isStarred = userPreference && c.postSchoolPath?.toLowerCase() === userPreference;
-    const line = `${isStarred ? '★ ' : '• '}${c.title} (${c.pathway})`;
-    doc.setTextColor(textColor);
+    const bullet = isStarred ? '★' : '•';
+    const line = `${bullet} ${c.title} (${c.pathway})`;
+    doc.setTextColor(isStarred ? brandSecondaryBlue : brandTextColor); // Highlight the starred career
     doc.text(line, 20, y);
-    y += 7;
-    if (y > pageHeight - 20) {
+    y += 8;
+    if (y > pageHeight - 30) {
       doc.addPage();
-      y = 20;
+      y = 30;
     }
   });
-  y += 10;
+  y += 12;
 
   // Top Career Snapshot
   const topCareer = careersToDisplay.length > 0 ? careersToDisplay[0] : null;
   const topCareerStats = topCareer?.title ? CAREER_STATS[topCareer.title] || {} : {};
 
-  doc.setFontSize(14);
-  doc.setTextColor(secondaryColor);
+  doc.setFontSize(16);
+  doc.setTextColor(brandPrimaryBlue);
   doc.text(`Top Career Snapshot: ${topCareer?.title || 'N/A'}`, 15, y);
   doc.line(15, y + 2, 195, y + 2);
-  y += 8;
+  y += 10;
 
   doc.setFontSize(12);
-  doc.setTextColor(textColor);
+  doc.setTextColor(brandTextColor);
   doc.text(`• Salary: ${topCareerStats.salary || 'N/A'}`, 20, y);
-  y += 7;
+  y += 8;
   doc.text(`• Outlook: ${topCareerStats.outlook || 'N/A'}`, 20, y);
-  y += 7;
+  y += 8;
   doc.text(`• Education: ${topCareerStats.education || 'N/A'}`, 20, y);
-  y += 10;
+  y += 12;
 
   // Next Step
   const nextStepText = generateNextStepPhrase(mbtiData, preference);
   const nextStepPlainText = nextStepText.replace(/<[^>]*>/g, '');
   const wrappedNextStepText = doc.splitTextToSize(nextStepPlainText, 175);
 
-  doc.setFontSize(14);
-  doc.setTextColor(secondaryColor);
+  doc.setFontSize(16);
+  doc.setTextColor(brandPrimaryBlue);
   doc.text('Recommended Next Step', 15, y);
   doc.line(15, y + 2, 195, y + 2);
-  y += 8;
+  y += 10;
 
   doc.setFontSize(12);
-  doc.setTextColor(textColor);
-  doc.text('•', 20, y);
-  doc.text(wrappedNextStepText, 25, y);
-  y += wrappedNextStepText.length * 7 + 10;
+  doc.setTextColor(brandTextColor);
+  doc.text(wrappedNextStepText, 20, y);
+  y += wrappedNextStepText.length * 8 + 12;
 
   // Appendix Guide
   const pathwayMap = {
@@ -165,11 +174,11 @@ export const exportResultsAsPDF = ({ type, preference }) => {
 
   if (guideContent) {
     doc.addPage();
-    let guideY = 20;
+    let guideY = 25;
 
     doc.setFontSize(24);
-    doc.setTextColor(primaryColor);
-    doc.text(`Appendix: ${guideKey} Guide`, 15, guideY);
+    doc.setTextColor(brandPrimaryBlue);
+    doc.text(`Appendix: The ${guideKey} Guide`, 15, guideY);
     doc.line(15, guideY + 2, 195, guideY + 2);
     guideY += 15;
 
@@ -190,38 +199,41 @@ export const exportResultsAsPDF = ({ type, preference }) => {
 
       if (guideY > pageHeight - 40) {
         doc.addPage();
-        guideY = 20;
+        guideY = 25;
       }
 
-      doc.setFontSize(16);
-      doc.setTextColor(secondaryColor);
+      doc.setFontSize(18);
+      doc.setTextColor(brandDarkBlueGray);
       doc.text(sectionTitle, 15, guideY);
-      guideY += 8;
+      guideY += 10;
 
       doc.setFontSize(12);
-      doc.setTextColor(textColor);
+      doc.setTextColor(brandTextColor);
       const wrappedText = doc.splitTextToSize(sectionContent, 175);
       wrappedText.forEach((line) => {
         if (guideY > pageHeight - 20) {
           doc.addPage();
-          guideY = 20;
+          guideY = 25;
         }
         doc.text(line, 15, guideY);
-        guideY += 7;
+        guideY += 8;
       });
 
-      guideY += 10;
+      guideY += 12;
     });
   }
 
-  // Footer with page numbers
+  // Footer with page numbers and CTA
   const totalPages = doc.internal.getNumberOfPages();
   for (let i = 1; i <= totalPages; i++) {
     doc.setPage(i);
     doc.setFontSize(10);
-    doc.setTextColor(textColor);
+    doc.setTextColor(brandTextColor);
+    doc.text(`Find more guides and resources at:`, 15, pageHeight - 14);
+    doc.setTextColor(brandPrimaryBlue);
     doc.text(websiteURL, 15, pageHeight - 10);
     const pageNumberText = `Page ${i} of ${totalPages}`;
+    doc.setTextColor(brandTextColor);
     doc.text(pageNumberText, doc.internal.pageSize.width - 15, pageHeight - 10, {
       align: 'right',
     });
