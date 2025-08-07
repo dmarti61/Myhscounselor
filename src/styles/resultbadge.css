@@ -122,12 +122,12 @@
 /* --- College Majors Section --- */
 .major-list {
   list-style: none; /* Custom bullet for majors */
-  padding-left: 0;
+  padding: 0; /* REMOVED padding-left: 20px, which caused the misalignment */
+  margin: 0; /* ADDED: Removes default browser margin */
   margin-top: 1rem;
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  padding-left: 20px; /* ADDED: This will indent the list and align it with the other lists */
 }
 
 .major-list li {
