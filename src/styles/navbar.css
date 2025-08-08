@@ -98,6 +98,7 @@
   pointer-events: none;
   transform: translateY(-100%);
   z-index: 1001;
+  /* IMPROVEMENT: Simplified transition logic for opening/closing */
   transition: opacity 0.3s ease, transform 0.3s ease, visibility 0s linear 0.3s;
   display: flex;
   flex-direction: column;
@@ -183,6 +184,7 @@
   border-bottom: none;
 }
 
+/* Base style for all top-level items (links and buttons) */
 .nav-top-level-item {
   display: flex;
   align-items: center;
@@ -196,6 +198,10 @@
   padding: 1rem 0; /* More padding for easier tapping */
   justify-content: flex-start;
   font-family: 'Poppins', sans-serif; /* Top-level items use Poppins */
+  background: none; /* Reset button styles */
+  border: none;
+  width: 100%;
+  text-align: left;
 }
 
 .nav-top-level-item:hover,
@@ -206,18 +212,14 @@
 }
 
 .nav-top-level-item.active-item,
-li.active-parent > .nav-dropdown-btn { /* REFINEMENT: Simplified selector */
+li.active-parent > .nav-top-level-item { /* Updated selector to be more specific and include the button */
   border-left: 3px solid #3498db;
   color: #3498db;
   padding-left: 0.5rem;
 }
 
-.nav-dropdown-btn {
-  background: none;
-  border: none;
-  width: 100%;
-  text-align: left;
-  white-space: nowrap;
+.nav-top-level-item.nav-dropdown-btn {
+  /* This class specifically targets the button to override base styles if needed, though they are already compatible */
 }
 
 .dropdown-icon {
@@ -226,7 +228,7 @@ li.active-parent > .nav-dropdown-btn { /* REFINEMENT: Simplified selector */
   transition: transform 0.3s ease; /* Adjusted timing */
 }
 
-.nav-dropdown-btn[aria-expanded="true"] .dropdown-icon {
+.nav-top-level-item[aria-expanded="true"] .dropdown-icon {
   transform: rotate(180deg);
 }
 
@@ -297,7 +299,6 @@ li.active-parent > .nav-dropdown-btn { /* REFINEMENT: Simplified selector */
 
 /* ─────────── Desktop Styles (>= 901px) ─────────── */
 
-  /* ─────────── Desktop Styles (>= 901px) ─────────── */
 @media (min-width: 901px) {
   .navbar {
     padding: 1rem 2rem;
@@ -359,11 +360,16 @@ li.active-parent > .nav-dropdown-btn { /* REFINEMENT: Simplified selector */
     border-left: none;
     color: #fff;
   }
-
+  
   .nav-top-level-item:hover,
-  .nav-top-level-item:focus-visible,
+  .nav-top-level-item:focus-visible {
+    color: #3498db;
+    border-bottom-color: #3498db;
+    padding-left: 0;
+  }
+
   .nav-top-level-item.active-item,
-  li.active-parent > .nav-dropdown-btn {
+  li.active-parent > .nav-top-level-item { /* Updated selector */
     color: #3498db;
     border-bottom-color: #3498db;
     padding-left: 0;
@@ -384,7 +390,7 @@ li.active-parent > .nav-dropdown-btn { /* REFINEMENT: Simplified selector */
     transform: rotate(0);
   }
 
-  .nav-dropdown-btn[aria-expanded="true"] .dropdown-icon {
+  .nav-top-level-item[aria-expanded="true"] .dropdown-icon {
     transform: rotate(180deg);
   }
 
