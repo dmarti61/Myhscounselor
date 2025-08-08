@@ -98,7 +98,6 @@
   pointer-events: none;
   transform: translateY(-100%);
   z-index: 1001;
-  /* IMPROVEMENT: Simplified transition logic for opening/closing */
   transition: opacity 0.3s ease, transform 0.3s ease, visibility 0s linear 0.3s;
   display: flex;
   flex-direction: column;
@@ -212,7 +211,7 @@
 }
 
 .nav-top-level-item.active-item,
-li.active-parent > .nav-top-level-item { /* Updated selector to be more specific and include the button */
+li.active-parent > .nav-top-level-item {
   border-left: 3px solid #3498db;
   color: #3498db;
   padding-left: 0.5rem;
@@ -236,19 +235,23 @@ li.active-parent > .nav-top-level-item { /* Updated selector to be more specific
   list-style: none;
   padding-left: 1.5rem;
   margin: 0;
-  /* IMPROVEMENT: Use max-height for smooth accordion animation */
-  max-height: 0;
+  
+  /* REVISED: Using transform for a smoother animation on mobile */
+  transform: scaleY(0);
+  transform-origin: top;
+  max-height: 0; /* Keep for accessibility and content flow */
   overflow: hidden;
   visibility: hidden;
-  transition: max-height 0.4s ease-in-out, padding 0.4s ease-in-out, visibility 0s linear 0.4s;
+  transition: transform 0.3s ease-in-out, max-height 0.3s ease-in-out, padding 0.3s ease-in-out, visibility 0s linear 0.3s;
 }
 
 .nav-submenu.show {
   visibility: visible;
+  transform: scaleY(1);
   max-height: 1000px; /* A large enough value to not clip content */
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
-  transition: max-height 0.4s ease-in-out, padding 0.4s ease-in-out;
+  transition: transform 0.3s ease-in-out, max-height 0.3s ease-in-out, padding 0.3s ease-in-out;
 }
 
 .nav-submenu li {
@@ -369,7 +372,7 @@ li.active-parent > .nav-top-level-item { /* Updated selector to be more specific
   }
 
   .nav-top-level-item.active-item,
-  li.active-parent > .nav-top-level-item { /* Updated selector */
+  li.active-parent > .nav-top-level-item {
     color: #3498db;
     border-bottom-color: #3498db;
     padding-left: 0;
@@ -407,10 +410,16 @@ li.active-parent > .nav-top-level-item { /* Updated selector to be more specific
     z-index: 1100;
     border: 1px solid #3d5066;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    
+    /* REVISED: Removed transform animation for desktop */
+    transition: none;
   }
-
+  
   .nav-submenu.show {
     display: block;
+    
+    /* REVISED: Removed transform animation for desktop */
+    transform: translateX(-50%);
   }
 
   .nav-submenu li a {
