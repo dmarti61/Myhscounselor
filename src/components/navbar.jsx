@@ -46,6 +46,15 @@ const Navbar = () => {
   const hamburgerRef = useRef(null);
   const closeBtnRef = useRef(null);
 
+  const handleMenuToggle = () => {
+    setIsMenuOpen((prev) => !prev);
+  };
+
+  const closeMenuAndDropdowns = () => {
+    setIsMenuOpen(false);
+    setActiveDropdown(null);
+  };
+
   useEffect(() => {
     if (isMenuOpen) {
       document.body.classList.add('menu-open');
@@ -54,6 +63,8 @@ const Navbar = () => {
     } else {
       document.body.classList.remove('menu-open');
       document.documentElement.classList.remove('menu-open');
+      // IMPROVEMENT: Return focus to the hamburger button after closing the menu
+      hamburgerRef.current?.focus();
     }
 
     return () => {
@@ -63,15 +74,13 @@ const Navbar = () => {
   }, [isMenuOpen]);
 
   useEffect(() => {
-    setIsMenuOpen(false);
-    setActiveDropdown(null);
+    closeMenuAndDropdowns();
   }, [location.pathname]);
 
   useEffect(() => {
     const handleEscKey = (e) => {
       if (e.key === 'Escape') {
-        setIsMenuOpen(false);
-        setActiveDropdown(null);
+        closeMenuAndDropdowns();
       }
     };
     document.addEventListener('keydown', handleEscKey);
@@ -89,7 +98,7 @@ const Navbar = () => {
     <nav className="navbar" aria-label="Main navigation">
       <div
         className={`nav-overlay ${isMenuOpen ? 'show' : ''}`}
-        onClick={() => setIsMenuOpen(false)}
+        onClick={closeMenuAndDropdowns}
         aria-hidden="true"
       />
       <div className="navbar-header">
@@ -100,7 +109,7 @@ const Navbar = () => {
         <button
           ref={hamburgerRef}
           className="hamburger"
-          onClick={() => setIsMenuOpen((prev) => !prev)}
+          onClick={handleMenuToggle}
           aria-expanded={isMenuOpen}
           aria-controls="primary-navigation"
           aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
@@ -119,10 +128,7 @@ const Navbar = () => {
           <button
             ref={closeBtnRef}
             className="nav-close-btn"
-            onClick={() => {
-              setIsMenuOpen(false);
-              setActiveDropdown(null);
-            }}
+            onClick={closeMenuAndDropdowns}
             aria-label="Close menu"
           >
             &times;
@@ -144,7 +150,7 @@ const Navbar = () => {
                   {item.children ? (
                     <>
                       <button
-                        className="nav-top-level-item nav-dropdown-btn"
+                        className={`nav-top-level-item nav-dropdown-btn`}
                         aria-haspopup="true"
                         aria-expanded={isDropdownOpen}
                         aria-controls={`${item.id}-submenu`}
@@ -166,10 +172,7 @@ const Navbar = () => {
                               role="menuitem"
                               tabIndex={isMenuOpen || isDropdownOpen ? 0 : -1}
                               className={({ isActive }) => isActive ? 'active' : ''}
-                              onClick={() => {
-                                setIsMenuOpen(false);
-                                setActiveDropdown(null);
-                              }}
+                              onClick={closeMenuAndDropdowns}
                             >
                               {child.label}
                             </NavLink>
@@ -184,10 +187,7 @@ const Navbar = () => {
                       className={({ isActive }) =>
                         `nav-top-level-item ${isActive ? 'active-item' : ''}`
                       }
-                      onClick={() => {
-                        setIsMenuOpen(false);
-                        setActiveDropdown(null);
-                      }}
+                      onClick={closeMenuAndDropdowns}
                     >
                       {item.label}
                     </NavLink>
