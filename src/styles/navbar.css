@@ -345,7 +345,11 @@ li.active-parent > .nav-top-level-item {
   }
 
   .nav-links ul {
+    display: flex;
     flex-direction: row;
+    list-style: none;
+    margin: 0;
+    padding: 0;
   }
 
   .nav-links li {
@@ -398,7 +402,6 @@ li.active-parent > .nav-top-level-item {
   }
 
   .nav-submenu {
-    display: none;
     position: absolute;
     top: calc(100% + 5px);
     left: 50%;
@@ -410,13 +413,20 @@ li.active-parent > .nav-top-level-item {
     z-index: 1100;
     border: 1px solid #3d5066;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
     
     /* REVISED: Removed transform animation for desktop */
-    transition: none;
+    transition: opacity 0.5s ease,
+    visibility 0s linear 0.5s;
   }
   
   .nav-submenu.show {
-    display: block;
+    visibility: visible; 
+    opacity: 1;
+    pointer-events: auto;
+    transition: opacity 0.5s ease;
     
     /* REVISED: Removed transform animation for desktop */
     transform: translateX(-50%);
