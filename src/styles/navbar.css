@@ -418,15 +418,16 @@ li.active-parent > .nav-top-level-item {
     pointer-events: none;
     
     /* REVISED: Removed transform animation for desktop */
-    transition: opacity 0.5s ease,
-    visibility 0s linear 0.5s;
+    transition: opacity 0.2s ease,
+    visibility 0s linear 0.2s;
   }
   
   .nav-submenu.show {
     visibility: visible; 
     opacity: 1;
     pointer-events: auto;
-    transition: opacity 0.5s ease;
+    transition: opacity 0.2s ease,
+    visibility 0s linear;
     
     /* REVISED: Removed transform animation for desktop */
     transform: translateX(-50%);
