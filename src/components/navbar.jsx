@@ -45,6 +45,7 @@ const Navbar = () => {
   const location = useLocation();
   const hamburgerRef = useRef(null);
   const closeBtnRef = useRef(null);
+  const navbarRef = useRef(null);
 
   const handleMenuToggle = () => {
     setIsMenuOpen((prev) => !prev);
@@ -63,7 +64,6 @@ const Navbar = () => {
     } else {
       document.body.classList.remove('menu-open');
       document.documentElement.classList.remove('menu-open');
-      // IMPROVEMENT: Return focus to the hamburger button after closing the menu
       hamburgerRef.current?.focus();
     }
 
@@ -95,7 +95,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="navbar" aria-label="Main navigation">
+    <nav className="navbar" aria-label="Main navigation" ref={navbarRef}>
       <div
         className={`nav-overlay ${isMenuOpen ? 'show' : ''}`}
         onClick={closeMenuAndDropdowns}
@@ -103,7 +103,14 @@ const Navbar = () => {
       />
       <div className="navbar-header">
         <NavLink to="/" className="navbar-logo-link" aria-label="Home">
-          <img src="/logo.png" alt="My HS Counselor Logo" className="navbar-logo" />
+          <img 
+            src="/logo.png" 
+            alt="My HS Counselor Logo" 
+            className="navbar-logo"
+            width="120"
+            height="40"
+            loading="eager"
+          />
         </NavLink>
 
         <button
@@ -124,82 +131,98 @@ const Navbar = () => {
         id="primary-navigation"
         className={`nav-links ${isMenuOpen ? 'show' : ''}`}
       >
-        <div className="nav-close-container">
-          <button
-            ref={closeBtnRef}
-            className="nav-close-btn"
-            onClick={closeMenuAndDropdowns}
-            aria-label="Close menu"
-          >
-            &times;
-          </button>
-        </div>
+        {isMenuOpen && (
+          <div className="nav-close-container">
+            <button
+              ref={closeBtnRef}
+              className="nav-close-btn"
+              onClick={closeMenuAndDropdowns}
+              aria-label="Close menu"
+            >
+              &times;
+            </button>
+          </div>
+        )}
 
-        <div className="nav-links-scroll-wrapper">
+        {isMenuOpen ? (
+          <div className="nav-links-scroll-wrapper">
+            <ul role="menubar">
+              {renderNavItems()}
+            </ul>
+          </div>
+        ) : (
           <ul role="menubar">
-            {navItems.map((item) => {
-              const isDropdownOpen = activeDropdown === item.id;
-              const isParentActive = hasActiveChild(item);
-
-              return (
-                <li
-                  key={item.id}
-                  role="none"
-                  className={isParentActive ? 'active-parent' : ''}
-                >
-                  {item.children ? (
-                    <>
-                      <button
-                        className={`nav-top-level-item nav-dropdown-btn`}
-                        aria-haspopup="true"
-                        aria-expanded={isDropdownOpen}
-                        aria-controls={`${item.id}-submenu`}
-                        onClick={() => toggleDropdown(item.id)}
-                      >
-                        {item.label}
-                        <span className="dropdown-icon" aria-hidden="true">▼</span>
-                      </button>
-                      <ul
-                        id={`${item.id}-submenu`}
-                        className={`nav-submenu ${isDropdownOpen ? 'show' : ''}`}
-                        role="menu"
-                        aria-label={item.label}
-                      >
-                        {item.children.map((child) => (
-                          <li key={child.path} role="none">
-                            <NavLink
-                              to={child.path}
-                              role="menuitem"
-                              tabIndex={isMenuOpen || isDropdownOpen ? 0 : -1}
-                              className={({ isActive }) => isActive ? 'active' : ''}
-                              onClick={closeMenuAndDropdowns}
-                            >
-                              {child.label}
-                            </NavLink>
-                          </li>
-                        ))}
-                      </ul>
-                    </>
-                  ) : (
-                    <NavLink
-                      to={item.path}
-                      role="menuitem"
-                      className={({ isActive }) =>
-                        `nav-top-level-item ${isActive ? 'active-item' : ''}`
-                      }
-                      onClick={closeMenuAndDropdowns}
-                    >
-                      {item.label}
-                    </NavLink>
-                  )}
-                </li>
-              );
-            })}
+            {renderNavItems()}
           </ul>
-        </div>
+        )}
       </div>
     </nav>
   );
+
+  function renderNavItems() {
+    return navItems.map((item) => {
+      const isDropdownOpen = activeDropdown === item.id;
+      const isParentActive = hasActiveChild(item);
+
+      return (
+        <li
+          key={item.id}
+          role="none"
+          className={isParentActive ? 'active-parent' : ''}
+        >
+          {item.children ? (
+            <>
+              <button
+                className={`nav-top-level-item nav-dropdown-btn`}
+                aria-haspopup="true"
+                aria-expanded={isDropdownOpen}
+                aria-controls={`${item.id}-submenu`}
+                onClick={() => toggleDropdown(item.id)}
+              >
+                {item.label}
+                <span className="dropdown-icon" aria-hidden="true">
+                  <svg width="12" height="8" viewBox="0 0 12 8" fill="currentColor">
+                    <path d="M1 1l5 5 5-5" stroke="currentColor" strokeWidth="2" />
+                  </svg>
+                </span>
+              </button>
+              <ul
+                id={`${item.id}-submenu`}
+                className={`nav-submenu ${isDropdownOpen ? 'show' : ''}`}
+                role="menu"
+                aria-label={item.label}
+              >
+                {item.children.map((child) => (
+                  <li key={child.path} role="none">
+                    <NavLink
+                      to={child.path}
+                      role="menuitem"
+                      tabIndex={isMenuOpen ? 0 : -1}
+                      className={({ isActive }) => isActive ? 'active' : ''}
+                      onClick={closeMenuAndDropdowns}
+                    >
+                      {child.label}
+                    </NavLink>
+                  </li>
+                ))}
+              </ul>
+            </>
+          ) : (
+            <NavLink
+              to={item.path}
+              role="menuitem"
+              className={({ isActive }) =>
+                `nav-top-level-item ${isActive ? 'active-item' : ''}`
+              }
+              onClick={closeMenuAndDropdowns}
+            >
+              {item.label}
+            </NavLink>
+          )}
+        </li>
+      );
+    });
+  }
 };
 
 export default Navbar;
